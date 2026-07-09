@@ -17,10 +17,41 @@ import {
   maySetRole,
 } from "../lib/permissions";
 import { writeAudit } from "../lib/audit";
+import { sendEmail, inviteUrl, renderInviteEmail } from "../lib/email";
 
 const router: IRouter = Router();
 
 type UserRow = typeof usersTable.$inferSelect;
+
+const ROLE_LABELS: Record<string, string> = {
+  super_admin: "Super Admin",
+  admin: "Admin",
+  vp: "VP",
+  member: "Member",
+  read_only: "Read-only",
+};
+
+function roleLabel(role: string): string {
+  return ROLE_LABELS[role] ?? role;
+}
+
+// Email an invite link to its recipient when we have an address and email is
+// configured. Best-effort: the copyable link in the admin UI remains the
+// fallback, so onboarding never depends on email succeeding.
+async function emailInvite(
+  inv: Invitation,
+  targetUser: UserRow | undefined,
+  inviterName: string | null,
+): Promise<void> {
+  const to = inv.targetUserId ? targetUser?.email : inv.newMemberEmail;
+  if (!to) return;
+  const { subject, html, text } = renderInviteEmail({
+    url: inviteUrl(inv.token),
+    roleLabel: roleLabel(inv.role),
+    inviterName,
+  });
+  await sendEmail({ to, subject, html, text });
+}
 
 // An invite that is still "pending" but past its expiry behaves exactly like a
 // revoked invite everywhere it is surfaced.
@@ -159,6 +190,7 @@ router.post(
       targetLabel: targetUser ? displayNameFor(targetUser) : newMemberName ?? null,
       after: { role: inv!.role },
     });
+    await emailInvite(inv!, targetUser, req.appUser?.name ?? null);
     res.status(201).json(ListInvitationsResponseItem.parse(serializeInvitation(inv!, targetUser)));
   },
 );
@@ -249,6 +281,7 @@ router.post(
       targetId: updated!.id,
       targetLabel: targetUser ? displayNameFor(targetUser) : updated!.newMemberName,
     });
+    await emailInvite(updated!, targetUser, req.appUser?.name ?? null);
     res.json(
       RegenerateInvitationResponse.parse(serializeInvitation(updated!, targetUser)),
     );

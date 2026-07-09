@@ -48,6 +48,38 @@ async function recordLogin(user: UserRow): Promise<void> {
 
 const router: IRouter = Router();
 
+// --- Login brute-force protection ------------------------------------------
+// Per-instance, in-memory limiter keyed by client IP + email. Counts failed
+// attempts within a rolling window and blocks once the threshold is hit;
+// cleared on a successful sign-in. (Single-instance deploys only; a horizontally
+// scaled deploy would need a shared store — noted in the launch checklist.)
+const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const LOGIN_MAX_FAILURES = 10;
+const loginFailures = new Map<string, number[]>();
+
+function recentFailures(key: string): number[] {
+  const now = Date.now();
+  const hits = (loginFailures.get(key) ?? []).filter(
+    (t) => now - t < LOGIN_WINDOW_MS,
+  );
+  loginFailures.set(key, hits);
+  return hits;
+}
+
+function isLoginBlocked(key: string): boolean {
+  return recentFailures(key).length >= LOGIN_MAX_FAILURES;
+}
+
+function recordLoginFailure(key: string): void {
+  const hits = recentFailures(key);
+  hits.push(Date.now());
+  loginFailures.set(key, hits);
+}
+
+function clearLoginFailures(key: string): void {
+  loginFailures.delete(key);
+}
+
 function setSessionCookie(res: Response, sid: string) {
   res.cookie(SESSION_COOKIE, sid, {
     httpOnly: true,
@@ -96,6 +128,14 @@ router.post("/auth/login", async (req: Request, res: Response) => {
   const email = parsed.data.email.trim().toLowerCase();
   const { password } = parsed.data;
 
+  const rateKey = `${req.ip ?? "unknown"}|${email}`;
+  if (isLoginBlocked(rateKey)) {
+    res.status(429).json({
+      error: "Too many sign-in attempts. Please wait a few minutes and try again.",
+    });
+    return;
+  }
+
   const [row] = await db
     .select()
     .from(usersTable)
@@ -103,6 +143,7 @@ router.post("/auth/login", async (req: Request, res: Response) => {
 
   // Generic message: never reveal whether an account exists.
   if (!row || !verifyPassword(password, row.passwordHash)) {
+    recordLoginFailure(rateKey);
     res.status(401).json({ error: "Invalid email or password" });
     return;
   }
@@ -111,6 +152,7 @@ router.post("/auth/login", async (req: Request, res: Response) => {
     return;
   }
 
+  clearLoginFailures(rateKey);
   await recordLogin(row);
   const sid = await createSession({ user: toAuthUser(row) } as SessionData);
   setSessionCookie(res, sid);

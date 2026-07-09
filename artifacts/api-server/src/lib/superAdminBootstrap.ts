@@ -2,11 +2,14 @@ import crypto from "crypto";
 import { db, usersTable, invitationsTable } from "@workspace/db";
 import { and, eq, gt, sql } from "drizzle-orm";
 import { logger } from "./logger";
+import { sendEmail, inviteUrl, renderSuperAdminSetupEmail } from "./email";
 
-// The first super admin. Their password is NEVER hardcoded; they set it via a
-// one-time invite link printed to the server log on first boot.
-const SUPER_ADMIN_EMAIL = "Ryan@myfieldspec.com";
-const SUPER_ADMIN_NAME = "Ryan Maynard";
+// The first super admin (the app owner). Configurable via env so it isn't
+// hardcoded to one person; defaults preserve the original owner. Their password
+// is NEVER hardcoded — they set it via a one-time invite link that is emailed
+// (when email is configured) and always printed to the server log on first boot.
+const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL ?? "Ryan@myfieldspec.com";
+const SUPER_ADMIN_NAME = process.env.SUPER_ADMIN_NAME ?? "Ryan Maynard";
 
 /**
  * Idempotently ensure the first super admin exists. On a database where they
@@ -55,10 +58,7 @@ export async function ensureSuperAdmin(): Promise<void> {
     );
 
   if (pending) {
-    logger.info(
-      { inviteUrl: `/invite/${pending.token}` },
-      "Super admin setup invite link (pending) — open to set your password",
-    );
+    await announceSetupLink(pending.token);
     return;
   }
 
@@ -70,8 +70,17 @@ export async function ensureSuperAdmin(): Promise<void> {
     status: "pending",
     createdById: null,
   });
+  await announceSetupLink(token);
+}
+
+// Email the owner their one-time setup link (when email is configured) and
+// always log it, so the owner can get in even if email isn't set up yet.
+async function announceSetupLink(token: string): Promise<void> {
+  const url = inviteUrl(token);
+  const { subject, html, text } = renderSuperAdminSetupEmail({ url });
+  const { sent } = await sendEmail({ to: SUPER_ADMIN_EMAIL, subject, html, text });
   logger.info(
-    { inviteUrl: `/invite/${token}` },
+    { inviteUrl: `/invite/${token}`, emailed: sent, to: SUPER_ADMIN_EMAIL },
     "Super admin one-time setup invite link — open to set your password",
   );
 }

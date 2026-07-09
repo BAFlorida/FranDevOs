@@ -11,6 +11,10 @@ import { authMiddleware } from "./middlewares/authMiddleware";
 
 const app: Express = express();
 
+// Behind a hosting reverse proxy (Render, etc.), trust X-Forwarded-* so req.ip
+// reflects the real client (used by login rate limiting) and HTTPS is detected.
+app.set("trust proxy", true);
+
 app.use(
   pinoHttp({
     logger,

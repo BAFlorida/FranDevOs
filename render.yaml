@@ -25,6 +25,22 @@ services:
         fromDatabase:
           name: frandevos-db
           property: connectionString
+      # Public URL of this service — used to build absolute links in emails.
+      # After the first deploy, set this to your app's real URL (Render shows it),
+      # e.g. https://frandevos.onrender.com, then redeploy.
+      - key: APP_URL
+        sync: false
+      # Owner (Super Admin) account bootstrapped on first boot.
+      - key: SUPER_ADMIN_EMAIL
+        sync: false
+      - key: SUPER_ADMIN_NAME
+        sync: false
+      # Automated email (optional). Add these to turn on invite/reset emails.
+      # Leave unset to share invite links manually. See .env.example for setup.
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
 
 databases:
   - name: frandevos-db
