@@ -57,6 +57,15 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    // The web app calls the API with same-origin `/api/...` requests. In dev
+    // the API server runs separately (default :5000), so proxy `/api` to it,
+    // keeping cookies first-party. Override the target with API_PROXY_TARGET.
+    proxy: {
+      "/api": {
+        target: process.env.API_PROXY_TARGET ?? "http://localhost:5000",
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     port,
