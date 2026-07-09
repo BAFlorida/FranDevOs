@@ -1,0 +1,71 @@
+PROJECT
+Build a multi-user web app called Franchise Development OS — a team task-and-project tracker for a franchise development department (~10 team members plus leadership). It replaces a fragile shared Excel workbook. The core idea is a three-layer system: individuals log their own tasks, those tasks roll up automatically into projects, and projects roll up into an executive dashboard. Nobody ever edits a rollup — rollups are always computed live from the underlying tasks.
+TECH STACK
+
+Frontend: React + TypeScript, responsive (must be fully usable on a phone).
+Backend: Node/Express with a REST API.
+Database: Use Replit's built-in PostgreSQL. Use a proper relational schema with foreign keys — do not store everything as JSON blobs.
+Auth: Use Replit Auth for login. Every user signs in; the app is private (no public/anonymous access). Support user roles (see below).
+Hosting: Deploy as a private/authenticated Replit deployment.
+
+ROLES & PERMISSIONS
+
+Member — sees the dashboard and all projects (read), but can only create/edit/delete their own tasks.
+Lead — everything a Member can do, plus create/edit any task and manage projects.
+Admin — full access, including managing users and seed/reference data.
+The currently logged-in user's tasks should be the default landing view ("My Tasks").
+
+DATA MODEL (build exactly this)
+users — id, name, email, role (member|lead|admin), avatar_color. (Backed by Replit Auth.)
+focus_areas — id, name, sort_order. Seed these 8 in order:
+
+Unified Development System
+Top-of-Funnel Lead Gen
+Broker Channel
+Portfolio Brand Strategy
+Operational Infrastructure
+Automation & Content
+Operating Rhythm
+Talent Evaluation
+
+projects — id (string code like P1-1), name, focus_area_id (FK), executive_owner_id (FK→users), strategic_goal (text). One project belongs to exactly one focus area.
+tasks — id (auto), project_id (FK→projects, required), assignee_id (FK→users, required), role (Owner|Contributor|Support), description (text, required), priority (Critical|High|Medium|Low), status (Not Started|In Progress|Waiting on Someone|Blocked|Complete), percent_complete (0–100), start_date, due_date, dependency (text), roadblock (text), last_update (text), next_step (text), created_at, updated_at.
+Critical relationship rule: A task's project is always chosen from a dropdown of existing projects (a real foreign key) — it is never free text. This single rule is the whole point: it makes it impossible to mistype a project code and have a task silently fail to roll up. The task's focus area is derived from its project, never entered directly.
+THE THREE LAYERS
+1. Input layer — "My Tasks" / per-person views. Each user manages their own tasks in a table. Creating a task opens a form: pick a Project (dropdown showing code · name), assignee defaults to the current user, then role, description, priority, status, percent (slider), start/due dates, dependency, roadblock, last update, next step. Show clear inline validation. Leads/Admins can view any person's task list.
+2. Aggregation layer — Projects. List every project as a health-coded card and provide a project detail page. For each project, compute live from its tasks: task count, average percent_complete, a derived status, overdue count, and a health color. A project detail page shows its header (name, focus area, executive owner, strategic goal) plus the table of all tasks tied to it. Never let anyone type a project's status or percent — always derive it.
+3. Executive layer — Dashboard. A single screen showing, all computed live:
+
+KPI tiles: active projects (projects with ≥1 task), # on track, # at risk, # blocked, # complete, average completion %.
+Second row: total tasks, overdue tasks, tasks due within 7 days, not-started tasks, team member count.
+Status by Focus Area: for each focus area, a progress bar of average completion and a flag if any task under it is overdue.
+Needs Attention: a list of every overdue or blocked task, by name, with assignee, project code, and reason.
+Workload by Team Member: a table — per person: total tasks, open tasks, overdue count, and average completion bar. Clicking a person opens their task list.
+
+BUSINESS LOGIC (implement these rules precisely)
+
+Overdue: a task is overdue if status ≠ Complete AND due_date < today.
+Due soon: status ≠ Complete AND due_date is between today and today+7 days.
+Project status derivation (in order): if a project has no tasks → "No Tasks"; else if any task is Blocked → "Blocked"; else if any task is overdue → "At Risk"; else if all tasks Complete → "Complete"; else if any In Progress/Waiting → "In Progress"; else "Not Started".
+Project health color: Blocked or At Risk → red; Complete or In Progress → green; otherwise amber.
+Project percent: average of its tasks' percent_complete, rounded.
+All rollups must recompute immediately whenever a task changes — no manual refresh, no recalculation step.
+
+VISUAL / UX DIRECTION
+Premium internal "operations command center," not a generic SaaS template. Dark navy left sidebar for navigation; warm off-white content canvas; one confident gold/amber accent for primary actions and key numbers; semantic green/amber/red for status and deadlines. Use a distinctive display font for headings and KPI numbers (e.g., Archivo) and a clean technical font for body and a monospace for IDs (e.g., IBM Plex Sans / IBM Plex Mono). Color-code: overdue = red, due-soon = amber, complete = muted green. Status and priority shown as pills. Subtle entrance animations. Must look polished and feel fast.
+SEED DATA
+Seed 10 users (names, assign each a distinct avatar color): Quick Chadwick, MaryFran Anderson, Shane Mattingly, Leslie Toole, Leah Hanlon, Jamie Lavigne, Steve Griffith, Matt Motyka, Alvaro Leal, Cassidy Ford. Seed ~18 projects across the 8 focus areas with codes P{area}-{n} (e.g., P1-1, P2-1…). Seed ~15–18 sample tasks spread across people and projects, deliberately including a few Complete, one Blocked, one or two overdue, and one or two due-soon, so the dashboard is populated and demonstrates every state on first load.
+BUILD IN PHASES
+
+Phase 1: Auth + login, the database schema above, seed data, and a working "My Tasks" view with create/edit/delete. Confirm it runs.
+Phase 2: Projects list + project detail with live rollups; the project dropdown on the task form.
+Phase 3: The executive Dashboard with all KPIs and the three panels.
+Phase 4: Roles/permissions enforcement, mobile polish, and the visual design pass.
+
+DEFINITION OF DONE
+
+Logging in shows my own tasks; I can add a task and pick its project from a dropdown (never typing a code).
+Adding/changing a task instantly updates the relevant project's numbers and the dashboard with no manual refresh.
+The dashboard correctly flags overdue (red) and due-soon (amber) tasks and lists blocked/overdue items under "Needs Attention."
+A non-admin cannot edit someone else's tasks.
+It works and looks good on a phone.

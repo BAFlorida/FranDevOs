@@ -1,0 +1,3569 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Franchise Development OS API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: Auth
+    description: Browser and mobile authentication endpoints.
+  - name: Users
+    description: Users and roles
+  - name: Invitations
+    description: Admin-issued copy-paste login invites and account claim flow.
+  - name: Access
+    description: Permission catalog & role mapping, audit log, and access/account requests.
+  - name: FocusAreas
+    description: Focus areas
+  - name: Projects
+    description: Projects (with computed rollups)
+  - name: Tasks
+    description: Tasks
+  - name: Dashboard
+    description: Executive dashboard rollups
+  - name: CRM
+    description: Canonical CRM records (opportunities, campaigns, email activity) reconciled from Salesforce and HubSpot.
+  - name: Reporting
+    description: Saved report definitions and on-demand report runs over canonical CRM data.
+  - name: Integrations
+    description: CRM connection status and sync history (mock; future Salesforce/HubSpot sync seam).
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /auth/user:
+    get:
+      tags: [Auth]
+      operationId: getCurrentAuthUser
+      summary: Get the currently authenticated user
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '200':
+          description: Auth status resolved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserEnvelope'
+  /auth/login:
+    post:
+      tags: [Auth]
+      operationId: loginWithPassword
+      summary: Sign in with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginCredentials'
+      responses:
+        '200':
+          description: Signed in successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '400':
+          description: Missing email or password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Invalid email or password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Account deactivated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logout
+      summary: Clear the current session
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '200':
+          description: Logged out.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutSuccess'
+  /auth/accept-invite:
+    post:
+      tags: [Auth]
+      operationId: acceptInvitation
+      summary: Claim an invite link by setting name and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvitationAcceptance'
+      responses:
+        '200':
+          description: Invite accepted; user is now signed in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '400':
+          description: Invalid invite, name, or password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /auth/change-password:
+    post:
+      tags: [Auth]
+      operationId: changeMyPassword
+      summary: Change your own password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+      responses:
+        '200':
+          description: Password changed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutSuccess'
+        '400':
+          description: Current password incorrect or new password invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /users/{id}/reset-password:
+    post:
+      tags: [Users]
+      operationId: resetUserPassword
+      summary: Reset another user's password (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+      responses:
+        '200':
+          description: Password reset.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '400':
+          description: Invalid password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Not permitted to reset this user's password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /impersonate/start:
+    post:
+      tags: [Auth]
+      operationId: startImpersonation
+      summary: Begin acting as another user (super admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImpersonationTarget'
+      responses:
+        '200':
+          description: Now acting as the target user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+        '400':
+          description: Invalid target.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '403':
+          description: Not permitted to impersonate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /impersonate/stop:
+    post:
+      tags: [Auth]
+      operationId: stopImpersonation
+      summary: Stop impersonating and return to your own identity
+      responses:
+        '200':
+          description: Returned to the real identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+
+  /me:
+    get:
+      tags: [Users]
+      operationId: getMe
+      summary: Get the current user's app profile (with role)
+      responses:
+        "200":
+          description: Current app user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /users:
+    get:
+      tags: [Users]
+      operationId: listUsers
+      summary: List all team members
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AppUser"
+    post:
+      tags: [Users]
+      operationId: createUser
+      summary: Create a user (manage_users)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCreate"
+      responses:
+        "201":
+          description: Created user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /users/{id}:
+    patch:
+      tags: [Users]
+      operationId: updateUser
+      summary: Update a user (admin only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdate"
+      responses:
+        "200":
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+
+  /users/{id}/merge:
+    post:
+      tags: [Users]
+      operationId: mergeUser
+      summary: Merge a duplicate member into a surviving member (manage_users)
+      description: >-
+        Repoints every user-id reference (task assignee/blocked/escalation
+        columns, attachments, groups, group memberships, metrics, KPI audit,
+        invitations, audit log, access requests, and more) from the source
+        account onto the surviving account given in the path, then retires the
+        source. Used to reconcile split member identities so a person ends up
+        with a single account that holds all of their work.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The surviving account that references are merged onto.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserMerge"
+      responses:
+        "200":
+          description: Merged; the surviving account is returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+        "400":
+          description: Invalid merge (same account, missing source, or self).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: Not permitted to merge this account.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Source or surviving account not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /invitations:
+    get:
+      tags: [Invitations]
+      operationId: listInvitations
+      summary: List all invitations (admin/vp)
+      responses:
+        "200":
+          description: Invitations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Invitation"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    post:
+      tags: [Invitations]
+      operationId: createInvitation
+      summary: Create an invitation (admin/vp)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvitationInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invitation"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /invitations/{id}/revoke:
+    post:
+      tags: [Invitations]
+      operationId: revokeInvitation
+      summary: Revoke a pending invitation (admin/vp)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Revoked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invitation"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /invitations/{id}/regenerate:
+    post:
+      tags: [Invitations]
+      operationId: regenerateInvitation
+      summary: Regenerate a pending invitation's token (admin/vp)
+      description: >-
+        Issues a fresh token for a pending invitation, keeping the same target
+        and role. The old token stops working immediately.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Regenerated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invitation"
+        "400":
+          description: Only pending invitations can be regenerated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /invitations/by-token/{token}:
+    get:
+      tags: [Invitations]
+      operationId: getInvitationByToken
+      summary: Get public details of an invitation by token (unauthenticated)
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Public invitation details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicInvitation"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /users/{id}/deactivate:
+    post:
+      tags: [Users]
+      operationId: deactivateUser
+      summary: Deactivate a user (manage_users)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deactivated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /users/{id}/activate:
+    post:
+      tags: [Users]
+      operationId: activateUser
+      summary: Reactivate a user (manage_users)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Reactivated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /permissions:
+    get:
+      tags: [Access]
+      operationId: getPermissionMatrix
+      summary: Get the permission catalog and role mapping (manage_permissions)
+      responses:
+        "200":
+          description: Permission matrix
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PermissionMatrix"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /roles/{role}/permissions:
+    put:
+      tags: [Access]
+      operationId: updateRolePermissions
+      summary: Replace the permissions granted to a role (manage_permissions)
+      parameters:
+        - name: role
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/UserRole"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RolePermissionsUpdate"
+      responses:
+        "200":
+          description: Updated role mapping
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RolePermissions"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /audit-log:
+    get:
+      tags: [Access]
+      operationId: listAuditLog
+      summary: List audit-log entries with optional filters (view_audit_log)
+      parameters:
+        - name: action
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: actorId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: targetType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Audit-log entries (newest first)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditLogEntry"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /access-requests:
+    get:
+      tags: [Access]
+      operationId: listAccessRequests
+      summary: List access/account requests (manage_access_requests)
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/AccessRequestStatus"
+      responses:
+        "200":
+          description: Requests (newest first)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AccessRequest"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    post:
+      tags: [Access]
+      operationId: createAccessRequest
+      summary: >-
+        Submit an account or access request. PUBLIC: people without an account
+        may submit account requests (rate-limited). Authenticated members may
+        also request elevated access.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccessRequestInput"
+      responses:
+        "201":
+          description: Created request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessRequest"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: Access (elevation) requests require an authenticated session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "429":
+          description: Too many requests from this client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /access-requests/{id}/approve:
+    post:
+      tags: [Access]
+      operationId: approveAccessRequest
+      summary: Approve a pending request (manage_access_requests)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Approved request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessRequest"
+        "400":
+          description: Invalid state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+  /access-requests/{id}/deny:
+    post:
+      tags: [Access]
+      operationId: denyAccessRequest
+      summary: Deny a pending request (manage_access_requests)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Denied request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessRequest"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /focus-areas:
+    get:
+      tags: [FocusAreas]
+      operationId: listFocusAreas
+      summary: List all focus areas in sort order
+      responses:
+        "200":
+          description: List of focus areas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FocusArea"
+    post:
+      tags: [FocusAreas]
+      operationId: createFocusArea
+      summary: Create a strategic pillar (lead/admin/vp)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FocusAreaInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FocusArea"
+
+  /projects:
+    get:
+      tags: [Projects]
+      operationId: listProjects
+      summary: List all projects with live-computed rollups
+      responses:
+        "200":
+          description: Projects with rollups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectWithRollup"
+    post:
+      tags: [Projects]
+      operationId: createProject
+      summary: Create a project (lead/admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectWithRollup"
+  /projects/{id}:
+    get:
+      tags: [Projects]
+      operationId: getProject
+      summary: Get a project (with rollups and tasks)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Project detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectDetail"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    patch:
+      tags: [Projects]
+      operationId: updateProject
+      summary: Update a project (lead/admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectWithRollup"
+    delete:
+      tags: [Projects]
+      operationId: deleteProject
+      summary: Delete a project (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+
+  /tasks:
+    get:
+      tags: [Tasks]
+      operationId: listTasks
+      summary: List tasks (optionally filtered by assignee or project)
+      parameters:
+        - name: assigneeId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: mine
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/TaskStatus"
+      responses:
+        "200":
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+    post:
+      tags: [Tasks]
+      operationId: createTask
+      summary: Create a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+  /tasks/{id}:
+    get:
+      tags: [Tasks]
+      operationId: getTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Task
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+    patch:
+      tags: [Tasks]
+      operationId: updateTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+    delete:
+      tags: [Tasks]
+      operationId: deleteTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /tasks/{id}/escalate:
+    post:
+      tags: [Tasks]
+      operationId: escalateRoadblock
+      summary: Escalate a roadblock on a task upward to the responsible higher-up
+      description: >-
+        Flags the task as Blocked and opens an escalation routed automatically to
+        the executive owner of the task's initiative (with an admin/vp fallback).
+        Members may only escalate their own tasks and can never choose the target.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EscalateInput"
+      responses:
+        "200":
+          description: Task with the escalation opened
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "400":
+          description: Invalid input or no higher-up available to escalate to
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: Forbidden — you can only escalate your own task
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /escalations:
+    get:
+      tags: [Tasks]
+      operationId: listEscalations
+      summary: List open roadblocks escalated to the current higher-up
+      responses:
+        "200":
+          description: Open escalations routed to the current user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+
+  /blocked-tasks:
+    get:
+      tags: [Tasks]
+      operationId: listBlockedTasks
+      summary: List all open Blocked tasks across the team (excluding active escalations)
+      description: >-
+        Returns every open task currently in Blocked status across the team,
+        excluding tasks that have an active, unresolved escalation (those appear
+        in the escalation queue instead, so the two lists never duplicate a card).
+        Read-only and restricted to users holding the approve-completion
+        permission, mirroring the Roadblocks page gate.
+      responses:
+        "200":
+          description: Open blocked tasks across the team
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+        "403":
+          description: Forbidden — requires the approve-completion permission
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /escalations/{id}/resolve:
+    post:
+      tags: [Tasks]
+      operationId: resolveEscalation
+      summary: Resolve a roadblock escalation (returns to original developer by default)
+      description: >-
+        Clears the Blocked status and records who resolved it and when. By default
+        the task returns to the original developer; the higher-up may instead
+        reassign it to someone else. Only the higher-up the escalation was routed
+        to (or an admin/vp) may resolve.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResolveEscalationInput"
+      responses:
+        "200":
+          description: Task with the escalation resolved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "400":
+          description: Invalid input or no active escalation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: Forbidden — only the higher-up may resolve
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /tasks/{id}/attachments:
+    get:
+      tags: [Tasks]
+      operationId: listTaskAttachments
+      summary: List attachments (deliverable links) for a task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Attachments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TaskAttachment"
+    post:
+      tags: [Tasks]
+      operationId: createTaskAttachment
+      summary: Attach a deliverable link to a task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskAttachmentInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskAttachment"
+  /tasks/{id}/attachments/{attachmentId}:
+    delete:
+      tags: [Tasks]
+      operationId: deleteTaskAttachment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: attachmentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /dashboard:
+    get:
+      tags: [Dashboard]
+      operationId: getDashboard
+      summary: Get executive dashboard rollups
+      responses:
+        "200":
+          description: Dashboard
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+
+  /groups:
+    get:
+      tags: [Groups]
+      operationId: listGroups
+      summary: List all groups with member counts
+      responses:
+        "200":
+          description: Groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupSummary"
+    post:
+      tags: [Groups]
+      operationId: createGroup
+      summary: Create a group (admin/vp only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithMembers"
+  /groups/{id}:
+    get:
+      tags: [Groups]
+      operationId: getGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithMembers"
+    patch:
+      tags: [Groups]
+      operationId: updateGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupInput"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithMembers"
+    delete:
+      tags: [Groups]
+      operationId: deleteGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /groups/{id}/members:
+    put:
+      tags: [Groups]
+      operationId: setGroupMembers
+      summary: Replace the full member list for a group
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupMembersUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupWithMembers"
+
+  /tasks/bulk-assign:
+    post:
+      tags: [Tasks]
+      operationId: bulkAssignTasks
+      summary: Assign a task to a group — creates a parent task plus one child per group member
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkAssignInput"
+      responses:
+        "201":
+          description: Created tasks
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkAssignResult"
+
+  /focus-area-targets:
+    get:
+      tags: [FocusAreas]
+      operationId: listFocusAreaTargets
+      summary: List the strategic target row for each focus area
+      responses:
+        "200":
+          description: Targets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FocusAreaTarget"
+    put:
+      tags: [FocusAreas]
+      operationId: upsertFocusAreaTarget
+      summary: Create or update a focus area target (admin/vp only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FocusAreaTargetInput"
+      responses:
+        "200":
+          description: Upserted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FocusAreaTarget"
+
+  /recurring-metrics/lock-status:
+    get:
+      tags: [KPIs]
+      operationId: getWeekLockStatus
+      summary: Whether prior weeks are currently locked (Mon 9am rule)
+      responses:
+        "200":
+          description: Lock status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeekLockStatus"
+
+  /recurring-metrics/unlock-week:
+    post:
+      tags: [KPIs]
+      operationId: unlockWeek
+      summary: VP override to unlock a locked prior week
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UnlockWeekInput"
+      responses:
+        "200":
+          description: Unlocked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeekLockStatus"
+
+  /recurring-metrics/{id}/audit:
+    get:
+      tags: [KPIs]
+      operationId: listMetricAudit
+      summary: Audit log entries for a metric
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Audit entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/KpiAuditEntry"
+
+  /reports/tree:
+    get:
+      tags: [Reports]
+      operationId: getReportTree
+      summary: Drill-down focus areas → projects → tasks tree with targets
+      responses:
+        "200":
+          description: Tree
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportTree"
+
+  /reports/kpi-breakdown:
+    get:
+      tags: [Reports]
+      operationId: getKpiBreakdown
+      summary: Weekly KPI breakdown for the VP scorecard (with 6-week sparklines)
+      parameters:
+        - name: weekStart
+          in: query
+          required: false
+          description: Monday (YYYY-MM-DD) of the selected week; defaults to the current week.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: KPI breakdown
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KpiBreakdownResponse"
+
+  /crm/opportunities:
+    get:
+      tags: [CRM]
+      operationId: listCrmOpportunities
+      summary: List canonical CRM opportunities / deals (filterable + paginated)
+      parameters:
+        - name: source
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/CrmExternalSource"
+        - name: stageCanonical
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/CrmStage"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 25
+      responses:
+        "200":
+          description: Paginated list of opportunities
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedOpportunities"
+
+  /crm/opportunities/{id}:
+    get:
+      tags: [CRM]
+      operationId: getCrmOpportunity
+      summary: Opportunity drill-down detail including rawPayload
+      description: >-
+        The single "fetch live from source" seam. Mocked today by reading the
+        canonical table; the only future live-API call site.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Opportunity detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrmOpportunity"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /crm/pipeline:
+    get:
+      tags: [CRM]
+      operationId: getCrmPipeline
+      summary: Pipeline aggregated by canonical stage (sum amount + count)
+      parameters:
+        - name: source
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/CrmExternalSource"
+      responses:
+        "200":
+          description: Pipeline rollup per stage
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CrmPipelineStage"
+
+  /crm/campaigns:
+    get:
+      tags: [CRM]
+      operationId: listCrmCampaigns
+      summary: List canonical marketing campaigns
+      parameters:
+        - name: source
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/CrmExternalSource"
+      responses:
+        "200":
+          description: List of campaigns
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CrmCampaign"
+
+  /crm/email-activity:
+    get:
+      tags: [CRM]
+      operationId: listCrmEmailActivity
+      summary: List canonical marketing email activity
+      parameters:
+        - name: source
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/CrmExternalSource"
+        - name: campaignId
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of email activity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CrmEmailActivity"
+
+  /crm/linked-tasks:
+    post:
+      tags: [CRM]
+      operationId: createLinkedTask
+      summary: Create a follow-up task in the existing task module linked to a CRM record
+      description: >-
+        Creates a row in the existing tasks table and a crm_task_links row that
+        associates it with a CRM record, without modifying the tasks contract.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LinkedTaskInput"
+      responses:
+        "201":
+          description: Created task and its CRM link
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LinkedTaskResponse"
+        "404":
+          description: Linked CRM record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /reports/definitions:
+    get:
+      tags: [Reporting]
+      operationId: listReportDefinitions
+      summary: List saved report definitions (presets + custom)
+      responses:
+        "200":
+          description: List of report definitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReportDefinition"
+    post:
+      tags: [Reporting]
+      operationId: createReportDefinition
+      summary: Create a saved report definition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReportDefinitionInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportDefinition"
+
+  /reports/run:
+    post:
+      tags: [Reporting]
+      operationId: runReport
+      summary: Run a report over canonical CRM data (internal aggregation only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReportSpec"
+      responses:
+        "200":
+          description: Report result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportResult"
+
+  /integrations/status:
+    get:
+      tags: [Integrations]
+      operationId: getIntegrationStatus
+      summary: Connection cards — per-source status, last sync, objects synced, recent events
+      responses:
+        "200":
+          description: Connection status cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IntegrationConnectionCard"
+
+  /integrations/refresh:
+    post:
+      tags: [Integrations]
+      operationId: refreshIntegration
+      summary: Mock "Refresh from source" — bumps syncedAt/lastSyncAt and writes a sync event
+      description: >-
+        No external CRM call. Updates the connection's lastSyncAt, bumps syncedAt
+        on that source's canonical rows, and appends a crm_sync_events row.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshIntegrationInput"
+      responses:
+        "200":
+          description: Updated connection card
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IntegrationConnectionCard"
+        "404":
+          description: Connection not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+components:
+  parameters:
+    AuthorizationSessionHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Opaque session token — `Bearer <sid>`.
+      schema:
+        type: string
+    SessionCookie:
+      name: sid
+      in: cookie
+      required: false
+      description: Browser session cookie.
+      schema:
+        type: string
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    AuthUser:
+      type: object
+      required: [id, email, firstName, lastName, profileImageUrl]
+      properties:
+        id:
+          type: string
+        email:
+          type: [string, 'null']
+          format: email
+        firstName:
+          type: [string, 'null']
+        lastName:
+          type: [string, 'null']
+        profileImageUrl:
+          type: [string, 'null']
+    AuthUserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: '#/components/schemas/AuthUser'
+            - type: 'null'
+    LogoutSuccess:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+          const: true
+    ErrorEnvelope:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    LoginCredentials:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+    InvitationAcceptance:
+      type: object
+      required: [token, name, password]
+      properties:
+        token:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 8
+    PasswordChange:
+      type: object
+      required: [currentPassword, newPassword]
+      properties:
+        currentPassword:
+          type: string
+          minLength: 1
+        newPassword:
+          type: string
+          minLength: 8
+    PasswordReset:
+      type: object
+      required: [newPassword]
+      properties:
+        newPassword:
+          type: string
+          minLength: 8
+    ImpersonationTarget:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          type: string
+          minLength: 1
+    UserRole:
+      type: string
+      enum: [member, lead, admin, vp, super_admin, observer]
+    ActingIdentity:
+      type: object
+      description: The real super admin behind an impersonated session.
+      required: [id, name, avatarColor, role, profileImageUrl]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        avatarColor:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRole"
+        profileImageUrl:
+          type: [string, 'null']
+    AppUser:
+      type: object
+      required: [id, name, email, role, avatarColor]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: [string, 'null']
+        role:
+          $ref: "#/components/schemas/UserRole"
+        avatarColor:
+          type: string
+        profileImageUrl:
+          type: [string, 'null']
+        hasLogin:
+          type: boolean
+          description: True when the member has set a password and can sign in.
+        isActive:
+          type: boolean
+          description: False when the user has been deactivated and can no longer log in.
+        permissions:
+          type: array
+          description: Resolved permission keys for this user's role (populated on /me).
+          items:
+            $ref: "#/components/schemas/PermissionKey"
+        impersonating:
+          type: boolean
+          description: True when a super admin is currently acting as this user.
+        realUser:
+          oneOf:
+            - $ref: "#/components/schemas/ActingIdentity"
+            - type: 'null'
+          description: The real super admin driving an impersonated session, else null.
+    UserUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: [string, 'null']
+          format: email
+        role:
+          $ref: "#/components/schemas/UserRole"
+        avatarColor:
+          type: string
+    UserCreate:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: [string, 'null']
+          format: email
+        role:
+          $ref: "#/components/schemas/UserRole"
+        avatarColor:
+          type: string
+
+    UserMerge:
+      type: object
+      required: [sourceUserId]
+      properties:
+        sourceUserId:
+          type: string
+          minLength: 1
+          description: >-
+            The duplicate account to retire. All of its user-id references are
+            moved onto the surviving account named in the path.
+
+    PermissionKey:
+      type: string
+      enum:
+        - impersonate_users
+        - manage_users
+        - manage_permissions
+        - view_audit_log
+        - manage_access_requests
+        - manage_invitations
+        - manage_groups
+        - assign_tasks
+        - approve_completion
+        - edit_initiatives
+        - delete_initiatives
+        - manage_targets
+        - view_reports
+        - run_reports
+        - manage_metrics
+        - manage_integrations
+    Permission:
+      type: object
+      required: [key, label, description, category, sortOrder]
+      properties:
+        key:
+          $ref: "#/components/schemas/PermissionKey"
+        label:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        sortOrder:
+          type: integer
+    RolePermissions:
+      type: object
+      required: [role, permissions]
+      properties:
+        role:
+          $ref: "#/components/schemas/UserRole"
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/PermissionKey"
+    PermissionMatrix:
+      type: object
+      required: [catalog, roles]
+      description: Permission catalog plus the current role -> permission mapping.
+      properties:
+        catalog:
+          type: array
+          items:
+            $ref: "#/components/schemas/Permission"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/RolePermissions"
+    RolePermissionsUpdate:
+      type: object
+      required: [permissions]
+      properties:
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/PermissionKey"
+
+    AuditLogEntry:
+      type: object
+      required: [id, action, createdAt]
+      properties:
+        id:
+          type: integer
+        actorId:
+          type: [string, 'null']
+        actorName:
+          type: [string, 'null']
+        action:
+          type: string
+        targetType:
+          type: [string, 'null']
+        targetId:
+          type: [string, 'null']
+        targetLabel:
+          type: [string, 'null']
+        before:
+          description: Snapshot before the change (shape varies by action).
+        after:
+          description: Snapshot after the change (shape varies by action).
+        createdAt:
+          type: string
+          format: date-time
+
+    AccessRequestKind:
+      type: string
+      enum: [account, access]
+    AccessRequestStatus:
+      type: string
+      enum: [pending, approved, denied]
+    AccessRequest:
+      type: object
+      required: [id, kind, requestedRole, status, createdAt]
+      properties:
+        id:
+          type: integer
+        kind:
+          $ref: "#/components/schemas/AccessRequestKind"
+        requesterUserId:
+          type: [string, 'null']
+        requesterName:
+          type: [string, 'null']
+        requesterEmail:
+          type: [string, 'null']
+        requestedRole:
+          $ref: "#/components/schemas/UserRole"
+        reason:
+          type: [string, 'null']
+        status:
+          $ref: "#/components/schemas/AccessRequestStatus"
+        decidedById:
+          type: [string, 'null']
+        decidedByName:
+          type: [string, 'null']
+        decidedAt:
+          type: [string, 'null']
+          format: date-time
+        resultInvitationId:
+          type: [integer, 'null']
+        createdAt:
+          type: string
+          format: date-time
+    AccessRequestInput:
+      type: object
+      required: [kind]
+      description: >-
+        Submit an account request (provision a new user) or an access request
+        (elevate an existing member). For account requests, name is required.
+      properties:
+        kind:
+          $ref: "#/components/schemas/AccessRequestKind"
+        name:
+          type: [string, 'null']
+        email:
+          type: [string, 'null']
+          format: email
+        requestedRole:
+          $ref: "#/components/schemas/UserRole"
+        reason:
+          type: [string, 'null']
+
+    InvitationStatus:
+      type: string
+      enum: [pending, accepted, revoked]
+    InvitationInput:
+      type: object
+      required: [role]
+      description: >-
+        Either link to an existing unclaimed member via targetUserId, or create a
+        new member by providing newMemberName.
+      properties:
+        role:
+          $ref: "#/components/schemas/UserRole"
+        targetUserId:
+          type: [string, 'null']
+          description: Existing member to link this invite to (must not already have a login).
+        newMemberName:
+          type: [string, 'null']
+          description: Name of the new member to create on accept (when targetUserId is absent).
+        newMemberEmail:
+          type: [string, 'null']
+          format: email
+    Invitation:
+      type: object
+      required: [id, token, role, status, createdAt, inviteUrl]
+      properties:
+        id:
+          type: integer
+        token:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRole"
+        status:
+          $ref: "#/components/schemas/InvitationStatus"
+        targetUserId:
+          type: [string, 'null']
+        targetName:
+          type: [string, 'null']
+          description: Display name of the member this invite resolves to (existing or new).
+        newMemberEmail:
+          type: [string, 'null']
+        inviteUrl:
+          type: string
+          description: Relative path the invitee should open to accept the invite.
+        createdById:
+          type: [string, 'null']
+        acceptedByUserId:
+          type: [string, 'null']
+        acceptedAt:
+          type: [string, 'null']
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+          description: When this invite link auto-expires; after this it behaves like a revoked invite.
+        createdAt:
+          type: string
+          format: date-time
+    PublicInvitation:
+      type: object
+      required: [token, role, status, invitedAs]
+      description: Limited invite details shown on the acceptance screen before sign-in.
+      properties:
+        token:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRole"
+        status:
+          $ref: "#/components/schemas/InvitationStatus"
+        invitedAs:
+          type: string
+          description: The name the invitee will be signed in as.
+
+    FocusArea:
+      type: object
+      required: [id, name, sortOrder]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sortOrder:
+          type: integer
+
+    FocusAreaInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        sortOrder:
+          type: integer
+
+    TaskPriority:
+      type: string
+      enum: [Critical, High, Medium, Low]
+    TaskStatus:
+      type: string
+      enum: [Not Started, In Progress, Waiting on Someone, Blocked, Pending Review, Complete]
+    TaskRole:
+      type: string
+      enum: [Owner, Contributor, Support]
+    ProjectStatus:
+      type: string
+      enum: [No Tasks, Not Started, In Progress, At Risk, Blocked, Complete]
+    HealthColor:
+      type: string
+      enum: [green, amber, red, gray]
+
+    Project:
+      type: object
+      required: [id, name, focusAreaId, executiveOwnerId, strategicGoal]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        focusAreaId:
+          type: integer
+        executiveOwnerId:
+          type: [string, 'null']
+        strategicGoal:
+          type: string
+    ProjectRollup:
+      type: object
+      required: [taskCount, percentComplete, status, healthColor, overdueCount, completeCount, blockedCount]
+      properties:
+        taskCount:
+          type: integer
+        percentComplete:
+          type: integer
+        status:
+          $ref: "#/components/schemas/ProjectStatus"
+        healthColor:
+          $ref: "#/components/schemas/HealthColor"
+        overdueCount:
+          type: integer
+        completeCount:
+          type: integer
+        blockedCount:
+          type: integer
+    ProjectWithRollup:
+      allOf:
+        - $ref: "#/components/schemas/Project"
+        - type: object
+          required: [rollup, focusAreaName]
+          properties:
+            focusAreaName:
+              type: string
+            executiveOwnerName:
+              type: [string, 'null']
+            rollup:
+              $ref: "#/components/schemas/ProjectRollup"
+    ProjectDetail:
+      allOf:
+        - $ref: "#/components/schemas/ProjectWithRollup"
+        - type: object
+          required: [tasks]
+          properties:
+            tasks:
+              type: array
+              items:
+                $ref: "#/components/schemas/Task"
+    ProjectInput:
+      type: object
+      required: [id, name, focusAreaId, strategicGoal]
+      properties:
+        id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        focusAreaId:
+          type: integer
+        executiveOwnerId:
+          type: [string, 'null']
+        strategicGoal:
+          type: string
+    ProjectUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        focusAreaId:
+          type: integer
+        executiveOwnerId:
+          type: [string, 'null']
+        strategicGoal:
+          type: string
+
+    Task:
+      type: object
+      required:
+        - id
+        - projectId
+        - assigneeId
+        - role
+        - description
+        - priority
+        - status
+        - percentComplete
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: string
+        projectName:
+          type: string
+        projectCode:
+          type: string
+        focusAreaId:
+          type: integer
+        focusAreaName:
+          type: string
+        assigneeId:
+          type: string
+        assigneeName:
+          type: string
+        assigneeAvatarColor:
+          type: string
+        role:
+          $ref: "#/components/schemas/TaskRole"
+        description:
+          type: string
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        percentComplete:
+          type: integer
+          minimum: 0
+          maximum: 100
+        startDate:
+          type: [string, 'null']
+          format: date
+        dueDate:
+          type: [string, 'null']
+          format: date
+        dependency:
+          type: [string, 'null']
+        roadblock:
+          type: [string, 'null']
+        lastUpdate:
+          type: [string, 'null']
+        nextStep:
+          type: [string, 'null']
+        blockedById:
+          type: [string, 'null']
+        blockedByName:
+          type: [string, 'null']
+        blockNotes:
+          type: [string, 'null']
+        escalatedToId:
+          type: [string, 'null']
+        escalatedToName:
+          type: [string, 'null']
+        escalatedById:
+          type: [string, 'null']
+        escalatedByName:
+          type: [string, 'null']
+        escalationOriginalAssigneeId:
+          type: [string, 'null']
+        escalationOriginalAssigneeName:
+          type: [string, 'null']
+        escalatedAt:
+          type: [string, 'null']
+          format: date-time
+        escalationResolvedById:
+          type: [string, 'null']
+        escalationResolvedByName:
+          type: [string, 'null']
+        escalationResolvedAt:
+          type: [string, 'null']
+          format: date-time
+        escalationResolutionNote:
+          type: [string, 'null']
+        isEscalated:
+          type: boolean
+        groupId:
+          type: [integer, 'null']
+        parentTaskId:
+          type: [integer, 'null']
+        isGroupParent:
+          type: boolean
+        isOverdue:
+          type: boolean
+        isDueSoon:
+          type: boolean
+        isBlockingViewer:
+          type: boolean
+          description: >-
+            True when the requesting user is the recorded blocker of this
+            currently-blocked task. Lets the personal task list flag items that
+            appear because someone is waiting on the viewer to unblock them.
+        attachments:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaskAttachment"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    TaskAttachment:
+      type: object
+      required: [id, taskId, label, url, createdAt]
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: integer
+        label:
+          type: string
+        url:
+          type: string
+        addedById:
+          type: [string, 'null']
+        addedByName:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
+    TaskAttachmentInput:
+      type: object
+      required: [label, url]
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 256
+        url:
+          type: string
+          minLength: 1
+    TaskInput:
+      type: object
+      required:
+        - projectId
+        - assigneeId
+        - role
+        - description
+        - priority
+        - status
+        - percentComplete
+      properties:
+        projectId:
+          type: string
+          minLength: 1
+        assigneeId:
+          type: string
+          minLength: 1
+        groupId:
+          type: [integer, 'null']
+        parentTaskId:
+          type: [integer, 'null']
+        role:
+          $ref: "#/components/schemas/TaskRole"
+        description:
+          type: string
+          minLength: 1
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        percentComplete:
+          type: integer
+          minimum: 0
+          maximum: 100
+        startDate:
+          type: [string, 'null']
+          format: date
+        dueDate:
+          type: [string, 'null']
+          format: date
+        dependency:
+          type: [string, 'null']
+        roadblock:
+          type: [string, 'null']
+        lastUpdate:
+          type: [string, 'null']
+        nextStep:
+          type: [string, 'null']
+        blockedById:
+          type: [string, 'null']
+        blockNotes:
+          type: [string, 'null']
+    TaskUpdate:
+      type: object
+      properties:
+        projectId:
+          type: string
+        assigneeId:
+          type: string
+        role:
+          $ref: "#/components/schemas/TaskRole"
+        description:
+          type: string
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        percentComplete:
+          type: integer
+          minimum: 0
+          maximum: 100
+        startDate:
+          type: [string, 'null']
+          format: date
+        dueDate:
+          type: [string, 'null']
+          format: date
+        dependency:
+          type: [string, 'null']
+        roadblock:
+          type: [string, 'null']
+        lastUpdate:
+          type: [string, 'null']
+        nextStep:
+          type: [string, 'null']
+        blockedById:
+          type: [string, 'null']
+        blockNotes:
+          type: [string, 'null']
+
+    EscalateInput:
+      type: object
+      required: [note]
+      properties:
+        note:
+          type: string
+          minLength: 1
+          description: What is blocking the developer, sent to the higher-up.
+
+    ResolveEscalationInput:
+      type: object
+      properties:
+        resolutionNote:
+          type: [string, 'null']
+          description: Optional note describing how the roadblock was resolved.
+        reassignToId:
+          type: [string, 'null']
+          description: >-
+            Optional override. When omitted the task returns to the original
+            developer; when set the higher-up reassigns it to this user instead.
+
+    NeedsAttentionItem:
+      type: object
+      required: [taskId, description, assigneeName, assigneeAvatarColor, projectId, projectName, reason]
+      properties:
+        taskId:
+          type: integer
+        description:
+          type: string
+        assigneeId:
+          type: string
+        assigneeName:
+          type: string
+        assigneeAvatarColor:
+          type: string
+        projectId:
+          type: string
+        projectName:
+          type: string
+        dueDate:
+          type: [string, 'null']
+          format: date
+        reason:
+          type: string
+          enum: [Overdue, Blocked]
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+    FocusAreaRollup:
+      type: object
+      required: [focusAreaId, focusAreaName, percentComplete, hasOverdue, taskCount, projectCount]
+      properties:
+        focusAreaId:
+          type: integer
+        focusAreaName:
+          type: string
+        percentComplete:
+          type: integer
+        hasOverdue:
+          type: boolean
+        taskCount:
+          type: integer
+        projectCount:
+          type: integer
+    WorkloadRow:
+      type: object
+      required: [userId, name, avatarColor, totalTasks, openTasks, overdueCount, percentComplete]
+      properties:
+        userId:
+          type: string
+        name:
+          type: string
+        avatarColor:
+          type: string
+        totalTasks:
+          type: integer
+        openTasks:
+          type: integer
+        overdueCount:
+          type: integer
+        percentComplete:
+          type: integer
+    DashboardKpis:
+      type: object
+      required:
+        - activeProjects
+        - onTrack
+        - atRisk
+        - blocked
+        - complete
+        - avgCompletion
+        - totalTasks
+        - overdueTasks
+        - dueSoonTasks
+        - notStartedTasks
+        - notStartedProjects
+        - teamMemberCount
+      properties:
+        activeProjects:
+          type: integer
+        onTrack:
+          type: integer
+        atRisk:
+          type: integer
+        blocked:
+          type: integer
+        complete:
+          type: integer
+        avgCompletion:
+          type: integer
+        totalTasks:
+          type: integer
+        overdueTasks:
+          type: integer
+        dueSoonTasks:
+          type: integer
+        notStartedTasks:
+          type: integer
+        notStartedProjects:
+          type: integer
+        teamMemberCount:
+          type: integer
+    TaskBreakdown:
+      type: object
+      required: [critical, high, medium, low, notStarted, inProgress, waitingOnSomeone, blocked, pendingReview, complete]
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        medium:
+          type: integer
+        low:
+          type: integer
+        notStarted:
+          type: integer
+        inProgress:
+          type: integer
+        waitingOnSomeone:
+          type: integer
+        blocked:
+          type: integer
+        pendingReview:
+          type: integer
+        complete:
+          type: integer
+    Dashboard:
+      type: object
+      required: [kpis, focusAreas, needsAttention, workload, taskBreakdown]
+      properties:
+        kpis:
+          $ref: "#/components/schemas/DashboardKpis"
+        focusAreas:
+          type: array
+          items:
+            $ref: "#/components/schemas/FocusAreaRollup"
+        needsAttention:
+          type: array
+          items:
+            $ref: "#/components/schemas/NeedsAttentionItem"
+        workload:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkloadRow"
+        taskBreakdown:
+          $ref: "#/components/schemas/TaskBreakdown"
+
+    GroupSummary:
+      type: object
+      required: [id, name, description, memberCount, createdAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        memberCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    GroupMember:
+      type: object
+      required: [userId, name, avatarColor, role]
+      properties:
+        userId:
+          type: string
+        name:
+          type: string
+        avatarColor:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRole"
+    GroupWithMembers:
+      type: object
+      required: [id, name, description, createdAt, members]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        members:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupMember"
+    GroupInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+    GroupMembersUpdate:
+      type: object
+      required: [userIds]
+      properties:
+        userIds:
+          type: array
+          items:
+            type: string
+
+    BulkAssignInput:
+      type: object
+      required: [groupId, projectId, description, priority, status, percentComplete]
+      properties:
+        groupId:
+          type: integer
+        projectId:
+          type: string
+        description:
+          type: string
+          minLength: 1
+        role:
+          $ref: "#/components/schemas/TaskRole"
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        percentComplete:
+          type: integer
+          minimum: 0
+          maximum: 100
+        dueDate:
+          type: [string, 'null']
+          format: date
+        startDate:
+          type: [string, 'null']
+          format: date
+        nextStep:
+          type: [string, 'null']
+        attachments:
+          type: array
+          description: Deliverable links copied onto the parent and every member's child task
+          items:
+            $ref: "#/components/schemas/TaskAttachmentInput"
+    BulkAssignResult:
+      type: object
+      required: [parentTaskId, childTaskIds]
+      properties:
+        parentTaskId:
+          type: integer
+        childTaskIds:
+          type: array
+          items:
+            type: integer
+
+    FocusAreaTarget:
+      type: object
+      required: [focusAreaId, focusAreaName, goalText, currentNumeric, unitLabel, updatedAt]
+      properties:
+        focusAreaId:
+          type: integer
+        focusAreaName:
+          type: string
+        goalText:
+          type: string
+        targetNumeric:
+          type: [integer, 'null']
+        currentNumeric:
+          type: integer
+        unitLabel:
+          type: string
+        updatedByName:
+          type: [string, 'null']
+        updatedAt:
+          type: string
+          format: date-time
+    FocusAreaTargetInput:
+      type: object
+      required: [focusAreaId, goalText]
+      properties:
+        focusAreaId:
+          type: integer
+        goalText:
+          type: string
+        targetNumeric:
+          type: [integer, 'null']
+        currentNumeric:
+          type: integer
+        unitLabel:
+          type: string
+
+    MetricSource:
+      type: string
+      enum: [manual, salesforce]
+    KpiAuditEntry:
+      type: object
+      required: [id, metricId, userId, periodStart, oldCount, newCount, source, changedById, changedByName, createdAt]
+      properties:
+        id:
+          type: integer
+        metricId:
+          type: integer
+        userId:
+          type: string
+        userName:
+          type: string
+        periodStart:
+          type: string
+          format: date
+        oldCount:
+          type: integer
+        newCount:
+          type: integer
+        source:
+          $ref: "#/components/schemas/MetricSource"
+        evidenceNote:
+          type: [string, 'null']
+        evidenceUrl:
+          type: [string, 'null']
+        changedById:
+          type: string
+        changedByName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    WeekLockStatus:
+      type: object
+      required: [currentWeekStart, priorWeekStart, lockActive, lockEffectiveAt, overrideActive]
+      properties:
+        currentWeekStart:
+          type: string
+          format: date
+        priorWeekStart:
+          type: string
+          format: date
+        lockActive:
+          type: boolean
+        lockEffectiveAt:
+          type: string
+          format: date-time
+        overrideActive:
+          type: boolean
+    UnlockWeekInput:
+      type: object
+      required: [periodStart, reason]
+      properties:
+        periodStart:
+          type: string
+          format: date
+        reason:
+          type: string
+
+    ReportTaskNode:
+      type: object
+      required: [id, description, assigneeId, assigneeName, status, priority, percentComplete]
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+        assigneeId:
+          type: string
+        assigneeName:
+          type: string
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        percentComplete:
+          type: integer
+        dueDate:
+          type: [string, 'null']
+          format: date
+        isOverdue:
+          type: boolean
+        completedAt:
+          type: [string, 'null']
+          format: date-time
+        blockNotes:
+          type: [string, 'null']
+        attachments:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaskAttachment"
+    ReportProjectNode:
+      type: object
+      required: [id, name, status, healthColor, percentComplete, taskCount, overdueCount, executiveOwnerName, tasks]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        executiveOwnerName:
+          type: [string, 'null']
+        strategicGoal:
+          type: string
+        status:
+          $ref: "#/components/schemas/ProjectStatus"
+        healthColor:
+          $ref: "#/components/schemas/HealthColor"
+        percentComplete:
+          type: integer
+        taskCount:
+          type: integer
+        overdueCount:
+          type: integer
+        blockedCount:
+          type: integer
+        tasks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportTaskNode"
+    ReportFocusAreaNode:
+      type: object
+      required: [focusAreaId, focusAreaName, percentComplete, projectCount, taskCount, projects]
+      properties:
+        focusAreaId:
+          type: integer
+        focusAreaName:
+          type: string
+        percentComplete:
+          type: integer
+        projectCount:
+          type: integer
+        taskCount:
+          type: integer
+        overdueCount:
+          type: integer
+        target:
+          oneOf:
+            - $ref: "#/components/schemas/FocusAreaTarget"
+            - type: 'null'
+        projects:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportProjectNode"
+    ReportTree:
+      type: object
+      required: [generatedAt, focusAreas, totals]
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        totals:
+          type: object
+          required: [projects, tasks, complete, overdue, blocked, avgCompletion]
+          properties:
+            projects:
+              type: integer
+            tasks:
+              type: integer
+            complete:
+              type: integer
+            overdue:
+              type: integer
+            blocked:
+              type: integer
+            avgCompletion:
+              type: integer
+        focusAreas:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportFocusAreaNode"
+
+    KpiBreakdownUserRow:
+      type: object
+      required: [userId, userName, avatarColor, count, target, source, isSelfReported, sparkline]
+      properties:
+        userId:
+          type: string
+        userName:
+          type: string
+        avatarColor:
+          type: string
+        count:
+          type: integer
+        target:
+          type: integer
+        source:
+          $ref: "#/components/schemas/MetricSource"
+        isSelfReported:
+          type: boolean
+        lastEvidenceNote:
+          type: [string, 'null']
+        sparkline:
+          type: array
+          items:
+            type: integer
+    KpiBreakdownMetric:
+      type: object
+      required: [metricId, metricName, target, weekStart, totalActual, totalTarget, rows]
+      properties:
+        metricId:
+          type: integer
+        metricName:
+          type: string
+        target:
+          type: integer
+        weekStart:
+          type: string
+          format: date
+        totalActual:
+          type: integer
+        totalTarget:
+          type: integer
+        rows:
+          type: array
+          items:
+            $ref: "#/components/schemas/KpiBreakdownUserRow"
+    KpiBreakdownResponse:
+      type: object
+      required: [generatedAt, currentWeekStart, metrics, weeks]
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        currentWeekStart:
+          type: string
+          format: date
+        weeks:
+          type: array
+          items:
+            type: string
+            format: date
+        metrics:
+          type: array
+          items:
+            $ref: "#/components/schemas/KpiBreakdownMetric"
+
+    CrmSourceSystem:
+      type: string
+      enum: [salesforce, hubspot, internal]
+
+    CrmExternalSource:
+      description: External CRM sources that have an adapter (synced systems only).
+      type: string
+      enum: [salesforce, hubspot]
+
+    CrmStage:
+      type: string
+      enum:
+        - Prospecting
+        - Qualification
+        - Discovery
+        - Proposal
+        - Negotiation
+        - Closed Won
+        - Closed Lost
+    CrmProvenance:
+      type: object
+      description: Source-of-truth metadata so canonical rows can be reconciled to the originating CRM.
+      required: [sourceSystem, sourceRecordId, syncedAt]
+      properties:
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+
+    CrmAccount:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt, name]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        type:
+          type: [string, 'null']
+        ownerName:
+          type: [string, 'null']
+        region:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmPerson:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        firstName:
+          type: [string, 'null']
+        lastName:
+          type: [string, 'null']
+        email:
+          type: [string, 'null']
+        title:
+          type: [string, 'null']
+        accountId:
+          type: [integer, 'null']
+        ownerName:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmOpportunity:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt, name, stageCanonical]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        rawPayload:
+          description: Untransformed source object preserved for drill-down.
+          oneOf:
+            - type: object
+              additionalProperties: true
+            - type: 'null'
+        name:
+          type: string
+        accountId:
+          type: [integer, 'null']
+        ownerName:
+          type: [string, 'null']
+        amount:
+          type: [string, 'null']
+          description: Decimal amount serialized as string.
+        stageCanonical:
+          $ref: "#/components/schemas/CrmStage"
+        stageRaw:
+          type: [string, 'null']
+          description: Source-specific raw stage label.
+        closeDate:
+          type: [string, 'null']
+          format: date
+        lastActivityAt:
+          type: [string, 'null']
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmCampaign:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt, name, sends, opens, clicks]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        channel:
+          type: [string, 'null']
+        type:
+          type: [string, 'null']
+        status:
+          type: [string, 'null']
+        startDate:
+          type: [string, 'null']
+          format: date
+        endDate:
+          type: [string, 'null']
+          format: date
+        sends:
+          type: integer
+        opens:
+          type: integer
+        clicks:
+          type: integer
+        influencedPipeline:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmEmailActivity:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt, sends, opens, clicks]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        sourceRecordId:
+          type: string
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        campaignId:
+          type: [integer, 'null']
+        subject:
+          type: [string, 'null']
+        sends:
+          type: integer
+        opens:
+          type: integer
+        clicks:
+          type: integer
+        sentAt:
+          type: [string, 'null']
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmConnection:
+      type: object
+      required: [id, sourceSystem, displayName, status, objectsSynced, createdAt]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        displayName:
+          type: string
+        status:
+          type: string
+        lastSyncAt:
+          type: [string, 'null']
+          format: date-time
+        objectsSynced:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    CrmSyncEvent:
+      type: object
+      required: [id, sourceSystem, objectType, status, recordsSynced, startedAt]
+      properties:
+        id:
+          type: integer
+        connectionId:
+          type: [integer, 'null']
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        objectType:
+          type: string
+        status:
+          type: string
+        recordsSynced:
+          type: integer
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: [string, 'null']
+          format: date-time
+        message:
+          type: [string, 'null']
+
+    PaginationMeta:
+      type: object
+      required: [page, pageSize, total, totalPages]
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+
+    PaginatedOpportunities:
+      type: object
+      required: [rows, pagination]
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: "#/components/schemas/CrmOpportunity"
+        pagination:
+          $ref: "#/components/schemas/PaginationMeta"
+
+    CrmPipelineStage:
+      type: object
+      required: [stage, value, count]
+      properties:
+        stage:
+          $ref: "#/components/schemas/CrmStage"
+        value:
+          type: number
+          description: Sum of opportunity amounts in this stage.
+        count:
+          type: integer
+
+    IntegrationConnectionCard:
+      type: object
+      required: [connection, recentEvents]
+      properties:
+        connection:
+          $ref: "#/components/schemas/CrmConnection"
+        recentEvents:
+          type: array
+          items:
+            $ref: "#/components/schemas/CrmSyncEvent"
+
+    RefreshIntegrationInput:
+      type: object
+      required: [source]
+      properties:
+        source:
+          $ref: "#/components/schemas/CrmExternalSource"
+
+    CrmTaskLink:
+      type: object
+      required: [id, taskId, sourceSystem, recordType, recordId, createdAt]
+      properties:
+        id:
+          type: integer
+        taskId:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        recordType:
+          type: string
+          enum: [opportunity, campaign]
+        recordId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    LinkedTaskInput:
+      type: object
+      required:
+        - sourceSystem
+        - recordType
+        - recordId
+        - projectId
+        - assigneeId
+        - role
+        - description
+        - priority
+        - status
+        - percentComplete
+      properties:
+        sourceSystem:
+          $ref: "#/components/schemas/CrmSourceSystem"
+        recordType:
+          type: string
+          enum: [opportunity, campaign]
+        recordId:
+          type: integer
+        projectId:
+          type: string
+          minLength: 1
+        assigneeId:
+          type: string
+          minLength: 1
+        role:
+          $ref: "#/components/schemas/TaskRole"
+        description:
+          type: string
+          minLength: 1
+        priority:
+          $ref: "#/components/schemas/TaskPriority"
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        percentComplete:
+          type: integer
+          minimum: 0
+          maximum: 100
+        startDate:
+          type: [string, 'null']
+          format: date
+        dueDate:
+          type: [string, 'null']
+          format: date
+        nextStep:
+          type: [string, 'null']
+
+    LinkedTaskResponse:
+      type: object
+      required: [task, link]
+      properties:
+        task:
+          $ref: "#/components/schemas/Task"
+        link:
+          $ref: "#/components/schemas/CrmTaskLink"
+
+    ReportSource:
+      type: string
+      enum: [opportunities, campaigns, accounts, people, email_activity]
+
+    ReportFilter:
+      type: object
+      required: [field, op, value]
+      properties:
+        field:
+          type: string
+        op:
+          type: string
+          enum: [eq, neq, in, notIn, gt, gte, lt, lte]
+        value: {}
+
+    ReportMetric:
+      type: object
+      required: [agg]
+      properties:
+        agg:
+          type: string
+          enum: [count, sum, avg]
+        field:
+          type: [string, 'null']
+          description: Numeric field to aggregate. Ignored for count.
+        label:
+          type: [string, 'null']
+
+    ReportChartType:
+      type: string
+      enum: [bar, line, pie, area, table]
+
+    ReportSpec:
+      type: object
+      required: [sources, dimensions, metrics]
+      properties:
+        sources:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/ReportSource"
+        dimensions:
+          type: array
+          description: Fields to group rows by; each becomes a dimension column.
+          items:
+            type: string
+        metrics:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/ReportMetric"
+        filters:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportFilter"
+        groupBy:
+          type: [string, 'null']
+          description: Optional primary grouping field (defaults to the first dimension).
+        chartType:
+          oneOf:
+            - $ref: "#/components/schemas/ReportChartType"
+            - type: 'null'
+
+    ReportColumn:
+      type: object
+      required: [key, label, kind]
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        kind:
+          type: string
+          enum: [dimension, metric]
+
+    ReportResult:
+      type: object
+      required: [spec, generatedAt, columns, rows]
+      properties:
+        spec:
+          $ref: "#/components/schemas/ReportSpec"
+        generatedAt:
+          type: string
+          format: date-time
+        columns:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportColumn"
+        rows:
+          type: array
+          description: Each row is keyed by column key; cells are string, number, or null.
+          items:
+            type: object
+            additionalProperties:
+              oneOf:
+                - type: string
+                - type: number
+                - type: 'null'
+
+    ReportDefinition:
+      type: object
+      required: [id, name, spec, isPreset, createdAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        spec:
+          $ref: "#/components/schemas/ReportSpec"
+        isPreset:
+          type: boolean
+        createdById:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
+
+    ReportDefinitionInput:
+      type: object
+      required: [name, spec]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        spec:
+          $ref: "#/components/schemas/ReportSpec"

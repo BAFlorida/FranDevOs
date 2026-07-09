@@ -1,0 +1,42 @@
+import { Router, type IRouter } from "express";
+import healthRouter from "./health";
+import authRouter from "./auth";
+import impersonationRouter from "./impersonation";
+import usersRouter from "./users";
+import accessRouter from "./access";
+import invitationsRouter from "./invitations";
+import focusAreasRouter from "./focusAreas";
+import projectsRouter from "./projects";
+import tasksRouter from "./tasks";
+import taskAttachmentsRouter from "./task-attachments";
+import dashboardRouter from "./dashboard";
+import recurringMetricsRouter from "./recurring-metrics";
+import reportsRouter from "./reports";
+import groupsRouter from "./groups";
+import focusAreaTargetsRouter from "./focus-area-targets";
+import crmRouter from "./crm";
+import crmReportingRouter from "./crm-reporting";
+import integrationsRouter from "./integrations";
+
+const router: IRouter = Router();
+
+router.use(healthRouter);
+router.use(authRouter);
+router.use(impersonationRouter);
+router.use(usersRouter);
+router.use(accessRouter);
+router.use(invitationsRouter);
+router.use(focusAreasRouter);
+router.use(projectsRouter);
+router.use(tasksRouter);
+router.use(taskAttachmentsRouter);
+router.use(dashboardRouter);
+router.use(recurringMetricsRouter);
+router.use(reportsRouter);
+router.use(groupsRouter);
+router.use(focusAreaTargetsRouter);
+router.use(crmRouter);
+router.use(crmReportingRouter);
+router.use(integrationsRouter);
+
+export default router;

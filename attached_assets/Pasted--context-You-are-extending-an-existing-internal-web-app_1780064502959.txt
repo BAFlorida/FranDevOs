@@ -1,0 +1,103 @@
+<context>
+You are extending an existing internal web app, the "Franchise Development OS." Do NOT scaffold a new project or change the stack. Preserve and build within the current stack:
+
+Frontend: React + Vite
+Backend: Express 5
+Database: PostgreSQL with Drizzle ORM
+API approach: contract-first OpenAPI. React Query hooks and Zod schemas are generated from the OpenAPI contracts. All new frontend data access goes through generated hooks; all new types come from generated Zod schemas.
+Deployment: Replit Reserved VM (web-server process).
+
+The existing project-management module supports task assignment to individuals and groups, deliverable links, and a manager approval workflow. Preserve it. The new modules link into it — they do not replace it and do not introduce a second system of record.
+</context>
+<goal>
+Build a clickable visual PROTOTYPE of three new modules — Sales, Marketing, and a Custom Report Builder — using seeded mock data. The purpose is to visualize the UX and lock in the data and architecture seams so the real Salesforce and HubSpot integrations can be added in a later phase with no changes to the UI, contracts, or schema.
+This phase ships UI + internal data only. It does NOT call any external CRM.
+</goal>
+<architecture_and_api_seams>
+This is the most important part. Build the parts that won't change, and stub only the upstream sync.
+1. Canonical reporting schema — build for real, now.
+Create Drizzle tables that will hold CRM data regardless of source:
+
+crm_people, crm_opportunities_or_deals, crm_campaigns, crm_email_activity, crm_sync_events (add crm_accounts if useful).
+Every row carries: source_system ('salesforce' | 'hubspot' | 'internal'), source_record_id, raw_payload (jsonb), external_last_modified_at, synced_at, and a nullable connection_id.
+Where semantics differ across CRMs, preserve BOTH a mapped canonical value AND the raw source value. Example: store stage_canonical AND stage_raw on opportunities/deals (Salesforce StageName and HubSpot deal stage are conceptually similar but not identical).
+Seed these tables with realistic mock data (see <mock_data>). The prototype reads real Postgres tables; only the data's origin is mocked.
+
+2. Service-adapter layer — typed interfaces now, mock bodies for the prototype.
+Create:
+
+server/integrations/salesforceAdapter.ts
+server/integrations/hubspotAdapter.ts
+server/integrations/reportingService.ts
+
+Define the real method signatures (e.g., listOpportunities(), listCampaigns(), getRecord(id), runReport(spec), getSyncStatus()). For this phase, implement bodies that read from the seeded canonical tables / return fixtures. Mark every external call site with:
+// TODO(api): replace with Salesforce REST/Bulk + Pub/Sub | HubSpot 2026-03 REST + webhooks
+3. OpenAPI contracts + generated hooks — build for real, now.
+Add contracts and generate React Query hooks + Zod schemas for:
+
+GET pipeline / opportunities (filterable, paginated)
+GET campaigns + marketing email activity
+POST run-report (report spec in, aggregated result out)
+GET integration status / connection metadata / sync status
+POST create-linked-task (links a CRM record to the existing task module)
+
+The UI calls only these generated hooks. The seam to "real APIs later" is: implement the adapter bodies + a sync process that fills the canonical tables. Contracts, hooks, Zod types, and all UI stay unchanged.
+4. Named stubs to leave in place — empty, not implemented.
+
+server/workers/ — for the future scheduled sync + Pub/Sub subscriber + webhook processor. Add a README/TODO; do not implement.
+server/integrations/auth/ — for future OAuth / JWT / private-app / service-key token storage. Do not implement auth.
+
+Tenancy note: assume a single connected Salesforce org and a single HubSpot account for now. Keep connection_id on records and a single connections table so multi-tenant can be added later without UI rework, but do NOT build multi-tenant flows.
+</architecture_and_api_seams>
+<modules>
+**Sales**
+- Pipeline view: opportunities + deals unified by `stage_canonical` (value and count per stage).
+- Records table: name, account, owner, canonical stage (+ raw stage in detail), amount, source tag, sync freshness (`synced_at`), last activity. Filter by source and stage.
+- Record drill-down drawer: full record + `raw_payload` preview. Label this as the "fetch live from source" path (mocked now) — this is the only place that will hit a live API later.
+- "Create follow-up task" action that creates a task in the existing module linked to the CRM record (via create-linked-task).
+Marketing
+
+Campaign performance: campaigns (Salesforce + HubSpot) and HubSpot marketing emails, with sends / opens / clicks / influenced pipeline.
+One engagement chart (e.g., opens vs clicks by campaign, or performance by channel).
+Campaign-linked tasking: assign internal follow-up tasks tied to a campaign.
+
+Custom Report Builder (centerpiece)
+
+Config panel: pick dataset/source(s) (Salesforce / HubSpot / Internal tasks / All), dimensions (stage, owner, source, month, channel, status…), metrics (count, sum value, avg value, win rate, sends/opens/clicks…), filters, group-by, chart type.
+Results: data table + chart, rendered from a POST run-report call.
+Saved report definitions (a few presets) and CSV export (stub the download).
+Freshness banner: "Reporting data synced {synced_at}" + a "Refresh from source" button (mock: updates synced_at).
+HARD RULE: the report builder queries internal reporting tables only — never a live CRM API.
+
+Integrations page
+
+Connection cards for Salesforce and HubSpot: status ("Connected — mock"), last sync, objects synced, and a note that real credentials will live in Replit Secrets. No real auth, no real connection.
+
+Visual language: tag every record/row by source_system (Salesforce / HubSpot / Internal) so provenance is legible at a glance. Show sync freshness from synced_at. Match the existing app's look; if none is established, keep it clean, dense, and professional.
+</modules>
+<mock_data>
+Seed realistic franchise-development data: candidate franchisees as accounts; opportunities/deals spread across all canonical stages with BOTH Salesforce and HubSpot as sources; campaigns and marketing emails across channels; internal tasks (some linked to CRM records, some carrying a manager-approval state). Demonstrate the canonical-vs-raw mapping by storing both stage_canonical and stage_raw with realistic raw values (e.g., SF "Negotiation/Review", HubSpot "decisionmakerboughtin").
+</mock_data>
+<non_goals>
+Do NOT, in this phase:
+
+Call any Salesforce or HubSpot API, or implement OAuth / JWT / private-app / service-key auth.
+Implement background sync workers, Change Data Capture, Pub/Sub subscribers, or webhook processing (leave named stubs only).
+Require any real secrets, or place any secret/credential in frontend code.
+Replace, re-scaffold, or change the existing stack, or introduce a second system of record.
+Drift the schema outside the OpenAPI contracts, or bypass the generated hooks/Zod types.
+
+Use seeded mock data only.
+</non_goals>
+<acceptance_criteria>
+
+Nav works across Sales, Marketing, Report Builder, and Integrations; the existing task module still works.
+All new data access flows through OpenAPI-generated React Query hooks and Zod types.
+The Report Builder runs against the seeded canonical Postgres tables and renders a table + chart for at least: pipeline by stage, campaign engagement, and tasks by status.
+Source tags and sync-freshness indicators are visible throughout.
+Every future-external call site is marked with a TODO(api) comment, and server/workers/ + server/integrations/auth/ exist as named, empty stubs.
+The app runs on the existing Replit Reserved VM web-server process.
+</acceptance_criteria>
+
+
+Build order suggestion: (1) canonical Drizzle schema + seed script, (2) OpenAPI contracts + generate hooks/Zod, (3) service adapters reading seeded tables, (4) Sales module, (5) Report Builder, (6) Marketing module, (7) Integrations page. Confirm the schema and contracts with me before building UI.

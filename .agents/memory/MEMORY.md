@@ -1,0 +1,5 @@
+- [DB push hits interactive TTY](db-push-interactive-tty.md) — drizzle-kit push prompts interactively & hangs; apply dev DDL via executeSql, verify with information_schema.
+- [Orval codegen quirks](orval-codegen-quirks.md) — "Failed to resolve input"=duplicate path key; 201s lack Response schema; GET-with-params hooks need (undefined, {query}).
+- [Permission mapping bootstrap](permission-mapping-bootstrap.md) — catalog + default role_permissions must be seeded on startup; mapping falls back to defaults only when role_permissions is entirely empty.
+- [Read-only role enforcement](read-only-role-enforcement.md) — many writes are requireAuth-only, so read-only roles need a hard method block in requireAuth (allowlist change-password + impersonate/stop), not an empty permission set.
+- [DB drift check](db-drift-check.md) — scripts/src/check-db-drift.ts compares Drizzle pgTables vs live information_schema; registered as `db-drift` validation.
