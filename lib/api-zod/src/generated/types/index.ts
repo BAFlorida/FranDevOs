@@ -42,6 +42,7 @@ export * from './focusAreaInput';
 export * from './focusAreaRollup';
 export * from './focusAreaTarget';
 export * from './focusAreaTargetInput';
+export * from './focusAreaUpdate';
 export * from './getCrmPipelineParams';
 export * from './getKpiBreakdownParams';
 export * from './groupInput';

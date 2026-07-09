@@ -337,6 +337,12 @@ export interface FocusAreaInput {
   sortOrder?: number;
 }
 
+export interface FocusAreaUpdate {
+  /** @minLength 1 */
+  name?: string;
+  sortOrder?: number;
+}
+
 export type TaskPriority = typeof TaskPriority[keyof typeof TaskPriority];
 
 

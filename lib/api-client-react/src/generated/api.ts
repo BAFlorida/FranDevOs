@@ -38,6 +38,7 @@ import type {
   FocusAreaInput,
   FocusAreaTarget,
   FocusAreaTargetInput,
+  FocusAreaUpdate,
   GetCrmPipelineParams,
   GetKpiBreakdownParams,
   GroupInput,
@@ -2305,6 +2306,148 @@ export const useCreateFocusArea = <TError = ErrorType<unknown>,
         TContext
       > => {
       return useMutation(getCreateFocusAreaMutationOptions(options));
+    }
+
+export const getUpdateFocusAreaUrl = (id: number,) => {
+
+
+
+
+  return `/api/focus-areas/${id}`
+}
+
+/**
+ * @summary Rename or reorder a strategic pillar (lead/admin/vp)
+ */
+export const updateFocusArea = async (id: number,
+    focusAreaUpdate: FocusAreaUpdate, options?: RequestInit): Promise<FocusArea> => {
+
+  return customFetch<FocusArea>(getUpdateFocusAreaUrl(id),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      focusAreaUpdate,)
+  }
+);}
+
+
+
+
+export const getUpdateFocusAreaMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateFocusArea>>, TError,{id: number;data: BodyType<FocusAreaUpdate>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateFocusArea>>, TError,{id: number;data: BodyType<FocusAreaUpdate>}, TContext> => {
+
+const mutationKey = ['updateFocusArea'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateFocusArea>>, {id: number;data: BodyType<FocusAreaUpdate>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  updateFocusArea(id,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateFocusAreaMutationResult = NonNullable<Awaited<ReturnType<typeof updateFocusArea>>>
+    export type UpdateFocusAreaMutationBody = BodyType<FocusAreaUpdate>
+    export type UpdateFocusAreaMutationError = ErrorType<unknown>
+
+    /**
+ * @summary Rename or reorder a strategic pillar (lead/admin/vp)
+ */
+export const useUpdateFocusArea = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateFocusArea>>, TError,{id: number;data: BodyType<FocusAreaUpdate>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateFocusArea>>,
+        TError,
+        {id: number;data: BodyType<FocusAreaUpdate>},
+        TContext
+      > => {
+      return useMutation(getUpdateFocusAreaMutationOptions(options));
+    }
+
+export const getDeleteFocusAreaUrl = (id: number,) => {
+
+
+
+
+  return `/api/focus-areas/${id}`
+}
+
+/**
+ * @summary Delete a strategic pillar (admin). Fails if it still has tactics.
+ */
+export const deleteFocusArea = async (id: number, options?: RequestInit): Promise<void> => {
+
+  return customFetch<void>(getDeleteFocusAreaUrl(id),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+export const getDeleteFocusAreaMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteFocusArea>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteFocusArea>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['deleteFocusArea'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteFocusArea>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  deleteFocusArea(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteFocusAreaMutationResult = NonNullable<Awaited<ReturnType<typeof deleteFocusArea>>>
+
+    export type DeleteFocusAreaMutationError = ErrorType<unknown>
+
+    /**
+ * @summary Delete a strategic pillar (admin). Fails if it still has tactics.
+ */
+export const useDeleteFocusArea = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteFocusArea>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof deleteFocusArea>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getDeleteFocusAreaMutationOptions(options));
     }
 
 export const getListProjectsUrl = () => {

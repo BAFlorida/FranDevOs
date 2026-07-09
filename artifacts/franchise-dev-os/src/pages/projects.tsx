@@ -20,6 +20,7 @@ import {
   Circle,
   X,
   Layers,
+  Pencil,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useSearch } from "wouter";
@@ -29,6 +30,7 @@ import { useGetMe, getGetMeQueryKey } from "@workspace/api-client-react";
 import { useState } from "react";
 import { ProjectFormDialog } from "@/components/project-form-dialog";
 import { PillarFormDialog } from "@/components/pillar-form-dialog";
+import { EditPillarDialog } from "@/components/edit-pillar-dialog";
 import {
   Accordion,
   AccordionContent,
@@ -128,6 +130,7 @@ export default function ProjectsPage() {
   const [projectModalOpen, setProjectModalOpen] = useState(false);
   const [pillarModalOpen, setPillarModalOpen] = useState(false);
   const [addTacticFocusAreaId, setAddTacticFocusAreaId] = useState<number | undefined>(undefined);
+  const [editPillar, setEditPillar] = useState<{ id: number; name: string } | null>(null);
   const search = useSearch();
   const searchParams = new URLSearchParams(search);
   const statusKey = searchParams.get("status");
@@ -139,6 +142,7 @@ export default function ProjectsPage() {
   }
 
   const canCreate = (me?.permissions ?? []).includes("edit_initiatives");
+  const canDeletePillar = (me?.permissions ?? []).includes("delete_initiatives");
   const all = projects ?? [];
 
   // Pillar filter mode (from dashboard Strategic Pillar chart click)
@@ -368,7 +372,15 @@ export default function ProjectsPage() {
                     </div>
                   )}
                   {canCreate && (
-                    <div className="mt-3 flex justify-end">
+                    <div className="mt-3 flex justify-end gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setEditPillar({ id: area.id, name: area.name })}
+                        data-testid={`button-edit-pillar-${area.id}`}
+                      >
+                        <Pencil className="w-3.5 h-3.5 mr-1" /> Edit Pillar
+                      </Button>
                       <Button
                         variant="outline"
                         size="sm"
@@ -400,6 +412,14 @@ export default function ProjectsPage() {
             defaultFocusAreaId={addTacticFocusAreaId}
           />
           <PillarFormDialog open={pillarModalOpen} onOpenChange={setPillarModalOpen} />
+          <EditPillarDialog
+            open={editPillar !== null}
+            onOpenChange={(o) => {
+              if (!o) setEditPillar(null);
+            }}
+            pillar={editPillar}
+            canDelete={canDeletePillar}
+          />
         </>
       )}
     </div>

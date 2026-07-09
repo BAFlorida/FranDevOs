@@ -679,6 +679,36 @@ export const CreateFocusAreaBody = zod.object({
 
 
 /**
+ * @summary Rename or reorder a strategic pillar (lead/admin/vp)
+ */
+export const UpdateFocusAreaParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+
+
+
+export const UpdateFocusAreaBody = zod.object({
+  "name": zod.string().min(1).optional(),
+  "sortOrder": zod.number().optional()
+})
+
+export const UpdateFocusAreaResponse = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "sortOrder": zod.number()
+})
+
+
+/**
+ * @summary Delete a strategic pillar (admin). Fails if it still has tactics.
+ */
+export const DeleteFocusAreaParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+
+/**
  * @summary List all projects with live-computed rollups
  */
 export const ListProjectsResponseItem = zod.object({

@@ -799,6 +799,44 @@ paths:
               schema:
                 $ref: "#/components/schemas/FocusArea"
 
+  /focus-areas/{id}:
+    patch:
+      tags: [FocusAreas]
+      operationId: updateFocusArea
+      summary: Rename or reorder a strategic pillar (lead/admin/vp)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FocusAreaUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FocusArea"
+    delete:
+      tags: [FocusAreas]
+      operationId: deleteFocusArea
+      summary: Delete a strategic pillar (admin). Fails if it still has tactics.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
   /projects:
     get:
       tags: [Projects]
@@ -2144,6 +2182,15 @@ components:
     FocusAreaInput:
       type: object
       required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        sortOrder:
+          type: integer
+
+    FocusAreaUpdate:
+      type: object
       properties:
         name:
           type: string
