@@ -34,9 +34,9 @@ services:
         sync: false
       # Owner (Super Admin) account bootstrapped on first boot.
       - key: SUPER_ADMIN_EMAIL
-        sync: false
+        value: ryan.maynard@eversmithbrands.com
       - key: SUPER_ADMIN_NAME
-        sync: false
+        value: Ryan Maynard
       # Automated email (optional). Add these to turn on invite/reset emails.
       # Leave unset to share invite links manually. See .env.example for setup.
       - key: RESEND_API_KEY
