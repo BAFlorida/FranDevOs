@@ -10,14 +10,18 @@ services:
     name: frandevos
     runtime: node
     plan: starter
-    # --prod=false forces devDependencies (vite/esbuild/tsc) to install even
-    # though NODE_ENV=production is set below.
-    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm run build
+    # Install pnpm directly (not via corepack, which can fail a signature check
+    # on fresh build machines). --prod=false forces devDependencies
+    # (vite/esbuild/tsc) to install even though NODE_ENV=production is set below.
+    buildCommand: npm install -g pnpm@10.33.0 && pnpm install --frozen-lockfile --prod=false && pnpm run build
     # Apply the DB schema (create tables) before the new version goes live.
     preDeployCommand: pnpm --filter @workspace/db run push
     startCommand: pnpm --filter @workspace/api-server run start
     healthCheckPath: /api/healthz
     envVars:
+      # Pin the Node major version so builds are deterministic.
+      - key: NODE_VERSION
+        value: "22"
       - key: NODE_ENV
         value: production
       - key: BASE_PATH
