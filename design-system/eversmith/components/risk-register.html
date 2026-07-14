@@ -1,0 +1,41 @@
+<!-- @dsCard group="Data" name="Risk register" subtitle="Every risk carries a named owner and a funded mitigation" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Risk register — EverSmith DS</title>
+<link rel="stylesheet" href="../eversmith-ds.css">
+<style>
+  body { margin: 0; background: #EDEEEA; }
+  .card { padding: 32px; background: var(--esb-paper); }
+</style>
+</head>
+<body class="esb">
+  <div class="card">
+    <table class="esb-risk">
+      <thead><tr><th>Risk</th><th>Severity</th><th>Mitigation</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>SBA credit tightening stalls qualified candidates at financing</td>
+          <td><span class="esb-sev esb-hi">High</span></td>
+          <td>Pre-qualify against lender criteria at stage 3, not stage 9. Two-lender panel in place.</td>
+          <td>FranDev</td>
+        </tr>
+        <tr>
+          <td>Attribution gaps across seven brand portals distort lead cost</td>
+          <td><span class="esb-sev esb-med">Medium</span></td>
+          <td>Single object model, Gate 1 deliverable. Funded.</td>
+          <td>RevOps</td>
+        </tr>
+        <tr>
+          <td>Broker channel mix shifts candidate quality downward</td>
+          <td><span class="esb-sev esb-lo">Low</span></td>
+          <td>Channel-level close rate tracked monthly. Spend re-allocated at threshold.</td>
+          <td>FranDev</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

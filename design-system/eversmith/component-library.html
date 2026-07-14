@@ -1,0 +1,347 @@
+<!-- @dsCard group="Reference" name="Full component library" subtitle="Every component with its usage rule and banned patterns" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EverSmith Investment Case Design System — Component Library</title>
+<link rel="stylesheet" href="eversmith-ds.css">
+<style>
+  body { margin: 0; background: #EDEEEA; }
+  .lib { max-width: 1376px; margin: 0 auto; padding: 48px 24px 96px; }
+  .lib-head { border-bottom: 3px solid var(--esb-crown); padding-bottom: 24px; margin-bottom: 48px; }
+  .lib-head h1 { font-family: var(--esb-font-display); font-size: 34px; font-weight: 700;
+                 letter-spacing: -0.02em; color: var(--esb-ink); margin: 0 0 8px; }
+  .lib-head p  { font-family: var(--esb-font-body); font-size: 17px; color: var(--esb-graphite);
+                 margin: 0; max-width: 72ch; }
+  .lib-kicker { font-family: var(--esb-font-data); font-size: 10px; font-weight: 600;
+                letter-spacing: 0.16em; text-transform: uppercase; color: var(--esb-slate);
+                margin-bottom: 10px; }
+
+  .sec { margin-bottom: 56px; }
+  .sec-h { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--esb-rule-strong);
+           padding-bottom: 8px; margin-bottom: 8px; }
+  .sec-n { font-family: var(--esb-font-data); font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+           color: var(--esb-crown); }
+  .sec-t { font-family: var(--esb-font-display); font-size: 21px; font-weight: 600;
+           letter-spacing: -0.01em; color: var(--esb-ink); margin: 0; }
+  .sec-rule { font-family: var(--esb-font-body); font-size: 15px; color: var(--esb-slate);
+              margin: 0 0 24px; max-width: 78ch; }
+  .sec-rule b { color: var(--esb-ink); font-weight: 600; }
+
+  .demo { background: var(--esb-paper); border: 1px solid var(--esb-rule); padding: 32px; border-radius: 2px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 12px; }
+  .sw { border: 1px solid var(--esb-rule); border-radius: 2px; overflow: hidden; background: var(--esb-paper); }
+  .sw-chip { height: 56px; }
+  .sw-m { padding: 8px 10px; font-family: var(--esb-font-data); font-size: 10px; line-height: 1.6; }
+  .sw-m b { display: block; color: var(--esb-ink); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sw-m span { color: var(--esb-mute); }
+  .sw.swap { border-color: var(--esb-signal); border-width: 2px; }
+  .sw.swap .sw-m b::after { content: ' ◂ SWAP'; color: var(--esb-signal); }
+
+  .type-row { display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--esb-rule); }
+  .type-meta { font-family: var(--esb-font-data); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+               color: var(--esb-mute); width: 200px; flex: none; line-height: 1.5; }
+  .type-meta b { display: block; color: var(--esb-slate); font-weight: 600; }
+
+  .scale-wrap { overflow-x: auto; padding-bottom: 8px; }
+  .scale-wrap .esb-slide { flex: none; box-shadow: 0 1px 3px rgba(17,24,31,0.07); }
+
+  .banned { border-left: 3px solid var(--esb-signal); padding-left: 16px; margin-top: 20px; }
+  .banned-k { font-family: var(--esb-font-data); font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+              text-transform: uppercase; color: var(--esb-signal); margin-bottom: 6px; }
+  .banned p { font-family: var(--esb-font-body); font-size: 14px; color: var(--esb-graphite); margin: 0 0 4px; }
+  .banned s { color: var(--esb-mute); }
+</style>
+</head>
+<body class="esb">
+<div class="lib">
+
+  <header class="lib-head">
+    <div class="lib-kicker">EverSmith Brands · Platform Investment Voice · v1.0</div>
+    <h1>Investment Case Design System</h1>
+    <p>The system for anything that goes to Riverside: capital requests, brand growth plans, add-on theses, and the recurring board review. Neutral field, brand in the accent slot, every figure sourced in the rail. One token layer renders to HTML, PDF, and PPTX.</p>
+  </header>
+
+  <!-- 01 COLOR -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">01</span><h2 class="sec-t">Color</h2></div>
+    <p class="sec-rule">The field is neutral. Brand blue and teal appear on <b>data, gates, and the claim mark only</b> — never as a page background. This is what separates a board document from a marketing deck. The data ramp steps monotonically in lightness so every series stays distinct on a black-and-white printer, which is how half the committee will read it.</p>
+    <div class="demo">
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#11181F"></div><div class="sw-m"><b>Ink</b><span>#11181F</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#39454F"></div><div class="sw-m"><b>Graphite</b><span>#39454F</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#6E7A85"></div><div class="sw-m"><b>Slate</b><span>#6E7A85</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#97A1AA"></div><div class="sw-m"><b>Mute</b><span>#97A1AA</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#D9DEE2"></div><div class="sw-m"><b>Rule</b><span>#D9DEE2</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FCFCFA;border-bottom:1px solid #D9DEE2"></div><div class="sw-m"><b>Paper</b><span>#FCFCFA</span></div></div>
+        <div class="sw swap"><div class="sw-chip" style="background:#123A5E"></div><div class="sw-m"><b>ESB Blue</b><span>#123A5E</span></div></div>
+        <div class="sw swap"><div class="sw-chip" style="background:#1B9A92"></div><div class="sw-m"><b>ESB Teal</b><span>#1B9A92</span></div></div>
+        <div class="sw swap"><div class="sw-chip" style="background:#123A5E"></div><div class="sw-m"><b>Crown</b><span>#123A5E</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#A8412C"></div><div class="sw-m"><b>Signal</b><span>#A8412C</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#C8862A"></div><div class="sw-m"><b>Watch</b><span>#C8862A</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1B7A5A"></div><div class="sw-m"><b>Good</b><span>#1B7A5A</span></div></div>
+      </div>
+
+      <div style="margin-top:28px">
+        <div class="lib-kicker">Data ramp · monotonic lightness · grayscale-safe</div>
+        <div style="display:flex;height:44px;border-radius:2px;overflow:hidden">
+          <div style="flex:1;background:#11181F"></div>
+          <div style="flex:1;background:#123A5E"></div>
+          <div style="flex:1;background:#2F6E86"></div>
+          <div style="flex:1;background:#1B9A92"></div>
+          <div style="flex:1;background:#9DB6BE"></div>
+          <div style="flex:1;background:#D2DBDE"></div>
+        </div>
+      </div>
+
+      <div class="banned">
+        <div class="banned-k">Banned</div>
+        <p><s>Full-bleed blue title slides.</s> The field stays paper. Riverside is not the audience for a hero image.</p>
+        <p><s>Red used more than twice in a deck.</s> Signal color is earned. If everything is red, nothing is.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 TYPE -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">02</span><h2 class="sec-t">Type</h2></div>
+    <p class="sec-rule">Three faces, three jobs. <b>Archivo</b> carries claims — engineered and squarish, it reads like a nameplate on a machine, which suits a platform called Smith. <b>Source Serif</b> carries prose, because a PE reader reads memos, and serif body signals argument rather than pitch. <b>IBM Plex Mono</b> carries every number, label, and source line, so figures align in a column and stay legible in a table.</p>
+    <div class="demo">
+      <div class="type-row">
+        <div class="type-meta"><b>Claim</b>Archivo 600 · 40px · -1.5% track</div>
+        <div style="font-family:var(--esb-font-display);font-size:40px;font-weight:600;line-height:1.14;letter-spacing:-0.015em;color:var(--esb-ink)">Blended cost per qualified lead fell 78%</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Standfirst</b>Source Serif 400 · 18px</div>
+        <div style="font-family:var(--esb-font-body);font-size:18px;color:var(--esb-graphite)">The so-what, in one sentence, directly under the claim.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Body</b>Source Serif 400 · 16px · 1.5</div>
+        <div style="font-family:var(--esb-font-body);font-size:16px;color:var(--esb-graphite);max-width:60ch">Narrative prose, not flattened bullets. Fifteen to twenty words per sentence, active voice, and the first sentence of every section carries the point on its own.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Metric</b>Archivo 700 · 44px · tabular</div>
+        <div style="font-family:var(--esb-font-display);font-size:44px;font-weight:700;letter-spacing:-0.025em;color:var(--esb-ink);font-variant-numeric:tabular-nums">$600M+</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Data / table</b>IBM Plex Mono 400 · 15px</div>
+        <div style="font-family:var(--esb-font-data);font-size:15px;color:var(--esb-ink);font-variant-numeric:tabular-nums">1,400 &nbsp; 750 &nbsp; 330 &nbsp; 7</div>
+      </div>
+      <div class="type-row" style="border-bottom:none">
+        <div class="type-meta"><b>Rail / eyebrow</b>IBM Plex Mono 600 · 10px · caps · 9% track</div>
+        <div style="font-family:var(--esb-font-data);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--esb-slate)">Source · EverSmith Brands, platform metrics, 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 THE EVIDENCE RAIL -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">03</span><h2 class="sec-t">The evidence rail</h2></div>
+    <p class="sec-rule">The signature element, and the only structural rule in the system. Every surface carries a 104px mono rail: claim number at the top, a source line for every figure in the body, document status pinned at the foot. <b>You cannot lay out a page in this system without filling it.</b> Sourcing stops being a habit you remember and becomes a constraint the grid enforces. On mobile the rail collapses to a stacked block — it never disappears.</p>
+    <div class="demo scale-wrap">
+      <div class="esb-slide">
+        <aside class="esb-rail">
+          <div class="esb-rail-mark">Claim 04</div>
+          <div class="esb-rail-src"><b>Platform revenue</b><span>EverSmith Brands, eversmithbrands.com, Apr 2026</span></div>
+          <div class="esb-rail-src"><b>Territories</b><span>EverSmith Brands, Apr 2026</span></div>
+          <div class="esb-rail-src"><b>Nat'l accounts</b><span>Locations serviced, FY2025</span></div>
+          <div class="esb-rail-foot">Riverside · Board<br>Confidential</div>
+        </aside>
+        <main class="esb-body">
+          <div class="esb-eyebrow">Platform · Scale</div>
+          <h2 class="esb-claim">The rail holds the source. The body holds the argument.</h2>
+          <p class="esb-standfirst">Every figure below has a line in the rail. If it does not, it does not belong on the page.</p>
+          <div class="esb-metrics">
+            <div><div class="esb-metric-v">$600M+</div><div class="esb-metric-k">Platform revenue</div><div class="esb-metric-note">Annual, combined</div></div>
+            <div><div class="esb-metric-v">750+</div><div class="esb-metric-k">Territories</div><div class="esb-metric-note">7 countries</div></div>
+            <div><div class="esb-metric-v">1,400</div><div class="esb-metric-k">Nat'l acct locations</div><div class="esb-metric-note">Serviced in 2025</div></div>
+          </div>
+          <div class="esb-foot"><span><strong>EverSmith Brands</strong> · Investment Case</span><span>04</span></div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 CLAIM -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">04</span><h2 class="sec-t">Claim headline</h2></div>
+    <p class="sec-rule">The headline is the argument, not a topic label. A committee member who reads only the headlines should be able to reconstruct the whole case. This is the Pyramid Principle enforced as a type style: <b>if the headline can be true or false, it is a claim. If it can only be a subject, it is a label.</b></p>
+    <div class="demo">
+      <div class="esb-eyebrow">Lead Generation · Q3</div>
+      <h2 class="esb-claim esb-wide">Paid cost per qualified lead fell 78% while qualified volume held flat</h2>
+      <div class="banned">
+        <div class="banned-k">Banned headlines</div>
+        <p><s>Q3 Lead Performance</s> — a topic. Tells the reader nothing.</p>
+        <p><s>Marketing Update</s> — a filing category, not an argument.</p>
+        <p><s>Key Takeaways</s> — if they were key, they would be the headline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 THESIS -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">05</span><h2 class="sec-t">Thesis block</h2></div>
+    <p class="sec-rule">Slide one of every case. The entire argument and its terms in a single frame, so an operating partner who reads nothing else still knows what is being asked, for how much, against what, and by when.</p>
+    <div class="demo">
+      <div class="esb-thesis">
+        <p class="esb-thesis-claim">Fund a centralized franchise development engine across all seven brands. It converts platform scale into lead cost advantage no single brand can buy alone.</p>
+        <div class="esb-thesis-terms">
+          <div><div class="esb-thesis-term-k">Ask</div><div class="esb-thesis-term-v">$X.XM</div></div>
+          <div><div class="esb-thesis-term-k">Horizon</div><div class="esb-thesis-term-v">18 months</div></div>
+          <div><div class="esb-thesis-term-k">Return metric</div><div class="esb-thesis-term-v">CPQL / unit</div></div>
+          <div><div class="esb-thesis-term-k">Decision</div><div class="esb-thesis-term-v">Approve · Gate 1</div></div>
+        </div>
+      </div>
+      <span class="esb-illustrative">Illustrative — replace before issue</span>
+    </div>
+  </section>
+
+  <!-- 06 SCENARIOS -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">06</span><h2 class="sec-t">Scenario cards</h2></div>
+    <p class="sec-rule">Base, upside, downside. <b>The downside card is never omitted.</b> A case without a downside is a pitch, and an operating partner will read its absence as either naivety or concealment. Showing the downside first is how you buy the room's trust for the base case.</p>
+    <div class="demo">
+      <div class="esb-scenarios">
+        <div class="esb-scenario esb-base">
+          <div class="esb-scenario-k"><span>Base</span><em>60%</em></div>
+          <div class="esb-scenario-v">XX units</div>
+          <div class="esb-scenario-d">Current close rate holds. Lead cost improves with volume. No new brand added.</div>
+        </div>
+        <div class="esb-scenario esb-upside">
+          <div class="esb-scenario-k"><span>Upside</span><em>25%</em></div>
+          <div class="esb-scenario-v">XX units</div>
+          <div class="esb-scenario-d">Cross-brand referral converts. Broker channel recovers to prior-year pace.</div>
+        </div>
+        <div class="esb-scenario esb-downside">
+          <div class="esb-scenario-k"><span>Downside</span><em>15%</em></div>
+          <div class="esb-scenario-v">XX units</div>
+          <div class="esb-scenario-d">Credit tightens for SBA 7(a) borrowers. Qualified candidates stall at financing.</div>
+        </div>
+      </div>
+      <div style="margin-top:16px"><span class="esb-illustrative">Illustrative — replace before issue</span></div>
+    </div>
+  </section>
+
+  <!-- 07 GATES -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">07</span><h2 class="sec-t">Gate track</h2></div>
+    <p class="sec-rule">Capital releases against milestones, not against the calendar. The numbering is legitimate here because the sequence is real and the order carries information the reader needs. A gate track is also the single most effective de-risking device in a capital request: <b>it lets the committee say yes to the first tranche without saying yes to all of it.</b></p>
+    <div class="demo">
+      <div class="esb-gates">
+        <div class="esb-gate esb-cleared">
+          <div class="esb-gate-n">Gate 1</div>
+          <div class="esb-gate-t">Attribution live across brands</div>
+          <div class="esb-gate-c">$XXXk</div>
+          <div class="esb-gate-d">Single source of truth for lead cost. Cleared.</div>
+        </div>
+        <div class="esb-gate esb-active">
+          <div class="esb-gate-n">Gate 2</div>
+          <div class="esb-gate-t">CPQL below threshold, two brands</div>
+          <div class="esb-gate-c">$XXXk</div>
+          <div class="esb-gate-d">Proves the model before it scales to seven.</div>
+        </div>
+        <div class="esb-gate esb-at-risk">
+          <div class="esb-gate-n">Gate 3</div>
+          <div class="esb-gate-t">Broker channel re-underwritten</div>
+          <div class="esb-gate-c">$XXXk</div>
+          <div class="esb-gate-d">At risk. Dependent on Gate 2 data.</div>
+        </div>
+        <div class="esb-gate">
+          <div class="esb-gate-n">Gate 4</div>
+          <div class="esb-gate-t">Full platform rollout</div>
+          <div class="esb-gate-c">$XXXk</div>
+          <div class="esb-gate-d">Remaining five brands onboarded.</div>
+        </div>
+      </div>
+      <div style="margin-top:20px"><span class="esb-illustrative">Illustrative — replace before issue</span></div>
+    </div>
+  </section>
+
+  <!-- 08 TABLE -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">08</span><h2 class="sec-t">Unit economics table</h2></div>
+    <p class="sec-rule">Labels left in serif, figures right in mono with tabular numerals so digits stack in a column. Totals get a strong rule above and no rule below. Negative variance takes signal color, and only negative variance does.</p>
+    <div class="demo">
+      <table class="esb-table">
+        <thead>
+          <tr><th>Line</th><th>Plan</th><th>Actual</th><th>Var</th><th>Var %</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cost per lead</td><td>$XX</td><td>$XX</td><td class="esb-pos">($XX)</td><td class="esb-pos">-XX%</td></tr>
+          <tr><td>Cost per qualified lead</td><td>$XXX</td><td>$XX</td><td class="esb-pos">($XXX)</td><td class="esb-pos">-XX%</td></tr>
+          <tr><td>Qualified lead to award</td><td>X.X%</td><td>X.X%</td><td class="esb-neg">(X.X pt)</td><td class="esb-neg">-XX%</td></tr>
+          <tr><td>Cost per unit awarded</td><td>$XX,XXX</td><td>$XX,XXX</td><td class="esb-pos">($X,XXX)</td><td class="esb-pos">-XX%</td></tr>
+          <tr class="esb-total"><td>Units awarded, YTD</td><td>XX</td><td>XX</td><td class="esb-neg">(X)</td><td class="esb-neg">-XX%</td></tr>
+        </tbody>
+      </table>
+      <div class="esb-src">Source · [system], [date range]. Every table carries its provenance or it does not ship.</div>
+    </div>
+  </section>
+
+  <!-- 09 USE OF FUNDS -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">09</span><h2 class="sec-t">Use of funds</h2></div>
+    <p class="sec-rule">One horizontal bar, keyed beneath. <b>Not a pie chart.</b> Pies do not survive a black-and-white printer, they do not let a reader compare adjacent segments, and they signal marketing rather than underwriting.</p>
+    <div class="demo">
+      <div class="esb-uof">
+        <div class="esb-uof-seg" style="flex:42;background:var(--esb-d2)"></div>
+        <div class="esb-uof-seg" style="flex:26;background:var(--esb-d3)"></div>
+        <div class="esb-uof-seg" style="flex:19;background:var(--esb-d4)"></div>
+        <div class="esb-uof-seg" style="flex:13;background:var(--esb-d5)"></div>
+      </div>
+      <div class="esb-uof-key">
+        <div class="esb-uof-key-i" style="border-color:var(--esb-d2)"><div class="esb-uof-key-k">Paid media</div><div class="esb-uof-key-v">42%</div></div>
+        <div class="esb-uof-key-i" style="border-color:var(--esb-d3)"><div class="esb-uof-key-k">Systems / RevOps</div><div class="esb-uof-key-v">26%</div></div>
+        <div class="esb-uof-key-i" style="border-color:var(--esb-d4)"><div class="esb-uof-key-k">Headcount</div><div class="esb-uof-key-v">19%</div></div>
+        <div class="esb-uof-key-i" style="border-color:var(--esb-d5)"><div class="esb-uof-key-k">Content / brand</div><div class="esb-uof-key-v">13%</div></div>
+      </div>
+      <div style="margin-top:20px"><span class="esb-illustrative">Illustrative — replace before issue</span></div>
+    </div>
+  </section>
+
+  <!-- 10 RISK -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">10</span><h2 class="sec-t">Risk register</h2></div>
+    <p class="sec-rule">Every risk carries a named owner and a mitigation that is already funded or already scheduled. A risk without an owner is a disclaimer, and a committee reads disclaimers as things you have not thought about.</p>
+    <div class="demo">
+      <table class="esb-risk">
+        <thead><tr><th>Risk</th><th>Severity</th><th>Mitigation</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>SBA credit tightening stalls qualified candidates at financing</td>
+            <td><span class="esb-sev esb-hi">High</span></td>
+            <td>Pre-qualify against lender criteria at stage 3, not stage 9. Two-lender panel in place.</td>
+            <td>FranDev</td>
+          </tr>
+          <tr>
+            <td>Attribution gaps across seven brand portals distort lead cost</td>
+            <td><span class="esb-sev esb-med">Medium</span></td>
+            <td>Single object model, Gate 1 deliverable. Funded.</td>
+            <td>RevOps</td>
+          </tr>
+          <tr>
+            <td>Broker channel mix shifts candidate quality downward</td>
+            <td><span class="esb-sev esb-lo">Low</span></td>
+            <td>Channel-level close rate tracked monthly. Spend re-allocated at threshold.</td>
+            <td>FranDev</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 11 CALLOUT -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">11</span><h2 class="sec-t">Callout</h2></div>
+    <p class="sec-rule">The staged reveal. <b>Once per deck. Never twice.</b> Its power is entirely a function of scarcity — use it on the second callout and you have taught the room to skim past the first.</p>
+    <div class="demo">
+      <div class="esb-callout">
+        <p>The dashboard shows lead cost falling. It does not show that the leads getting cheaper are the ones that never close.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

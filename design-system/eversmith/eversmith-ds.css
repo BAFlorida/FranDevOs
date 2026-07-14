@@ -1,0 +1,755 @@
+/* ==========================================================================
+   EVERSMITH BRANDS - INVESTMENT CASE DESIGN SYSTEM
+   v1.0  |  Audience: The Riverside Company (board, IC, operating partners)
+   --------------------------------------------------------------------------
+   This is the authoritative token layer. Everything downstream (slides,
+   memos, one-pagers, PPTX exports) derives from it.
+
+   SWAP-ON-ARRIVAL: three variables carry the EverSmith brand. Overwrite them
+   with the exact hex from the brand guide and the whole system re-skins.
+     --esb-blue    --esb-teal    --esb-crown
+   Nothing else needs to change.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
+:root {
+
+  /* --- NEUTRAL SPINE -------------------------------------------------
+     The field. Cool ink on faintly warm paper. Warm paper is deliberate:
+     pure #FFF renders blue-grey on a laser printer and cold on projection. */
+  --esb-ink:          #11181F;   /* claims, headlines, primary figures      */
+  --esb-graphite:     #39454F;   /* body prose                              */
+  --esb-slate:        #6E7A85;   /* secondary, sub-labels                   */
+  --esb-mute:         #97A1AA;   /* rail text, captions, sources            */
+  --esb-rule:         #D9DEE2;   /* hairlines                               */
+  --esb-rule-strong:  #B4BCC3;   /* section breaks, table heads             */
+  --esb-paper:        #FCFCFA;   /* page field                              */
+  --esb-panel:        #F3F4F1;   /* recessed panels, table zebra            */
+
+  /* --- BRAND ACCENT ---------------------------------------------------
+     SWAP THESE THREE. Sourced from the website's blue-glass/teal identity.
+     Used on data, gates, and the claim mark. Never as a page field.        */
+  --esb-blue:         #123A5E;
+  --esb-teal:         #1B9A92;
+  --esb-crown:        #123A5E;   /* the crown motif / claim mark            */
+
+  /* --- SIGNAL ---------------------------------------------------------
+     Earned colors. A board reader should see red at most twice per deck.  */
+  --esb-signal:       #A8412C;   /* downside, breach, off-pace              */
+  --esb-watch:        #C8862A;   /* watch item, at-risk gate                */
+  --esb-good:         #1B7A5A;   /* ahead of plan                           */
+
+  /* --- DATA RAMP ------------------------------------------------------
+     Monotonic in lightness (L~10 -> L~86) so every series stays distinct
+     when the board book comes off a black-and-white printer.              */
+  --esb-d1:           #11181F;
+  --esb-d2:           #123A5E;
+  --esb-d3:           #2F6E86;
+  --esb-d4:           #1B9A92;
+  --esb-d5:           #9DB6BE;
+  --esb-d6:           #D2DBDE;
+  --esb-d-ghost:      #EAEEEF;   /* prior period / plan ghost               */
+
+  /* --- TYPE -----------------------------------------------------------  */
+  --esb-font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --esb-font-body:    'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --esb-font-data:    'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  --esb-t-claim:      40px;  /* the slide headline. It IS the argument.     */
+  --esb-t-claim-sm:   30px;
+  --esb-t-title:      22px;
+  --esb-t-body:       16px;
+  --esb-t-data:       15px;
+  --esb-t-small:      13px;
+  --esb-t-rail:       10px;  /* mono, caps, tracked                         */
+
+  --esb-lh-claim:     1.14;
+  --esb-lh-body:      1.5;
+
+  /* --- METRIC DISPLAY -------------------------------------------------- */
+  --esb-t-metric:     44px;
+  --esb-t-metric-sm:  30px;
+
+  /* --- SPACE ----------------------------------------------------------
+     4px base. Only these steps. No arbitrary values.                      */
+  --esb-s1: 4px;   --esb-s2: 8px;   --esb-s3: 12px;  --esb-s4: 16px;
+  --esb-s5: 24px;  --esb-s6: 32px;  --esb-s7: 48px;  --esb-s8: 64px;
+
+  /* --- GRID ------------------------------------------------------------ */
+  --esb-slide-w:      1280px;
+  --esb-slide-h:      720px;
+  --esb-rail-w:       104px;  /* the evidence rail                          */
+  --esb-gutter:       32px;
+  --esb-pad:          48px;
+
+  /* --- LINE ------------------------------------------------------------ */
+  --esb-hair:         1px solid var(--esb-rule);
+  --esb-hair-strong:  1px solid var(--esb-rule-strong);
+  --esb-radius:       2px;    /* near-square. This platform makes things.   */
+}
+
+/* ==========================================================================
+   RESET + BASE
+   ========================================================================== */
+
+.esb *, .esb *::before, .esb *::after { box-sizing: border-box; }
+
+.esb {
+  margin: 0;
+  color: var(--esb-graphite);
+  background: var(--esb-paper);
+  font-family: var(--esb-font-body);
+  font-size: var(--esb-t-body);
+  line-height: var(--esb-lh-body);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+.esb :focus-visible {
+  outline: 2px solid var(--esb-teal);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SURFACES
+   Three page types. One grid. The rail is constant across all three.
+   ========================================================================== */
+
+.esb-slide,
+.esb-page,
+.esb-onepager {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--esb-rail-w) 1fr;
+  column-gap: var(--esb-gutter);
+  background: var(--esb-paper);
+  padding: var(--esb-pad);
+  border: var(--esb-hair);
+}
+
+.esb-slide {
+  width: var(--esb-slide-w);
+  height: var(--esb-slide-h);
+  max-width: 100%;
+}
+
+.esb-page {                       /* memo page, 8.5x11 proportion */
+  width: 816px;
+  min-height: 1056px;
+  max-width: 100%;
+}
+
+.esb-onepager {
+  width: 816px;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   THE EVIDENCE RAIL  — the signature element
+   --------------------------------------------------------------------------
+   Every surface carries a mono rail. It holds the claim number at the top
+   and a source line for every figure in the body. A page cannot be laid out
+   in this system without filling it. That is the point: sourcing is not a
+   habit here, it is a grid constraint.
+   ========================================================================== */
+
+.esb-rail {
+  grid-column: 1;
+  border-right: var(--esb-hair);
+  padding-right: var(--esb-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--esb-s5);
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  line-height: 1.45;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--esb-mute);
+}
+
+.esb-rail-mark {                  /* the claim number. Anchors the argument. */
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--esb-crown);
+  letter-spacing: 0.12em;
+}
+
+.esb-rail-mark::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 3px;
+  background: var(--esb-crown);
+  margin-bottom: var(--esb-s2);
+}
+
+.esb-rail-src { display: block; }
+.esb-rail-src b {
+  display: block;
+  font-weight: 600;
+  color: var(--esb-slate);
+  letter-spacing: 0.09em;
+}
+.esb-rail-src span { text-transform: none; letter-spacing: 0.02em; }
+
+.esb-rail-foot {                  /* pinned to the bottom of the rail */
+  margin-top: auto;
+  color: var(--esb-rule-strong);
+  letter-spacing: 0.12em;
+}
+
+/* ==========================================================================
+   BODY COLUMN
+   ========================================================================== */
+
+.esb-body {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   CLAIM  — the headline is the argument, not a topic label
+   "Q3 Lead Performance" is a topic. Banned.
+   "Paid lead cost fell 44% while qualified volume held" is a claim. Required.
+   ========================================================================== */
+
+.esb-eyebrow {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+  margin-bottom: var(--esb-s3);
+}
+
+.esb-claim {
+  font-family: var(--esb-font-display);
+  font-size: var(--esb-t-claim);
+  font-weight: 600;
+  line-height: var(--esb-lh-claim);
+  letter-spacing: -0.015em;
+  color: var(--esb-ink);
+  margin: 0 0 var(--esb-s4) 0;
+  max-width: 22ch;
+}
+
+.esb-claim.esb-wide { max-width: 34ch; }
+.esb-claim.esb-sm   { font-size: var(--esb-t-claim-sm); }
+
+.esb-standfirst {                 /* the so-what. One sentence. */
+  font-family: var(--esb-font-body);
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--esb-graphite);
+  margin: 0 0 var(--esb-s6) 0;
+  max-width: 62ch;
+}
+
+.esb-h {                          /* in-body section heading */
+  font-family: var(--esb-font-display);
+  font-size: var(--esb-t-title);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--esb-ink);
+  margin: var(--esb-s6) 0 var(--esb-s3) 0;
+}
+
+.esb-p { margin: 0 0 var(--esb-s4) 0; max-width: 68ch; }
+
+.esb-lede {                       /* first sentence carries the point */
+  font-weight: 600;
+  color: var(--esb-ink);
+}
+
+/* ==========================================================================
+   THESIS BLOCK  — slide 1 of every case. The whole argument in one frame.
+   ========================================================================== */
+
+.esb-thesis {
+  border-top: 3px solid var(--esb-crown);
+  border-bottom: var(--esb-hair);
+  padding: var(--esb-s5) 0;
+  margin-bottom: var(--esb-s6);
+}
+
+.esb-thesis-claim {
+  font-family: var(--esb-font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--esb-ink);
+  margin: 0 0 var(--esb-s3) 0;
+}
+
+.esb-thesis-terms {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--esb-gutter);
+  margin-top: var(--esb-s5);
+  padding-top: var(--esb-s4);
+  border-top: var(--esb-hair);
+}
+
+.esb-thesis-term-k {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--esb-mute);
+  margin-bottom: var(--esb-s1);
+}
+
+.esb-thesis-term-v {
+  font-family: var(--esb-font-data);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--esb-ink);
+}
+
+/* ==========================================================================
+   METRIC STRIP
+   ========================================================================== */
+
+.esb-metrics {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--esb-gutter);
+  border-top: var(--esb-hair-strong);
+  padding-top: var(--esb-s4);
+}
+
+.esb-metric-v {
+  font-family: var(--esb-font-display);
+  font-size: var(--esb-t-metric);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--esb-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.esb-metric-v.esb-sm { font-size: var(--esb-t-metric-sm); }
+
+.esb-metric-k {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+  margin-top: var(--esb-s2);
+}
+
+.esb-metric-note {
+  font-family: var(--esb-font-data);
+  font-size: 11px;
+  color: var(--esb-mute);
+  margin-top: var(--esb-s1);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.esb-delta {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-small);
+  font-weight: 600;
+  margin-left: var(--esb-s2);
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+.esb-delta.esb-up   { color: var(--esb-good); }
+.esb-delta.esb-down { color: var(--esb-signal); }
+.esb-delta.esb-flat { color: var(--esb-mute); }
+
+/* ==========================================================================
+   SCENARIO CARDS  — base / upside / downside
+   Downside is never omitted. A case without a downside is a pitch.
+   ========================================================================== */
+
+.esb-scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--esb-s4);
+}
+
+.esb-scenario {
+  border: var(--esb-hair);
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-radius: var(--esb-radius);
+  padding: var(--esb-s4);
+  background: var(--esb-paper);
+}
+
+.esb-scenario.esb-base    { border-top-color: var(--esb-blue);   }
+.esb-scenario.esb-upside  { border-top-color: var(--esb-teal);   }
+.esb-scenario.esb-downside{ border-top-color: var(--esb-signal); }
+
+.esb-scenario-k {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+  margin-bottom: var(--esb-s3);
+  display: flex;
+  justify-content: space-between;
+}
+.esb-scenario-k em {
+  font-style: normal;
+  color: var(--esb-mute);
+}
+
+.esb-scenario-v {
+  font-family: var(--esb-font-display);
+  font-size: var(--esb-t-metric-sm);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--esb-ink);
+}
+
+.esb-scenario-d {
+  font-family: var(--esb-font-body);
+  font-size: var(--esb-t-small);
+  line-height: 1.4;
+  color: var(--esb-slate);
+  margin-top: var(--esb-s3);
+  padding-top: var(--esb-s3);
+  border-top: var(--esb-hair);
+}
+
+/* ==========================================================================
+   TABLE  — unit economics, cohorts, pacing
+   Figures right-aligned, mono, tabular. Labels left, serif.
+   ========================================================================== */
+
+.esb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--esb-t-data);
+}
+
+.esb-table th {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+  text-align: right;
+  padding: var(--esb-s2) var(--esb-s3);
+  border-bottom: var(--esb-hair-strong);
+  white-space: nowrap;
+}
+
+.esb-table th:first-child { text-align: left; padding-left: 0; }
+
+.esb-table td {
+  font-family: var(--esb-font-data);
+  text-align: right;
+  padding: var(--esb-s3);
+  border-bottom: var(--esb-hair);
+  color: var(--esb-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.esb-table td:first-child {
+  font-family: var(--esb-font-body);
+  text-align: left;
+  padding-left: 0;
+  color: var(--esb-graphite);
+  white-space: normal;
+}
+
+.esb-table tr.esb-total td {
+  border-top: var(--esb-hair-strong);
+  border-bottom: none;
+  font-weight: 600;
+  color: var(--esb-ink);
+}
+
+.esb-table tr.esb-total td:first-child {
+  font-family: var(--esb-font-display);
+  font-weight: 600;
+  color: var(--esb-ink);
+}
+
+.esb-table .esb-neg { color: var(--esb-signal); }
+.esb-table .esb-pos { color: var(--esb-good);   }
+
+/* ==========================================================================
+   GATE TRACK  — capital released against milestones, not against calendar
+   The numbering here is legitimate: it is a real sequence, and order carries
+   information the reader needs.
+   ========================================================================== */
+
+.esb-gates { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+
+.esb-gate {
+  position: relative;
+  padding: var(--esb-s5) var(--esb-s4) 0 0;
+  border-top: var(--esb-hair);
+}
+
+.esb-gate::before {               /* the gate marker */
+  content: '';
+  position: absolute;
+  top: -6px; left: 0;
+  width: 11px; height: 11px;
+  background: var(--esb-paper);
+  border: 2px solid var(--esb-rule-strong);
+  border-radius: var(--esb-radius);
+}
+
+.esb-gate.esb-cleared::before  { background: var(--esb-crown); border-color: var(--esb-crown); }
+.esb-gate.esb-active::before   { background: var(--esb-paper);  border-color: var(--esb-teal); }
+.esb-gate.esb-at-risk::before  { background: var(--esb-watch);  border-color: var(--esb-watch); }
+
+.esb-gate.esb-cleared { border-top-color: var(--esb-crown); }
+.esb-gate.esb-active  { border-top-color: var(--esb-teal);  }
+
+.esb-gate-n {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--esb-mute);
+}
+
+.esb-gate-t {
+  font-family: var(--esb-font-display);
+  font-size: var(--esb-t-small);
+  font-weight: 600;
+  color: var(--esb-ink);
+  margin: var(--esb-s1) 0 var(--esb-s2) 0;
+  line-height: 1.3;
+}
+
+.esb-gate-c {                     /* capital released at this gate */
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-body);
+  font-weight: 600;
+  color: var(--esb-blue);
+}
+
+.esb-gate-d {
+  font-family: var(--esb-font-body);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--esb-slate);
+  margin-top: var(--esb-s2);
+  padding-right: var(--esb-s3);
+}
+
+/* ==========================================================================
+   RISK REGISTER
+   ========================================================================== */
+
+.esb-risk { width: 100%; border-collapse: collapse; font-size: var(--esb-t-small); }
+
+.esb-risk th {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+  text-align: left;
+  padding: var(--esb-s2) var(--esb-s3) var(--esb-s2) 0;
+  border-bottom: var(--esb-hair-strong);
+}
+
+.esb-risk td {
+  padding: var(--esb-s3) var(--esb-s3) var(--esb-s3) 0;
+  border-bottom: var(--esb-hair);
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.esb-risk td:first-child { font-weight: 600; color: var(--esb-ink); width: 26%; }
+
+.esb-sev {
+  display: inline-block;
+  font-family: var(--esb-font-data);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--esb-radius);
+  border: 1px solid;
+  white-space: nowrap;
+}
+.esb-sev.esb-hi  { color: var(--esb-signal); border-color: var(--esb-signal); }
+.esb-sev.esb-med { color: var(--esb-watch);  border-color: var(--esb-watch);  }
+.esb-sev.esb-lo  { color: var(--esb-slate);  border-color: var(--esb-rule-strong); }
+
+/* ==========================================================================
+   USE OF FUNDS BAR  — a single horizontal bar, not a pie. Pies do not print.
+   ========================================================================== */
+
+.esb-uof { display: flex; width: 100%; height: 40px; border-radius: var(--esb-radius); overflow: hidden; }
+.esb-uof-seg { height: 100%; }
+
+.esb-uof-key {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--esb-s4);
+  margin-top: var(--esb-s4);
+}
+
+.esb-uof-key-i { border-top: 3px solid; padding-top: var(--esb-s2); }
+.esb-uof-key-k {
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--esb-slate);
+}
+.esb-uof-key-v {
+  font-family: var(--esb-font-data);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--esb-ink);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   CALLOUT  — the staged reveal. Use once per deck. Never twice.
+   ========================================================================== */
+
+.esb-callout {
+  border-left: 3px solid var(--esb-teal);
+  padding: var(--esb-s2) 0 var(--esb-s2) var(--esb-s4);
+  margin: var(--esb-s5) 0;
+}
+
+.esb-callout p {
+  font-family: var(--esb-font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--esb-ink);
+  margin: 0;
+  max-width: 48ch;
+}
+
+/* ==========================================================================
+   SOURCE LINE  — inline fallback when the rail is full
+   ========================================================================== */
+
+.esb-src {
+  font-family: var(--esb-font-data);
+  font-size: 11px;
+  color: var(--esb-mute);
+  letter-spacing: 0.02em;
+  margin-top: var(--esb-s3);
+}
+
+/* ==========================================================================
+   ILLUSTRATIVE BANNER  — delete before this goes anywhere near Riverside
+   ========================================================================== */
+
+.esb-illustrative {
+  font-family: var(--esb-font-data);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--esb-signal);
+  border: 1px solid var(--esb-signal);
+  border-radius: var(--esb-radius);
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   SLIDE FOOTER
+   ========================================================================== */
+
+.esb-foot {
+  margin-top: auto;
+  padding-top: var(--esb-s4);
+  border-top: var(--esb-hair);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--esb-font-data);
+  font-size: var(--esb-t-rail);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--esb-mute);
+}
+
+.esb-foot strong { color: var(--esb-slate); font-weight: 600; }
+
+/* ==========================================================================
+   PRINT  — the board book is the real deliverable
+   ========================================================================== */
+
+@page { margin: 12mm; }
+
+@media print {
+  .esb { background: #fff; }
+  .esb-slide, .esb-page, .esb-onepager {
+    border: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .esb-illustrative { display: none; }
+  .esb-uof-seg { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .esb *, .esb *::before, .esb *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE  — the rail collapses to a stacked block below 900px.
+   Sources never disappear. They move.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .esb-slide, .esb-page, .esb-onepager {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: var(--esb-s5);
+  }
+  .esb-rail {
+    grid-column: 1;
+    border-right: none;
+    border-bottom: var(--esb-hair);
+    padding-right: 0;
+    padding-bottom: var(--esb-s4);
+    margin-bottom: var(--esb-s4);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--esb-s4);
+  }
+  .esb-body { grid-column: 1; }
+  .esb-claim { font-size: 26px; max-width: none; }
+  .esb-thesis-terms,
+  .esb-scenarios,
+  .esb-metrics,
+  .esb-gates,
+  .esb-uof-key {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+  }
+}

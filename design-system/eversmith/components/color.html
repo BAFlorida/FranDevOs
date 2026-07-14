@@ -1,0 +1,68 @@
+<!-- @dsCard group="Foundations" name="Color" subtitle="Neutral spine · brand accents · grayscale-safe data ramp" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color — EverSmith DS</title>
+<link rel="stylesheet" href="../eversmith-ds.css">
+<style>
+  body { margin: 0; background: #EDEEEA; }
+  .card { padding: 32px; background: var(--esb-paper); }
+  .k { font-family: var(--esb-font-data); font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+       text-transform: uppercase; color: var(--esb-slate); margin: 0 0 12px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+  .sw { border: 1px solid var(--esb-rule); border-radius: 2px; overflow: hidden; }
+  .sw-chip { height: 48px; }
+  .sw-m { padding: 7px 9px; font-family: var(--esb-font-data); font-size: 10px; line-height: 1.6; }
+  .sw-m b { display: block; color: var(--esb-ink); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sw-m span { color: var(--esb-mute); }
+  .ramp { display: flex; height: 40px; border-radius: 2px; overflow: hidden; margin-top: 8px; }
+  .ramp div { flex: 1; }
+  .grp { margin-top: 28px; }
+</style>
+</head>
+<body class="esb">
+  <div class="card">
+    <p class="k">Neutral spine</p>
+    <div class="swatches">
+      <div class="sw"><div class="sw-chip" style="background:#11181F"></div><div class="sw-m"><b>Ink</b><span>#11181F</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#39454F"></div><div class="sw-m"><b>Graphite</b><span>#39454F</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#6E7A85"></div><div class="sw-m"><b>Slate</b><span>#6E7A85</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#97A1AA"></div><div class="sw-m"><b>Mute</b><span>#97A1AA</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#D9DEE2"></div><div class="sw-m"><b>Rule</b><span>#D9DEE2</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FCFCFA;border-bottom:1px solid #D9DEE2"></div><div class="sw-m"><b>Paper</b><span>#FCFCFA</span></div></div>
+    </div>
+
+    <div class="grp">
+      <p class="k">Brand accent · swap-on-arrival</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#123A5E"></div><div class="sw-m"><b>ESB Blue</b><span>#123A5E</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1B9A92"></div><div class="sw-m"><b>ESB Teal</b><span>#1B9A92</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#123A5E"></div><div class="sw-m"><b>Crown</b><span>#123A5E</span></div></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="k">Signal · earned colors</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#A8412C"></div><div class="sw-m"><b>Signal</b><span>#A8412C</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#C8862A"></div><div class="sw-m"><b>Watch</b><span>#C8862A</span></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1B7A5A"></div><div class="sw-m"><b>Good</b><span>#1B7A5A</span></div></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="k">Data ramp · monotonic lightness · grayscale-safe</p>
+      <div class="ramp">
+        <div style="background:#11181F"></div>
+        <div style="background:#123A5E"></div>
+        <div style="background:#2F6E86"></div>
+        <div style="background:#1B9A92"></div>
+        <div style="background:#9DB6BE"></div>
+        <div style="background:#D2DBDE"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
