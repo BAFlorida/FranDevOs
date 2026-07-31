@@ -70,6 +70,7 @@ td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
 .gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
   margin-top:2px;accent-color:var(--red);cursor:pointer}
 .gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}
+.gate__note{font-size:14.5px;color:var(--steel);margin-bottom:16px;line-height:1.5}
 .gate--select .gate__check{display:block}
 .gate--select label{display:block;font-family:var(--mono);font-size:11px;
   letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}
@@ -243,11 +244,12 @@ def gate(gate_id, text, label="I understand", heading="Required acknowledgment")
   </div>"""
 
 
-def gate_select(gate_id, text, options, heading="Required - self assessment"):
+def gate_select(gate_id, text, options, heading="Required - self assessment", note=None):
     opts = "\n".join(f"        <option>{o}</option>" for o in options)
+    note_html = f'\n    <p class="gate__note">{note}</p>' if note else ""
     return f"""  <div class="gate gate--select">
     <div class="gate__label">{heading}</div>
-    <p class="gate__text">{text}</p>
+    <p class="gate__text">{text}</p>{note_html}
     <div class="gate__check">
       <label for="gate-{gate_id}">Your answer</label>
       <select id="gate-{gate_id}">

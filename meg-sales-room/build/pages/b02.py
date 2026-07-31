@@ -1,17 +1,14 @@
-"""Bucket 2 - Brand Overview."""
+"""Bucket 2 - Brand Overview.
+
+Copy transcribed verbatim from content/pages/bucket_1_2.md.
+"""
 
 from shell import (
-    milestone, next_block, ph, ph_block, render, slot, steps, substeps, table,
-    video, video_pending, warn,
+    next_block, ph, ph_block, render, slot, steps, substeps, table, video,
+    video_pending,
 )
 
 PAGES = {}
-
-SOURCE_PENDING = (
-    "Source lesson copy was not supplied with this build. Structure, headings, and "
-    "interactive elements are correct. Restore the original wording from the source "
-    "lesson before this page goes to a candidate."
-)
 
 # ---------------------------------------------------------------- 2 · index
 
@@ -21,53 +18,36 @@ PAGES["02-brand-overview/index.html"] = render(
     h1="Brand Overview",
     lede="High level operational overview.",
     body="\n\n".join([
-        "  <p>Stage 2 is where you get the real documents. You will complete your "
-        "Qualification Summary, pull your own credit report, and receive the Franchise "
-        "Disclosure Document.</p>",
+        "  <p><strong>LET'S GET STARTED!</strong></p>",
 
-        "  <p>This is the heaviest reading stage in the process. Give it the time it "
-        "deserves.</p>",
+        "  <p>Thank you for taking the time to speak with one of our world class Franchise "
+        "Developers. On your last call, you spoke through why business ownership may make "
+        "sense for this time in your life. You gave us insight into your background, your "
+        "timing, your family, and so much more. Today, we want to provide the same depth of "
+        "information for the brand you are considering.</p>",
+
+        "  <p>Below, you will find a video covering your brand at a high level. We have "
+        "discovered that this helps our candidates digest the information in bite sized "
+        "chunks. Your only homework is to watch the video entitled, \"Brand Overview.\"</p>",
+
+        "  <p>Your Franchise Developer has set a meeting with you to debrief the video below. "
+        "Please jot down any questions you may have from the video as that will be a point of "
+        "discussion for your next call. Below the main video, you will also find a series of "
+        "additional resources that dive more deeply into each topic discussed in the "
+        "overview. If you would like, feel free to review those resources as well, although "
+        "they are not required to continue moving forward in the process.</p>",
 
         video_pending("1-Tom-Plumber Brand Overview", "video:brand-overview"),
-
-        "  <h2>What the business actually is</h2>",
-        "  <p>1-Tom-Plumber is an emergency plumbing and drain cleaning brand, founded in "
-        "Milford, Ohio in 2018. Owners run a dispatch-driven service business, not a retail "
-        "storefront.</p>",
-
-        "  <p>The brand is part of EverSmith Brands, which is backed by The Riverside "
-        "Company.</p>",
-
-        ph_block(
-            "Unit, territory, and state counts removed pending verification. The figures in "
-            "the build spec do not match current public data. Pull them from the current FDD "
-            "Item 20.",
-            ref="PH-26",
-        ),
-
-        ph_block(SOURCE_PENDING, ref="SRC"),
-
-        "  <h2>What Stage 2 asks of you</h2>",
-        "  <ul>\n"
-        "    <li>Complete your Qualification Summary and behavioral assessment.</li>\n"
-        "    <li>Pull your own credit report and authorize a background check.</li>\n"
-        "    <li>Read the Franchise Disclosure Document and sign its receipt.</li>\n"
-        "    <li>Work through the optional resources if you are new to franchising.</li>\n"
-        "  </ul>",
-
-        milestone("FDD Receipt Signed"),
 
         "  <h2>Steps in this stage</h2>",
         substeps([
             ("01-qualification-summary.html", "1", "Qualification Summary / Culture Index",
-             "3 forms"),
-            ("02-fdd.html", "2", "Franchise Disclosure Document", "Receipt required"),
-            ("03-additional-resources.html", "3", "Additional Brand Specific Resources",
-             "Optional depth"),
+             ""),
+            ("02-fdd.html", "2", "Franchise Disclosure Document", ""),
+            ("03-additional-resources.html", "3", "Additional Brand Specific Resources", ""),
         ]),
 
-        next_block("Start with your Qualification Summary. It is the first thing your "
-                   "Franchise Developer needs to move you forward."),
+        next_block("Watch the Brand Overview, then complete your Qualification Summary."),
     ]),
 )
 
@@ -77,88 +57,66 @@ PAGES["02-brand-overview/01-qualification-summary.html"] = render(
     title="Qualification Summary / Culture Index",
     eyebrow="Stage 2 · Step 1 of 3",
     h1="Qualification Summary / Culture Index",
-    lede="Four items, one page. Complete all four and your Franchise Developer can move you "
-         "into Validation.",
+    lede="The next step in our process.",
     body="\n\n".join([
-        "  <p>This page collects everything we need to understand your financial position, "
-        "your working style, and your background. Your Franchise Developer, or FD, cannot "
-        "advance you to Stage 3 until all four are done.</p>",
+        "  <p>Thank you for taking the time to delve deeper into the brand that interests "
+        "you! Watching the brand overview video and related links undoubtedly led to "
+        "thought-provoking questions for your Franchise Developer.</p>",
 
-        "  <p>None of this is a credit application. Nothing here is submitted to a lender, "
-        "and nothing here affects your credit score.</p>",
-
-        "  <h2>1. Qualification Summary</h2>",
-        "  <p>The Qualification Summary captures your assets, liabilities, liquidity, and "
-        "the capital you are prepared to put into a business.</p>",
-
-        "  <p>Answer it accurately rather than optimistically. An inflated number here "
-        "produces a funding conversation later that falls apart, and that wastes your "
-        "time more than ours.</p>",
+        "  <p>As your Franchise Developer may have informed you, the next step in our process "
+        "is to complete the Qualification Summary Form. Once you finish the form and submit, "
+        "a copy is sent to your Franchise Developer. This step enables us to arrange calls "
+        "with existing owners on your behalf.</p>",
 
         video("https://www.youtube.com/embed/GWB3gkycrKw",
               "EverSmith Qualification Summary Overview"),
 
         slot("Form", "Qualification Summary Form", "form:qualification-summary"),
-
-        "  <h2>2. Culture Index</h2>",
-        "  <p>The behavioral assessment takes roughly ten minutes and has no right answers. "
-        "It tells us how you prefer to work, make decisions, and handle pressure.</p>",
-
-        "  <p>We use it to understand how to support you, not to screen you out. Owners "
-        "succeed here with very different profiles.</p>",
-
-        ph_block(
-            "Behavioral assessment tool not confirmed. The sales room says Culture Index; "
-            "the source portal used DISC. Confirm one tool and use the same name here and on "
-            "the Pre Meet The Team Day Questionnaire.",
-            ref="PH-10",
-        ),
-
         slot("Form", "Culture Index Survey", "form:culture-index-survey"),
 
-        "  <h2>3. Your credit report</h2>",
-        "  <p>You pull your own report and share it with us. We do not pull it for you, and "
-        "this does not create a hard inquiry.</p>",
+        "  <h2>Your Credit Report</h2>",
 
-        "  <p>Lenders will eventually look at your credit. Seeing it now means we can flag a "
-        "problem early, while there is still time to address it.</p>",
+        "  <p>Additionally, we do not believe in making unnecessary inquiries on the credit "
+        "reports of potential candidates. If you want us to run your credit report, request "
+        "your Franchise Developer to conduct the report on your behalf. However, we recommend "
+        "obtaining your own Experian Credit Report (with score) and uploading it.</p>",
+
+        "  <p>The report you are generating is the only report the SBA, the Bank and "
+        "1-Tom-Plumber will accept.</p>",
 
         steps([
-            "Go to <strong>Experian.com</strong>",
-            "Create an account. Choose \"Checking my report or score for accuracy.\"",
-            "Navigate to the <strong>Credit Reports</strong> tab.",
-            "Open your current report and review it for accuracy.",
-            "Save or print the full report as a PDF.",
-            "Check that your score and the full trade line detail are both visible.",
-            "Send the PDF to your Franchise Developer.",
+            "Go to Experian.com",
+            "Create an account. On \"What is your main reason you are checking your credit?\" "
+            "choose \"Checking my report or score for accuracy.\" Complete identity "
+            "verification and authentication questions.",
+            "Navigate to the \"Credit Reports\" tab.",
+            "Find \"Print your Report\" about halfway down the page.",
+            "Right-click and select Print.",
+            "Change the destination to Save as PDF, then Print. Save it to your desktop.",
+            "Email the saved copy to your Franchise Developer.",
         ]),
 
-        ph_block(
-            "Credit report instruction wording pending. Steps 1 through 3 match the reference "
-            "template. Confirm steps 4 through 7 against the source lesson before publishing.",
-            ref="SRC",
-        ),
+        "  <p>This is a soft pull. It does not affect your score.</p>",
 
-        "  <h2>4. Background check authorization</h2>",
-        "  <p>Every candidate authorizes a standard background check. It is a routine part of "
-        "awarding a franchise and it protects the owners already in the system.</p>",
+        "  <h2>Background Check</h2>",
 
-        ph_block(
-            "Background check vendor not confirmed. Name the vendor here so candidates know "
-            "who is contacting them.",
-            ref="PH-09",
-        ),
+        "  <p>Once your Qualification Summary is complete, your Franchise Developer's "
+        "assistant will email our screening company. You will receive a request to authorize "
+        "the check and provide brief biographical information. Please complete it promptly so "
+        "we can keep your timeline on track.</p>",
 
-        "  <h2>Then we review it together</h2>",
-        "  <p>Once all four items are in, you and your FD schedule a review call. That call "
-        "walks your Qualification Summary line by line and sets up the funding conversation "
-        "in Stage 3.</p>",
+        ph_block("background check vendor", ref="PH-09"),
+
+        "  <h2>Book Your Next Meeting</h2>",
+
+        "  <p>Book the next meeting with your Franchise Developer to review the Qualification "
+        "Summary together.</p>",
 
         slot("Scheduler", "Schedule Qualification Summary Review",
              "scheduler:qualification-summary-review"),
 
-        next_block("Complete all four items, then schedule your review call. The Franchise "
-                   "Disclosure Document comes next."),
+        next_block("Submit your Qualification Summary and credit report, then continue to the "
+                   "Franchise Disclosure Document."),
     ]),
 )
 
@@ -168,131 +126,72 @@ PAGES["02-brand-overview/02-fdd.html"] = render(
     title="Franchise Disclosure Document",
     eyebrow="Stage 2 · Step 2 of 3",
     h1="Franchise Disclosure Document",
-    lede="The single most important document you will read in this process. Federal law "
-         "requires us to give it to you.",
+    lede="The document that governs everything.",
     body="\n\n".join([
-        "  <p>The Franchise Disclosure Document, or FDD, is a 23-item disclosure that every "
-        "franchisor in the United States must provide. Its contents are set by the Federal "
-        "Trade Commission, not by us.</p>",
+        video("https://www.youtube.com/embed/udCsGBIY1Rs",
+              "EverSmith Franchise Disclosure Document Overview"),
 
-        "  <p>Read all of it. Then have your attorney and your accountant read it too. That "
-        "is not a formality, and candidates who skip it regret it.</p>",
+        "  <p>The goal of the FDD is to provide buyers with information to make a buying "
+        "decision. Federal law, The FTC Rule, requires franchisors to file an FDD annually "
+        "and provide it to every potential franchise buyer.</p>",
 
-        "  <h2>The 14 day rule protects you</h2>",
-        "  <p>You must have the FDD in hand for at least 14 calendar days before you sign "
-        "any agreement or pay us any money. That waiting period is federal law.</p>",
+        "  <p>FDDs must be provided upon request at least 14 days before signing a franchise "
+        "agreement. State rules vary and some require longer. The FDD is updated annually, or "
+        "sooner on any material change.</p>",
 
-        "  <p>Signing the receipt starts that 14 day clock. It does not commit you to "
-        "anything, and it is not an agreement to buy a franchise.</p>",
+        "  <p>The FDD includes 23 Items, the franchise agreement, and various exhibits. "
+        "Request the 1-Tom-Plumber FDD from your Franchise Developer and review it "
+        "together.</p>",
 
-        warn(
-            "    <p>Signing the FDD receipt confirms one thing only: that you received the "
-            "document on a given date.</p>\n"
-            "    <p><strong>It is not a purchase, a commitment, or an agreement of any "
-            "kind.</strong></p>",
-            label="What signing the receipt means",
-        ),
-
-        "  <h2>What is in the 23 items</h2>",
-        "  <p>Every FDD carries the same 23 items in the same order. Use the table to find "
-        "what you are looking for.</p>",
-
-        video("https://www.youtube.com/embed/udCsGBIY1Rs", "EverSmith FDD Overview"),
+        "  <h2>The 23 Items</h2>",
 
         table(
-            "The 23 items of the Franchise Disclosure Document",
-            ["Item", "Covers"],
+            "The 23 Items of the Franchise Disclosure Document",
+            ["Item", "Subject"],
             [
-                ["1", "The franchisor, its parents, predecessors, and affiliates"],
-                ["2", "Business experience of the leadership team"],
-                ["3", "Litigation history"],
-                ["4", "Bankruptcy history"],
-                ["5", "Initial fees"],
-                ["6", "Other fees, including royalty and marketing"],
-                ["7", "Estimated initial investment"],
-                ["8", "Restrictions on sources of products and services"],
-                ["9", "Your obligations as a franchisee"],
-                ["10", "Financing offered by the franchisor"],
-                ["11", "Franchisor assistance, advertising, computer systems, and training"],
-                ["12", "Territory"],
-                ["13", "Trademarks"],
-                ["14", "Patents, copyrights, and proprietary information"],
-                ["15", "Your obligation to participate in operating the business"],
-                ["16", "Restrictions on what you may sell"],
-                ["17", "Renewal, termination, transfer, and dispute resolution"],
-                ["18", "Public figures"],
-                ["19", "Financial performance representations"],
-                ["20", "Outlet counts and franchisee contact information"],
-                ["21", "Financial statements"],
-                ["22", "Contracts, including the franchise agreement itself"],
-                ["23", "Receipts"],
+                ["1", "Franchisor, parents, predecessors, affiliates. Company description "
+                      "and history."],
+                ["2", "Business Experience. Bios of officers, directors, and executives."],
+                ["3", "Litigation. Current and past criminal and civil."],
+                ["4", "Bankruptcy."],
+                ["5", "Initial Fees. Range and the factors that move it."],
+                ["6", "Other Fees. Everything recurring."],
+                ["7", "Estimated Initial Investment. Table of all required expenditures."],
+                ["8", "Restrictions on Sources of Products and Services."],
+                ["9", "Franchisee's Obligations. Reference table."],
+                ["10", "Financing. Any terms the franchisor offers."],
+                ["11", "Franchisor's Assistance, Advertising, Computer Systems, Training."],
+                ["12", "Territory. Protected territory and how it can be modified."],
+                ["13", "Trademarks."],
+                ["14", "Patents, Copyrights, Proprietary Information."],
+                ["15", "Obligation to Participate in Actual Operations."],
+                ["16", "Restrictions on What the Franchisee May Sell."],
+                ["17", "Renewal, Termination, Transfer, Dispute Resolution."],
+                ["18", "Public Figures."],
+                ["19", "Financial Performance Representations."],
+                ["20", "Outlets and Franchisee Information. Three-year location outline."],
+                ["21", "Financial Statements. Audited, past three years."],
+                ["22", "Contracts. Every agreement you will sign."],
+                ["23", "Receipts. Your acknowledgement of FDD receipt."],
             ],
         ),
 
-        "  <h2>Item 19 - Financial Performance Representations</h2>",
-        "  <p>Item 19 is the only place a franchisor may make a financial performance "
-        "representation, or FPR. If a number about revenue or profit is not in Item 19, we "
-        "cannot give it to you.</p>",
+        "  <h3>A note on Item 19</h3>",
 
-        "  <p>Franchisors are not required to include an Item 19. Many do not. The absence of "
-        "one is normal and is not a red flag by itself.</p>",
+        "  <p>Item 19 is where a franchisor may, but is not required to, disclose financial "
+        "performance information. If a franchisor makes an Item 19 representation, there is "
+        "no assurance your business will achieve the same results.</p>",
 
-        ph_block(
-            "Item 19 status not confirmed. Check the current FDD. If there is no financial "
-            "performance representation, say so plainly here, and carry the full explanation "
-            "into the Owner Calls acknowledgment on page 3.1.",
-            ref="PH-07",
-        ),
+        ph_block("confirm current 1TP Item 19 status against the most recent FDD",
+                 ref="PH-07"),
 
-        "  <h2>Item 20 - your validation list</h2>",
-        "  <p>Item 20 lists current franchisees and, separately, owners who have left the "
-        "system in the past year. Contact information is included.</p>",
+        "  <h3>A note on Item 20</h3>",
 
-        "  <p>That list is yours to use. You do not need our permission to call anyone on it, "
-        "and we do not choose who you speak with. Stage 3 is built around those "
-        "conversations.</p>",
+        "  <p>Item 20 gives you a three-year outline of locations. Openings, closures, "
+        "transfers, terminations. Read it. It is the clearest available signal of system size "
+        "and growth direction.</p>",
 
-        "  <h2>Where the cost figures live</h2>",
-        "  <p>Items 5, 6, and 7 carry the money. Read them in the FDD you receive, which is "
-        "the only authoritative source for these numbers.</p>",
-
-        table(
-            "Where to find cost figures in the FDD",
-            ["Item", "Figure", "Value"],
-            [
-                ["5", "Initial franchise fee", ph("pending - current FDD", "PH-26")],
-                ["6", "Royalty and advertising fee",
-                 ph("pending - current FDD", "PH-26")],
-                ["7", "Estimated initial investment",
-                 ph("pending - current FDD", "PH-26")],
-            ],
-        ),
-
-        ph_block(
-            "Cost figures removed pending verification against the current FDD. The build "
-            "spec supplied an initial investment range and a 6% royalty; public aggregators "
-            "show a different upper bound and an additional 2% advertising fee that the spec "
-            "omitted. Do not populate this table from an aggregator. Take every figure from "
-            "the FDD itself.",
-            ref="PH-26",
-        ),
-
-        "  <p>The Item 7 range is wide because it spans a range of build-outs, vehicle "
-        "counts, and market conditions. Your Franchise Developer will help you understand "
-        "where your plan is likely to land.</p>",
-
-        "  <h2>How to read it</h2>",
-        steps([
-            "Read Items 5, 6, and 7 first. That is the money.",
-            "Read Item 19, then note every question it does not answer.",
-            "Pull the Item 20 list and mark the owners you want to call in Stage 3.",
-            "Read Item 17 closely. It governs renewal, transfer, and exit.",
-            "Send it to your attorney and your accountant.",
-            "Sign the Item 23 receipt to start your 14 day review period.",
-        ]),
-
-        next_block("Sign your FDD receipt, then use the additional resources page while your "
-                   "14 day review period runs."),
+        next_block("Review your FDD, then continue to Additional Brand Specific Resources."),
     ]),
 )
 
@@ -302,84 +201,56 @@ PAGES["02-brand-overview/03-additional-resources.html"] = render(
     title="Additional Brand Specific Resources",
     eyebrow="Stage 2 · Step 3 of 3",
     h1="Additional Brand Specific Resources",
-    lede="Optional depth. None of this is required to advance, and all of it helps.",
+    lede="Optional depth. None of this is required to advance.",
     body="\n\n".join([
-        "  <p>Your 14 day Franchise Disclosure Document review period is running. This page "
-        "is what to do with that time.</p>",
-
-        "  <p>Nothing below gates your progress. Work through what is useful to you and skip "
-        "what is not.</p>",
-
-        "  <h2>The basics of franchising</h2>",
-        "  <p>If this is your first look at franchising, start here. The series covers how "
-        "franchise systems work, what a franchisor actually owes you, and what you owe "
-        "them.</p>",
-
-        slot("Video", "General Franchising Concepts series",
-             "video:general-franchising-concepts-series"),
-
-        "  <h2>EverConnect</h2>",
-        "  <p>EverConnect is part of the EverSmith Brands network your territory plugs "
-        "into. This overview explains what it does for an owner.</p>",
+        "  <p>Click each item below to go deeper on the parts of the business that matter "
+        "most to you. None of this is required to advance. All of it is available when you "
+        "want it.</p>",
 
         video("https://www.youtube.com/embed/2gaiZ4BcF8Y", "EverSmith EverConnect"),
 
-        "  <h2>EverSmith Brands CSS</h2>",
-        "  <p>Shared services across the EverSmith portfolio, and what they mean for a "
-        "1-Tom-Plumber territory.</p>",
-
         video("https://www.youtube.com/embed/x32yLyjEPDk", "EverSmith Brands CSS"),
 
-        "  <h2>Is business ownership really right for you?</h2>",
-        "  <p>This one is a deliberate pause, not a sales exercise. Sit with it honestly.</p>",
-
-        "  <p>Business ownership changes your income structure, your schedule, and your risk. "
-        "Some people finish this exercise and step out of the process. That is a good "
-        "outcome, and it is far cheaper now than after you sign.</p>",
-
-        "  <blockquote>\n"
-        "    <p>The right answer to this question is the true one, not the one that keeps "
-        "the process moving.</p>\n"
-        "  </blockquote>",
-
-        ph_block(SOURCE_PENDING, ref="SRC"),
-
-        "  <h2>Focus</h2>",
-        "  <p>The brand has a short talk on why owners who split their attention across two "
-        "ventures tend to underperform owners who commit to one.</p>",
-
-        ph_block(
-            "Focus talk not yet recorded. The source brand had its own version of this. It "
-            "needs a 1-Tom-Plumber or EverSmith executive to record an equivalent.",
-            ref="PH-23",
-        ),
-
-        "  <h2>Support you will have</h2>",
-        "  <p>Owners do not buy supplies, answer phones, or build culture alone. Three "
-        "support structures sit behind every territory.</p>",
-
-        table(
-            "Brand support structures",
-            ["Structure", "What it does for an owner"],
-            [
-                [ph("Procurement / buying group", "PH-11"),
-                 "Negotiates equipment and parts pricing across the system"],
-                [ph("Call center / dispatch support", "PH-12"),
-                 "Answers and routes emergency calls outside your own hours"],
-                [ph("Culture framework", "PH-19"),
-                 "The brand's named operating values, used in hiring and training"],
-            ],
-        ),
-
-        "  <h2>Leadership and press</h2>",
-        "  <p>Hearing directly from leadership tells you more about a brand than any deck.</p>",
-
         "  <ul>\n"
-        f"    <li>President of 1-Tom-Plumber: {ph('name pending', 'PH-13')}</li>\n"
-        f"    <li>Podcast and press features: {ph('list pending', 'PH-20')}</li>\n"
+        f"    <li>{ph('1TP culture framework', 'PH-19')} - how we define the way we "
+        "work</li>\n"
+        f"    <li>{ph('name', 'PH-13')}, President of 1-Tom-Plumber</li>\n"
+        "    <li>EverSmith Brands - our parent platform and what it means for you</li>\n"
+        f"    <li>{ph('procurement / buying group', 'PH-11')} - vendor pricing and purchasing "
+        "power</li>\n"
+        "    <li>The Resale Department - how existing units transfer</li>\n"
+        f"    <li>{ph('podcast and press features', 'PH-20')}</li>\n"
         "  </ul>",
 
-        next_block("When your 14 day review period is complete and your FDD receipt is "
-                   "signed, Stage 3 opens. Validation starts with owner calls."),
+        "  <h2>The Basics of Franchising</h2>",
+
+        "  <p>We take a holistic view of franchising. Not every concept suits every owner, "
+        "and not every candidate is awarded a franchise. Those two facts are related.</p>",
+
+        "  <p>The videos below cover general franchise industry concepts. How franchising "
+        "works, what a franchisor actually does, what obligations run both directions, and "
+        "how to evaluate any brand you are considering. They are brand-agnostic on purpose. "
+        "Watch them with 1-Tom-Plumber in mind, and with whatever other brands you are "
+        "exploring in mind too.</p>",
+
+        video_pending("General Franchising Concepts series",
+                      "video:general-franchising-concepts-series"),
+
+        "  <h2>Is Business Ownership Really Right for Me?</h2>",
+
+        "  <p>Let's pause.</p>",
+
+        "  <p>You have learned the brand. Before you go further, we want you to step back and "
+        "ask a harder question. Not whether 1-Tom-Plumber is a good business, but whether "
+        "business ownership is right for you and your family at this point in your life.</p>",
+
+        "  <p>There is no wrong answer here. Some of the best conversations we have are the "
+        "ones where a candidate decides the timing is not right. We would rather have that "
+        "conversation now than two years into an agreement.</p>",
+
+        video_pending("executive perspective on business ownership readiness",
+                      "video:business-ownership-readiness"),
+
+        next_block("Continue to Stage 3, Validation."),
     ]),
 )

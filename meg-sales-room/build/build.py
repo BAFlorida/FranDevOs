@@ -154,11 +154,8 @@ ORDER = [
     "06-agreement-stage/03-brand-welcome-call.html", "06-agreement-stage/04-thank-you.html",
 ]
 
-# Pages whose source lesson was not supplied, or that have no source at all.
-SOURCE_STATE = {
-    "05-meet-the-team-day/03-meet-the-team-day.html": "No source - stub",
-    "06-agreement-stage/03-brand-welcome-call.html": "No source - stub",
-}
+# All 24 pages now render supplied source copy. Nothing is a stub.
+SOURCE_STATE = {}
 
 
 def stats(html):
@@ -262,26 +259,22 @@ def write_index(pages):
              "and applied. Flagging the reversal here so it is not mistaken for the "
              "warned-against default.\n")
 
-    L.append("\n## Brand facts pulled back (`PH-26`)\n")
-    L.append("The `Confirmed facts - safe to use` table in `PLACEHOLDERS.md` was treated as "
-             "verified and stated as fact on candidate-facing pages. Spot-checking it "
-             "against current public sources showed it is stale, so every figure from it has "
-             "been replaced with a placeholder flag.\n")
-    L.append("| Figure | Build spec said | Problem |")
-    L.append("|---|---|---|")
-    L.append("| Franchisees / territories / states | 37 / 57 / 22 | Public sources report a "
-             "materially higher unit count; these look like an older FDD year |")
-    L.append("| Initial investment | $515,719 to $2,784,795 | Upper bound differs from "
-             "current public figures |")
-    L.append("| Royalty | 6% of gross revenue | Omits the separate 2% advertising fee |")
-    L.append("| Model | Commercial-leaning | Brand is marketed as residential **and** "
-             "commercial |")
-    L.append("| SBA charge-off | 0.0% across 12 loans | Not verifiable |")
-    L.append("| Initial franchise fee | $50,000 per territory | Plausible, but pulled for "
-             "consistency - take it from the FDD |")
-    L.append("\nUnit counts and fees are Item 20 and Item 5/6/7 disclosures that change every "
-             "FDD year. Populate them from the current FDD, not from an aggregator site and "
-             "not from this spec.\n")
+    L.append("\n## Copy provenance\n")
+    L.append("Every page renders the supplied source copy from `content/pages/` verbatim. "
+             "No prose was written, paraphrased, or summarised by the build.\n")
+    L.append("One typographic normalisation is applied and nothing else: em-dashes in the "
+             "source become a spaced hyphen, per the `BUILD_PROMPT.md` house rule and the "
+             "acceptance check that forbids em-dashes in output. No words are changed. If "
+             "the em-dashes should be preserved instead, drop that rule from `build.py` and "
+             "rebuild.\n")
+    L.append("Two italic lines in the source are build directions rather than "
+             "candidate-facing copy and are deliberately not rendered: the *Render above the "
+             "fold* note on the Owner Calls gate, and the *This gate exists because the "
+             "timing surprises people* note on the Technology gate. The italic note "
+             "explaining outside sources on the Funding gate **is** candidate copy and is "
+             "rendered.\n")
+    L.append("Table captions are generated from each table's own heading. The build requires "
+             "a caption on every table for accessibility; the source markdown carries none.\n")
 
     L.append("\n## Placeholders still open\n")
     L.append("Every one renders as a visible amber flag in the page. Nothing was silently "
@@ -298,22 +291,19 @@ def write_index(pages):
     for r in sorted(refs):
         L.append(f"| `{r}` | {', '.join(f'`{p}`' for p in sorted(refs[r]))} |")
 
-    L.append("\n## Source content gap\n")
-    L.append("`BUILD_PROMPT.md` points at `content/source/*.md` (the six stage lessons). "
-             "Those files were **not** included in the upload, so no source prose was "
-             "available to adapt.\n")
-    L.append("Where the spec calls for source copy to be preserved verbatim, the page "
-             "carries the correct heading, the correct interactive elements, and an amber "
-             "`SRC` flag naming exactly what has to be restored. No source prose was "
-             "invented to fill those gaps. Specifically still needed:\n")
-    L.append("- 2.1 - exact wording of the credit report self-pull steps 4 through 7")
-    L.append("- 3.2 - the Personal Financial Statement filing-requirement list, and the "
-             "ROBS four-step wording")
-    L.append("- 4.2 - the ten-item document checklist")
-    L.append("- 6.1 - the three yes questions the FD must clear before presenting")
-    L.append("- 6.2 - the seven execution notes, and the three acceptable Schedule D answers\n")
-    L.append("Two pages have no source content at all by design (5.3 Meet The Team Day and "
-             "6.3 Brand Welcome Call) and ship as structured stubs, per `CONTENT_MAP.md`.\n")
+    L.append("\n## What still needs 1-Tom-Plumber input\n")
+    L.append("These are the placeholders the source copy itself flags. Each renders as a "
+             "visible amber flag in the page.\n")
+    L.append("- `PH-01` selectivity figures - the source carried the original brand's "
+             "numbers and says to pull 1TP's actuals")
+    L.append("- `PH-06` referral program name and every figure in it")
+    L.append("- `PH-07` current Item 19 status against the most recent FDD")
+    L.append("- `PH-22` territory design criteria - the source explicitly says commercial "
+             "emergency plumbing does not weight the same variables as a routed service brand")
+    L.append("- `PH-24` full MTTD agenda, headquarters location, and travel logistics")
+    L.append("- Vendor, name, and title gaps: `PH-02`, `PH-03`, `PH-04`, `PH-09`, `PH-10`, "
+             "`PH-11`, `PH-13`, `PH-14`, `PH-15`, `PH-17`, `PH-18`, `PH-19`, `PH-20`, "
+             "`PH-21`\n")
 
     L.append("\n## Video inventory\n")
     L.append("| Page | Video | ID |")

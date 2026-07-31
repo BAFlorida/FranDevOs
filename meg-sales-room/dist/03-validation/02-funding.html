@@ -70,6 +70,7 @@ td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
 .gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
   margin-top:2px;accent-color:var(--red);cursor:pointer}
 .gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}
+.gate__note{font-size:14.5px;color:var(--steel);margin-bottom:16px;line-height:1.5}
 .gate--select .gate__check{display:block}
 .gate--select label{display:block;font-family:var(--mono);font-size:11px;
   letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}
@@ -153,21 +154,17 @@ td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
 
   <div class="page-eyebrow">Stage 3 · Step 2 of 4</div>
   <h1 class="page-title">Funding</h1>
-  <p class="page-lede">Four paths lead into this business. Most owners use one, some combine two.</p>
-
-  <p>Funding is the conversation candidates most want to skip and most regret skipping. Work it now, while you still have every option open.</p>
+  <p class="page-lede">Four paths, and a plan that has to hold together.</p>
 
   <div class="video"><iframe src="https://www.youtube.com/embed/0Z9bjsRKN5c" title="EverSmith Funding Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
-  <div class="warn">
-    <div class="warn__label">Where we draw the line</div>
-    <p><strong>We will not award a franchise to people who may be put in financial peril.</strong></p>
-    <p>That is not a formality. If the numbers say a candidate would be stretched past a safe point, we say no, and we say it early.</p>
-  </div>
+  <p>There are four common paths to funding a franchise. An SBA loan, a ROBS rollover of pre-tax retirement funds, personal savings, or home equity.</p>
 
-  <h2>Two questions before we go further</h2>
+  <p>Your Franchise Developer's job is to make sure you have a sound financial plan. We will introduce you to trusted third-party lenders who specialize in franchise funding.</p>
 
-  <p>Both answers stay between you and your Franchise Developer, or FD. They set the size of the reserve you need beyond the cost of opening.</p>
+  <p><strong>1-Tom-Plumber will not award franchises to people who may be put in financial peril as a result.</strong></p>
+
+  <p>That is not a formality. It is a filter we apply on purpose.</p>
 
   <div class="gate gate--select">
     <div class="gate__label">Required - self assessment</div>
@@ -189,6 +186,7 @@ td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
   <div class="gate gate--select">
     <div class="gate__label">Required - self assessment</div>
     <p class="gate__text">What percentage of those expenses is covered by outside sources?</p>
+    <p class="gate__note">Outside sources include spouse income, rental income, and any existing business or personal income that will continue after you open your franchise.</p>
     <div class="gate__check">
       <label for="gate-outside-coverage">Your answer</label>
       <select id="gate-outside-coverage">
@@ -202,83 +200,60 @@ td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
     </div>
   </div>
 
-  <p>Outside sources means income that continues whether or not the business produces anything. A spouse's salary, a pension, or rental income all count.</p>
+  <h2>SBA Funding</h2>
 
-  <h2>The four paths</h2>
+  <p>The two relevant programs are SBA Express and SBA 7(a). Our funding partners will explain the differences and walk you through pre-approval requirements.</p>
 
-  <div class="t-scroll">
-    <table>
-      <caption>Funding paths available to candidates</caption>
-      <tr><th>Path</th><th>What it is</th><th>Best suited to</th></tr>
-      <tr><td>SBA 7(a) or SBA Express</td><td>A bank loan partially guaranteed by the Small Business Administration</td><td>Candidates with strong credit and a down payment ready</td></tr>
-      <tr><td>ROBS</td><td>Rollovers as Business Startups, funding the business with retirement savings without an early withdrawal penalty</td><td>Candidates with substantial retirement balances</td></tr>
-      <tr><td>Self funding</td><td>Cash and liquid assets you already hold</td><td>Candidates who want no debt service in year one</td></tr>
-      <tr><td>HELOC</td><td>Home Equity Line of Credit, borrowing against equity in your home</td><td>Candidates with significant home equity, often as a supplement</td></tr>
-    </table>
-  </div>
-
-  <h2>SBA lending</h2>
-
-  <p>Most franchise lending runs through the Small Business Administration, or SBA. The agency does not lend directly. It guarantees part of a bank's loan, which makes banks willing to lend against a business rather than only against collateral.</p>
-
-  <div class="ph ph--block"><span class="ph__ref">PH-26</span> SBA loan performance history withheld pending verification. The figure supplied with the build spec was not verifiable, and other figures from the same table proved stale. If it is confirmed, keep the framing that it describes loan performance for lenders and is not a representation about what any business earns.</div>
-
-  <h3>Personal Financial Statement</h3>
-
-  <p>Every SBA applicant files a Personal Financial Statement, or PFS. Fill it out once, carefully, and it will serve every lender you approach.</p>
+  <p>Every funding partner requires a Personal Financial Statement.</p>
 
   <a class="slot" href="#" data-asset="download:sba-personal-financial-statement">
     <span class="slot__kind">Download</span>
     <span class="slot__label">SBA Personal Financial Statement - Fillable PDF</span>
   </a>
 
-  <div class="ph ph--block"><span class="ph__ref">SRC</span> Personal Financial Statement filing-requirement list pending. The source lesson carried a specific list of who must file and what must be attached. Restore it verbatim rather than paraphrasing.</div>
+  <p><strong>Who must file a PFS:</strong></p>
 
-  <h2>ROBS</h2>
+  <ul>
+    <li>The proprietor, if a sole proprietorship</li>
+    <li>Each general partner, if a partnership</li>
+    <li>Each managing member, if an LLC</li>
+    <li>Any owner of 20% or more of the business</li>
+    <li>Any person or entity providing a guaranty on the loan</li>
+  </ul>
 
-  <p>Rollovers as Business Startups, or ROBS, lets you fund a business with retirement savings without triggering an early withdrawal penalty or income tax at the time of the rollover.</p>
+  <p>Your spouse must sign the PFS even if they are not on the loan.</p>
 
-  <p>It is a legitimate and well established structure. It is also strict, and it must be set up by a specialist firm.</p>
+  <h2>ROBS Funding</h2>
+
+  <p>ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to capitalize your business without early withdrawal penalties. It can move as fast as 10 days.</p>
 
   <ol class="steps">
-    <li>Form a C corporation for the new business.</li>
-    <li>The corporation sponsors a new retirement plan.</li>
-    <li>Roll your existing retirement funds into that new plan.</li>
-    <li>The plan purchases stock in the corporation, and the corporation now holds the cash.</li>
+    <li>Set up a C Corporation.</li>
+    <li>Design a new qualified retirement plan for that corporation.</li>
+    <li>Transfer your existing retirement funds into the new plan.</li>
+    <li>The plan purchases stock in the new C Corporation, capitalizing the business.</li>
   </ol>
-
-  <div class="ph ph--block"><span class="ph__ref">SRC</span> ROBS four-step wording pending. The steps above describe the standard structure. Restore the source lesson's exact four steps before publishing.</div>
 
   <a class="slot" href="#" data-asset="video:robs-explained">
     <span class="slot__kind">Video</span>
     <span class="slot__label">Pending: ROBS Explained</span>
   </a>
 
-  <h2>Self funding</h2>
+  <h2>Self-Funding</h2>
 
-  <p>Self funding uses cash and liquid assets you already hold. No lender, no debt service, and no approval timeline.</p>
-
-  <p>The tradeoff is your reserve. Putting every liquid dollar into opening leaves nothing to absorb a slow first quarter.</p>
+  <p>If you are funding with cash, send your Franchise Developer a current bank or investment statement as proof of funds.</p>
 
   <div class="video"><iframe src="https://www.youtube.com/embed/oSIvxdHtO-o" title="EverSmith Self Funding Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
-  <h2>HELOC</h2>
+  <h2>Home Equity</h2>
 
-  <p>A Home Equity Line of Credit, or HELOC, borrows against equity in your home. It is usually a supplement to another path rather than the whole plan.</p>
-
-  <p>Understand the risk plainly. A HELOC puts your home behind the business.</p>
+  <p>A HELOC uses the equity in your home. The video below covers your options and the tradeoffs.</p>
 
   <div class="video"><iframe src="https://www.youtube.com/embed/TFpdCqMtxQQ" title="EverSmith Home Equity Funding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
 
-  <h2>Do not forget working capital</h2>
-
-  <p>The cost of opening is not the cost of operating. You need enough cash to cover the business and your household until revenue is steady.</p>
-
-  <p>That reserve is what the two questions at the top of this page are sizing.</p>
-
   <div class="next">
     <div class="next__label">Next</div>
-    <p>Pick your likely funding path and tell your FD, then move to Territory.</p>
+    <p>Confirm your funding path with your Franchise Developer, then continue to Territory.</p>
   </div>
 
 </div>

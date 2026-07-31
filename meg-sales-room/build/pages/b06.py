@@ -1,23 +1,10 @@
-"""Bucket 6 - Agreement Stage. Page 6.3 has no source content and ships as a stub."""
+"""Bucket 6 - Agreement Stage. Copy transcribed verbatim from bucket_4_5_6.md."""
 
 from shell import (
-    milestone, next_block, ph, ph_block, render, slot, steps, substeps, table,
-    video, warn,
+    next_block, ph_block, render, slot, steps, substeps, video,
 )
 
 PAGES = {}
-
-SOURCE_PENDING = (
-    "Source lesson copy was not supplied with this build. Structure, headings, and "
-    "interactive elements are correct. Restore the original wording from the source "
-    "lesson before this page goes to a candidate."
-)
-
-NO_SOURCE = (
-    "COPY PENDING - this page has no source content. It does not exist in the source "
-    "portal and is a 1-Tom-Plumber addition. Headings and interactive elements are in "
-    "place and correct. The prose below each heading has to be written by 1-Tom-Plumber."
-)
 
 # ---------------------------------------------------------------- 6 · index
 
@@ -27,36 +14,19 @@ PAGES["06-agreement-stage/index.html"] = render(
     h1="Agreement Stage",
     lede="Final approval, execution, and welcome.",
     body="\n\n".join([
-        "  <p>Stage 6 is the last one. The executive board makes the final decision, "
-        "agreements are executed, and you are handed off to onboarding.</p>",
-
-        "  <p>Read the execution page carefully. Small errors on those documents cost days, "
-        "and a few of them are easy to make.</p>",
-
-        "  <h2>What is left</h2>",
-        "  <ul>\n"
-        "    <li>The executive board reviews your file and votes.</li>\n"
-        "    <li>You execute your franchise agreement and submit your funds transfer "
-        "form.</li>\n"
-        "    <li>You meet the brand team on a welcome call.</li>\n"
-        "    <li>You are introduced to onboarding.</li>\n"
-        "  </ul>",
-
-        milestone("Agreement Executed"),
+        "  <p>Three things happen in this stage. The Executive Committee makes its decision. "
+        "You execute your Franchise Agreement. And we welcome you into the system.</p>",
 
         "  <h2>Steps in this stage</h2>",
         substeps([
-            ("01-executive-board-approval.html", "1", "Executive Board Approval",
-             "Board decision"),
-            ("02-executing-your-agreement.html", "2", "Executing Your Franchise Agreement",
-             "Execution and ACH"),
-            ("03-brand-welcome-call.html", "3", "Brand Welcome Call", "Scheduled call"),
-            ("04-thank-you.html", "4", "Thank You For Putting Your Trust In Us",
-             "Handoff to onboarding"),
+            ("01-executive-board-approval.html", "1", "Executive Board Approval", ""),
+            ("02-executing-your-agreement.html", "2",
+             "Executing Your Franchise Agreement", ""),
+            ("03-brand-welcome-call.html", "3", "Brand Welcome Call", ""),
+            ("04-thank-you.html", "4", "Thank You For Putting Your Trust In Us", ""),
         ]),
 
-        next_block("Your Franchise Developer will tell you when your file goes to the "
-                   "executive board."),
+        next_block("Start with Executive Board Approval."),
     ]),
 )
 
@@ -66,67 +36,72 @@ PAGES["06-agreement-stage/01-executive-board-approval.html"] = render(
     title="Executive Board Approval",
     eyebrow="Stage 6 · Step 1 of 4",
     h1="Executive Board Approval",
-    lede="The final decision, and the one your Franchise Developer does not get a vote in.",
+    lede="How the decision actually gets made.",
     body="\n\n".join([
-        "  <p>Your file goes to the executive board. The board reviews everything from Stage "
-        "2 forward and decides whether to award a franchise.</p>",
-
-        "  <p>Your Franchise Developer, or FD, presents your case. Your FD does not vote. "
-        "That separation is deliberate, and it is what keeps this a real review rather than a "
-        "rubber stamp.</p>",
-
-        "  <h2>Three questions before your FD presents</h2>",
-        "  <p>Your FD has to be able to answer yes to three questions before your file goes "
-        "forward at all.</p>",
-
-        ph_block(
-            "The three yes questions are pending. The source lesson carried them specifically. "
-            "Restore the exact three rather than approximating, because they are the FD's own "
-            "gate on whether a file is ready.",
-            ref="SRC",
-        ),
-
         video("https://www.youtube.com/embed/qDuHvclW0kk",
               "EverSmith Executive Board Approval"),
 
-        "  <h2>Three possible outcomes</h2>",
+        "  <p>Your Franchise Developer presents you to our Executive Committee.</p>",
 
-        table(
-            "Executive board outcomes",
-            ["Outcome", "What it means", "What happens next"],
-            [
-                ["Full Approval",
-                 "The board awards the franchise with no outstanding conditions.",
-                 "You move directly to executing your agreement."],
-                ["Conditional Approval",
-                 "The board awards the franchise once specific conditions are met.",
-                 "Your FD works the conditions with you, then the file returns to the "
-                 "board."],
-                ["Not Approved",
-                 "The board does not award a franchise at this time.",
-                 "Your FD walks you through the reasoning."],
-            ],
-        ),
+        "  <p><strong>They have no vote.</strong></p>",
 
-        "  <h2>Not Approved is a healthy outcome</h2>",
-        "  <p>It does not feel that way, and it is still true.</p>",
+        "  <p>That is deliberate. Your Franchise Developer's role in that room is to be your "
+        "biggest cheerleader. To present your background, your territory, how you moved "
+        "through the process, and why they believe you fit. The decision belongs to the "
+        "committee.</p>",
 
-        warn(
-            "    <p><strong>We will not put people in financial peril.</strong></p>\n"
-            "    <p>If the board's read is that a candidate would be stretched past a safe "
-            "point, the answer is no. That answer protects the candidate more than it "
-            "protects us.</p>",
-            label="Why the board says no",
-        ),
+        "  <h2>Three Questions First</h2>",
 
-        "  <p>A no is sometimes about timing rather than about you. Candidates come back "
-        "later with a stronger position and are awarded then.</p>",
+        "  <p>Your Franchise Developer will not present you until you can answer YES to all "
+        "three.</p>",
 
-        "  <p>Ask your FD for the reasoning. You are entitled to understand it.</p>",
+        "  <ol>\n"
+        "    <li>Have all your questions regarding the brand been answered?</li>\n"
+        "    <li>Have all your questions regarding the franchise agreement been "
+        "answered?</li>\n"
+        "    <li>Are you committed to the established timeline if awarded?</li>\n"
+        "  </ol>",
 
-        ph_block(SOURCE_PENDING, ref="SRC"),
+        "  <p>If any answer is no, we slow down. That is not a setback. It is the process "
+        "working.</p>",
 
-        next_block("On approval, move to Executing Your Franchise Agreement."),
+        "  <h2>The Decision Comes the Same Day</h2>",
+
+        "  <p>You will not wait a week. After deliberations, a member of the committee calls "
+        "you directly.</p>",
+
+        "  <p>There are three possible outcomes.</p>",
+
+        "  <h3>1. Full Approval</h3>",
+
+        "  <p>You are awarded. Your Franchise Developer moves you into execution.</p>",
+
+        "  <h3>2. Conditional Approval</h3>",
+
+        "  <p>You receive full approval once a specific condition is met. Common examples are "
+        "a clarification on a background item, or a funding milestone that needs to land "
+        "first.</p>",
+
+        "  <p>Once the condition is satisfied, conditional approval converts to full "
+        "approval. Your Franchise Developer will be explicit about what is needed and by "
+        "when.</p>",
+
+        "  <h3>3. Not Approved</h3>",
+
+        "  <p>This is a healthy outcome, and we mean that.</p>",
+
+        "  <p>If the committee believes you would struggle in this business, or that this "
+        "investment would put you in financial difficulty, they will not award you a "
+        "franchise. <strong>We will not put people in financial peril.</strong></p>",
+
+        "  <p>A member of the committee will explain the reasoning directly. They will also "
+        "offer guidance on where they think you would do better, inside the portfolio or "
+        "outside it.</p>",
+
+        "  <p>Some candidates come back to us in a year or two when their situation has "
+        "changed. That door stays open.</p>",
+
+        next_block("On approval, continue to Executing Your Franchise Agreement."),
     ]),
 )
 
@@ -136,131 +111,76 @@ PAGES["06-agreement-stage/02-executing-your-agreement.html"] = render(
     title="Executing Your Franchise Agreement",
     eyebrow="Stage 6 · Step 2 of 4",
     h1="Executing Your Franchise Agreement",
-    lede="This is the real signature. Read every note on this page before you start.",
+    lede="You are truly in elite air.",
     body="\n\n".join([
-        "  <p>Everything you signed before this was an acknowledgment of receipt. This is "
-        "execution.</p>",
-
-        "  <p>Your Franchise Developer, or FD, walks the documents with you. Do not work "
-        "through them alone on a Friday night.</p>",
-
-        "  <p>The documents route through <strong>DocuSign</strong>, the same platform that "
-        "delivered your acknowledgment package in Stage 4. This time the signature is "
-        "real.</p>",
-
         video("https://www.youtube.com/embed/lcOn6qL1uoo", "EverSmith Agreement Execution"),
 
-        "  <h2>Seven execution notes</h2>",
-        "  <p>These are the specific places candidates make mistakes. Each one costs days "
-        "when it goes wrong.</p>",
+        "  <p>You have successfully navigated one of the most selective franchise development "
+        "processes in the world.</p>",
 
-        ph_block(
-            "Seven execution notes pending. The source lesson carried a specific numbered "
-            "list. Restore all seven verbatim. This page is a procedural checklist, and "
-            "paraphrasing it introduces exactly the errors it exists to prevent.",
-            ref="SRC",
-        ),
+        "  <h2>What Happens Now</h2>",
 
-        "  <h2>Schedule D</h2>",
-        "  <p>Schedule D has three acceptable answers, and only three. This trips up more "
-        "candidates than any other field in the package.</p>",
+        "  <p>DocuSign sends you a link to Step 2 of execution. Your password is the same one "
+        "you used for the Step 1 acknowledgment in Stage 4. If you cannot find it, Legal can "
+        "resend.</p>",
 
-        warn(
-            "    <p><strong>Do not answer Schedule D with \"N/A.\"</strong></p>\n"
-            "    <p>N/A is not one of the accepted answers. It bounces the document back, and "
-            "you start the routing over.</p>",
-            label="Schedule D",
-        ),
+        "  <p>Alongside it, you will receive an ACH form for your franchise fee, or for your "
+        "equity injection if you are funding through SBA.</p>",
 
-        ph_block(
-            "The three acceptable Schedule D answers are pending and must be reproduced "
-            "exactly. Do not paraphrase them, and do not offer examples in their place.",
-            ref="SRC",
-        ),
+        "  <h2>Seven Things to Know</h2>",
 
-        "  <h2>Funds transfer</h2>",
-        "  <p>Your franchise fee and equity injection move by Automated Clearing House "
-        "transfer, or ACH. The form below authorizes it.</p>",
+        steps([
+            "Phone company name and address. This field may be left blank. Sign anyway.",
+            "Bank account information. You will need bank name, the name and address on the "
+            "account, routing number, and account number. A personal checking account works "
+            "as a placeholder and can be updated later. The account number must be real. A "
+            "placeholder number kicks the agreements back and costs you days.",
+            "Signature. Sign your full name exactly as it reads on the agreement.",
+            "Schedule D. There are only three acceptable answers. Leave it blank. A clear "
+            "confirmation that the statement is accurate. Or a statement that it is false, "
+            "which pauses closing until we clarify it with you. You cannot answer \"N/A.\" "
+            "You cannot answer a bare \"yes\" or \"no.\" Those will bounce.",
+            "Schedule D skip. After you select \"I agree\" in the dropdown, hit skip on the "
+            "comment section and move on.",
+            "Signature verification. Your Franchise Developer coordinates with Legal to "
+            "verify all signatures, including your spouse's if applicable.",
+            "Countersignature routing. <span class=\"ph\"><span class=\"ph__ref\">PH-17</span> "
+            "confirm the 1TP / EverSmith countersignature chain.</span> You receive a fully "
+            "executed copy when it is complete.",
+        ]),
+
+        "  <h2>The ACH Form</h2>",
 
         slot("Download", "ACH Form - Franchise Fee / Equity Injection",
              "download:ach-franchise-fee-equity-injection"),
 
-        "  <p>Check the account and routing numbers twice. A transposed digit here is a "
-        "week.</p>",
+        "  <p>Complete it and email it to your Franchise Developer. <strong>Double-check your "
+        "account numbers.</strong> This is the single most common source of delay at this "
+        "stage.</p>",
 
-        "  <h2>Countersignature</h2>",
-        "  <p>Your signature does not complete the agreement. It is countersigned on the "
-        "brand side, and only then is the agreement fully executed.</p>",
-
-        ph_block(
-            "Countersignature routing chain pending. The source routed through a brand "
-            "president and then a second entity president. Confirm the 1-Tom-Plumber and "
-            "EverSmith chain, and state how long it usually takes.",
-            ref="PH-17",
-        ),
-
-        "  <p>You receive a fully executed copy once every signature is in place. Keep it "
-        "somewhere you can find it, and send a copy to your attorney and your "
-        "accountant.</p>",
-
-        next_block("Once your agreement is executed, schedule your Brand Welcome Call."),
+        next_block("Once executed, schedule your Brand Welcome Call."),
     ]),
 )
 
-# ------------------------------- 6.3 · Brand Welcome Call (NO SOURCE - stub)
+# ------------------------------------------------- 6.3 · Brand Welcome Call
 
 PAGES["06-agreement-stage/03-brand-welcome-call.html"] = render(
     title="Brand Welcome Call",
     eyebrow="Stage 6 · Step 3 of 4",
     h1="Brand Welcome Call",
-    lede="Your first call as an owner rather than a candidate.",
+    lede="Your handoff into Sure Start.",
     body="\n\n".join([
-        ph_block(NO_SOURCE, ref="NO SOURCE"),
-
         video("https://www.youtube.com/embed/1NynLBubPv0", "EverSmith Welcome Call"),
 
-        "  <h2>Who is on the call</h2>",
-        "  <p>Names and roles of the brand team members who join this call go here, with what "
-        "each one will own in the new owner's business.</p>",
-
         ph_block(
-            "Brand Welcome Call attendees pending. Needs names, titles, and what each person "
-            "is responsible for going forward.",
-            ref="PH-18",
-        ),
-
-        "  <h2>What gets covered</h2>",
-        "  <p>The agenda for the call goes here.</p>",
-
-        ph_block(
-            "Call agenda pending. Cover what is discussed, how long the call runs, and what "
-            "decisions get made on it.",
-            ref="PH-18",
-        ),
-
-        "  <h2>What to bring</h2>",
-        "  <p>What the new owner should have ready before the call goes here.</p>",
-
-        ph_block(
-            "Preparation list pending. Name the documents, dates, and decisions the owner "
-            "should arrive with.",
-            ref="PH-18",
-        ),
-
-        "  <h2>How it hands off to onboarding</h2>",
-        "  <p>How this call connects to the onboarding program goes here, including who takes "
-        "over and when.</p>",
-
-        ph_block(
-            "Handoff detail pending. State who owns the relationship after this call and what "
-            "the first onboarding milestone is.",
+            "Brand Welcome Call detail. Needs who is on the call, what gets covered, what the "
+            "new owner should bring, and how it hands off to Sure Start.",
             ref="PH-18",
         ),
 
         slot("Scheduler", "Schedule Brand Welcome Call", "scheduler:brand-welcome-call"),
 
-        next_block("After your welcome call, your onboarding introduction is the last step "
-                   "in this guide."),
+        next_block("Continue to your Sure Start introduction."),
     ]),
 )
 
@@ -270,69 +190,58 @@ PAGES["06-agreement-stage/04-thank-you.html"] = render(
     title="Thank You For Putting Your Trust In Us",
     eyebrow="Stage 6 · Step 4 of 4",
     h1="Thank You For Putting Your Trust In Us",
-    lede="You did the work. You asked hard questions, you talked to owners, and you made a "
-         "decision with your eyes open.",
+    lede="Welcome to 1-Tom-Plumber.",
     body="\n\n".join([
-        "  <p>Thank you for putting your trust in us. We take seriously what it means that "
-        "you chose to build something here.</p>",
+        "  <h2>Sure Start</h2>",
 
-        "  <p>The Mutual Evaluation Process was deliberately slow. That was the point.</p>",
+        "  <p>Schedule your formal training introduction with our Sure Start Coordinator "
+        "using the link below.</p>",
 
-        "  <blockquote>\n"
-        "    <p>When we slow down on the front end, we can really speed up on the back "
-        "end.</p>\n"
-        "  </blockquote>",
+        slot("Scheduler", "Schedule Sure Start Introduction",
+             "scheduler:sure-start-introduction"),
 
-        "  <p>Everything you settled during evaluation is something you will not be settling "
-        "while you are trying to open. Funding, territory, technology, and timeline are all "
-        "already decided.</p>",
+        "  <p>Your relationship with your Franchise Developer does not end here. They remain "
+        "your biggest cheerleader. Your Sure Start Coordinator takes over the work of making "
+        "sure your business is set up for the highest possible chance of success.</p>",
 
-        "  <h2>Onboarding starts now</h2>",
-        "  <p>The evaluation process ends here and the onboarding program begins. Different "
-        "team, different pace, same brand.</p>",
-
-        "  <p>The program is called <strong>Sure Start</strong>. It picks up where this "
-        "guide leaves off and carries you through to opening.</p>",
-
-        "  <p>Your onboarding coordinator takes over from your Franchise Developer and runs "
-        "you through Sure Start.</p>",
+        "  <h2>Referral Program</h2>",
 
         ph_block(
-            "Onboarding coordinator title pending. Name the role so the new owner knows who "
-            "they are being handed to.",
-            ref="PH-16",
-        ),
-
-        slot("Scheduler", "Schedule Onboarding Introduction",
-             "scheduler:onboarding-introduction"),
-
-        "  <h2>Referring other owners</h2>",
-        "  <p>Owners who know candidates who would fit this system can refer them. The "
-        "program details are being confirmed.</p>",
-
-        ph_block(
-            "Referral program name and every figure in it are pending. The source program used "
-            "a per-placement award, a quarterly drawing, a travel award, a live drawing, and "
-            "an April 1 to March 31 award year. None of those figures transfer. Replace the "
-            "section entirely with 1-Tom-Plumber's own program, or cut it.",
+            "1TP referral program name and all figures. The original structure was $5,000 per "
+            "successful placed referral, a quarterly $1,350 drawing, Reunion travel comp, and "
+            "a live $5,000 Reunion drawing, on an April 1 to March 31 award year. Replace "
+            "every figure with 1TP's actual program, or remove this section if none exists "
+            "yet.",
             ref="PH-06",
         ),
 
-        "  <h2>What we ask of you</h2>",
-        "  <p>Three things, and none of them are complicated.</p>",
-
+        "  <p><strong>What counts as qualified:</strong></p>",
         "  <ul>\n"
-        "    <li>Work the onboarding program in order, the same way you worked this "
-        "guide.</li>\n"
-        "    <li>Ask for help early. The support team would rather hear about a problem in "
-        "week two than month six.</li>\n"
-        "    <li>Take owner calls from future candidates when we ask. You know exactly how "
-        "much those calls mattered.</li>\n"
+        "    <li>We can verify a prior conversation with the referral</li>\n"
+        "    <li>You provided accurate contact information</li>\n"
+        "    <li>The referral is a new unit, not a resale or transfer</li>\n"
         "  </ul>",
+
+        "  <p><strong>What does not count:</strong></p>",
+        "  <ul>\n"
+        "    <li>Existing owners</li>\n"
+        "    <li>Anyone already in Lead Development or Franchise Development</li>\n"
+        "    <li>Immediate family - spouse, child, or sibling</li>\n"
+        "    <li>Yourself</li>\n"
+        "  </ul>",
+
+        "  <h2>Thank You</h2>",
+
+        "  <p>The franchise development process can feel long and arduous. But when we slow "
+        "down on the front end, we can really speed up on the back end.</p>",
+
+        "  <p>You asked hard questions. You talked to owners. You looked honestly at your "
+        "finances and your family. You did the work.</p>",
 
         "  <p>Welcome to 1-Tom-Plumber.</p>",
 
-        next_block("Schedule your onboarding introduction. Your onboarding coordinator takes "
-                   "it from here.", label="Last step"),
+        "  <p><strong>- The Franchise Development Team</strong></p>",
+
+        next_block("Your Sure Start Coordinator takes it from here.", label="Last step"),
     ]),
 )

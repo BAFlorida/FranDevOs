@@ -1,17 +1,11 @@
-"""Bucket 3 - Validation. Carries every compliance gate in the portal."""
+"""Bucket 3 - Validation. Copy transcribed verbatim from content/pages/bucket_3.md."""
 
 from shell import (
-    gate, gate_select, milestone, next_block, ph, ph_block, render, slot, steps,
-    substeps, table, video, video_pending, warn,
+    gate, gate_select, next_block, ph, ph_block, render, slot, steps, substeps,
+    table, video, video_pending,
 )
 
 PAGES = {}
-
-SOURCE_PENDING = (
-    "Source lesson copy was not supplied with this build. Structure, headings, and "
-    "interactive elements are correct. Restore the original wording from the source "
-    "lesson before this page goes to a candidate."
-)
 
 # ---------------------------------------------------------------- 3 · index
 
@@ -21,34 +15,27 @@ PAGES["03-validation/index.html"] = render(
     h1="Validation",
     lede="Talk directly to current 1-Tom-Plumber franchise owners.",
     body="\n\n".join([
-        "  <p>Stage 3 is the stage that decides most candidacies. You stop hearing about the "
-        "business from us and start hearing about it from the people running it.</p>",
-
-        "  <p>Alongside those calls, you settle the three practical questions: how you fund "
-        "the business, where your territory sits, and what technology you will run on.</p>",
-
         video("https://www.youtube.com/embed/sIRDGB7yyGE", "EverSmith Validation Overview"),
 
-        "  <h2>Three required acknowledgments live in this stage</h2>",
-        "  <p>Owner Calls, Territory, and Technology each carry an acknowledgment you must "
-        "check before advancing. Funding carries two short self-assessments.</p>",
+        "  <p>One of the most exciting steps in the Mutual Evaluation Process is connecting "
+        "with owners.</p>",
 
-        "  <p>These are compliance controls. They exist because the rules around franchise "
-        "sales are strict, and because misunderstanding them costs you real money.</p>",
+        "  <p>This stage covers four things. Who you talk to and what to ask them. How you "
+        "will fund the business. The territory you will own. And the technology you will run "
+        "it on.</p>",
 
-        milestone("Validation Completed"),
+        "  <p>What our owners tell you carries more weight than anything we have said. That "
+        "is by design.</p>",
 
         "  <h2>Steps in this stage</h2>",
         substeps([
-            ("01-owner-calls.html", "1", "Owner Calls", "Acknowledgment required"),
-            ("02-funding.html", "2", "Funding", "2 self assessments"),
-            ("03-territory.html", "3", "Territory", "Acknowledgment required"),
-            ("04-technology.html", "4", "Understanding Your Brand's Technology",
-             "Acknowledgment required"),
+            ("01-owner-calls.html", "1", "Owner Calls", ""),
+            ("02-funding.html", "2", "Funding", ""),
+            ("03-territory.html", "3", "Territory", ""),
+            ("04-technology.html", "4", "Understanding Your Brand's Technology", ""),
         ]),
 
-        next_block("Start with Owner Calls. Read its acknowledgment before you speak to "
-                   "anyone."),
+        next_block("Start with Owner Calls."),
     ]),
 )
 
@@ -61,8 +48,10 @@ PAGES["03-validation/01-owner-calls.html"] = render(
     lede="One of the most exciting steps in the Mutual Evaluation Process is connecting with "
          "owners.",
     body="\n\n".join([
-        "  <p>Read the acknowledgment below before your first call. It explains a rule that "
-        "governs every financial conversation in this process.</p>",
+        "  <p>With your Qualification Summary and Credit Report submitted, introductions are "
+        "made. We host conference calls with owners and prospective candidates.</p>",
+
+        ph_block("owner call cadence - day, time, timezone, platform, dial-in", ref="PH-21"),
 
         gate(
             "item19",
@@ -72,63 +61,15 @@ PAGES["03-validation/01-owner-calls.html"] = render(
             "through conversations with franchise owners.",
         ),
 
-        "  <h2>Why that rule exists</h2>",
-        "  <p>Federal law limits what a franchisor may say about financial performance. The "
-        "only sanctioned place for those figures is Item 19 of the Franchise Disclosure "
-        "Document, or FDD.</p>",
+        "  <h2>Questions to Ask a Franchise Owner</h2>",
 
-        "  <p>Your Franchise Developer, or FD, is not dodging you when they decline a "
-        "revenue question. They are following a rule that protects you from unverified "
-        "claims.</p>",
-
-        "  <p>Franchise owners are under no such restriction. They can tell you what they "
-        "actually experience, and that is exactly why these calls matter.</p>",
-
-        ph_block(
-            "Item 19 status not confirmed. If the current FDD has no financial performance "
-            "representation, this page must say so directly, because it changes what owners "
-            "are the only source of.",
-            ref="PH-07",
-        ),
-
-        "  <h2>How the calls are set up</h2>",
-        "  <p>With your Qualification Summary and credit report submitted, introductions are "
-        "made. We host conference calls with owners and prospective candidates on a regular "
-        "cadence.</p>",
-
-        ph_block(
-            "Owner question and answer call cadence pending. Needs day, time, timezone, "
-            "platform, and dial-in details.",
-            ref="PH-21",
-        ),
-
-        "  <p>You are also free to call anyone on the Item 20 list in the FDD directly. We "
-        "do not select who you speak with and we do not sit in on those calls.</p>",
-
-        "  <h2>Questions to ask a franchise owner</h2>",
-        "  <p>Use the guide below to structure and capture your calls. Take notes during "
-        "each conversation.</p>",
+        "  <p>Use the guide below to structure and capture your calls. Take notes during each "
+        "conversation. Your Franchise Developer will debrief them with you.</p>",
 
         slot("Download", "Questions to Ask a Franchise Owner",
              "download:questions-to-ask-a-franchise-owner"),
 
-        "  <p>A few habits make these calls far more useful.</p>",
-        "  <ul>\n"
-        "    <li>Call more than three owners. Patterns only show up across several "
-        "conversations.</li>\n"
-        "    <li>Include at least one owner in their first two years and one who is well "
-        "established.</li>\n"
-        "    <li>Ask what surprised them. That question gets better answers than asking what "
-        "they like.</li>\n"
-        "    <li>Ask what they would do differently in their first year.</li>\n"
-        "    <li>Write the answers down while they are fresh.</li>\n"
-        "  </ul>",
-
-        "  <p>Owners volunteer for these calls. Be respectful of their time, and come with "
-        "your questions already written.</p>",
-
-        next_block("Complete your owner calls and check the acknowledgment above, then move "
-                   "to Funding."),
+        next_block("Complete your owner calls, then continue to Funding."),
     ]),
 )
 
@@ -138,24 +79,21 @@ PAGES["03-validation/02-funding.html"] = render(
     title="Funding",
     eyebrow="Stage 3 · Step 2 of 4",
     h1="Funding",
-    lede="Four paths lead into this business. Most owners use one, some combine two.",
+    lede="Four paths, and a plan that has to hold together.",
     body="\n\n".join([
-        "  <p>Funding is the conversation candidates most want to skip and most regret "
-        "skipping. Work it now, while you still have every option open.</p>",
-
         video("https://www.youtube.com/embed/0Z9bjsRKN5c", "EverSmith Funding Overview"),
 
-        warn(
-            "    <p><strong>We will not award a franchise to people who may be put in "
-            "financial peril.</strong></p>\n"
-            "    <p>That is not a formality. If the numbers say a candidate would be "
-            "stretched past a safe point, we say no, and we say it early.</p>",
-            label="Where we draw the line",
-        ),
+        "  <p>There are four common paths to funding a franchise. An SBA loan, a ROBS "
+        "rollover of pre-tax retirement funds, personal savings, or home equity.</p>",
 
-        "  <h2>Two questions before we go further</h2>",
-        "  <p>Both answers stay between you and your Franchise Developer, or FD. They set "
-        "the size of the reserve you need beyond the cost of opening.</p>",
+        "  <p>Your Franchise Developer's job is to make sure you have a sound financial plan. "
+        "We will introduce you to trusted third-party lenders who specialize in franchise "
+        "funding.</p>",
+
+        "  <p><strong>1-Tom-Plumber will not award franchises to people who may be put in "
+        "financial peril as a result.</strong></p>",
+
+        "  <p>That is not a formality. It is a filter we apply on purpose.</p>",
 
         gate_select(
             "household-expenses",
@@ -168,111 +106,63 @@ PAGES["03-validation/02-funding.html"] = render(
             "outside-coverage",
             "What percentage of those expenses is covered by outside sources?",
             ["0 - 20%", "21 - 40%", "41 - 60%", "61 - 80%", "81 - 100%"],
+            note="Outside sources include spouse income, rental income, and any existing "
+                 "business or personal income that will continue after you open your "
+                 "franchise.",
         ),
 
-        "  <p>Outside sources means income that continues whether or not the business "
-        "produces anything. A spouse's salary, a pension, or rental income all count.</p>",
+        "  <h2>SBA Funding</h2>",
 
-        "  <h2>The four paths</h2>",
+        "  <p>The two relevant programs are SBA Express and SBA 7(a). Our funding partners "
+        "will explain the differences and walk you through pre-approval requirements.</p>",
 
-        table(
-            "Funding paths available to candidates",
-            ["Path", "What it is", "Best suited to"],
-            [
-                ["SBA 7(a) or SBA Express",
-                 "A bank loan partially guaranteed by the Small Business Administration",
-                 "Candidates with strong credit and a down payment ready"],
-                ["ROBS",
-                 "Rollovers as Business Startups, funding the business with retirement "
-                 "savings without an early withdrawal penalty",
-                 "Candidates with substantial retirement balances"],
-                ["Self funding",
-                 "Cash and liquid assets you already hold",
-                 "Candidates who want no debt service in year one"],
-                ["HELOC",
-                 "Home Equity Line of Credit, borrowing against equity in your home",
-                 "Candidates with significant home equity, often as a supplement"],
-            ],
-        ),
-
-        "  <h2>SBA lending</h2>",
-        "  <p>Most franchise lending runs through the Small Business Administration, or SBA. "
-        "The agency does not lend directly. It guarantees part of a bank's loan, which makes "
-        "banks willing to lend against a business rather than only against collateral.</p>",
-
-        ph_block(
-            "SBA loan performance history withheld pending verification. The figure "
-            "supplied with the build spec was not verifiable, and other figures from the "
-            "same table proved stale. If it is confirmed, keep the framing that it "
-            "describes loan performance for lenders and is not a representation about what "
-            "any business earns.",
-            ref="PH-26",
-        ),
-
-        "  <h3>Personal Financial Statement</h3>",
-        "  <p>Every SBA applicant files a Personal Financial Statement, or PFS. Fill it out "
-        "once, carefully, and it will serve every lender you approach.</p>",
+        "  <p>Every funding partner requires a Personal Financial Statement.</p>",
 
         slot("Download", "SBA Personal Financial Statement - Fillable PDF",
              "download:sba-personal-financial-statement"),
 
-        ph_block(
-            "Personal Financial Statement filing-requirement list pending. The source lesson "
-            "carried a specific list of who must file and what must be attached. Restore it "
-            "verbatim rather than paraphrasing.",
-            ref="SRC",
-        ),
+        "  <p><strong>Who must file a PFS:</strong></p>",
+        "  <ul>\n"
+        "    <li>The proprietor, if a sole proprietorship</li>\n"
+        "    <li>Each general partner, if a partnership</li>\n"
+        "    <li>Each managing member, if an LLC</li>\n"
+        "    <li>Any owner of 20% or more of the business</li>\n"
+        "    <li>Any person or entity providing a guaranty on the loan</li>\n"
+        "  </ul>",
 
-        "  <h2>ROBS</h2>",
-        "  <p>Rollovers as Business Startups, or ROBS, lets you fund a business with "
-        "retirement savings without triggering an early withdrawal penalty or income tax at "
-        "the time of the rollover.</p>",
+        "  <p>Your spouse must sign the PFS even if they are not on the loan.</p>",
 
-        "  <p>It is a legitimate and well established structure. It is also strict, and it "
-        "must be set up by a specialist firm.</p>",
+        "  <h2>ROBS Funding</h2>",
+
+        "  <p>ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to "
+        "capitalize your business without early withdrawal penalties. It can move as fast as "
+        "10 days.</p>",
 
         steps([
-            "Form a C corporation for the new business.",
-            "The corporation sponsors a new retirement plan.",
-            "Roll your existing retirement funds into that new plan.",
-            "The plan purchases stock in the corporation, and the corporation now holds the "
-            "cash.",
+            "Set up a C Corporation.",
+            "Design a new qualified retirement plan for that corporation.",
+            "Transfer your existing retirement funds into the new plan.",
+            "The plan purchases stock in the new C Corporation, capitalizing the business.",
         ]),
-
-        ph_block(
-            "ROBS four-step wording pending. The steps above describe the standard structure. "
-            "Restore the source lesson's exact four steps before publishing.",
-            ref="SRC",
-        ),
 
         video_pending("ROBS Explained", "video:robs-explained"),
 
-        "  <h2>Self funding</h2>",
-        "  <p>Self funding uses cash and liquid assets you already hold. No lender, no "
-        "debt service, and no approval timeline.</p>",
+        "  <h2>Self-Funding</h2>",
 
-        "  <p>The tradeoff is your reserve. Putting every liquid dollar into opening leaves "
-        "nothing to absorb a slow first quarter.</p>",
+        "  <p>If you are funding with cash, send your Franchise Developer a current bank or "
+        "investment statement as proof of funds.</p>",
 
-        video("https://www.youtube.com/embed/oSIvxdHtO-o",
-              "EverSmith Self Funding Overview"),
+        video("https://www.youtube.com/embed/oSIvxdHtO-o", "EverSmith Self Funding Overview"),
 
-        "  <h2>HELOC</h2>",
-        "  <p>A Home Equity Line of Credit, or HELOC, borrows against equity in your home. "
-        "It is usually a supplement to another path rather than the whole plan.</p>",
+        "  <h2>Home Equity</h2>",
 
-        "  <p>Understand the risk plainly. A HELOC puts your home behind the business.</p>",
+        "  <p>A HELOC uses the equity in your home. The video below covers your options and "
+        "the tradeoffs.</p>",
 
-        video("https://www.youtube.com/embed/TFpdCqMtxQQ",
-              "EverSmith Home Equity Funding"),
+        video("https://www.youtube.com/embed/TFpdCqMtxQQ", "EverSmith Home Equity Funding"),
 
-        "  <h2>Do not forget working capital</h2>",
-        "  <p>The cost of opening is not the cost of operating. You need enough cash to "
-        "cover the business and your household until revenue is steady.</p>",
-
-        "  <p>That reserve is what the two questions at the top of this page are sizing.</p>",
-
-        next_block("Pick your likely funding path and tell your FD, then move to Territory."),
+        next_block("Confirm your funding path with your Franchise Developer, then continue to "
+                   "Territory."),
     ]),
 )
 
@@ -282,54 +172,57 @@ PAGES["03-validation/03-territory.html"] = render(
     title="Territory",
     eyebrow="Stage 3 · Step 3 of 4",
     h1="Territory",
-    lede="Where you operate shapes everything else. Territory decisions are effectively "
-         "permanent once agreements are signed.",
+    lede="The decision that compounds for the life of your business.",
     body="\n\n".join([
-        "  <p>Three things to settle on this page: how territories are designed, how your "
-        "local business name has to look, and the physical address requirement.</p>",
+        video_pending("Territory Design and DBA", "video:territory-design-and-dba"),
 
-        "  <h2>How territories are designed</h2>",
-        "  <p>A territory is not just a circle on a map. It is drawn around the variables "
-        "that actually drive emergency plumbing demand.</p>",
+        "  <h2>Territory Design</h2>",
+
+        "  <p>Different brands prioritize different criteria. Some design around population. "
+        "Some design around households. Recurring-service brands weight route density. Brands "
+        "that lean on marketing spread want larger territories. Some brands hand you a "
+        "pre-defined map, others build it with you.</p>",
+
+        "  <p>Your Franchise Developer designs your territory to maximize the potential of "
+        "the business, not to hit a number on a page.</p>",
 
         ph_block(
-            "Territory design criteria pending, and this one should not be filled by copying "
-            "a pattern. The source brand designed around route density because recurring lawn "
-            "service is a routed business. Commercial emergency plumbing is not. The relevant "
-            "variables are likely commercial building count, property-management "
-            "concentration, permit volume, and drive-time to an emergency call. Getting this "
-            "wrong compounds, and territory decisions are permanent once agreements are "
-            "signed.",
+            "1TP territory design criteria. Commercial emergency plumbing likely weights "
+            "commercial building count, property management concentration, permit volume, and "
+            "drive-time - not households per square mile.",
             ref="PH-22",
         ),
 
-        video_pending("Territory Design and DBA", "video:territory-design-and-dba"),
+        "  <h2>The DBA Smell Test</h2>",
 
-        "  <h2>The DBA smell test</h2>",
-        "  <p>Your local entity will operate under a Doing Business As name, or DBA. That "
-        "name and its address have to look like a real local business to a search engine, "
-        "because that is how customers find you in an emergency.</p>",
+        "  <p>Your Franchise Developer coordinates with our Local Marketing Specialist before "
+        "your territory is finalized.</p>",
 
-        "  <blockquote>\n"
-        "    <p>This is Google's world, and we just live in it.</p>\n"
-        "  </blockquote>",
+        "  <p>You will form a legal entity under a name of your choosing. That entity name "
+        "cannot include the brand name. Your public-facing name is your DBA.</p>",
 
-        "  <p>Someone with a burst pipe does not browse. They search, they call the first "
-        "credible result, and they are done in ninety seconds. If your listing looks "
-        "questionable, you never enter that decision.</p>",
+        "  <p>Example: KHM Holdings, DBA 1-Tom-Plumber of San Marco, Florida</p>",
 
-        ph_block(SOURCE_PENDING, ref="SRC"),
+        "  <p>Marketing runs keyword research on the most-searched city and area names inside "
+        "your territory. We award the DBA that gives you the best possible search exposure. "
+        "This is not cosmetic. It compounds for the life of your business.</p>",
 
-        "  <h2>The physical address requirement</h2>",
-        "  <p>You need a unique physical address inside your territory. This is not a brand "
-        "preference. It is what business listing verification requires.</p>",
+        "  <h2>You Will Need an Address</h2>",
 
-        "  <p>Verification is done by mailing a postcard with a code to the address on the "
-        "listing. A mailbox service cannot receive that postcard as a distinct business "
-        "location, and a P.O. box cannot either.</p>",
+        "  <p>This is Google's world, and we just live in it.</p>",
 
-        "  <p>Unique matters too. If another business is already verified at your address, "
-        "your listing competes with it rather than standing on its own.</p>",
+        "  <p>The most common search in our category is some version of \"plumber near me.\" "
+        "Our listings team sets up your Google Business Profile and handles back-end SEO. "
+        "Google verifies a business by mailing a physical postcard to a physical address.</p>",
+
+        "  <p>That means you need a unique physical address inside your territory. No P.O. "
+        "boxes. No shared-mailbox office suites.</p>",
+
+        "  <p>For most owners, a home address works and does not appear publicly. Some "
+        "situations require an office or warehouse.</p>",
+
+        "  <p>If you live outside your territory, you must secure an address inside it. SBA "
+        "lending also requires an address within the territory you own.</p>",
 
         gate(
             "address",
@@ -337,11 +230,7 @@ PAGES["03-validation/03-territory.html"] = render(
             "and that P.O. boxes and shared mailbox services do not qualify.",
         ),
 
-        "  <p>Sort the address early. Candidates who leave it to the week before opening "
-        "find that verification takes longer than they planned.</p>",
-
-        next_block("Confirm your territory preferences with your Franchise Developer, then "
-                   "move to Understanding Your Brand's Technology."),
+        next_block("Continue to Understanding Your Brand's Technology."),
     ]),
 )
 
@@ -351,94 +240,57 @@ PAGES["03-validation/04-technology.html"] = render(
     title="Understanding Your Brand's Technology",
     eyebrow="Stage 3 · Step 4 of 4",
     h1="Understanding Your Brand's Technology",
-    lede="Six platforms run the business. You do not source or negotiate any of them "
-         "yourself.",
+    lede="The platforms you will run the business on, and what they cost.",
     body="\n\n".join([
-        "  <p>The technology package is standard across every territory. That is what makes "
-        "system-wide pricing and system-wide support possible.</p>",
+        video("https://www.youtube.com/embed/kXK6u3O8hCU", "1-Tom Service Titan Overview"),
 
-        "  <p>Read the fee timing section carefully. It is the part candidates most often "
-        "misjudge.</p>",
+        "  <h2>How Technology Sourcing Works</h2>",
 
-        video("https://www.youtube.com/embed/kXK6u3O8hCU",
-              "1-Tom Service Titan Overview"),
+        f"  <p>{ph('sourcing entity', 'PH-04')} sources our software platforms and negotiates "
+        "vendor pricing using the scale of the full portfolio. They hold vendors accountable "
+        "and provide support when something breaks.</p>",
 
-        ph_block(
-            "Two of six platforms are confirmed: ServiceTitan and CareerPlug. The remaining "
-            "four vendors and every dollar figure on this page are still unresolved. Do not "
-            "carry over another brand's vendors for the open rows.",
-            ref="PH-02 / PH-03 / PH-04",
-        ),
+        f"  <p>Every brand's package is different. There is a one-time setup fee plus a "
+        f"monthly payment. {ph('sourcing entity', 'PH-04')} collects from you and pays the "
+        "vendors.</p>",
 
-        "  <h2>The platform stack</h2>",
+        "  <h2>Your Package</h2>",
 
         table(
-            "The six platforms in the technology package",
+            "Platforms included in your technology package",
             ["Platform", "Function"],
             [
-                ["<strong>ServiceTitan</strong>",
-                 "Customer Relationship Management and Field Service Management: dispatch, "
-                 "scheduling, and customer records"],
-                [ph("Financial analysis", "PH-02"),
-                 "Bookkeeping sync and system-wide financial benchmarking"],
-                ["<strong>CareerPlug</strong>",
-                 "Applicant Tracking System: recruiting and hiring technicians"],
-                [ph("Reviews / NPS", "PH-02"),
-                 "Review generation and Net Promoter Score tracking"],
-                [ph("Productivity", "PH-02"),
-                 "Email, calendar, and document collaboration"],
-                [ph("Resource library", "PH-02"),
-                 "Brand standards, training material, and operating documents"],
+                ["ServiceTitan",
+                 "Customer and technician management, dispatch, scheduling"],
+                ["CareerPlug", "Recruiting and applicant tracking"],
+                [ph("financial analysis", "PH-02"),
+                 "Financial reporting, used with your Franchise Business Coach"],
+                [ph("reviews / NPS", "PH-02"),
+                 "Review generation and Net Promoter Score"],
+                [ph("productivity", "PH-02"), "Email and productivity licenses"],
+                [ph("resource library", "PH-02"),
+                 "Franchise resource library and documentation"],
             ],
         ),
-
-        "  <h3>CareerPlug</h3>",
-        "  <p>Hiring is the constraint on growth in this business. CareerPlug is the "
-        "applicant tracking system you will recruit technicians through.</p>",
 
         video("https://www.youtube.com/embed/3aL_T7_3Ojo", "EverSmith Career Plug"),
 
-        "  <h2>What it costs</h2>",
-        "  <p>Technology carries a one-time setup charge and a recurring monthly fee. The "
-        "customer platform is also priced per seat, at different rates for office staff and "
-        "field technicians.</p>",
+        "  <h2>Pricing</h2>",
 
         table(
-            "Technology fee structure",
-            ["Charge", "Amount", "Frequency"],
+            "Technology pricing",
+            ["Line Item", "Cost"],
             [
-                ["Technology setup", ph("pending", "PH-03"), "One time"],
-                ["Technology fee", ph("pending", "PH-03"), "Monthly"],
-                ["ServiceTitan seat - administrative", ph("pending", "PH-03"),
-                 "Monthly, per seat"],
-                ["ServiceTitan seat - field technician", ph("pending", "PH-03"),
-                 "Monthly, per seat"],
+                ["One-time setup fee", ph("pending", "PH-03")],
+                ["Monthly technology fee", ph("pending", "PH-03")],
+                ["ServiceTitan - first admin user and field technician",
+                 ph("pending", "PH-03")],
+                ["Each additional admin user", ph("pending", "PH-03")],
+                ["Each additional field technician", ph("pending", "PH-03")],
             ],
         ),
 
-        "  <p>Pricing is negotiated on behalf of the whole system rather than territory by "
-        "territory. One party handles that negotiation and collects payment.</p>",
-
-        ph_block(
-            "Technology sourcing entity pending. Name the party that negotiates vendor "
-            "pricing and collects payment, so owners know who they are paying.",
-            ref="PH-04",
-        ),
-
-        "  <h2>When the charges hit</h2>",
-        "  <p>This is the part to plan for. Technology billing starts on the brand's "
-        "schedule, not on your lender's schedule.</p>",
-
-        warn(
-            "    <p>The one-time technology fee and your first monthly payment draft within a "
-            "few weeks of being awarded.</p>\n"
-            "    <p><strong>That can happen before your SBA or ROBS funding has "
-            "completed.</strong> Plan to cover it from your own cash.</p>",
-            label="Fee timing",
-        ),
-
-        "  <p>SBA refers to the Small Business Administration and ROBS to Rollovers as "
-        "Business Startups, the two funding paths covered on the Funding page.</p>",
+        "  <p>Pricing subject to change.</p>",
 
         gate(
             "tech-fee-timing",
@@ -447,7 +299,6 @@ PAGES["03-validation/04-technology.html"] = render(
             "or ROBS funding has completed.",
         ),
 
-        next_block("You have completed Validation. Stage 4 opens with your Executive "
-                   "Approval Call."),
+        next_block("Continue to Stage 4, Seeking Approval."),
     ]),
 )

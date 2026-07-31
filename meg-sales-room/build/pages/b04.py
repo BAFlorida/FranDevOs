@@ -1,17 +1,11 @@
-"""Bucket 4 - Seeking Approval."""
+"""Bucket 4 - Seeking Approval. Copy transcribed verbatim from bucket_4_5_6.md."""
 
 from shell import (
-    milestone, next_block, ph, ph_block, render, slot, steps, substeps, table,
-    video_pending, warn,
+    next_block, ph, ph_block, render, slot, steps, substeps, table, video_pending,
+    warn,
 )
 
 PAGES = {}
-
-SOURCE_PENDING = (
-    "Source lesson copy was not supplied with this build. Structure, headings, and "
-    "interactive elements are correct. Restore the original wording from the source "
-    "lesson before this page goes to a candidate."
-)
 
 # ---------------------------------------------------------------- 4 · index
 
@@ -21,34 +15,23 @@ PAGES["04-seeking-approval/index.html"] = render(
     h1="Seeking Approval",
     lede="Present your case to executive leadership and build your timeline.",
     body="\n\n".join([
-        "  <p>Stage 4 is where the process turns around. Up to now your Franchise Developer, "
-        "or FD, has been presenting the brand to you. From here they present you to the "
-        "brand.</p>",
-
-        "  <p>Two things happen. Leadership evaluates your candidacy on an approval call, "
-        "and you build the Development Action Plan that sets your timeline.</p>",
-
         video_pending("Seeking Approval Overview", "video:seeking-approval-overview"),
 
-        "  <h2>What leadership is looking at</h2>",
-        "  <p>Your Qualification Summary, your funding path, your territory, and the notes "
-        "from your owner calls. Everything you completed in Stages 2 and 3 is the case.</p>",
+        "  <p>Up to this point, your Franchise Developer has been presenting the BRAND to "
+        "YOU.</p>",
 
-        "  <p>This is also the point where a candidacy can end. Approval is not automatic, "
-        "and it is not a formality.</p>",
+        "  <p>That flips now. In this stage, they present YOU to the BRAND.</p>",
 
-        milestone("Executive Approval Received"),
+        "  <p>Two things happen here. You meet with an executive. If approved, your Franchise "
+        "Developer builds your Development Action Plan and drafts your sample agreements.</p>",
 
         "  <h2>Steps in this stage</h2>",
         substeps([
-            ("01-executive-approval-call.html", "1", "Executive Approval Call",
-             "Leadership call"),
-            ("02-dap-contingencies.html", "2", "Development Action Plan / Contingencies",
-             "Timeline and documents"),
+            ("01-executive-approval-call.html", "1", "Executive Approval Call", ""),
+            ("02-dap-contingencies.html", "2", "Development Action Plan / Contingencies", ""),
         ]),
 
-        next_block("Prepare for your Executive Approval Call. Your FD will tell you when it "
-                   "is scheduled."),
+        next_block("Start with the Executive Approval Call."),
     ]),
 )
 
@@ -58,76 +41,71 @@ PAGES["04-seeking-approval/01-executive-approval-call.html"] = render(
     title="Executive Approval Call",
     eyebrow="Stage 4 · Step 1 of 2",
     h1="Executive Approval Call",
-    lede="Rather than presenting the brand to you, your Franchise Developer now presents you "
-         "to the brand.",
+    lede="Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.",
     body="\n\n".join([
-        "  <p>That flip is the whole point of this call. Everything before it was us earning "
-        "your consideration. This is where we ask whether we can support you well.</p>",
-
-        "  <h2>Who is on the call</h2>",
-        "  <p>Your Franchise Developer, or FD, presents. A member of executive leadership "
-        "evaluates and decides.</p>",
-
-        ph_block(
-            "Title of the executive who runs this call pending. Name the role so candidates "
-            "know who they are meeting.",
-            ref="PH-14",
-        ),
-
-        "  <h2>What gets presented</h2>",
-        "  <p>Your FD walks leadership through your full file. Nothing in it will be new to "
-        "you.</p>",
-
-        "  <ul>\n"
-        "    <li>Your Qualification Summary and financial position.</li>\n"
-        "    <li>Your funding path and whether it is realistic.</li>\n"
-        "    <li>The territory you are targeting.</li>\n"
-        "    <li>What you learned on your owner calls.</li>\n"
-        "    <li>Your behavioral assessment and how you like to operate.</li>\n"
-        "  </ul>",
-
-        "  <h2>How to prepare</h2>",
-        "  <p>You do not build a deck. You do need clear answers to a few questions.</p>",
-
-        steps([
-            "Why this business, and why now.",
-            "How you will fund it, and what your reserve looks like.",
-            "What your first year of operating actually looks like day to day.",
-            "What you learned from owners that changed your thinking.",
-            "What you still need to resolve before you would sign.",
-        ]),
-
-        "  <p>Answer the last one honestly. An unresolved concern raised now gets addressed. "
-        "The same concern raised after signing does not.</p>",
-
         video_pending("Executive Approval Call prep", "video:executive-approval-call-prep"),
 
-        "  <h2>How selective this is</h2>",
-        "  <p>Not every candidate who reaches this call is approved. The current figures are "
-        "being confirmed against 1-Tom-Plumber's own records.</p>",
+        "  <h2>What This Milestone Means</h2>",
+
+        "  <p>Reaching this stage means you are being considered for an invitation to Meet "
+        "The Team Day, our brand orientation event at headquarters.</p>",
 
         ph_block(
-            "Selectivity figures pending. The number is the credibility of the claim, so a "
-            "wrong one is worse than none. Pull 1-Tom-Plumber's actuals before publishing.",
+            "1TP selectivity figures. The original read \"fewer than 5% of candidates "
+            "introduced to a Franchise Developer are eventually invited to Meet The Team "
+            "Day\" and \"statistically, only 2 out of 3 candidates who attend are awarded a "
+            "franchise.\" Pull 1TP's actuals before publishing.",
             ref="PH-01",
         ),
 
-        "  <h2>What approval unlocks</h2>",
-        "  <p>Approval opens your Development Action Plan and puts Meet The Team Day, or "
-        "MTTD, on the calendar.</p>",
+        "  <h2>Who You Will Meet</h2>",
 
-        "  <p>Worth setting expectations now. By the time you travel, you should have "
-        "already made your decision.</p>",
+        f"  <p>Our {ph('executive title', 'PH-14')} will meet with you, and with your spouse "
+        "or partner if they are part of this decision.</p>",
 
-        "  <blockquote>\n"
-        "    <p>Meet The Team Day is more of a validation of a decision you have already "
-        "made.</p>\n"
-        "  </blockquote>",
+        "  <p>This is not a grueling interview. It is informal. The purpose is for our "
+        "executive to understand your interest in their brand, and to validate that your "
+        "Franchise Developer has guided you thoroughly through the process.</p>",
 
-        ph_block(SOURCE_PENDING, ref="SRC"),
+        "  <p>By this point, our executive often already knows a great deal about you. Your "
+        "Franchise Developer has been advocating for you internally the whole way. It is not "
+        "unusual for the invitation to Meet The Team Day to be extended on this first "
+        "call.</p>",
 
-        next_block("After approval, move to your Development Action Plan and start working "
-                   "the document checklist."),
+        "  <h2>The Frame</h2>",
+
+        "  <p><strong>Meet The Team Day is more of a validation of a decision you have "
+        "already made in your mind.</strong></p>",
+
+        "  <p>That is the honest framing. If you arrive at Meet The Team Day still deciding "
+        "whether you want this, something earlier in the process did not work. This call is "
+        "where we confirm you are past that point.</p>",
+
+        "  <h2>What Happens If You Are Approved</h2>",
+
+        "  <p>If our executive approves you for Meet The Team Day, they will ask your "
+        "Franchise Developer to do two things.</p>",
+
+        "  <ol>\n"
+        "    <li>Build your timeline. A specific plan from orientation through training to "
+        "your Grand Opening.</li>\n"
+        "    <li>Draft your sample set of agreements. Populated with your specific territory, "
+        "demographics, and the nuances of your situation.</li>\n"
+        "  </ol>",
+
+        "  <p>Both arrive in the next step.</p>",
+
+        "  <h2>How to Prepare</h2>",
+
+        "  <p>Be ready to speak to why business ownership and why now. What you heard from "
+        "owners during Validation, in your own words. Your funding path and where it stands. "
+        "The territory you want and why. Your timeline to open.</p>",
+
+        "  <p>Bring the questions you have not been able to get answered elsewhere. Our "
+        "executive has visibility your Franchise Developer does not.</p>",
+
+        next_block("Attend your Executive Approval Call, then continue to your Development "
+                   "Action Plan."),
     ]),
 )
 
@@ -137,70 +115,89 @@ PAGES["04-seeking-approval/02-dap-contingencies.html"] = render(
     title="Development Action Plan / Contingencies",
     eyebrow="Stage 4 · Step 2 of 2",
     h1="Development Action Plan / Contingencies",
-    lede="Your timeline, your document checklist, and the contingencies that have to clear "
-         "before you open.",
+    lede="Your timeline, your documents, and your sample agreements.",
     body="\n\n".join([
-        "  <p>The Development Action Plan, or DAP, exists because executive leadership "
-        "approved you. It turns that approval into dates.</p>",
+        video_pending("Development Action Plan and Document Acknowledgment",
+                      "video:dap-and-document-acknowledgment"),
 
-        "  <p>It also names every contingency between here and opening, so nothing surfaces "
-        "as a surprise in month three.</p>",
+        "  <h2>Your Development Action Plan</h2>",
+
+        "  <p>The DAP is a concise, customized timeline. It runs from today, through Meet The "
+        "Team Day, through award, through training, to your Grand Opening.</p>",
+
+        "  <p>It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and "
+        "your funding path. An SBA timeline moves differently than a ROBS timeline, which "
+        "moves differently than cash.</p>",
 
         slot("Download", "Your Development Action Plan", "download:development-action-plan"),
 
-        video_pending("DAP and Document Acknowledgment", "video:dap-and-document-acknowledgment"),
+        "  <h2>Your Sample Set of Agreements</h2>",
 
-        "  <h2>The document checklist</h2>",
-        "  <p>Ten documents make up the package. Your Franchise Developer, or FD, will work "
-        "the list with you and tell you what order to attack it in.</p>",
+        "  <p>You saw these agreements listed in FDD Item 22. Now you will see them filled in "
+        "for your specific situation. Your territory, your fee, your equity injection, your "
+        "dates.</p>",
 
-        ph_block(
-            "Ten-item document checklist pending. The source lesson carried the specific list. "
-            "Restore it here rather than approximating, because candidates work directly from "
-            "this checklist.",
-            ref="SRC",
+        "  <h2>What Your Franchise Developer Needs From You</h2>",
+
+        table(
+            "Documents your Franchise Developer needs from you",
+            ["#", "Item", "Notes"],
+            [
+                ["1", "Qualification Summary",
+                 "Updated from Stage 2 if anything has changed"],
+                ["2", "Credit Report", "Your Experian self-pull"],
+                ["3", "FDD Receipt", "The executed receipt page from Item 23"],
+                ["4", "Territory Map", "Marketing runs the DBA smell test on it"],
+                ["5", "Franchise Proposal",
+                 "Fee investment derived from the map. Equity injection based on your "
+                 "funding path"],
+                ["6", "SBA Pre-Approval Letter", "If you are funding through SBA"],
+                ["7", "ROBS or Self-Funding Proof", "Bank or retirement statements"],
+                ["8", "DAP Timeline", "Reviewed with your Franchise Developer"],
+                ["9", "Bio",
+                 "Your Franchise Developer writes an executive bio. You provide a family "
+                 "photo"],
+                ["10", "Address Confirmation",
+                 "Your in-territory address, or your plan to secure one"],
+            ],
         ),
 
-        "  <h2>Sample agreements</h2>",
-        "  <p>You will receive sample agreements alongside the Franchise Disclosure Document, "
-        "or FDD. They are attached as exhibits to the FDD itself.</p>",
-
-        "  <p>Sample means unsigned and unfilled. They show you exactly what you would be "
-        "asked to sign, with your specific terms left blank. Give them to your attorney now, "
-        "not later.</p>",
-
-        "  <h2>The e-signature walkthrough</h2>",
-        "  <p>Documents route to you through <strong>DocuSign</strong>. The email you "
-        "receive uses DocuSign's standard language, and that language causes real "
-        "confusion.</p>",
-
-        "  <p>Watch for a DocuSign email from your Franchise Developer. It is legitimate, "
-        "and it is not phishing.</p>",
+        "  <p>Additional items as they apply. DD-214 for VetFran discount eligibility. E2 "
+        "visa attorney letter if applicable. P&amp;L for conversions of an existing "
+        "business.</p>",
 
         warn(
-            "    <p>The DocuSign email will say <strong>\"Begin Signing Process.\"</strong> "
-            "That wording is DocuSign's, not ours.</p>\n"
+            "    <p>Our Legal team drafts your sample agreements. You then formally "
+            "acknowledge receipt, which begins the FTC-mandated hold time.</p>\n"
+            "    <p>The DocuSign email you receive will say <strong>\"Begin Signing "
+            "Process.\"</strong> That wording is the platform's, not ours.</p>\n"
             "    <p><strong>This is only an acknowledgment of receipt. It is not "
             "execution.</strong></p>\n"
-            "    <p>You are confirming you received the documents on a given date. You have "
-            "not bought anything, you have not committed to anything, and you can still walk "
-            "away.</p>",
-            label="Acknowledgment is not execution",
+            "    <p>You have not been presented to the Executive Committee. You have not been "
+            "awarded a franchise. You are acknowledging that you received documents for "
+            "review, which is a legal requirement your Franchise Developer must satisfy.</p>\n"
+            "    <p>Please acknowledge promptly. The hold clock does not start until you "
+            "do.</p>",
+            label="Read this carefully",
         ),
 
-        "  <p>Execution happens in Stage 6, after board approval, on a separate set of "
-        "documents, with your FD walking you through it. You will know when it is real.</p>",
+        "  <h2>DocuSign Walkthrough</h2>",
 
-        "  <h2>Contingencies</h2>",
-        "  <p>Contingencies are the conditions that must clear before you open. Each one gets "
-        "a date and an owner on the DAP.</p>",
+        steps([
+            "Our contract administrator emails you a custom login and password. Your "
+            "Franchise Developer never sees it. If you are awarded, you will reuse this same "
+            "login for execution.",
+            "You receive a second email from DocuSign, \"Step One: Begin Signing Process.\"",
+            "Log in with the credentials from the first email.",
+            "Accept the Terms.",
+            "Sign your name exactly as it appears on the document.",
+            "Complete the signing process.",
+        ]),
 
-        "  <p>Typical items include funding approval, entity formation, your territory "
-        "address, insurance, and licensing. Your FD sets the specific list with you.</p>",
+        "  <p>If anything does not work, contact your Franchise Developer. Do not create a "
+        "second account.</p>",
 
-        "  <p>Build in slack. Lending timelines and municipal licensing both move slower than "
-        "candidates expect.</p>",
-
-        next_block("Complete your DAP with your FD, then prepare for Meet The Team Day."),
+        next_block("Acknowledge receipt of your agreements, then continue to Stage 5, Meet "
+                   "The Team Day."),
     ]),
 )
