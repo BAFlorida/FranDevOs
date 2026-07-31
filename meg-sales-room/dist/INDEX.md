@@ -11,15 +11,15 @@ Regenerate with `python3 meg-sales-room/build/build.py`. Page copy lives in `bui
 
 | # | Page | Path | Gates | Placeholders | Video |
 |---|---|---|---|---|---|
-| 1 | Welcome to Your Mutual Evaluation Guide | `01-welcome/index.html` | - | - | 2 embeds |
+| 1 | Welcome to Your Mutual Evaluation Guide | `01-welcome/index.html` | - | 5 | 2 embeds |
 | 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | - | 1 | 1 embed |
-| 3 | Brand Overview | `02-brand-overview/index.html` | - | 1 | 1 pending |
+| 3 | Brand Overview | `02-brand-overview/index.html` | - | 2 | 1 pending |
 | 4 | Qualification Summary / Culture Index | `02-brand-overview/01-qualification-summary.html` | - | 3 | 1 embed |
-| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | - | 1 | 1 embed |
+| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | - | 5 | 1 embed |
 | 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | - | 7 | 2 embeds |
 | 7 | Validation | `03-validation/index.html` | - | - | 1 embed |
 | 8 | Owner Calls | `03-validation/01-owner-calls.html` | 1 checkbox | 2 | - |
-| 9 | Funding | `03-validation/02-funding.html` | 2 select | 2 | 3 embeds, 1 pending |
+| 9 | Funding | `03-validation/02-funding.html` | 2 select | 3 | 3 embeds, 1 pending |
 | 10 | Territory | `03-validation/03-territory.html` | 1 checkbox | 2 | 1 pending |
 | 11 | Understanding Your Brand's Technology | `03-validation/04-technology.html` | 1 checkbox | 10 | 2 embeds |
 | 12 | Seeking Approval | `04-seeking-approval/index.html` | - | - | 1 pending |
@@ -36,7 +36,7 @@ Regenerate with `python3 meg-sales-room/build/build.py`. Page copy lives in `bui
 | 23 | Brand Welcome Call _(No source - stub)_ | `06-agreement-stage/03-brand-welcome-call.html` | - | 5 | 1 embed |
 | 24 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | - | 2 | - |
 
-**Totals:** 5 gates (3 checkboxes, 2 selects) on 4 pages, 59 placeholder flags, 18 video embeds, 7 pending video slots.
+**Totals:** 5 gates (3 checkboxes, 2 selects) on 4 pages, 70 placeholder flags, 18 video embeds, 7 pending video slots.
 
 
 ## Compliance gates
@@ -84,6 +84,22 @@ Two labels come free under the remap and could be reused at the sub-step level: 
 > `PLACEHOLDERS.md` explicitly warned against defaulting the onboarding program to "Sure Start", because it is the source brand's program name and PIRTEK uses it too. It was confirmed as 1-Tom-Plumber's actual program name and applied. Flagging the reversal here so it is not mistaken for the warned-against default.
 
 
+## Brand facts pulled back (`PH-26`)
+
+The `Confirmed facts - safe to use` table in `PLACEHOLDERS.md` was treated as verified and stated as fact on candidate-facing pages. Spot-checking it against current public sources showed it is stale, so every figure from it has been replaced with a placeholder flag.
+
+| Figure | Build spec said | Problem |
+|---|---|---|
+| Franchisees / territories / states | 37 / 57 / 22 | Public sources report a materially higher unit count; these look like an older FDD year |
+| Initial investment | $515,719 to $2,784,795 | Upper bound differs from current public figures |
+| Royalty | 6% of gross revenue | Omits the separate 2% advertising fee |
+| Model | Commercial-leaning | Brand is marketed as residential **and** commercial |
+| SBA charge-off | 0.0% across 12 loans | Not verifiable |
+| Initial franchise fee | $50,000 per territory | Plausible, but pulled for consistency - take it from the FDD |
+
+Unit counts and fees are Item 20 and Item 5/6/7 disclosures that change every FDD year. Populate them from the current FDD, not from an aggregator site and not from this spec.
+
+
 ## Placeholders still open
 
 Every one renders as a visible amber flag in the page. Nothing was silently filled in.
@@ -113,6 +129,7 @@ Every one renders as a visible amber flag in the page. Nothing was silently fill
 | `PH-23` | `02-brand-overview/03-additional-resources.html` |
 | `PH-24` | `05-meet-the-team-day/03-meet-the-team-day.html` |
 | `PH-25` | `05-meet-the-team-day/03-meet-the-team-day.html` |
+| `PH-26` | `01-welcome/index.html`, `02-brand-overview/02-fdd.html`, `02-brand-overview/index.html`, `03-validation/02-funding.html` |
 
 ## Source content gap
 

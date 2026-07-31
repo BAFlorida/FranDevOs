@@ -34,20 +34,25 @@ PAGES["01-welcome/index.html"] = render(
               "EverSmith What to Expect on the First Call"),
 
         "  <h2>The brand at a glance</h2>",
-        "  <p>Facts below come from public disclosure documents and the EverSmith Brands "
-        "acquisition announcement. Everything here is verifiable before you go further.</p>",
+
+        ph_block(
+            "Every count in this table needs to be pulled from the current FDD before "
+            "publishing. The counts supplied with the build spec did not match current "
+            "public data and have been withheld rather than shown. Unit counts are an Item "
+            "20 disclosure and change every FDD year. See INDEX.md for the detail.",
+            ref="PH-26",
+        ),
 
         table(
             "1-Tom-Plumber brand snapshot",
             ["Item", "Detail"],
             [
-                ["Founded", "2018"],
-                ["Model", "Emergency plumbing and drain cleaning, commercial-leaning"],
-                ["Franchisees", "37"],
-                ["Territories", "57"],
-                ["States", "22"],
+                ["Founded", "2018, in Milford, Ohio"],
+                ["Model", ph("residential / commercial split pending", "PH-26")],
+                ["Franchise units", ph("pending - current FDD Item 20", "PH-26")],
+                ["Territories", ph("pending - current FDD Item 20", "PH-26")],
+                ["States", ph("pending - current FDD Item 20", "PH-26")],
                 ["Parent", "EverSmith Brands, backed by The Riverside Company"],
-                ["Acquired", "December 2025"],
             ],
         ),
 

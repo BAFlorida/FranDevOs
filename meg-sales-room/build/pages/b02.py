@@ -32,12 +32,18 @@ PAGES["02-brand-overview/index.html"] = render(
 
         "  <h2>What the business actually is</h2>",
         "  <p>1-Tom-Plumber is an emergency plumbing and drain cleaning brand, founded in "
-        "2018 and leaning commercial. Owners run a dispatch-driven service business, not a "
-        "retail storefront.</p>",
+        "Milford, Ohio in 2018. Owners run a dispatch-driven service business, not a retail "
+        "storefront.</p>",
 
-        "  <p>The brand operates 57 territories across 22 states with 37 franchisees. In "
-        "December 2025 it was acquired by EverSmith Brands, which is backed by The Riverside "
+        "  <p>The brand is part of EverSmith Brands, which is backed by The Riverside "
         "Company.</p>",
+
+        ph_block(
+            "Unit, territory, and state counts removed pending verification. The figures in "
+            "the build spec do not match current public data. Pull them from the current FDD "
+            "Item 20.",
+            ref="PH-26",
+        ),
 
         ph_block(SOURCE_PENDING, ref="SRC"),
 
@@ -247,17 +253,28 @@ PAGES["02-brand-overview/02-fdd.html"] = render(
         "conversations.</p>",
 
         "  <h2>Where the cost figures live</h2>",
-        "  <p>Items 5, 6, and 7 carry the money. Public disclosure data shows the figures "
-        "below, and you should confirm each against the FDD you receive.</p>",
+        "  <p>Items 5, 6, and 7 carry the money. Read them in the FDD you receive, which is "
+        "the only authoritative source for these numbers.</p>",
 
         table(
             "Where to find cost figures in the FDD",
-            ["Item", "Figure", "Public value"],
+            ["Item", "Figure", "Value"],
             [
-                ["5", "Initial franchise fee", "$50,000 per territory"],
-                ["6", "Royalty", "6% of gross revenue"],
-                ["7", "Estimated initial investment", "$515,719 to $2,784,795"],
+                ["5", "Initial franchise fee", ph("pending - current FDD", "PH-26")],
+                ["6", "Royalty and advertising fee",
+                 ph("pending - current FDD", "PH-26")],
+                ["7", "Estimated initial investment",
+                 ph("pending - current FDD", "PH-26")],
             ],
+        ),
+
+        ph_block(
+            "Cost figures removed pending verification against the current FDD. The build "
+            "spec supplied an initial investment range and a 6% royalty; public aggregators "
+            "show a different upper bound and an additional 2% advertising fee that the spec "
+            "omitted. Do not populate this table from an aggregator. Take every figure from "
+            "the FDD itself.",
+            ref="PH-26",
         ),
 
         "  <p>The Item 7 range is wide because it spans a range of build-outs, vehicle "

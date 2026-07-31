@@ -262,6 +262,27 @@ def write_index(pages):
              "and applied. Flagging the reversal here so it is not mistaken for the "
              "warned-against default.\n")
 
+    L.append("\n## Brand facts pulled back (`PH-26`)\n")
+    L.append("The `Confirmed facts - safe to use` table in `PLACEHOLDERS.md` was treated as "
+             "verified and stated as fact on candidate-facing pages. Spot-checking it "
+             "against current public sources showed it is stale, so every figure from it has "
+             "been replaced with a placeholder flag.\n")
+    L.append("| Figure | Build spec said | Problem |")
+    L.append("|---|---|---|")
+    L.append("| Franchisees / territories / states | 37 / 57 / 22 | Public sources report a "
+             "materially higher unit count; these look like an older FDD year |")
+    L.append("| Initial investment | $515,719 to $2,784,795 | Upper bound differs from "
+             "current public figures |")
+    L.append("| Royalty | 6% of gross revenue | Omits the separate 2% advertising fee |")
+    L.append("| Model | Commercial-leaning | Brand is marketed as residential **and** "
+             "commercial |")
+    L.append("| SBA charge-off | 0.0% across 12 loans | Not verifiable |")
+    L.append("| Initial franchise fee | $50,000 per territory | Plausible, but pulled for "
+             "consistency - take it from the FDD |")
+    L.append("\nUnit counts and fees are Item 20 and Item 5/6/7 disclosures that change every "
+             "FDD year. Populate them from the current FDD, not from an aggregator site and "
+             "not from this spec.\n")
+
     L.append("\n## Placeholders still open\n")
     L.append("Every one renders as a visible amber flag in the page. Nothing was silently "
              "filled in.\n")

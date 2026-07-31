@@ -200,9 +200,14 @@ PAGES["03-validation/02-funding.html"] = render(
         "The agency does not lend directly. It guarantees part of a bank's loan, which makes "
         "banks willing to lend against a business rather than only against collateral.</p>",
 
-        "  <p>The brand's SBA loan history is a matter of public record. Across 12 loans, "
-        "the charge-off rate is 0.0%. That figure describes how those loans have performed "
-        "for lenders. It is not a representation about what any business earns.</p>",
+        ph_block(
+            "SBA loan performance history withheld pending verification. The figure "
+            "supplied with the build spec was not verifiable, and other figures from the "
+            "same table proved stale. If it is confirmed, keep the framing that it "
+            "describes loan performance for lenders and is not a representation about what "
+            "any business earns.",
+            ref="PH-26",
+        ),
 
         "  <h3>Personal Financial Statement</h3>",
         "  <p>Every SBA applicant files a Personal Financial Statement, or PFS. Fill it out "
