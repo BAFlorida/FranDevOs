@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franchise Disclosure Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C8102E;--red-dk:#9B0C23;--ink:#141414;--steel:#3A3F45;--pipe:#6B7280;
+  --paper:#FAFAF7;--card:#FFFFFF;--line:#DCDAD3;--wash:#F2F0EA;
+  --gate-bd:#C8102E;--gate-bg:#FDF6F7;--ph-bd:#E8B84B;--ph-bg:#FBF5E4;--ph-tx:#7A5B10;
+  --warn-bd:#C8102E;--warn-bg:#FDF6F7;
+  --disp:'Barlow Condensed','Arial Narrow',sans-serif;
+  --body:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --measure:74ch;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);
+     line-height:1.6;font-size:16px;padding:32px 24px 64px}
+.wrap{max-width:820px;margin:0 auto}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* --- header --- */
+.page-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
+.page-title{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.2vw,42px);
+  line-height:1.02;text-transform:uppercase;margin-bottom:14px}
+.page-lede{font-size:17.5px;color:var(--steel);max-width:var(--measure);margin-bottom:28px}
+
+/* --- text --- */
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,27px);
+  text-transform:uppercase;margin:38px 0 12px}
+h3{font-family:var(--disp);font-weight:600;font-size:18px;text-transform:uppercase;
+  letter-spacing:.02em;color:var(--steel);margin:26px 0 8px}
+p{margin-bottom:14px;max-width:var(--measure)}
+ul,ol{margin:0 0 18px 22px;max-width:var(--measure)}
+li{margin-bottom:7px}
+strong{font-weight:600}
+blockquote{border-left:3px solid var(--red);background:var(--wash);
+  padding:12px 0 12px 16px;margin:18px 0;max-width:var(--measure);color:var(--steel)}
+blockquote p:last-child{margin-bottom:0}
+hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+
+/* --- tables --- */
+.t-scroll{overflow-x:auto;margin:14px 0 26px}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:14.5px;min-width:520px}
+caption{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--pipe);text-align:left;padding-bottom:8px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  text-align:left;background:var(--ink);color:#fff;padding:9px 11px}
+td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+
+/* --- COMPLIANCE GATE --- */
+.gate{border:2px solid var(--gate-bd);background:var(--gate-bg);
+  padding:20px 22px;margin:26px 0;max-width:var(--measure)}
+.gate__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:10px}
+.gate__text{font-size:16.5px;font-weight:500;margin-bottom:16px;line-height:1.5}
+.gate__check{display:flex;align-items:flex-start;gap:11px;
+  border-top:1px solid rgba(200,16,46,.25);padding-top:14px}
+.gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
+  margin-top:2px;accent-color:var(--red);cursor:pointer}
+.gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}
+.gate--select .gate__check{display:block}
+.gate--select label{display:block;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}
+.gate select{font-family:var(--body);font-size:15px;padding:9px 11px;
+  border:1px solid var(--line);background:var(--card);width:100%;max-width:340px;color:var(--ink)}
+.gate + .gate{margin-top:-6px}
+
+/* --- PLACEHOLDER FLAG --- */
+.ph{display:inline-block;font-family:var(--mono);font-size:13px;
+  border:1px dashed var(--ph-bd);background:var(--ph-bg);color:var(--ph-tx);
+  padding:1px 7px;border-radius:2px}
+.ph--block{display:block;padding:12px 14px;margin:16px 0;max-width:var(--measure);line-height:1.5}
+.ph__ref{font-weight:500;letter-spacing:.06em}
+
+/* --- ASSET SLOT --- */
+.slot{display:flex;align-items:center;gap:14px;border:1px dashed var(--line);
+  background:var(--card);padding:14px 16px;margin:14px 0;max-width:var(--measure);
+  text-decoration:none;color:inherit}
+.slot:hover{border-color:var(--red)}
+.slot__kind{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;background:var(--steel);padding:4px 8px;flex:0 0 auto}
+.slot__label{font-weight:500}
+
+/* --- HARD WARNING --- */
+.warn{border-left:4px solid var(--warn-bd);background:var(--warn-bg);
+  padding:16px 18px;margin:22px 0;max-width:var(--measure)}
+.warn__label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.warn p:last-child{margin-bottom:0}
+
+/* --- PROCEDURE STEPS --- */
+.steps{list-style:none;margin:16px 0 24px;padding:0;counter-reset:s;max-width:var(--measure)}
+.steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:1px;
+  font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--red);
+  width:24px;height:24px;display:grid;place-items:center}
+
+/* --- SUB-STEP LIST (bucket index pages) --- */
+.substeps{list-style:none;margin:20px 0 0;padding:0;max-width:var(--measure)}
+.substeps li{margin-bottom:0;border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;
+  text-decoration:none;color:var(--ink)}
+.substeps a:hover .ss__title{color:var(--red)}
+.ss__n{font-family:var(--mono);font-size:12px;color:var(--red);flex:0 0 22px}
+.ss__title{font-weight:600}
+.ss__note{font-size:13.5px;color:var(--pipe);margin-left:auto;text-align:right}
+
+/* --- MILESTONE (bucket index pages) --- */
+.milestone{border:1px solid var(--line);border-left:4px solid var(--ink);
+  background:var(--card);padding:14px 18px;margin:22px 0;max-width:var(--measure)}
+.milestone__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:5px}
+.milestone__value{font-family:var(--disp);font-weight:700;font-size:21px;text-transform:uppercase}
+
+/* --- CLOSER --- */
+.next{border-top:2px solid var(--ink);margin-top:44px;padding-top:20px;max-width:var(--measure)}
+.next__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
+.next p{font-size:17px;font-weight:500;margin-bottom:0}
+
+@media (max-width:420px){
+  body{padding:24px 16px 48px}
+  .gate{padding:16px 15px}
+  .slot{flex-wrap:wrap;gap:9px}
+  .ss__note{margin-left:0;width:100%;text-align:left}
+  .substeps a{flex-wrap:wrap;row-gap:2px}
+}
+
+@media print{
+  body{padding:0}
+  .gate,.slot,.warn,.ph,.milestone{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slot,.gate,.warn{break-inside:avoid}
+}
+/* --- VIDEO EMBED --- */
+.video{position:relative;padding-bottom:56.25%;height:0;margin:20px 0 26px;max-width:74ch;background:#141414}
+.video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-eyebrow">Stage 2 · Step 2 of 3</div>
+  <h1 class="page-title">Franchise Disclosure Document</h1>
+  <p class="page-lede">The single most important document you will read in this process. Federal law requires us to give it to you.</p>
+
+  <p>The Franchise Disclosure Document, or FDD, is a 23-item disclosure that every franchisor in the United States must provide. Its contents are set by the Federal Trade Commission, not by us.</p>
+
+  <p>Read all of it. Then have your attorney and your accountant read it too. That is not a formality, and candidates who skip it regret it.</p>
+
+  <h2>The 14 day rule protects you</h2>
+
+  <p>You must have the FDD in hand for at least 14 calendar days before you sign any agreement or pay us any money. That waiting period is federal law.</p>
+
+  <p>Signing the receipt starts that 14 day clock. It does not commit you to anything, and it is not an agreement to buy a franchise.</p>
+
+  <div class="warn">
+    <div class="warn__label">What signing the receipt means</div>
+    <p>Signing the FDD receipt confirms one thing only: that you received the document on a given date.</p>
+    <p><strong>It is not a purchase, a commitment, or an agreement of any kind.</strong></p>
+  </div>
+
+  <h2>What is in the 23 items</h2>
+
+  <p>Every FDD carries the same 23 items in the same order. Use the table to find what you are looking for.</p>
+
+  <div class="video"><iframe src="https://www.youtube.com/embed/udCsGBIY1Rs" title="EverSmith FDD Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+
+  <div class="t-scroll">
+    <table>
+      <caption>The 23 items of the Franchise Disclosure Document</caption>
+      <tr><th>Item</th><th>Covers</th></tr>
+      <tr><td>1</td><td>The franchisor, its parents, predecessors, and affiliates</td></tr>
+      <tr><td>2</td><td>Business experience of the leadership team</td></tr>
+      <tr><td>3</td><td>Litigation history</td></tr>
+      <tr><td>4</td><td>Bankruptcy history</td></tr>
+      <tr><td>5</td><td>Initial fees</td></tr>
+      <tr><td>6</td><td>Other fees, including royalty and marketing</td></tr>
+      <tr><td>7</td><td>Estimated initial investment</td></tr>
+      <tr><td>8</td><td>Restrictions on sources of products and services</td></tr>
+      <tr><td>9</td><td>Your obligations as a franchisee</td></tr>
+      <tr><td>10</td><td>Financing offered by the franchisor</td></tr>
+      <tr><td>11</td><td>Franchisor assistance, advertising, computer systems, and training</td></tr>
+      <tr><td>12</td><td>Territory</td></tr>
+      <tr><td>13</td><td>Trademarks</td></tr>
+      <tr><td>14</td><td>Patents, copyrights, and proprietary information</td></tr>
+      <tr><td>15</td><td>Your obligation to participate in operating the business</td></tr>
+      <tr><td>16</td><td>Restrictions on what you may sell</td></tr>
+      <tr><td>17</td><td>Renewal, termination, transfer, and dispute resolution</td></tr>
+      <tr><td>18</td><td>Public figures</td></tr>
+      <tr><td>19</td><td>Financial performance representations</td></tr>
+      <tr><td>20</td><td>Outlet counts and franchisee contact information</td></tr>
+      <tr><td>21</td><td>Financial statements</td></tr>
+      <tr><td>22</td><td>Contracts, including the franchise agreement itself</td></tr>
+      <tr><td>23</td><td>Receipts</td></tr>
+    </table>
+  </div>
+
+  <h2>Item 19 - Financial Performance Representations</h2>
+
+  <p>Item 19 is the only place a franchisor may make a financial performance representation, or FPR. If a number about revenue or profit is not in Item 19, we cannot give it to you.</p>
+
+  <p>Franchisors are not required to include an Item 19. Many do not. The absence of one is normal and is not a red flag by itself.</p>
+
+  <div class="ph ph--block"><span class="ph__ref">PH-07</span> Item 19 status not confirmed. Check the current FDD. If there is no financial performance representation, say so plainly here, and carry the full explanation into the Owner Calls acknowledgment on page 3.1.</div>
+
+  <h2>Item 20 - your validation list</h2>
+
+  <p>Item 20 lists current franchisees and, separately, owners who have left the system in the past year. Contact information is included.</p>
+
+  <p>That list is yours to use. You do not need our permission to call anyone on it, and we do not choose who you speak with. Stage 3 is built around those conversations.</p>
+
+  <h2>Where the cost figures live</h2>
+
+  <p>Items 5, 6, and 7 carry the money. Public disclosure data shows the figures below, and you should confirm each against the FDD you receive.</p>
+
+  <div class="t-scroll">
+    <table>
+      <caption>Where to find cost figures in the FDD</caption>
+      <tr><th>Item</th><th>Figure</th><th>Public value</th></tr>
+      <tr><td>5</td><td>Initial franchise fee</td><td>$50,000 per territory</td></tr>
+      <tr><td>6</td><td>Royalty</td><td>6% of gross revenue</td></tr>
+      <tr><td>7</td><td>Estimated initial investment</td><td>$515,719 to $2,784,795</td></tr>
+    </table>
+  </div>
+
+  <p>The Item 7 range is wide because it spans a range of build-outs, vehicle counts, and market conditions. Your Franchise Developer will help you understand where your plan is likely to land.</p>
+
+  <h2>How to read it</h2>
+
+  <ol class="steps">
+    <li>Read Items 5, 6, and 7 first. That is the money.</li>
+    <li>Read Item 19, then note every question it does not answer.</li>
+    <li>Pull the Item 20 list and mark the owners you want to call in Stage 3.</li>
+    <li>Read Item 17 closely. It governs renewal, transfer, and exit.</li>
+    <li>Send it to your attorney and your accountant.</li>
+    <li>Sign the Item 23 receipt to start your 14 day review period.</li>
+  </ol>
+
+  <div class="next">
+    <div class="next__label">Next</div>
+    <p>Sign your FDD receipt, then use the additional resources page while your 14 day review period runs.</p>
+  </div>
+
+</div>
+</body>
+</html>

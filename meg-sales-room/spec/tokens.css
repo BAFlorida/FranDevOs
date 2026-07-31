@@ -1,0 +1,103 @@
+/* ============================================================
+   1-Tom-Plumber MEG Sales Room — Design Tokens
+   Copy these values into each page's inline <style> block.
+   Pages are self-contained; this file is the reference, not a link target.
+   ============================================================ */
+
+:root{
+  /* Color
+     WARNING: --red is a WORKING VALUE, not an official brand hex.
+     Confirm against 1TP / EverSmith brand assets before publishing. */
+  --red:      #C8102E;   /* primary accent — PLACEHOLDER */
+  --red-dk:   #9B0C23;
+  --ink:      #141414;   /* headings, high-contrast text */
+  --steel:    #3A3F45;   /* secondary text */
+  --pipe:     #6B7280;   /* tertiary, labels */
+  --paper:    #FAFAF7;   /* page background */
+  --card:     #FFFFFF;
+  --line:     #DCDAD3;   /* borders, rules */
+  --wash:     #F2F0EA;   /* blockquote / callout fill */
+
+  /* Semantic */
+  --gate-bd:  #C8102E;   /* compliance gate border */
+  --gate-bg:  #FDF6F7;
+  --ph-bd:    #E8B84B;   /* placeholder flag */
+  --ph-bg:    #FBF5E4;
+  --ph-tx:    #7A5B10;
+  --warn-bd:  #C8102E;   /* hard warning callout */
+  --warn-bg:  #FDF6F7;
+
+  /* Type */
+  --disp: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Scale */
+  --t-h1:   clamp(28px, 4.2vw, 42px);
+  --t-h2:   clamp(21px, 2.6vw, 27px);
+  --t-h3:   18px;
+  --t-body: 16px;
+  --t-sm:   14px;
+  --t-xs:   11px;
+
+  /* Space */
+  --s-1: 6px;
+  --s-2: 12px;
+  --s-3: 20px;
+  --s-4: 32px;
+  --s-5: 52px;
+
+  /* Measure */
+  --measure: 74ch;
+}
+
+/* Google Fonts link to include in each page <head>:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+*/
+
+/* ============================================================
+   COMPONENT CONTRACTS
+   These class names must be consistent across all 24 pages.
+   ============================================================ */
+
+/*
+.page-eyebrow    — "Stage 3 · Step 1 of 4", mono, uppercase, --pipe
+.page-title      — H1, --disp, 800, uppercase
+.page-lede       — first paragraph, --t-body +1, --steel
+
+.gate            — compliance gate wrapper. Border 2px --gate-bd, bg --gate-bg.
+.gate__label     — mono, uppercase, --red, "Required acknowledgment"
+.gate__text      — the statement itself, quoted, larger than body
+.gate__check     — <input type="checkbox"> + <label>, 20px box, real control
+.gate--select    — variant for the two funding self-assessment dropdowns
+
+.ph              — placeholder flag. Inline. Dashed 1px --ph-bd, bg --ph-bg,
+                   color --ph-tx, mono, --t-sm. Never silently resolved.
+
+.slot            — asset slot. Dashed border --line, bg --card.
+.slot__kind      — mono uppercase badge: VIDEO / DOWNLOAD / FORM / SCHEDULER / INTERACTIVE
+.slot__label     — the asset name
+.slot[data-asset]— attribute names the required asset
+
+.warn            — hard warning callout. Left border 4px --warn-bd, bg --warn-bg.
+                   Used for "acknowledgment is not execution" and Schedule D.
+
+.steps           — ordered procedure list (Experian pull, ROBS, e-sign, execution)
+.steps li        — marker in --red, mono
+
+.next            — closing block. Top rule 2px --ink. States the next action.
+*/
+
+/* ============================================================
+   FLOOR REQUIREMENTS
+   ============================================================ */
+
+/*
+  - Responsive to 360px. Tables scroll horizontally below 600px.
+  - :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  - @media (prefers-reduced-motion: reduce) — no transitions or scroll behavior
+  - Every checkbox has an explicit <label for>
+  - Body copy never exceeds --measure
+  - Print: gates and slots keep their borders, backgrounds forced visible
+*/

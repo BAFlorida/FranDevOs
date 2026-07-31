@@ -2,6 +2,8 @@
 
 # compiled output
 dist
+# MEG sales room pages are the deliverable, not build output - keep them tracked
+!/meg-sales-room/dist/
 tmp
 out-tsc
 *.tsbuildinfo
@@ -10,6 +12,10 @@ out-tsc
 
 # dependencies
 node_modules
+
+# python bytecode
+__pycache__/
+*.pyc
 
 # IDEs and editors
 /.idea

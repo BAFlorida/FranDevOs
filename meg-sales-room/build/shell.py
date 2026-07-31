@@ -1,0 +1,309 @@
+"""Shared page shell for the 1-Tom-Plumber MEG sales room.
+
+Every generated page inlines this CSS. That duplication is deliberate: pages are
+pasted one at a time into a sales room CMS field and must render with no external
+stylesheet, no build step, and no JS.
+
+Token values are copied from spec/tokens.css. Component class names follow the
+COMPONENT CONTRACTS block in that file.
+"""
+
+CSS = """:root{
+  --red:#C8102E;--red-dk:#9B0C23;--ink:#141414;--steel:#3A3F45;--pipe:#6B7280;
+  --paper:#FAFAF7;--card:#FFFFFF;--line:#DCDAD3;--wash:#F2F0EA;
+  --gate-bd:#C8102E;--gate-bg:#FDF6F7;--ph-bd:#E8B84B;--ph-bg:#FBF5E4;--ph-tx:#7A5B10;
+  --warn-bd:#C8102E;--warn-bg:#FDF6F7;
+  --disp:'Barlow Condensed','Arial Narrow',sans-serif;
+  --body:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --measure:74ch;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);
+     line-height:1.6;font-size:16px;padding:32px 24px 64px}
+.wrap{max-width:820px;margin:0 auto}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* --- header --- */
+.page-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
+.page-title{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.2vw,42px);
+  line-height:1.02;text-transform:uppercase;margin-bottom:14px}
+.page-lede{font-size:17.5px;color:var(--steel);max-width:var(--measure);margin-bottom:28px}
+
+/* --- text --- */
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,27px);
+  text-transform:uppercase;margin:38px 0 12px}
+h3{font-family:var(--disp);font-weight:600;font-size:18px;text-transform:uppercase;
+  letter-spacing:.02em;color:var(--steel);margin:26px 0 8px}
+p{margin-bottom:14px;max-width:var(--measure)}
+ul,ol{margin:0 0 18px 22px;max-width:var(--measure)}
+li{margin-bottom:7px}
+strong{font-weight:600}
+blockquote{border-left:3px solid var(--red);background:var(--wash);
+  padding:12px 0 12px 16px;margin:18px 0;max-width:var(--measure);color:var(--steel)}
+blockquote p:last-child{margin-bottom:0}
+hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+
+/* --- tables --- */
+.t-scroll{overflow-x:auto;margin:14px 0 26px}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:14.5px;min-width:520px}
+caption{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--pipe);text-align:left;padding-bottom:8px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  text-align:left;background:var(--ink);color:#fff;padding:9px 11px}
+td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+
+/* --- COMPLIANCE GATE --- */
+.gate{border:2px solid var(--gate-bd);background:var(--gate-bg);
+  padding:20px 22px;margin:26px 0;max-width:var(--measure)}
+.gate__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:10px}
+.gate__text{font-size:16.5px;font-weight:500;margin-bottom:16px;line-height:1.5}
+.gate__check{display:flex;align-items:flex-start;gap:11px;
+  border-top:1px solid rgba(200,16,46,.25);padding-top:14px}
+.gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
+  margin-top:2px;accent-color:var(--red);cursor:pointer}
+.gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}
+.gate--select .gate__check{display:block}
+.gate--select label{display:block;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}
+.gate select{font-family:var(--body);font-size:15px;padding:9px 11px;
+  border:1px solid var(--line);background:var(--card);width:100%;max-width:340px;color:var(--ink)}
+.gate + .gate{margin-top:-6px}
+
+/* --- PLACEHOLDER FLAG --- */
+.ph{display:inline-block;font-family:var(--mono);font-size:13px;
+  border:1px dashed var(--ph-bd);background:var(--ph-bg);color:var(--ph-tx);
+  padding:1px 7px;border-radius:2px}
+.ph--block{display:block;padding:12px 14px;margin:16px 0;max-width:var(--measure);line-height:1.5}
+.ph__ref{font-weight:500;letter-spacing:.06em}
+
+/* --- ASSET SLOT --- */
+.slot{display:flex;align-items:center;gap:14px;border:1px dashed var(--line);
+  background:var(--card);padding:14px 16px;margin:14px 0;max-width:var(--measure);
+  text-decoration:none;color:inherit}
+.slot:hover{border-color:var(--red)}
+.slot__kind{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;background:var(--steel);padding:4px 8px;flex:0 0 auto}
+.slot__label{font-weight:500}
+
+/* --- HARD WARNING --- */
+.warn{border-left:4px solid var(--warn-bd);background:var(--warn-bg);
+  padding:16px 18px;margin:22px 0;max-width:var(--measure)}
+.warn__label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.warn p:last-child{margin-bottom:0}
+
+/* --- PROCEDURE STEPS --- */
+.steps{list-style:none;margin:16px 0 24px;padding:0;counter-reset:s;max-width:var(--measure)}
+.steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:1px;
+  font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--red);
+  width:24px;height:24px;display:grid;place-items:center}
+
+/* --- SUB-STEP LIST (bucket index pages) --- */
+.substeps{list-style:none;margin:20px 0 0;padding:0;max-width:var(--measure)}
+.substeps li{margin-bottom:0;border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;
+  text-decoration:none;color:var(--ink)}
+.substeps a:hover .ss__title{color:var(--red)}
+.ss__n{font-family:var(--mono);font-size:12px;color:var(--red);flex:0 0 22px}
+.ss__title{font-weight:600}
+.ss__note{font-size:13.5px;color:var(--pipe);margin-left:auto;text-align:right}
+
+/* --- MILESTONE (bucket index pages) --- */
+.milestone{border:1px solid var(--line);border-left:4px solid var(--ink);
+  background:var(--card);padding:14px 18px;margin:22px 0;max-width:var(--measure)}
+.milestone__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:5px}
+.milestone__value{font-family:var(--disp);font-weight:700;font-size:21px;text-transform:uppercase}
+
+/* --- CLOSER --- */
+.next{border-top:2px solid var(--ink);margin-top:44px;padding-top:20px;max-width:var(--measure)}
+.next__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
+.next p{font-size:17px;font-weight:500;margin-bottom:0}
+
+@media (max-width:420px){
+  body{padding:24px 16px 48px}
+  .gate{padding:16px 15px}
+  .slot{flex-wrap:wrap;gap:9px}
+  .ss__note{margin-left:0;width:100%;text-align:left}
+  .substeps a{flex-wrap:wrap;row-gap:2px}
+}
+
+@media print{
+  body{padding:0}
+  .gate,.slot,.warn,.ph,.milestone{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slot,.gate,.warn{break-inside:avoid}
+}"""
+
+VIDEO_CSS = """
+/* --- VIDEO EMBED --- */
+.video{position:relative;padding-bottom:56.25%;height:0;margin:20px 0 26px;max-width:74ch;background:#141414}
+.video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}"""
+
+FONTS = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800'
+    "&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap\" "
+    'rel="stylesheet">'
+)
+
+
+def render(title, eyebrow, h1, lede, body):
+    """Assemble one self-contained page.
+
+    `body` is the page's own content, starting after the lede. No site header,
+    no nav, no footer: the sales room supplies all page chrome.
+
+    The video rule is appended only on pages that actually embed one, so the
+    two stay in sync automatically.
+    """
+    css = CSS + (VIDEO_CSS if 'class="video"' in body else "")
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+{FONTS}
+<style>
+{css}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-eyebrow">{eyebrow}</div>
+  <h1 class="page-title">{h1}</h1>
+  <p class="page-lede">{lede}</p>
+
+{body}
+
+</div>
+</body>
+</html>
+"""
+
+
+# ---------------------------------------------------------------- helpers
+
+def ph(text, ref=None):
+    """Inline placeholder flag. Never silently resolved."""
+    tag = f'<span class="ph__ref">{ref}</span> ' if ref else ""
+    return f'<span class="ph">{tag}{text}</span>'
+
+
+def ph_block(text, ref=None):
+    tag = f'<span class="ph__ref">{ref}</span> ' if ref else ""
+    return f'  <div class="ph ph--block">{tag}{text}</div>'
+
+
+def video(url, title):
+    """Responsive 16:9 YouTube embed."""
+    return (
+        f'  <div class="video"><iframe src="{url}" title="{title}" frameborder="0" '
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; '
+        'picture-in-picture; web-share" '
+        'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen '
+        "loading=\"lazy\"></iframe></div>"
+    )
+
+
+def video_pending(label, asset):
+    """Slot for a video that has not been recorded or supplied yet."""
+    return slot("Video", f"Pending: {label}", asset)
+
+
+def slot(kind, label, asset):
+    return (
+        f'  <a class="slot" href="#" data-asset="{asset}">\n'
+        f'    <span class="slot__kind">{kind}</span>\n'
+        f'    <span class="slot__label">{label}</span>\n'
+        f"  </a>"
+    )
+
+
+def gate(gate_id, text, label="I understand", heading="Required acknowledgment"):
+    return f"""  <div class="gate">
+    <div class="gate__label">{heading}</div>
+    <p class="gate__text">{text}</p>
+    <div class="gate__check">
+      <input type="checkbox" id="gate-{gate_id}">
+      <label for="gate-{gate_id}">{label}</label>
+    </div>
+  </div>"""
+
+
+def gate_select(gate_id, text, options, heading="Required - self assessment"):
+    opts = "\n".join(f"        <option>{o}</option>" for o in options)
+    return f"""  <div class="gate gate--select">
+    <div class="gate__label">{heading}</div>
+    <p class="gate__text">{text}</p>
+    <div class="gate__check">
+      <label for="gate-{gate_id}">Your answer</label>
+      <select id="gate-{gate_id}">
+        <option value="">Select one</option>
+{opts}
+      </select>
+    </div>
+  </div>"""
+
+
+def warn(body_html, label="Read this carefully"):
+    return f"""  <div class="warn">
+    <div class="warn__label">{label}</div>
+{body_html}
+  </div>"""
+
+
+def milestone(value):
+    return f"""  <div class="milestone">
+    <div class="milestone__label">Completing this stage produces</div>
+    <div class="milestone__value">{value}</div>
+  </div>"""
+
+
+def substeps(items):
+    """items: list of (href, n, title, note)"""
+    rows = "\n".join(
+        f'    <li><a href="{href}"><span class="ss__n">{n}</span>'
+        f'<span class="ss__title">{title}</span>'
+        f'<span class="ss__note">{note}</span></a></li>'
+        for href, n, title, note in items
+    )
+    return f'  <ul class="substeps">\n{rows}\n  </ul>'
+
+
+def steps(items):
+    rows = "\n".join(f"    <li>{i}</li>" for i in items)
+    return f'  <ol class="steps">\n{rows}\n  </ol>'
+
+
+def next_block(text, label="Next"):
+    return f"""  <div class="next">
+    <div class="next__label">{label}</div>
+    <p>{text}</p>
+  </div>"""
+
+
+def table(caption_text, headers, rows):
+    head = "".join(f"<th>{h}</th>" for h in headers)
+    body_rows = "\n".join(
+        "      <tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows
+    )
+    return f"""  <div class="t-scroll">
+    <table>
+      <caption>{caption_text}</caption>
+      <tr>{head}</tr>
+{body_rows}
+    </table>
+  </div>"""
