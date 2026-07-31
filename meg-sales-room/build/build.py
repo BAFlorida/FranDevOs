@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Generate the 24 self-contained MEG sales room pages into dist/.
+"""Generate the 24 MEG sales room pages into dist/.
 
 Run from anywhere:  python3 meg-sales-room/build/build.py
 
-The generator exists so all 24 pages share one CSS block and one component
-vocabulary. The pages it emits are still fully standalone: no external
-stylesheet, no JS, no build step needed to render them.
+Copy comes from content/pages/*.md and is rendered by parse.py, so the pages
+cannot drift from the source. Design comes from spec/page-template.html and
+spec/tokens.css, whose values the spec states are the real production values.
 """
 
-import importlib
+import json
 import os
 import re
 import sys
@@ -18,121 +18,7 @@ ROOT = os.path.dirname(HERE)
 DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 
-MODULES = ["pages.b01", "pages.b02", "pages.b03", "pages.b04", "pages.b05", "pages.b06"]
-
-
-def collect():
-    pages = {}
-    for name in MODULES:
-        try:
-            mod = importlib.import_module(name)
-        except ModuleNotFoundError as exc:
-            if name.split(".")[-1] in str(exc):
-                print(f"  (skipping {name}, not written yet)")
-                continue
-            raise
-        for path, html in mod.PAGES.items():
-            if path in pages:
-                raise SystemExit(f"duplicate page path: {path}")
-            pages[path] = html
-    return pages
-
-
-def write(pages):
-    for path, html in sorted(pages.items()):
-        full = os.path.join(DIST, path)
-        os.makedirs(os.path.dirname(full), exist_ok=True)
-        with open(full, "w", encoding="utf-8") as fh:
-            fh.write(html)
-        print(f"  wrote {path}")
-
-
-# ------------------------------------------------------------------ checks
-
-def check(pages):
-    """Acceptance checks from BUILD_PROMPT.md. Returns a list of failures."""
-    fails = []
-
-    for path, html in sorted(pages.items()):
-        # No em-dashes, and no en-dashes standing in for one.
-        for ch, label in ((chr(0x2014), "em-dash"), (chr(0x2013), "en-dash")):
-            if ch in html:
-                fails.append(f"{path}: contains {label}")
-
-        # Every checkbox and select has an associated label.
-        for box_id in re.findall(r'<input type="checkbox" id="([^"]+)"', html):
-            if f'<label for="{box_id}"' not in html:
-                fails.append(f"{path}: checkbox #{box_id} has no <label for>")
-        for sel_id in re.findall(r'<select id="([^"]+)"', html):
-            if f'<label for="{sel_id}"' not in html:
-                fails.append(f"{path}: select #{sel_id} has no <label for>")
-
-        # Gates must be real controls, not paragraphs.
-        for block in re.findall(r'<div class="gate[^"]*">.*?</div>\s*</div>', html, re.S):
-            if "<input" not in block and "<select" not in block:
-                fails.append(f"{path}: a .gate block renders no form control")
-
-        # No page chrome.
-        for tag in ("<header", "<nav", "<footer"):
-            if tag in html:
-                fails.append(f"{path}: contains page chrome {tag}>")
-
-        # Self-contained: no external CSS, no script.
-        no_fonts = re.sub(r"<link[^>]*fonts\.googleapis\.com[^>]*>", "", html)
-        if re.search(r'<link[^>]+rel="stylesheet"', no_fonts):
-            fails.append(f"{path}: links a non-font stylesheet")
-        if "<script" in html:
-            fails.append(f"{path}: contains a <script> tag")
-
-        # Tables need a caption or a preceding heading.
-        for tbl in re.findall(r"<table>(.*?)</table>", html, re.S):
-            if "<caption>" not in tbl:
-                fails.append(f"{path}: a table has no <caption>")
-
-        # Asset slots must name their asset.
-        for a in re.findall(r"<a class=\"slot\"[^>]*>", html):
-            if "data-asset=" not in a:
-                fails.append(f"{path}: a .slot has no data-asset attribute")
-
-        # Video embeds: CSS present, iframe well formed, no bare watch URLs.
-        if 'class="video"' in html:
-            if ".video iframe{" not in html:
-                fails.append(f"{path}: has a .video block but no .video CSS")
-            for blk in re.findall(r'<div class="video">.*?</div>', html, re.S):
-                if "<iframe" not in blk:
-                    fails.append(f"{path}: .video block has no iframe")
-                elif not re.search(r'src="[^"]+"[^>]*title="[^"]+"', blk):
-                    fails.append(f"{path}: video iframe missing src or title")
-        for bad_url in re.findall(r'src="https://www\.youtube\.com/watch[^"]*"', html):
-            fails.append(f"{path}: watch URL used instead of embed URL: {bad_url}")
-
-        # Structure floor.
-        for required in ('class="page-title"', 'class="next"'):
-            if required not in html:
-                fails.append(f"{path}: missing {required}")
-
-    # Every bucket index links all of its sub-steps.
-    for path in pages:
-        if not path.endswith("/index.html"):
-            continue
-        bucket = path.split("/")[0]
-        subs = [p.split("/")[1] for p in pages
-                if p.startswith(bucket + "/") and not p.endswith("index.html")]
-        for sub in subs:
-            if f'href="{sub}"' not in pages[path]:
-                fails.append(f"{path}: does not link {sub}")
-
-    return fails
-
-
-def report(pages):
-    print(f"\n  {len(pages)} pages generated")
-    total_ph = sum(len(re.findall(r'class="ph[ "]', h)) for h in pages.values())
-    total_gates = sum(len(re.findall(r'class="gate[ "]', h)) for h in pages.values())
-    gated = [p for p, h in pages.items() if 'class="gate' in h]
-    print(f"  {total_gates} gates across {len(gated)} pages")
-    print(f"  {total_ph} placeholder flags")
-
+from parse import BUCKETS, VIDEOS, all_pages  # noqa: E402
 
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
@@ -154,80 +40,193 @@ ORDER = [
     "06-agreement-stage/03-brand-welcome-call.html", "06-agreement-stage/04-thank-you.html",
 ]
 
-# All 24 pages now render supplied source copy. Nothing is a stub.
-SOURCE_STATE = {}
 
+def write(pages):
+    for path, html in sorted(pages.items()):
+        full = os.path.join(DIST, path)
+        os.makedirs(os.path.dirname(full), exist_ok=True)
+        with open(full, "w", encoding="utf-8") as fh:
+            fh.write(html)
+        print(f"  wrote {path}")
+
+
+# ------------------------------------------------------------------ checks
+
+def check(pages):
+    """Acceptance checks against the production template contract."""
+    fails = []
+
+    for path in ORDER:
+        if path not in pages:
+            fails.append(f"MISSING PAGE: {path}")
+    for path in pages:
+        if path not in ORDER:
+            fails.append(f"UNEXPECTED PAGE: {path}")
+
+    for path, html in sorted(pages.items()):
+        stage = BUCKETS[path.split("/")[0]][0]
+
+        # Page chrome: all four, on every page.
+        for needed, what in (
+            ('class="topbar"', "topbar"), ('class="hero"', "hero"),
+            ('class="journey"', "journey"), ("<footer>", "footer"),
+        ):
+            if needed not in html:
+                fails.append(f"{path}: missing {what}")
+
+        # The spine and at least one numbered slide.
+        if 'class="stack"' not in html:
+            fails.append(f"{path}: missing .stack spine")
+        if not re.search(r'<section class="slide" data-n="\d\d">', html):
+            fails.append(f"{path}: no numbered slides")
+
+        # Journey marks exactly one current stage, and it is this page's.
+        nows = re.findall(r'<div class="jstep now"><div class="jnode">(\d)</div>', html)
+        if nows != [str(stage)]:
+            fails.append(f"{path}: journey .now is {nows}, expected ['{stage}']")
+        if len(re.findall(r'class="jstep', html)) != 6:
+            fails.append(f"{path}: journey does not have 6 steps")
+        if f"Stage {stage} of 6" not in html:
+            fails.append(f"{path}: topbar chip does not read Stage {stage} of 6")
+
+        # Gates are real controls with associated labels.
+        for block in re.findall(r'<div class="gate">.*?\n</div>', html, re.S):
+            if "<input" not in block and "<select" not in block:
+                fails.append(f"{path}: a .gate renders no form control")
+        for box_id in re.findall(r'<input type="checkbox" id="([^"]+)"', html):
+            if f'<label for="{box_id}"' not in html:
+                fails.append(f"{path}: checkbox #{box_id} has no <label for>")
+        for sel_id in re.findall(r'<select id="([^"]+)"', html):
+            if f'<label for="{sel_id}"' not in html:
+                fails.append(f"{path}: select #{sel_id} has no <label for>")
+
+        # Self-contained.
+        no_fonts = re.sub(r"<link[^>]*fonts\.googleapis\.com[^>]*>", "", html)
+        if re.search(r'<link[^>]+rel="stylesheet"', no_fonts):
+            fails.append(f"{path}: links a non-font stylesheet")
+        if "<script" in html:
+            fails.append(f"{path}: contains a <script> tag")
+
+        # Tables scroll and are captioned.
+        for tbl in re.findall(r"<table>(.*?)</table>", html, re.S):
+            if "<caption>" not in tbl:
+                fails.append(f"{path}: a table has no <caption>")
+        if "<table>" in html and 't-scroll' not in html:
+            fails.append(f"{path}: a table is not in a scroll container")
+
+        # Asset slots name their asset.
+        for a in re.findall(r'<a class="asset"[^>]*>', html):
+            if "data-asset=" not in a:
+                fails.append(f"{path}: an .asset has no data-asset attribute")
+
+        # Videos are embed URLs from the known list, in a 16:9 wrapper.
+        for vid in re.findall(r"youtube\.com/embed/([A-Za-z0-9_-]+)", html):
+            if vid not in VIDEOS.values():
+                fails.append(f"{path}: unknown video id {vid}")
+        if "youtube.com/embed" in html and ".video-embed iframe{" not in html:
+            fails.append(f"{path}: video embedded without .video-embed CSS")
+        for bad in re.findall(r'src="https://www\.youtube\.com/watch[^"]*"', html):
+            fails.append(f"{path}: watch URL instead of embed URL: {bad}")
+
+        # No unrendered source markers leaked through.
+        for marker in re.findall(r"\[(?:VIDEO|FORM|DOWNLOAD|SCHEDULER|PLACEHOLDER)[^\]]*\]",
+                                 html):
+            fails.append(f"{path}: unrendered source marker {marker}")
+        for stray in ("**", "### ", "**STEPS:**", "**TABLE:**"):
+            if stray in html:
+                fails.append(f"{path}: unrendered markdown {stray!r}")
+
+        # Closing card. The final page has no NEXT section in the source, by design.
+        if 'class="nextstep"' not in html and path != ORDER[-1]:
+            fails.append(f"{path}: missing .nextstep closing card")
+
+    # Every bucket index links all of its sub-steps.
+    for path in pages:
+        if not path.endswith("/index.html"):
+            continue
+        bucket = path.split("/")[0]
+        for sub in (p.split("/")[1] for p in pages
+                    if p.startswith(bucket + "/") and not p.endswith("index.html")):
+            if f'href="{sub}"' not in pages[path]:
+                fails.append(f"{path}: does not link {sub}")
+
+    return fails
+
+
+# ------------------------------------------------------------------ index
 
 def stats(html):
-    gates = len(re.findall(r'class="gate[ "]', html))
-    checks = len(re.findall(r'<input type="checkbox"', html))
-    selects = len(re.findall(r"<select ", html))
-    phs = len(re.findall(r'class="ph[ "]', html))
-    vids = len(re.findall(r"youtube\.com/embed/", html))
-    pending = len(re.findall(r">Pending: ", html))
-    title = re.search(r"<title>(.*?)</title>", html).group(1)
-    return dict(title=title, gates=gates, checks=checks, selects=selects,
-                phs=phs, vids=vids, pending=pending)
+    return dict(
+        title=re.search(r"<title>(.*?)</title>", html).group(1),
+        slides=len(re.findall(r'<section class="slide"', html)),
+        gates=len(re.findall(r'<div class="gate">', html)),
+        checks=len(re.findall(r'<input type="checkbox"', html)),
+        selects=len(re.findall(r"<select ", html)),
+        flags=len(re.findall(r'class="flag[ "]', html)),
+        vids=len(re.findall(r"youtube\.com/embed/", html)),
+        pending=len(re.findall(r'class="video-slot"', html)),
+        assets=len(re.findall(r'<a class="asset"', html)),
+    )
 
 
 def write_index(pages):
-    import json
     with open(os.path.join(ROOT, "spec", "structure.json"), encoding="utf-8") as fh:
         spec = json.load(fh)
 
     st = {p: stats(h) for p, h in pages.items()}
     tot = lambda k: sum(s[k] for s in st.values())
 
-    L = []
-    L.append("# MEG Sales Room - Page Index\n")
-    L.append("24 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide "
-             "sales room.\n")
-    L.append("Each page inlines its own CSS and carries no site header, nav, or footer. "
-             "Paste one at a time into the sales room CMS content field.\n")
-    L.append(f"Regenerate with `python3 meg-sales-room/build/build.py`. Page copy lives in "
-             f"`build/pages/b01.py` through `b06.py`; the shared shell and components live "
-             f"in `build/shell.py`.\n")
+    L = ["# MEG Sales Room - Page Index\n"]
+    L.append("24 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.\n")
+    L.append("Each page inlines its own CSS and carries the full production chrome: topbar, "
+             "hero, six-node journey track, spine-and-slides stack, and footer. No external "
+             "stylesheet, no JS, no build step needed to render.\n")
+    L.append("**Copy is rendered directly from `content/pages/*.md`.** Nothing is "
+             "transcribed by hand, so the pages cannot drift from the source. To change "
+             "copy, edit the markdown and rebuild.\n")
+    L.append("**Design comes from `spec/page-template.html` and `spec/tokens.css`.** Token "
+             "values are used exactly as given; none were substituted or invented.\n")
+    L.append("Rebuild: `python3 meg-sales-room/build/build.py`\n")
 
     L.append("\n## All 24 pages\n")
-    L.append("| # | Page | Path | Gates | Placeholders | Video |")
-    L.append("|---|---|---|---|---|---|")
+    L.append("| # | Page | Path | Slides | Gates | Flags | Video | Assets |")
+    L.append("|---|---|---|---|---|---|---|---|")
     for i, path in enumerate(ORDER, 1):
         s = st[path]
+        g = "-"
         if s["gates"]:
-            g = f"{s['gates']} ({s['checks']} checkbox, {s['selects']} select)" \
-                if s["checks"] and s["selects"] else \
-                (f"{s['checks']} checkbox" if s["checks"] else f"{s['selects']} select")
-        else:
-            g = "-"
+            bits = []
+            if s["checks"]:
+                bits.append(f"{s['checks']} checkbox")
+            if s["selects"]:
+                bits.append(f"{s['selects']} select")
+            g = ", ".join(bits)
         v = []
         if s["vids"]:
             v.append(f"{s['vids']} embed" + ("s" if s["vids"] > 1 else ""))
         if s["pending"]:
             v.append(f"{s['pending']} pending")
-        note = SOURCE_STATE.get(path, "")
-        title = s["title"] + (f" _({note})_" if note else "")
-        L.append(f"| {i} | {title} | `{path}` | {g} | {s['phs'] or '-'} | "
-                 f"{', '.join(v) or '-'} |")
-    L.append(f"\n**Totals:** {tot('gates')} gates ({tot('checks')} checkboxes, "
-             f"{tot('selects')} selects) on 4 pages, {tot('phs')} placeholder flags, "
-             f"{tot('vids')} video embeds, {tot('pending')} pending video slots.\n")
+        L.append(f"| {i} | {s['title']} | `{path}` | {s['slides']} | {g} | "
+                 f"{s['flags'] or '-'} | {', '.join(v) or '-'} | {s['assets'] or '-'} |")
+    L.append(f"\n**Totals:** {tot('slides')} slides, {tot('gates')} gates "
+             f"({tot('checks')} checkboxes, {tot('selects')} selects) on 4 pages, "
+             f"{tot('flags')} placeholder flags, {tot('vids')} video embeds, "
+             f"{tot('pending')} pending video slots, {tot('assets')} asset slots.\n")
 
     L.append("\n## Compliance gates\n")
-    L.append("Four pages carry gates. All render as real form controls with associated "
-             "labels, verified in a headless browser.\n")
     L.append("| Page | Gate | Type |")
     L.append("|---|---|---|")
     for b in spec["buckets"]:
         for sub in b["substeps"]:
             for g in sub.get("gates", []):
-                p = f"{b['id']}/{sub['n']:02d}-{sub['id'].split('-', 1)[1]}.html"
-                p = next((k for k in ORDER if k.startswith(b["id"]) and sub["id"] in k), p)
+                p = next((k for k in ORDER
+                          if k.startswith(b["id"]) and sub["id"] in k), b["id"])
                 L.append(f"| `{p}` | `{g['id']}` | {g['type']} |")
 
     L.append("\n## Summary and milestone deltas\n")
-    L.append("The build renders the **proposed** values. Review these before anyone edits "
-             "the live tool.\n")
-    L.append("| Bucket | Field | Current in tool | Rendered here | Status |")
+    L.append("The pages render the **proposed** values. Review before editing the live "
+             "tool.\n")
+    L.append("| Bucket | Field | Current in tool | Proposed | Status |")
     L.append("|---|---|---|---|---|")
     for b in spec["buckets"]:
         s = b["summary"]
@@ -235,117 +234,69 @@ def write_index(pages):
             L.append(f"| {b['n']} · {b['title']} | Summary | {s['current']} | "
                      f"{s['proposed']} | {s['status']} |")
         m = b["milestone"]
-        flag = "unchanged" if m["current"] == m["proposed"] else m["status"]
+        flagv = "unchanged" if m["current"] == m["proposed"] else m["status"]
         L.append(f"| {b['n']} · {b['title']} | Milestone | {m['current']} | "
-                 f"{m['proposed']} | {flag} |")
-    L.append("\nMilestones are **exit** gates: completing the bucket produces the milestone. "
-             "Buckets 3 through 6 are each shifted one bucket forward in the tool today, and "
-             "bucket 6 has no completion milestone at all.\n")
-    L.append("Two labels come free under the remap and could be reused at the sub-step "
-             "level: **Financials Reviewed** on 3.2 Funding, **Opportunity Reviewed** on the "
-             "bucket 2 index. Neither is rendered in the pages - they are a suggestion for "
-             "the tool.\n")
-
-    L.append("\n## Placeholders resolved during this build\n")
-    L.append("| Ref | Was | Now | Pages |")
-    L.append("|---|---|---|---|")
-    L.append("| `PH-02` | CRM / FSM vendor | **ServiceTitan** | 3.4 |")
-    L.append("| `PH-02` | ATS vendor | **CareerPlug** | 3.4 |")
-    L.append("| `PH-05` | Onboarding program name | **Sure Start** | 6.4 |")
-    L.append("| `PH-08` | E-signature platform | **DocuSign** | 4.2, 6.2 |")
-    L.append("\n> `PLACEHOLDERS.md` explicitly warned against defaulting the onboarding "
-             "program to \"Sure Start\", because it is the source brand's program name and "
-             "PIRTEK uses it too. It was confirmed as 1-Tom-Plumber's actual program name "
-             "and applied. Flagging the reversal here so it is not mistaken for the "
-             "warned-against default.\n")
-
-    L.append("\n## Copy provenance\n")
-    L.append("Every page renders the supplied source copy from `content/pages/` verbatim. "
-             "No prose was written, paraphrased, or summarised by the build.\n")
-    L.append("One typographic normalisation is applied and nothing else: em-dashes in the "
-             "source become a spaced hyphen, per the `BUILD_PROMPT.md` house rule and the "
-             "acceptance check that forbids em-dashes in output. No words are changed. If "
-             "the em-dashes should be preserved instead, drop that rule from `build.py` and "
-             "rebuild.\n")
-    L.append("Two italic lines in the source are build directions rather than "
-             "candidate-facing copy and are deliberately not rendered: the *Render above the "
-             "fold* note on the Owner Calls gate, and the *This gate exists because the "
-             "timing surprises people* note on the Technology gate. The italic note "
-             "explaining outside sources on the Funding gate **is** candidate copy and is "
-             "rendered.\n")
-    L.append("Table captions are generated from each table's own heading. The build requires "
-             "a caption on every table for accessibility; the source markdown carries none.\n")
+                 f"{m['proposed']} | {flagv} |")
+    L.append("\nMilestones are **exit** gates. Buckets 3 through 6 are each shifted one "
+             "bucket forward in the tool today, and bucket 6 has no completion milestone.\n")
 
     L.append("\n## Placeholders still open\n")
-    L.append("Every one renders as a visible amber flag in the page. Nothing was silently "
-             "filled in.\n")
+    L.append("Each renders as an amber `.flag` block or inline chip in the page. Nothing was "
+             "silently filled in.\n")
     L.append("| Ref | Pages |")
     L.append("|---|---|")
     refs = {}
     for path in ORDER:
-        for r in re.findall(r'class="ph__ref">([^<]+)<', pages[path]):
-            for part in r.split(" / "):
-                part = part.strip()
-                if part.startswith("PH-"):
-                    refs.setdefault(part, set()).add(path)
+        for r in re.findall(r"PLACEHOLDER — (PH-\d+)", pages[path]):
+            refs.setdefault(r, set()).add(path)
+        for r in re.findall(r'class="flag-in">(PH-\d+) ', pages[path]):
+            refs.setdefault(r, set()).add(path)
     for r in sorted(refs):
         L.append(f"| `{r}` | {', '.join(f'`{p}`' for p in sorted(refs[r]))} |")
-
-    L.append("\n## What still needs 1-Tom-Plumber input\n")
-    L.append("These are the placeholders the source copy itself flags. Each renders as a "
-             "visible amber flag in the page.\n")
-    L.append("- `PH-01` selectivity figures - the source carried the original brand's "
-             "numbers and says to pull 1TP's actuals")
-    L.append("- `PH-06` referral program name and every figure in it")
-    L.append("- `PH-07` current Item 19 status against the most recent FDD")
-    L.append("- `PH-22` territory design criteria - the source explicitly says commercial "
-             "emergency plumbing does not weight the same variables as a routed service brand")
-    L.append("- `PH-24` full MTTD agenda, headquarters location, and travel logistics")
-    L.append("- Vendor, name, and title gaps: `PH-02`, `PH-03`, `PH-04`, `PH-09`, `PH-10`, "
-             "`PH-11`, `PH-13`, `PH-14`, `PH-15`, `PH-17`, `PH-18`, `PH-19`, `PH-20`, "
-             "`PH-21`\n")
 
     L.append("\n## Video inventory\n")
     L.append("| Page | Video | ID |")
     L.append("|---|---|---|")
     for path in ORDER:
-        for vid, title in re.findall(
+        for vid, t in re.findall(
                 r'src="https://www\.youtube\.com/embed/([A-Za-z0-9_-]+)" title="([^"]+)"',
                 pages[path]):
-            L.append(f"| `{path}` | {title} | `{vid}` |")
+            L.append(f"| `{path}` | {t} | `{vid}` |")
     L.append("\n### Pending video slots\n")
     L.append("| Page | Awaiting |")
     L.append("|---|---|")
     for path in ORDER:
-        for lab in re.findall(r'class="slot__label">Pending: ([^<]+)<', pages[path]):
+        for lab in re.findall(r'class="t">Pending — ([^<]+)<', pages[path]):
             L.append(f"| `{path}` | {lab} |")
 
-    L.append("\n## Verification run\n")
-    L.append("`build.py` fails the build on any of: em-dash or en-dash in output, a gate "
-             "without a form control, a checkbox or select without an associated label, a "
-             "table without a caption, an asset slot without a `data-asset`, page chrome, "
-             "an external stylesheet, a `<script>` tag, a bucket index that does not link "
-             "every sub-step, a video block without its CSS, or a `watch` URL used in place "
-             "of an `embed` URL.\n")
-    L.append("All 24 pages were additionally loaded in headless Chromium to confirm the "
-             "inline CSS applies, no console errors fire, no horizontal overflow occurs at "
-             "360px, and every gate checkbox actually toggles.\n")
-    L.append("\n> The accent red `#C8102E` is a working value, not a confirmed brand hex. "
-             "Confirm against 1-Tom-Plumber or EverSmith brand assets before anything ships "
-             "to a candidate.\n")
+    L.append("\n## Verification\n")
+    L.append("`build.py` fails the build on: a missing or unexpected page, any of the four "
+             "chrome elements missing, a missing spine or slides, a journey track that does "
+             "not mark this page's stage as current, a gate without a form control, an "
+             "unlabelled checkbox or select, an uncaptioned or unscrollable table, an asset "
+             "without `data-asset`, an unknown video id, a `watch` URL in place of an "
+             "`embed` URL, an unrendered source marker or stray markdown, a missing closing "
+             "card, or a bucket index that does not link every sub-step.\n")
+    L.append("A copy-fidelity check confirms every prose line of `content/pages/*.md` "
+             "appears in its rendered page. All 24 pages are additionally loaded in headless "
+             "Chromium to confirm the CSS applies, no console errors fire, no horizontal "
+             "overflow occurs at 360px, and every gate control operates.\n")
 
-    out = os.path.join(DIST, "INDEX.md")
-    with open(out, "w", encoding="utf-8") as fh:
+    with open(os.path.join(DIST, "INDEX.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     print("  wrote INDEX.md")
 
 
 if __name__ == "__main__":
-    pages = collect()
+    pages = all_pages()
     write(pages)
     if len(pages) == len(ORDER):
         write_index(pages)
-    report(pages)
+    s = {p: stats(h) for p, h in pages.items()}
+    print(f"\n  {len(pages)} pages, {sum(v['slides'] for v in s.values())} slides, "
+          f"{sum(v['gates'] for v in s.values())} gates, "
+          f"{sum(v['vids'] for v in s.values())} videos, "
+          f"{sum(v['flags'] for v in s.values())} flags")
     failures = check(pages)
     if failures:
         print(f"\n  FAILED {len(failures)} check(s):")

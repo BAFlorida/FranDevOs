@@ -2,7 +2,7 @@
 <style>
 :root{
   --shell:#16181C; --shell-2:#1E2126; --edge:#2C3037;
-  --txt:#E6E4DF; --dim:#8B9099; --accent:#C8102E; --paper:#FAFAF7;
+  --txt:#E6E4DF; --dim:#8B9099; --accent:#E8175D; --paper:#FAF9F6;
   --ui:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
@@ -64,58 +64,53 @@ body{font-family:var(--ui);background:var(--shell);color:var(--txt);
     font-family:var(--mono);font-size:11px;padding:5px 11px;cursor:pointer}
 }
 :root{
-  --red:#C8102E;--red-dk:#9B0C23;--ink:#141414;--steel:#3A3F45;--pipe:#6B7280;
-  --paper:#FAFAF7;--card:#FFFFFF;--line:#DCDAD3;--wash:#F2F0EA;
-  --gate-bd:#C8102E;--gate-bg:#FDF6F7;--ph-bd:#E8B84B;--ph-bg:#FBF5E4;--ph-tx:#7A5B10;
-  --warn-bd:#C8102E;--warn-bg:#FDF6F7;
-  --disp:'Barlow Condensed','Arial Narrow',sans-serif;
-  --body:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
-  --measure:74ch;
-}.pane *{margin:0;padding:0;box-sizing:border-box}.pane{font-family:var(--body);background:var(--paper);color:var(--ink);
-     line-height:1.6;font-size:16px;padding:32px 24px 64px}.pane .wrap{max-width:820px;margin:0 auto}:focus-visible{outline:3px solid var(--red);outline-offset:2px}@media (prefers-reduced-motion:reduce){.pane *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
-}.pane .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.pane /* --- header --- */
-.page-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}.pane .page-title{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.2vw,42px);
-  line-height:1.02;text-transform:uppercase;margin-bottom:14px}.pane .page-lede{font-size:17.5px;color:var(--steel);max-width:var(--measure);margin-bottom:28px}.pane /* --- text --- */
-h2{font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,27px);
-  text-transform:uppercase;margin:38px 0 12px}.pane h3{font-family:var(--disp);font-weight:600;font-size:18px;text-transform:uppercase;
-  letter-spacing:.02em;color:var(--steel);margin:26px 0 8px}.pane p{margin-bottom:14px;max-width:var(--measure)}.pane ul,.pane ol{margin:0 0 18px 22px;max-width:var(--measure)}.pane li{margin-bottom:7px}.pane strong{font-weight:600}.pane blockquote{border-left:3px solid var(--red);background:var(--wash);
-  padding:12px 0 12px 16px;margin:18px 0;max-width:var(--measure);color:var(--steel)}.pane blockquote p:last-child{margin-bottom:0}.pane hr{border:none;border-top:1px solid var(--line);margin:32px 0}.pane /* --- tables --- */
-.t-scroll{overflow-x:auto;margin:14px 0 26px}.pane table{width:100%;border-collapse:collapse;background:var(--card);font-size:14.5px;min-width:520px}.pane caption{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--pipe);text-align:left;padding-bottom:8px}.pane th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-  text-align:left;background:var(--ink);color:#fff;padding:9px 11px}.pane td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}.pane /* --- COMPLIANCE GATE --- */
-.gate{border:2px solid var(--gate-bd);background:var(--gate-bg);
-  padding:20px 22px;margin:26px 0;max-width:var(--measure)}.pane .gate__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:10px}.pane .gate__text{font-size:16.5px;font-weight:500;margin-bottom:16px;line-height:1.5}.pane .gate__check{display:flex;align-items:flex-start;gap:11px;
-  border-top:1px solid rgba(200,16,46,.25);padding-top:14px}.pane .gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
-  margin-top:2px;accent-color:var(--red);cursor:pointer}.pane .gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}.pane .gate__note{font-size:14.5px;color:var(--steel);margin-bottom:16px;line-height:1.5}.pane .gate--select .gate__check{display:block}.pane .gate--select label{display:block;font-family:var(--mono);font-size:11px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}.pane .gate select{font-family:var(--body);font-size:15px;padding:9px 11px;
-  border:1px solid var(--line);background:var(--card);width:100%;max-width:340px;color:var(--ink)}.pane .gate + .gate{margin-top:-6px}.pane /* --- PLACEHOLDER FLAG --- */
-.ph{display:inline-block;font-family:var(--mono);font-size:13px;
-  border:1px dashed var(--ph-bd);background:var(--ph-bg);color:var(--ph-tx);
-  padding:1px 7px;border-radius:2px}.pane .ph--block{display:block;padding:12px 14px;margin:16px 0;max-width:var(--measure);line-height:1.5}.pane .ph__ref{font-weight:500;letter-spacing:.06em}.pane /* --- ASSET SLOT --- */
-.slot{display:flex;align-items:center;gap:14px;border:1px dashed var(--line);
-  background:var(--card);padding:14px 16px;margin:14px 0;max-width:var(--measure);
-  text-decoration:none;color:inherit}.pane .slot:hover{border-color:var(--red)}.pane .slot__kind{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:#fff;background:var(--steel);padding:4px 8px;flex:0 0 auto}.pane .slot__label{font-weight:500}.pane /* --- HARD WARNING --- */
-.warn{border-left:4px solid var(--warn-bd);background:var(--warn-bg);
-  padding:16px 18px;margin:22px 0;max-width:var(--measure)}.pane .warn__label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--red);margin-bottom:8px}.pane .warn p:last-child{margin-bottom:0}.pane /* --- PROCEDURE STEPS --- */
-.steps{list-style:none;margin:16px 0 24px;padding:0;counter-reset:s;max-width:var(--measure)}.pane .steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}.pane .steps li::before{content:counter(s);position:absolute;left:0;top:1px;
-  font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--red);
-  width:24px;height:24px;display:grid;place-items:center}.pane /* --- SUB-STEP LIST (bucket index pages) --- */
-.substeps{list-style:none;margin:20px 0 0;padding:0;max-width:var(--measure)}.pane .substeps li{margin-bottom:0;border-bottom:1px solid var(--line)}.pane .substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;
-  text-decoration:none;color:var(--ink)}.pane .substeps a:hover .ss__title{color:var(--red)}.pane .ss__n{font-family:var(--mono);font-size:12px;color:var(--red);flex:0 0 22px}.pane .ss__title{font-weight:600}.pane .ss__note{font-size:13.5px;color:var(--pipe);margin-left:auto;text-align:right}.pane /* --- MILESTONE (bucket index pages) --- */
-.milestone{border:1px solid var(--line);border-left:4px solid var(--ink);
-  background:var(--card);padding:14px 18px;margin:22px 0;max-width:var(--measure)}.pane .milestone__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:5px}.pane .milestone__value{font-family:var(--disp);font-weight:700;font-size:21px;text-transform:uppercase}.pane /* --- CLOSER --- */
-.next{border-top:2px solid var(--ink);margin-top:44px;padding-top:20px;max-width:var(--measure)}.pane .next__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}.pane .next p{font-size:17px;font-weight:500;margin-bottom:0}@media (max-width:420px){.pane{padding:24px 16px 48px}.pane .gate{padding:16px 15px}.pane .slot{flex-wrap:wrap;gap:9px}.pane .ss__note{margin-left:0;width:100%;text-align:left}.pane .substeps a{flex-wrap:wrap;row-gap:2px}
-}@media print{.pane{padding:0}.pane .gate,.pane .slot,.pane .warn,.pane .ph,.pane .milestone{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pane .slot,.pane .gate,.pane .warn{break-inside:avoid}
-}.pane /* --- VIDEO EMBED --- */
-.video{position:relative;padding-bottom:56.25%;height:0;margin:20px 0 26px;max-width:74ch;background:#141414}.pane .video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}.pane .video{position:relative;padding-bottom:56.25%;height:0;margin:20px 0 26px;max-width:74ch;background:#141414}.pane .video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
+  --slate:#5B6470; --line:#E5E2DC; --flag-bg:#FBF3D6; --flag-ink:#7A5E12; --flag-line:#E4CE8A;
+}.pane *{box-sizing:border-box;margin:0;padding:0}.pane html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){.pane html{scroll-behavior:auto}}.pane{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',-apple-system,'Segoe UI',sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}.pane .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}.pane a{color:var(--pink-dk)}.pane /* top bar */
+.topbar{background:var(--ink);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.pane .topbar .meg{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:22px;letter-spacing:.06em}.pane .topbar .meg b{color:var(--pink)}.pane .topbar .sub{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AE}.pane .topbar .chip{margin-left:auto;border:1px solid var(--pink);color:var(--pink);font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:2px}.pane /* hero */
+.hero{background:var(--ink);color:#fff;padding:56px 24px 44px}.pane .hero-in{max-width:880px;margin:0 auto}.pane .hero .stageno{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--pink);margin-bottom:10px}.pane .hero h1{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:clamp(40px,7vw,68px);
+  line-height:.98;text-transform:uppercase;letter-spacing:.01em;overflow-wrap:break-word}.pane .hero .subtitle{margin-top:14px;color:#C6CBD2;font-size:18px;max-width:56ch}.pane .ticket{margin-top:30px;display:flex;flex-wrap:wrap;gap:0;border:1px solid #2A2F37}.pane .ticket div{padding:10px 18px;border-right:1px solid #2A2F37;min-width:150px;flex:1}.pane .ticket div:last-child{border-right:none}.pane .ticket .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A93A0}.pane .ticket .v{font-size:14px;color:#EDEFF2;margin-top:3px}.pane /* journey */
+.journey{background:var(--ink);border-top:1px solid #23272E;padding:26px 24px 32px}.pane .journey-in{max-width:880px;margin:0 auto}.pane .jhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}.pane .jhead .jt{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:#fff}.pane .jhead .jc{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--pink)}.pane .jtrack{display:flex}.pane .jstep{flex:1;text-align:center;position:relative}.pane .jstep::before{content:"";position:absolute;top:16px;left:calc(-50% + 17px);width:calc(100% - 34px);height:3px;background:#2C313A;border-radius:2px}.pane .jstep:first-child::before{display:none}.pane .jstep.done::before{background:var(--pink-dk)}.pane .jstep.now::before{background:linear-gradient(90deg,var(--pink-dk),var(--pink))}.pane .jnode{width:34px;height:34px;border-radius:50%;margin:0 auto;position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;
+  border:2px solid #39404B;color:#7C8592;background:var(--ink)}.pane .jstep.done .jnode{background:var(--pink-dk);border-color:var(--pink-dk);color:#fff}.pane .jstep.now .jnode{background:var(--pink);border-color:#fff;color:#fff;
+  box-shadow:0 0 0 5px rgba(232,23,93,.22),0 4px 14px rgba(232,23,93,.45)}.pane .jlbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7C8592;margin-top:10px}.pane .jstep.done .jlbl{color:#A8AFB9}.pane .jstep.now .jlbl{color:#fff;font-weight:500}.pane .jhere{display:inline-block;margin-top:6px;background:var(--pink);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:8.5px;letter-spacing:.16em;padding:3px 8px;border-radius:2px}.pane /* video embed */
+.video-embed{margin:6px 0 8px;border-radius:4px;overflow:hidden;border:1px solid var(--line);
+  position:relative;padding-top:56.25%;background:#000}.pane .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.pane .video-cap{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);margin:8px 0 18px}.pane /* slide stack + spine */
+.stack{max-width:880px;margin:0 auto;padding:48px 24px 24px;position:relative}.pane .stack::before{content:"";position:absolute;top:60px;bottom:40px;left:24px;width:3px;background:linear-gradient(var(--pink),var(--pink-dk))}.pane .slide{background:var(--card);border:1px solid var(--line);border-radius:4px;margin:0 0 34px 44px;padding:34px 38px;position:relative;
+  box-shadow:0 1px 2px rgba(18,21,26,.05)}.pane .slide::before{content:attr(data-n);position:absolute;left:-44px;top:26px;transform:translateX(-50%);
+  width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:16px;box-shadow:0 0 0 5px var(--paper)}.pane .slide .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--pink-dk);margin-bottom:10px}.pane .slide h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:32px;line-height:1.04;
+  text-transform:uppercase;margin-bottom:16px}.pane .slide h4{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;font-size:21px;text-transform:uppercase;
+  letter-spacing:.02em;margin:26px 0 8px;color:var(--ink)}.pane .slide p{margin:0 0 14px;color:#2A2F37}.pane .slide p:last-child{margin-bottom:0}.pane .slide strong{color:var(--ink)}.pane .slide ul,.pane .slide ol{margin:0 0 16px 22px}.pane .slide li{margin-bottom:7px;color:#2A2F37}.pane .slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-size:15px}.pane .slide th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;color:var(--slate);border-bottom:2px solid var(--ink);padding:8px 12px}.pane .slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}.pane .slide tr td:first-child{white-space:nowrap;font-weight:600}.pane .t-scroll{overflow-x:auto}.pane .slide caption{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate);text-align:left;padding-bottom:8px}.pane blockquote{background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
+  border-radius:3px;padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--flag-ink)}.pane blockquote p{color:var(--flag-ink)!important;margin-bottom:8px}.pane blockquote::before{content:"\2699 INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.18em;margin-bottom:8px}.pane .video-slot{border:2px dashed #C9CDD4;border-radius:4px;background:#F3F2EE;padding:22px;margin:6px 0 18px;
+  display:flex;align-items:center;gap:14px;color:var(--slate)}.pane .video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:none}.pane .video-slot .t{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.pane .flag{display:block;background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
+  border-radius:3px;padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--flag-ink)}.pane .flag b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;display:block;margin-bottom:6px}.pane .flag-in{display:inline;background:var(--flag-bg);border:1px solid var(--flag-line);border-radius:3px;
+  padding:1px 7px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--flag-ink)}.pane /* GATE - compliance acknowledgment. Pink-bordered,.pane real control. */
+.gate{border:2px solid var(--pink);border-radius:4px;background:#FEF2F6;padding:22px 24px;margin:10px 0 20px}.pane .gate .glabel{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pink-dk);margin-bottom:10px}.pane .gate .gtext{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:16px;line-height:1.5}.pane .gate .gnote{font-size:14.5px;color:var(--slate);margin-bottom:16px}.pane .gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid rgba(232,23,93,.25);padding-top:14px}.pane .gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--pink);cursor:pointer}.pane .gate .gcheck label{font-weight:600;cursor:pointer}.pane .gate select{font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:9px 11px;border:1px solid var(--line);
+  background:var(--card);width:100%;max-width:340px;border-radius:2px}.pane .sr-only{position:absolute;left:-9999px}.pane /* asset slots - download / form / scheduler */
+.asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}.pane .asset:hover{border-color:var(--pink)}.pane .asset .kind{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:#fff;padding:5px 9px;border-radius:2px;flex:none}.pane .asset .lbl{font-weight:600}.pane .quiz{list-style:none;margin:4px 0 18px 0!important}.pane .quiz li{border:1px solid var(--line);border-radius:3px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:baseline;background:#FCFCFA}.pane .quiz li .box{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#AEB4BC;flex:none}.pane .quiz li.correct{border-color:var(--pink);background:#FEF2F6}.pane .quiz li.correct .box{color:var(--pink);font-weight:700}.pane .quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.16em;color:var(--pink);align-self:center}.pane .ui-chip{display:inline-block;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:2px;margin:2px 6px 2px 0}.pane /* substep list - bucket index pages only */
+.substeps{list-style:none;margin:4px 0 0 0!important}.pane .substeps li{border-bottom:1px solid var(--line)}.pane .substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--ink)}.pane .substeps a:hover .sst{color:var(--pink-dk)}.pane .ssn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pink);flex:none;width:22px}.pane .sst{font-weight:600}.pane .ssnote{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate)}.pane .nextstep{background:var(--ink);color:#fff;border-radius:4px;margin:6px 0 34px 44px;padding:30px 38px}.pane .nextstep .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}.pane .nextstep p{color:#D9DDE2;margin-bottom:12px}.pane .nextstep strong{color:#fff}.pane footer{max-width:880px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}.pane footer a{color:var(--slate)}@media(max-width:640px){.pane .stack::before{left:14px}.pane .slide{margin-left:30px;padding:24px 20px}.pane .slide::before{left:-30px;width:28px;height:28px;font-size:14px}.pane .nextstep{margin-left:30px;padding:24px 20px}.pane .jlbl{display:none}.pane .jstep.now .jlbl{display:block;font-size:9px}.pane .jhere{display:none}.pane .jnode{width:28px;height:28px;font-size:13px}.pane .jstep::before{top:13px;left:calc(-50% + 14px);width:calc(100% - 28px)}.pane .ticket div{min-width:46%}.pane /* The template's nowrap first column assumes short labels. Real copy is
+     longer,.pane so let it wrap rather than push the page sideways. */
+  .slide tr td:first-child{white-space:normal}.pane .asset{flex-wrap:wrap}.pane .asset .lbl,.pane .video-slot .t{overflow-wrap:anywhere;min-width:0}
+}:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
 </style>
 
 <nav class="side" id="side">
@@ -137,1000 +132,1503 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,27px);
     </span>
   </div>
   <div class="wrapper"><article class="pane" id="p-01-welcome__index.html" hidden>
-  <div class="page-eyebrow">Stage 1 of 6</div>
-  <h1 class="page-title">Welcome to Your Mutual Evaluation Guide</h1>
-  <p class="page-lede">Meet the brand and the on-demand plumbing opportunity.</p>
 
-  <p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div>
 
-  <p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 01 · Welcome</div>
+<h1>Welcome to Your Mutual Evaluation Guide</h1>
+<p class="subtitle">Meet the brand and the on-demand plumbing opportunity.</p>
+</div></div>
 
-  <p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<div class="jstep now"><div class="jnode">1</div><div class="jlbl">Welcome</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/fcaSfWLHMh8" title="1-Tom Mutual Evaluation Room Explanation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<main class="stack">
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/hv1-dv84CS0" title="EverSmith What to Expect on the First Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Welcome to Your Mutual Evaluation Guide</div>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/fcaSfWLHMh8" title="1-Tom Mutual Evaluation Room Explanation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · 1-Tom Mutual Evaluation Room Explanation</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/hv1-dv84CS0" title="EverSmith What to Expect on the First Call" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith What to Expect on the First Call</div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-mep-end-to-end.html"><span class="ssn">1</span><span class="sst">Mutual Evaluation Process End-to-End</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
 
-  <h2>Steps in this stage</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Watch the videos above, then continue to the Mutual Evaluation Process End-to-End.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <ul class="substeps">
-    <li><a href="01-mep-end-to-end.html"><span class="ss__n">1</span><span class="ss__title">Mutual Evaluation Process End-to-End</span><span class="ss__note"></span></a></li>
-  </ul>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Watch the videos above, then continue to the Mutual Evaluation Process End-to-End.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-01-welcome__01-mep-end-to-end.html" hidden>
-  <div class="page-eyebrow">Stage 1 · Step 1 of 1</div>
-  <h1 class="page-title">Mutual Evaluation Process End-to-End</h1>
-  <p class="page-lede">The full journey, start to finish.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/KvjiPmr-JAw" title="EverSmith Mutual Evaluation Process End to End" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div>
 
-  <p>The Mutual Evaluation Process runs in six stages.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 01 · Welcome</div>
+<h1>Mutual Evaluation Process End-to-End</h1>
+<p class="subtitle">The full journey, start to finish.</p>
+</div></div>
 
-  <p><strong>Stage 1 - Welcome.</strong> You are here. Meet the brand and understand how the process works.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<div class="jstep now"><div class="jnode">1</div><div class="jlbl">Welcome</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p><strong>Stage 2 - Brand Overview.</strong> You get the real documents. Qualification Summary, credit report, and the Franchise Disclosure Document.</p>
+<main class="stack">
 
-  <p><strong>Stage 3 - Validation.</strong> You talk directly to current 1-Tom-Plumber franchise owners. You review funding, territory, and technology.</p>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Mutual Evaluation Process End-to-End</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KvjiPmr-JAw" title="EverSmith Mutual Evaluation Process End to End" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Mutual Evaluation Process End to End</div>
+<p>The Mutual Evaluation Process runs in six stages.</p>
+<p><strong>Stage 1 — Welcome.</strong> You are here. Meet the brand and understand how the process works.</p>
+<p><strong>Stage 2 — Brand Overview.</strong> You get the real documents. Qualification Summary, credit report, and the Franchise Disclosure Document.</p>
+<p><strong>Stage 3 — Validation.</strong> You talk directly to current 1-Tom-Plumber franchise owners. You review funding, territory, and technology.</p>
+<p><strong>Stage 4 — Seeking Approval.</strong> You meet with an executive. If approved, your Franchise Developer builds your timeline and your sample agreements.</p>
+<p><strong>Stage 5 — Meet The Team Day.</strong> You come to headquarters and meet the team in person.</p>
+<p><strong>Stage 6 — Agreement Stage.</strong> Executive Board approval, execution, and welcome.</p>
+<p>This is a mutual evaluation. We are deciding about each other. At every stage, either side can say this is not the right fit, and that is a healthy outcome.</p>
+<p>---</p>
+</section>
 
-  <p><strong>Stage 4 - Seeking Approval.</strong> You meet with an executive. If approved, your Franchise Developer builds your timeline and your sample agreements.</p>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to Stage 2, Brand Overview.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p><strong>Stage 5 - Meet The Team Day.</strong> You come to headquarters and meet the team in person.</p>
-
-  <p><strong>Stage 6 - Agreement Stage.</strong> Executive Board approval, execution, and welcome.</p>
-
-  <p>This is a mutual evaluation. We are deciding about each other. At every stage, either side can say this is not the right fit, and that is a healthy outcome.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to Stage 2, Brand Overview.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-02-brand-overview__index.html" hidden>
-  <div class="page-eyebrow">Stage 2 of 6</div>
-  <h1 class="page-title">Brand Overview</h1>
-  <p class="page-lede">High level operational overview.</p>
 
-  <p><strong>LET'S GET STARTED!</strong></p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 2 of 6</span></div>
 
-  <p>Thank you for taking the time to speak with one of our world class Franchise Developers. On your last call, you spoke through why business ownership may make sense for this time in your life. You gave us insight into your background, your timing, your family, and so much more. Today, we want to provide the same depth of information for the brand you are considering.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 02 · Brand Overview</div>
+<h1>Brand Overview</h1>
+<p class="subtitle">High level operational overview.</p>
+</div></div>
 
-  <p>Below, you will find a video covering your brand at a high level. We have discovered that this helps our candidates digest the information in bite sized chunks. Your only homework is to watch the video entitled, "Brand Overview."</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 2 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep now"><div class="jnode">2</div><div class="jlbl">Brand Overview</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Your Franchise Developer has set a meeting with you to debrief the video below. Please jot down any questions you may have from the video as that will be a point of discussion for your next call. Below the main video, you will also find a series of additional resources that dive more deeply into each topic discussed in the overview. If you would like, feel free to review those resources as well, although they are not required to continue moving forward in the process.</p>
+<main class="stack">
 
-  <a class="slot" href="#" data-asset="video:brand-overview">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: 1-Tom-Plumber Brand Overview</span>
-  </a>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Brand Overview</div>
+<p><strong>LET'S GET STARTED!</strong></p>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers. On your last call, you spoke through why business ownership may make sense for this time in your life. You gave us insight into your background, your timing, your family, and so much more. Today, we want to provide the same depth of information for the brand you are considering.</p>
+<p>Below, you will find a video covering your brand at a high level. We have discovered that this helps our candidates digest the information in bite sized chunks. Your only homework is to watch the video entitled, "Brand Overview."</p>
+<p>Your Franchise Developer has set a meeting with you to debrief the video below. Please jot down any questions you may have from the video as that will be a point of discussion for your next call. Below the main video, you will also find a series of additional resources that dive more deeply into each topic discussed in the overview. If you would like, feel free to review those resources as well, although they are not required to continue moving forward in the process.</p>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — 1-Tom-Plumber Brand Overview</span></div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-qualification-summary.html"><span class="ssn">1</span><span class="sst">Qualification Summary / Culture Index</span><span class="ssnote"></span></a></li>
+<li><a href="02-fdd.html"><span class="ssn">2</span><span class="sst">Franchise Disclosure Document</span><span class="ssnote"></span></a></li>
+<li><a href="03-additional-resources.html"><span class="ssn">3</span><span class="sst">Additional Brand Specific Resources</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
 
-  <h2>Steps in this stage</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Watch the Brand Overview, then complete your Qualification Summary.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <ul class="substeps">
-    <li><a href="01-qualification-summary.html"><span class="ss__n">1</span><span class="ss__title">Qualification Summary / Culture Index</span><span class="ss__note"></span></a></li>
-    <li><a href="02-fdd.html"><span class="ss__n">2</span><span class="ss__title">Franchise Disclosure Document</span><span class="ss__note"></span></a></li>
-    <li><a href="03-additional-resources.html"><span class="ss__n">3</span><span class="ss__title">Additional Brand Specific Resources</span><span class="ss__note"></span></a></li>
-  </ul>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Watch the Brand Overview, then complete your Qualification Summary.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-02-brand-overview__01-qualification-summary.html" hidden>
-  <div class="page-eyebrow">Stage 2 · Step 1 of 3</div>
-  <h1 class="page-title">Qualification Summary / Culture Index</h1>
-  <p class="page-lede">The next step in our process.</p>
 
-  <p>Thank you for taking the time to delve deeper into the brand that interests you! Watching the brand overview video and related links undoubtedly led to thought-provoking questions for your Franchise Developer.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 2 of 6</span></div>
 
-  <p>As your Franchise Developer may have informed you, the next step in our process is to complete the Qualification Summary Form. Once you finish the form and submit, a copy is sent to your Franchise Developer. This step enables us to arrange calls with existing owners on your behalf.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 02 · Brand Overview</div>
+<h1>Qualification Summary / Culture Index</h1>
+<p class="subtitle">The next step in our process.</p>
+</div></div>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/GWB3gkycrKw" title="EverSmith Qualification Summary Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 2 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep now"><div class="jnode">2</div><div class="jlbl">Brand Overview</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <a class="slot" href="#" data-asset="form:qualification-summary">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Qualification Summary Form</span>
-  </a>
+<main class="stack">
 
-  <a class="slot" href="#" data-asset="form:culture-index-survey">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Culture Index Survey</span>
-  </a>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Qualification Summary / Culture Index</div>
+<p>Thank you for taking the time to delve deeper into the brand that interests you! Watching the brand overview video and related links undoubtedly led to thought-provoking questions for your Franchise Developer.</p>
+<p>As your Franchise Developer may have informed you, the next step in our process is to complete the Qualification Summary Form. Once you finish the form and submit, a copy is sent to your Franchise Developer. This step enables us to arrange calls with existing owners on your behalf.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/GWB3gkycrKw" title="EverSmith Qualification Summary Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Qualification Summary Overview</div>
+<a class="asset" href="#" data-asset="form:qualification-summary-form"><span class="kind">Form</span><span class="lbl">Qualification Summary Form</span></a>
+<a class="asset" href="#" data-asset="form:culture-index-survey"><span class="kind">Form</span><span class="lbl">Culture Index Survey</span></a>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Your Credit Report</div>
+<h3>Your Credit Report</h3>
+<p>Additionally, we do not believe in making unnecessary inquiries on the credit reports of potential candidates. If you want us to run your credit report, request your Franchise Developer to conduct the report on your behalf. However, we recommend obtaining your own Experian Credit Report (with score) and uploading it.</p>
+<p>The report you are generating is the only report the SBA, the Bank and 1-Tom-Plumber will accept.</p>
+<ol>
+<li>Go to Experian.com</li>
+<li>Create an account. On "What is your main reason you are checking your credit?" choose "Checking my report or score for accuracy." Complete identity verification and authentication questions.</li>
+<li>Navigate to the "Credit Reports" tab.</li>
+<li>Find "Print your Report" about halfway down the page.</li>
+<li>Right-click and select Print.</li>
+<li>Change the destination to Save as PDF, then Print. Save it to your desktop.</li>
+<li>Email the saved copy to your Franchise Developer.</li>
+</ol>
+<p>This is a soft pull. It does not affect your score.</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Background Check</div>
+<h3>Background Check</h3>
+<p>Once your Qualification Summary is complete, your Franchise Developer's assistant will email our screening company. You will receive a request to authorize the check and provide brief biographical information. Please complete it promptly so we can keep your timeline on track.</p>
+<span class="flag"><b>PLACEHOLDER — PH-09</b>background check vendor</span>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · Book Your Next Meeting</div>
+<h3>Book Your Next Meeting</h3>
+<p>Book the next meeting with your Franchise Developer to review the Qualification Summary together.</p>
+<a class="asset" href="#" data-asset="scheduler:schedule-qualification-summary-review"><span class="kind">Scheduler</span><span class="lbl">Schedule Qualification Summary Review</span></a>
+<p>---</p>
+</section>
 
-  <h2>Your Credit Report</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Submit your Qualification Summary and credit report, then continue to the Franchise Disclosure Document.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>Additionally, we do not believe in making unnecessary inquiries on the credit reports of potential candidates. If you want us to run your credit report, request your Franchise Developer to conduct the report on your behalf. However, we recommend obtaining your own Experian Credit Report (with score) and uploading it.</p>
-
-  <p>The report you are generating is the only report the SBA, the Bank and 1-Tom-Plumber will accept.</p>
-
-  <ol class="steps">
-    <li>Go to Experian.com</li>
-    <li>Create an account. On "What is your main reason you are checking your credit?" choose "Checking my report or score for accuracy." Complete identity verification and authentication questions.</li>
-    <li>Navigate to the "Credit Reports" tab.</li>
-    <li>Find "Print your Report" about halfway down the page.</li>
-    <li>Right-click and select Print.</li>
-    <li>Change the destination to Save as PDF, then Print. Save it to your desktop.</li>
-    <li>Email the saved copy to your Franchise Developer.</li>
-  </ol>
-
-  <p>This is a soft pull. It does not affect your score.</p>
-
-  <h2>Background Check</h2>
-
-  <p>Once your Qualification Summary is complete, your Franchise Developer's assistant will email our screening company. You will receive a request to authorize the check and provide brief biographical information. Please complete it promptly so we can keep your timeline on track.</p>
-
-  <div class="ph ph--block"><span class="ph__ref">PH-09</span> background check vendor</div>
-
-  <h2>Book Your Next Meeting</h2>
-
-  <p>Book the next meeting with your Franchise Developer to review the Qualification Summary together.</p>
-
-  <a class="slot" href="#" data-asset="scheduler:qualification-summary-review">
-    <span class="slot__kind">Scheduler</span>
-    <span class="slot__label">Schedule Qualification Summary Review</span>
-  </a>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Submit your Qualification Summary and credit report, then continue to the Franchise Disclosure Document.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-02-brand-overview__02-fdd.html" hidden>
-  <div class="page-eyebrow">Stage 2 · Step 2 of 3</div>
-  <h1 class="page-title">Franchise Disclosure Document</h1>
-  <p class="page-lede">The document that governs everything.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/udCsGBIY1Rs" title="EverSmith Franchise Disclosure Document Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 2 of 6</span></div>
 
-  <p>The goal of the FDD is to provide buyers with information to make a buying decision. Federal law, The FTC Rule, requires franchisors to file an FDD annually and provide it to every potential franchise buyer.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 02 · Brand Overview</div>
+<h1>Franchise Disclosure Document</h1>
+<p class="subtitle">The document that governs everything.</p>
+</div></div>
 
-  <p>FDDs must be provided upon request at least 14 days before signing a franchise agreement. State rules vary and some require longer. The FDD is updated annually, or sooner on any material change.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 2 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep now"><div class="jnode">2</div><div class="jlbl">Brand Overview</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>The FDD includes 23 Items, the franchise agreement, and various exhibits. Request the 1-Tom-Plumber FDD from your Franchise Developer and review it together.</p>
+<main class="stack">
 
-  <h2>The 23 Items</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Franchise Disclosure Document</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/udCsGBIY1Rs" title="EverSmith Franchise Disclosure Document Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Franchise Disclosure Document Overview</div>
+<p>The goal of the FDD is to provide buyers with information to make a buying decision. Federal law, The FTC Rule, requires franchisors to file an FDD annually and provide it to every potential franchise buyer.</p>
+<p>FDDs must be provided upon request at least 14 days before signing a franchise agreement. State rules vary and some require longer. The FDD is updated annually, or sooner on any material change.</p>
+<p>The FDD includes 23 Items, the franchise agreement, and various exhibits. Request the 1-Tom-Plumber FDD from your Franchise Developer and review it together.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · The 23 Items</div>
+<h3>The 23 Items</h3>
+<div class="t-scroll"><table>
+<caption>The 23 Items</caption>
+<thead><tr><th>Item</th><th>Subject</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Franchisor, parents, predecessors, affiliates. Company description and history.</td></tr>
+<tr><td>2</td><td>Business Experience. Bios of officers, directors, and executives.</td></tr>
+<tr><td>3</td><td>Litigation. Current and past criminal and civil.</td></tr>
+<tr><td>4</td><td>Bankruptcy.</td></tr>
+<tr><td>5</td><td>Initial Fees. Range and the factors that move it.</td></tr>
+<tr><td>6</td><td>Other Fees. Everything recurring.</td></tr>
+<tr><td>7</td><td>Estimated Initial Investment. Table of all required expenditures.</td></tr>
+<tr><td>8</td><td>Restrictions on Sources of Products and Services.</td></tr>
+<tr><td>9</td><td>Franchisee's Obligations. Reference table.</td></tr>
+<tr><td>10</td><td>Financing. Any terms the franchisor offers.</td></tr>
+<tr><td>11</td><td>Franchisor's Assistance, Advertising, Computer Systems, Training.</td></tr>
+<tr><td>12</td><td>Territory. Protected territory and how it can be modified.</td></tr>
+<tr><td>13</td><td>Trademarks.</td></tr>
+<tr><td>14</td><td>Patents, Copyrights, Proprietary Information.</td></tr>
+<tr><td>15</td><td>Obligation to Participate in Actual Operations.</td></tr>
+<tr><td>16</td><td>Restrictions on What the Franchisee May Sell.</td></tr>
+<tr><td>17</td><td>Renewal, Termination, Transfer, Dispute Resolution.</td></tr>
+<tr><td>18</td><td>Public Figures.</td></tr>
+<tr><td>19</td><td>Financial Performance Representations.</td></tr>
+<tr><td>20</td><td>Outlets and Franchisee Information. Three-year location outline.</td></tr>
+<tr><td>21</td><td>Financial Statements. Audited, past three years.</td></tr>
+<tr><td>22</td><td>Contracts. Every agreement you will sign.</td></tr>
+<tr><td>23</td><td>Receipts. Your acknowledgement of FDD receipt.</td></tr>
+</tbody>
+</table></div>
+<h4>A note on Item 19</h4>
+<p>Item 19 is where a franchisor may, but is not required to, disclose financial performance information. If a franchisor makes an Item 19 representation, there is no assurance your business will achieve the same results.</p>
+<span class="flag"><b>PLACEHOLDER — PH-07</b>confirm current 1TP Item 19 status against the most recent FDD</span>
+<h4>A note on Item 20</h4>
+<p>Item 20 gives you a three-year outline of locations. Openings, closures, transfers, terminations. Read it. It is the clearest available signal of system size and growth direction.</p>
+<p>---</p>
+</section>
 
-  <div class="t-scroll">
-    <table>
-      <caption>The 23 Items of the Franchise Disclosure Document</caption>
-      <tr><th>Item</th><th>Subject</th></tr>
-      <tr><td>1</td><td>Franchisor, parents, predecessors, affiliates. Company description and history.</td></tr>
-      <tr><td>2</td><td>Business Experience. Bios of officers, directors, and executives.</td></tr>
-      <tr><td>3</td><td>Litigation. Current and past criminal and civil.</td></tr>
-      <tr><td>4</td><td>Bankruptcy.</td></tr>
-      <tr><td>5</td><td>Initial Fees. Range and the factors that move it.</td></tr>
-      <tr><td>6</td><td>Other Fees. Everything recurring.</td></tr>
-      <tr><td>7</td><td>Estimated Initial Investment. Table of all required expenditures.</td></tr>
-      <tr><td>8</td><td>Restrictions on Sources of Products and Services.</td></tr>
-      <tr><td>9</td><td>Franchisee's Obligations. Reference table.</td></tr>
-      <tr><td>10</td><td>Financing. Any terms the franchisor offers.</td></tr>
-      <tr><td>11</td><td>Franchisor's Assistance, Advertising, Computer Systems, Training.</td></tr>
-      <tr><td>12</td><td>Territory. Protected territory and how it can be modified.</td></tr>
-      <tr><td>13</td><td>Trademarks.</td></tr>
-      <tr><td>14</td><td>Patents, Copyrights, Proprietary Information.</td></tr>
-      <tr><td>15</td><td>Obligation to Participate in Actual Operations.</td></tr>
-      <tr><td>16</td><td>Restrictions on What the Franchisee May Sell.</td></tr>
-      <tr><td>17</td><td>Renewal, Termination, Transfer, Dispute Resolution.</td></tr>
-      <tr><td>18</td><td>Public Figures.</td></tr>
-      <tr><td>19</td><td>Financial Performance Representations.</td></tr>
-      <tr><td>20</td><td>Outlets and Franchisee Information. Three-year location outline.</td></tr>
-      <tr><td>21</td><td>Financial Statements. Audited, past three years.</td></tr>
-      <tr><td>22</td><td>Contracts. Every agreement you will sign.</td></tr>
-      <tr><td>23</td><td>Receipts. Your acknowledgement of FDD receipt.</td></tr>
-    </table>
-  </div>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Review your FDD, then continue to Additional Brand Specific Resources.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <h3>A note on Item 19</h3>
-
-  <p>Item 19 is where a franchisor may, but is not required to, disclose financial performance information. If a franchisor makes an Item 19 representation, there is no assurance your business will achieve the same results.</p>
-
-  <div class="ph ph--block"><span class="ph__ref">PH-07</span> confirm current 1TP Item 19 status against the most recent FDD</div>
-
-  <h3>A note on Item 20</h3>
-
-  <p>Item 20 gives you a three-year outline of locations. Openings, closures, transfers, terminations. Read it. It is the clearest available signal of system size and growth direction.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Review your FDD, then continue to Additional Brand Specific Resources.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-02-brand-overview__03-additional-resources.html" hidden>
-  <div class="page-eyebrow">Stage 2 · Step 3 of 3</div>
-  <h1 class="page-title">Additional Brand Specific Resources</h1>
-  <p class="page-lede">Optional depth. None of this is required to advance.</p>
 
-  <p>Click each item below to go deeper on the parts of the business that matter most to you. None of this is required to advance. All of it is available when you want it.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 2 of 6</span></div>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/2gaiZ4BcF8Y" title="EverSmith EverConnect" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 02 · Brand Overview</div>
+<h1>Additional Brand Specific Resources</h1>
+<p class="subtitle">Optional depth. None of this is required to advance.</p>
+</div></div>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/x32yLyjEPDk" title="EverSmith Brands CSS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 2 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep now"><div class="jnode">2</div><div class="jlbl">Brand Overview</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <ul>
-    <li><span class="ph"><span class="ph__ref">PH-19</span> 1TP culture framework</span> - how we define the way we work</li>
-    <li><span class="ph"><span class="ph__ref">PH-13</span> name</span>, President of 1-Tom-Plumber</li>
-    <li>EverSmith Brands - our parent platform and what it means for you</li>
-    <li><span class="ph"><span class="ph__ref">PH-11</span> procurement / buying group</span> - vendor pricing and purchasing power</li>
-    <li>The Resale Department - how existing units transfer</li>
-    <li><span class="ph"><span class="ph__ref">PH-20</span> podcast and press features</span></li>
-  </ul>
+<main class="stack">
 
-  <h2>The Basics of Franchising</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Additional Brand Specific Resources</div>
+<p>Click each item below to go deeper on the parts of the business that matter most to you. None of this is required to advance. All of it is available when you want it.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/2gaiZ4BcF8Y" title="EverSmith EverConnect" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith EverConnect</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/x32yLyjEPDk" title="EverSmith Brands CSS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Brands CSS</div>
+<ul>
+<li><span class="flag-in">PH-19 1TP culture framework</span> — how we define the way we work</li>
+<li><span class="flag-in">name</span>, President of 1-Tom-Plumber</li>
+<li>EverSmith Brands — our parent platform and what it means for you</li>
+<li><span class="flag-in">PH-11 procurement / buying group</span> — vendor pricing and purchasing power</li>
+<li>The Resale Department — how existing units transfer</li>
+<li><span class="flag-in">PH-20 podcast and press features</span></li>
+</ul>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · The Basics of Franchising</div>
+<h3>The Basics of Franchising</h3>
+<p>We take a holistic view of franchising. Not every concept suits every owner, and not every candidate is awarded a franchise. Those two facts are related.</p>
+<p>The videos below cover general franchise industry concepts. How franchising works, what a franchisor actually does, what obligations run both directions, and how to evaluate any brand you are considering. They are brand-agnostic on purpose. Watch them with 1-Tom-Plumber in mind, and with whatever other brands you are exploring in mind too.</p>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — General Franchising Concepts series</span></div>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Is Business Ownership Really Right for Me?</div>
+<h3>Is Business Ownership Really Right for Me?</h3>
+<p>Let's pause.</p>
+<p>You have learned the brand. Before you go further, we want you to step back and ask a harder question. Not whether 1-Tom-Plumber is a good business, but whether business ownership is right for you and your family at this point in your life.</p>
+<p>There is no wrong answer here. Some of the best conversations we have are the ones where a candidate decides the timing is not right. We would rather have that conversation now than two years into an agreement.</p>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — executive perspective on business ownership readiness</span></div>
+</section>
 
-  <p>We take a holistic view of franchising. Not every concept suits every owner, and not every candidate is awarded a franchise. Those two facts are related.</p>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to Stage 3, Validation.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>The videos below cover general franchise industry concepts. How franchising works, what a franchisor actually does, what obligations run both directions, and how to evaluate any brand you are considering. They are brand-agnostic on purpose. Watch them with 1-Tom-Plumber in mind, and with whatever other brands you are exploring in mind too.</p>
-
-  <a class="slot" href="#" data-asset="video:general-franchising-concepts-series">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: General Franchising Concepts series</span>
-  </a>
-
-  <h2>Is Business Ownership Really Right for Me?</h2>
-
-  <p>Let's pause.</p>
-
-  <p>You have learned the brand. Before you go further, we want you to step back and ask a harder question. Not whether 1-Tom-Plumber is a good business, but whether business ownership is right for you and your family at this point in your life.</p>
-
-  <p>There is no wrong answer here. Some of the best conversations we have are the ones where a candidate decides the timing is not right. We would rather have that conversation now than two years into an agreement.</p>
-
-  <a class="slot" href="#" data-asset="video:business-ownership-readiness">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: executive perspective on business ownership readiness</span>
-  </a>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to Stage 3, Validation.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-03-validation__index.html" hidden>
-  <div class="page-eyebrow">Stage 3 of 6</div>
-  <h1 class="page-title">Validation</h1>
-  <p class="page-lede">Talk directly to current 1-Tom-Plumber franchise owners.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/sIRDGB7yyGE" title="EverSmith Validation Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 3 of 6</span></div>
 
-  <p>One of the most exciting steps in the Mutual Evaluation Process is connecting with owners.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 03 · Validation</div>
+<h1>Validation</h1>
+<p class="subtitle">Talk directly to current 1-Tom-Plumber franchise owners.</p>
+</div></div>
 
-  <p>This stage covers four things. Who you talk to and what to ask them. How you will fund the business. The territory you will own. And the technology you will run it on.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 3 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep now"><div class="jnode">3</div><div class="jlbl">Validation</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>What our owners tell you carries more weight than anything we have said. That is by design.</p>
+<main class="stack">
 
-  <h2>Steps in this stage</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Validation</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/sIRDGB7yyGE" title="EverSmith Validation Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Validation Overview</div>
+<p>One of the most exciting steps in the Mutual Evaluation Process is connecting with owners.</p>
+<p>This stage covers four things. Who you talk to and what to ask them. How you will fund the business. The territory you will own. And the technology you will run it on.</p>
+<p>What our owners tell you carries more weight than anything we have said. That is by design.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-owner-calls.html"><span class="ssn">1</span><span class="sst">Owner Calls</span><span class="ssnote"></span></a></li>
+<li><a href="02-funding.html"><span class="ssn">2</span><span class="sst">Funding</span><span class="ssnote"></span></a></li>
+<li><a href="03-territory.html"><span class="ssn">3</span><span class="sst">Territory</span><span class="ssnote"></span></a></li>
+<li><a href="04-technology.html"><span class="ssn">4</span><span class="sst">Understanding Your Brand's Technology</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
 
-  <ul class="substeps">
-    <li><a href="01-owner-calls.html"><span class="ss__n">1</span><span class="ss__title">Owner Calls</span><span class="ss__note"></span></a></li>
-    <li><a href="02-funding.html"><span class="ss__n">2</span><span class="ss__title">Funding</span><span class="ss__note"></span></a></li>
-    <li><a href="03-territory.html"><span class="ss__n">3</span><span class="ss__title">Territory</span><span class="ss__note"></span></a></li>
-    <li><a href="04-technology.html"><span class="ss__n">4</span><span class="ss__title">Understanding Your Brand's Technology</span><span class="ss__note"></span></a></li>
-  </ul>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Start with Owner Calls.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Start with Owner Calls.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-03-validation__01-owner-calls.html" hidden>
-  <div class="page-eyebrow">Stage 3 · Step 1 of 4</div>
-  <h1 class="page-title">Owner Calls</h1>
-  <p class="page-lede">One of the most exciting steps in the Mutual Evaluation Process is connecting with owners.</p>
 
-  <p>With your Qualification Summary and Credit Report submitted, introductions are made. We host conference calls with owners and prospective candidates.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 3 of 6</span></div>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-21</span> owner call cadence - day, time, timezone, platform, dial-in</div>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 03 · Validation</div>
+<h1>Owner Calls</h1>
+<p class="subtitle">One of the most exciting steps in the Mutual Evaluation Process is connecting with owners.</p>
+</div></div>
 
-  <div class="gate">
-    <div class="gate__label">Required acknowledgment</div>
-    <p class="gate__text">I understand that my Franchise Developer can only speak to revenue and profitability numbers stated in the Franchise Disclosure Document Item 19. Any other information regarding aspects of financial performance must be obtained through conversations with franchise owners.</p>
-    <div class="gate__check">
-      <input type="checkbox" id="gate-item19">
-      <label for="gate-item19">I understand</label>
-    </div>
-  </div>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 3 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep now"><div class="jnode">3</div><div class="jlbl">Validation</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <h2>Questions to Ask a Franchise Owner</h2>
+<main class="stack">
 
-  <p>Use the guide below to structure and capture your calls. Take notes during each conversation. Your Franchise Developer will debrief them with you.</p>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Owner Calls</div>
+<p>With your Qualification Summary and Credit Report submitted, introductions are made. We host conference calls with owners and prospective candidates.</p>
+<span class="flag"><b>PLACEHOLDER — PH-21</b>owner call cadence — day, time, timezone, platform, dial-in</span>
+<div class="gate">
+  <div class="glabel">Required acknowledgment</div>
+  <p class="gtext">I understand that my Franchise Developer can only speak to revenue and profitability numbers stated in the Franchise Disclosure Document Item 19. Any other information regarding aspects of financial performance must be obtained through conversations with franchise owners.</p>
+  <div class="gcheck"><input type="checkbox" id="g-item19"><label for="g-item19">I understand</label></div>
+</div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Questions to Ask a Franchise Owner</div>
+<h3>Questions to Ask a Franchise Owner</h3>
+<p>Use the guide below to structure and capture your calls. Take notes during each conversation. Your Franchise Developer will debrief them with you.</p>
+<a class="asset" href="#" data-asset="download:questions-to-ask-a-franchise-owner"><span class="kind">Download</span><span class="lbl">Questions to Ask a Franchise Owner</span></a>
+<p>---</p>
+</section>
 
-  <a class="slot" href="#" data-asset="download:questions-to-ask-a-franchise-owner">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">Questions to Ask a Franchise Owner</span>
-  </a>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Complete your owner calls, then continue to Funding.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Complete your owner calls, then continue to Funding.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-03-validation__02-funding.html" hidden>
-  <div class="page-eyebrow">Stage 3 · Step 2 of 4</div>
-  <h1 class="page-title">Funding</h1>
-  <p class="page-lede">Four paths, and a plan that has to hold together.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/0Z9bjsRKN5c" title="EverSmith Funding Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 3 of 6</span></div>
 
-  <p>There are four common paths to funding a franchise. An SBA loan, a ROBS rollover of pre-tax retirement funds, personal savings, or home equity.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 03 · Validation</div>
+<h1>Funding</h1>
+<p class="subtitle">Four paths, and a plan that has to hold together.</p>
+</div></div>
 
-  <p>Your Franchise Developer's job is to make sure you have a sound financial plan. We will introduce you to trusted third-party lenders who specialize in franchise funding.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 3 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep now"><div class="jnode">3</div><div class="jlbl">Validation</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p><strong>1-Tom-Plumber will not award franchises to people who may be put in financial peril as a result.</strong></p>
+<main class="stack">
 
-  <p>That is not a formality. It is a filter we apply on purpose.</p>
-
-  <div class="gate gate--select">
-    <div class="gate__label">Required - self assessment</div>
-    <p class="gate__text">What are your combined total Personal Monthly Household Responsibilities?</p>
-    <div class="gate__check">
-      <label for="gate-household-expenses">Your answer</label>
-      <select id="gate-household-expenses">
-        <option value="">Select one</option>
-        <option>Less than $1,000</option>
-        <option>$1,000 - $2,999</option>
-        <option>$3,000 - $4,999</option>
-        <option>$5,000 - $7,999</option>
-        <option>$8,000 - $11,999</option>
-        <option>$12,000 or more</option>
-      </select>
-    </div>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Funding</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/0Z9bjsRKN5c" title="EverSmith Funding Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Funding Overview</div>
+<p>There are four common paths to funding a franchise. An SBA loan, a ROBS rollover of pre-tax retirement funds, personal savings, or home equity.</p>
+<p>Your Franchise Developer's job is to make sure you have a sound financial plan. We will introduce you to trusted third-party lenders who specialize in franchise funding.</p>
+<p><strong>1-Tom-Plumber will not award franchises to people who may be put in financial peril as a result.</strong></p>
+<p>That is not a formality. It is a filter we apply on purpose.</p>
+<div class="gate">
+  <div class="glabel">Required — self assessment</div>
+  <p class="gtext">What are your combined total Personal Monthly Household Responsibilities?</p>
+  <div class="gcheck">
+    <label for="g-household-expenses" class="sr-only">What are your combined total Personal Monthly Household Responsibilities?</label>
+    <select id="g-household-expenses"><option value="">Select one</option><option>Less than $1,000</option><option>$1,000 - $2,999</option><option>$3,000 - $4,999</option><option>$5,000 - $7,999</option><option>$8,000 - $11,999</option><option>$12,000 or more</option></select>
   </div>
-
-  <div class="gate gate--select">
-    <div class="gate__label">Required - self assessment</div>
-    <p class="gate__text">What percentage of those expenses is covered by outside sources?</p>
-    <p class="gate__note">Outside sources include spouse income, rental income, and any existing business or personal income that will continue after you open your franchise.</p>
-    <div class="gate__check">
-      <label for="gate-outside-coverage">Your answer</label>
-      <select id="gate-outside-coverage">
-        <option value="">Select one</option>
-        <option>0 - 20%</option>
-        <option>21 - 40%</option>
-        <option>41 - 60%</option>
-        <option>61 - 80%</option>
-        <option>81 - 100%</option>
-      </select>
-    </div>
+</div>
+<div class="gate">
+  <div class="glabel">Required — self assessment</div>
+  <p class="gtext">What percentage of those expenses is covered by outside sources?</p>
+  <p class="gnote">Outside sources include spouse income, rental income, and any existing business or personal income that will continue after you open your franchise.</p>
+  <div class="gcheck">
+    <label for="g-outside-coverage" class="sr-only">What percentage of those expenses is covered by outside sources?</label>
+    <select id="g-outside-coverage"><option value="">Select one</option><option>0 - 20%</option><option>21 - 40%</option><option>41 - 60%</option><option>61 - 80%</option><option>81 - 100%</option></select>
   </div>
+</div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · SBA Funding</div>
+<h3>SBA Funding</h3>
+<p>The two relevant programs are SBA Express and SBA 7(a). Our funding partners will explain the differences and walk you through pre-approval requirements.</p>
+<p>Every funding partner requires a Personal Financial Statement.</p>
+<a class="asset" href="#" data-asset="download:sba-personal-financial-statement-fillable-pdf"><span class="kind">Download</span><span class="lbl">SBA Personal Financial Statement — Fillable PDF</span></a>
+<p><strong>Who must file a PFS:</strong></p>
+<p>- The proprietor, if a sole proprietorship</p>
+<p>- Each general partner, if a partnership</p>
+<p>- Each managing member, if an LLC</p>
+<p>- Any owner of 20% or more of the business</p>
+<p>- Any person or entity providing a guaranty on the loan</p>
+<p>Your spouse must sign the PFS even if they are not on the loan.</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · ROBS Funding</div>
+<h3>ROBS Funding</h3>
+<p>ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to capitalize your business without early withdrawal penalties. It can move as fast as 10 days.</p>
+<ol>
+<li>Set up a C Corporation.</li>
+<li>Design a new qualified retirement plan for that corporation.</li>
+<li>Transfer your existing retirement funds into the new plan.</li>
+<li>The plan purchases stock in the new C Corporation, capitalizing the business.</li>
+</ol>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — ROBS Explained</span></div>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · Self-Funding</div>
+<h3>Self-Funding</h3>
+<p>If you are funding with cash, send your Franchise Developer a current bank or investment statement as proof of funds.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/oSIvxdHtO-o" title="EverSmith Self Funding Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Self Funding Overview</div>
+</section>
+<section class="slide" data-n="05">
+<div class="eyebrow">Slide 05 · Home Equity</div>
+<h3>Home Equity</h3>
+<p>A HELOC uses the equity in your home. The video below covers your options and the tradeoffs.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TFpdCqMtxQQ" title="EverSmith Home Equity Funding" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Home Equity Funding</div>
+<p>---</p>
+</section>
 
-  <h2>SBA Funding</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Confirm your funding path with your Franchise Developer, then continue to Territory.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>The two relevant programs are SBA Express and SBA 7(a). Our funding partners will explain the differences and walk you through pre-approval requirements.</p>
-
-  <p>Every funding partner requires a Personal Financial Statement.</p>
-
-  <a class="slot" href="#" data-asset="download:sba-personal-financial-statement">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">SBA Personal Financial Statement - Fillable PDF</span>
-  </a>
-
-  <p><strong>Who must file a PFS:</strong></p>
-
-  <ul>
-    <li>The proprietor, if a sole proprietorship</li>
-    <li>Each general partner, if a partnership</li>
-    <li>Each managing member, if an LLC</li>
-    <li>Any owner of 20% or more of the business</li>
-    <li>Any person or entity providing a guaranty on the loan</li>
-  </ul>
-
-  <p>Your spouse must sign the PFS even if they are not on the loan.</p>
-
-  <h2>ROBS Funding</h2>
-
-  <p>ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to capitalize your business without early withdrawal penalties. It can move as fast as 10 days.</p>
-
-  <ol class="steps">
-    <li>Set up a C Corporation.</li>
-    <li>Design a new qualified retirement plan for that corporation.</li>
-    <li>Transfer your existing retirement funds into the new plan.</li>
-    <li>The plan purchases stock in the new C Corporation, capitalizing the business.</li>
-  </ol>
-
-  <a class="slot" href="#" data-asset="video:robs-explained">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: ROBS Explained</span>
-  </a>
-
-  <h2>Self-Funding</h2>
-
-  <p>If you are funding with cash, send your Franchise Developer a current bank or investment statement as proof of funds.</p>
-
-  <div class="video"><iframe src="https://www.youtube.com/embed/oSIvxdHtO-o" title="EverSmith Self Funding Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-
-  <h2>Home Equity</h2>
-
-  <p>A HELOC uses the equity in your home. The video below covers your options and the tradeoffs.</p>
-
-  <div class="video"><iframe src="https://www.youtube.com/embed/TFpdCqMtxQQ" title="EverSmith Home Equity Funding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Confirm your funding path with your Franchise Developer, then continue to Territory.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-03-validation__03-territory.html" hidden>
-  <div class="page-eyebrow">Stage 3 · Step 3 of 4</div>
-  <h1 class="page-title">Territory</h1>
-  <p class="page-lede">The decision that compounds for the life of your business.</p>
 
-  <a class="slot" href="#" data-asset="video:territory-design-and-dba">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Territory Design and DBA</span>
-  </a>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 3 of 6</span></div>
 
-  <h2>Territory Design</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 03 · Validation</div>
+<h1>Territory</h1>
+<p class="subtitle">The decision that compounds for the life of your business.</p>
+</div></div>
 
-  <p>Different brands prioritize different criteria. Some design around population. Some design around households. Recurring-service brands weight route density. Brands that lean on marketing spread want larger territories. Some brands hand you a pre-defined map, others build it with you.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 3 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep now"><div class="jnode">3</div><div class="jlbl">Validation</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Your Franchise Developer designs your territory to maximize the potential of the business, not to hit a number on a page.</p>
+<main class="stack">
 
-  <div class="ph ph--block"><span class="ph__ref">PH-22</span> 1TP territory design criteria. Commercial emergency plumbing likely weights commercial building count, property management concentration, permit volume, and drive-time - not households per square mile.</div>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Territory</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Territory Design and DBA</span></div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Territory Design</div>
+<h3>Territory Design</h3>
+<p>Different brands prioritize different criteria. Some design around population. Some design around households. Recurring-service brands weight route density. Brands that lean on marketing spread want larger territories. Some brands hand you a pre-defined map, others build it with you.</p>
+<p>Your Franchise Developer designs your territory to maximize the potential of the business, not to hit a number on a page.</p>
+<span class="flag"><b>PLACEHOLDER — PH-22</b>1TP territory design criteria. Commercial emergency plumbing likely weights commercial building count, property management concentration, permit volume, and drive-time — not households per square mile.</span>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · The DBA Smell Test</div>
+<h3>The DBA Smell Test</h3>
+<p>Your Franchise Developer coordinates with our Local Marketing Specialist before your territory is finalized.</p>
+<p>You will form a legal entity under a name of your choosing. That entity name cannot include the brand name. Your public-facing name is your DBA.</p>
+<p>Example: KHM Holdings, DBA 1-Tom-Plumber of San Marco, Florida</p>
+<p>Marketing runs keyword research on the most-searched city and area names inside your territory. We award the DBA that gives you the best possible search exposure. This is not cosmetic. It compounds for the life of your business.</p>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · You Will Need an Address</div>
+<h3>You Will Need an Address</h3>
+<p>This is Google's world, and we just live in it.</p>
+<p>The most common search in our category is some version of "plumber near me." Our listings team sets up your Google Business Profile and handles back-end SEO. Google verifies a business by mailing a physical postcard to a physical address.</p>
+<p>That means you need a unique physical address inside your territory. No P.O. boxes. No shared-mailbox office suites.</p>
+<p>For most owners, a home address works and does not appear publicly. Some situations require an office or warehouse.</p>
+<p>If you live outside your territory, you must secure an address inside it. SBA lending also requires an address within the territory you own.</p>
+<div class="gate">
+  <div class="glabel">Required acknowledgment</div>
+  <p class="gtext">I understand that I will need a unique physical address within my territory, and that P.O. boxes and shared mailbox services do not qualify.</p>
+  <div class="gcheck"><input type="checkbox" id="g-address"><label for="g-address">I understand</label></div>
+</div>
+<p>---</p>
+</section>
 
-  <h2>The DBA Smell Test</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to Understanding Your Brand's Technology.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>Your Franchise Developer coordinates with our Local Marketing Specialist before your territory is finalized.</p>
-
-  <p>You will form a legal entity under a name of your choosing. That entity name cannot include the brand name. Your public-facing name is your DBA.</p>
-
-  <p>Example: KHM Holdings, DBA 1-Tom-Plumber of San Marco, Florida</p>
-
-  <p>Marketing runs keyword research on the most-searched city and area names inside your territory. We award the DBA that gives you the best possible search exposure. This is not cosmetic. It compounds for the life of your business.</p>
-
-  <h2>You Will Need an Address</h2>
-
-  <p>This is Google's world, and we just live in it.</p>
-
-  <p>The most common search in our category is some version of "plumber near me." Our listings team sets up your Google Business Profile and handles back-end SEO. Google verifies a business by mailing a physical postcard to a physical address.</p>
-
-  <p>That means you need a unique physical address inside your territory. No P.O. boxes. No shared-mailbox office suites.</p>
-
-  <p>For most owners, a home address works and does not appear publicly. Some situations require an office or warehouse.</p>
-
-  <p>If you live outside your territory, you must secure an address inside it. SBA lending also requires an address within the territory you own.</p>
-
-  <div class="gate">
-    <div class="gate__label">Required acknowledgment</div>
-    <p class="gate__text">I understand that I will need a unique physical address within my territory, and that P.O. boxes and shared mailbox services do not qualify.</p>
-    <div class="gate__check">
-      <input type="checkbox" id="gate-address">
-      <label for="gate-address">I understand</label>
-    </div>
-  </div>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to Understanding Your Brand's Technology.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-03-validation__04-technology.html" hidden>
-  <div class="page-eyebrow">Stage 3 · Step 4 of 4</div>
-  <h1 class="page-title">Understanding Your Brand's Technology</h1>
-  <p class="page-lede">The platforms you will run the business on, and what they cost.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/kXK6u3O8hCU" title="1-Tom Service Titan Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 3 of 6</span></div>
 
-  <h2>How Technology Sourcing Works</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 03 · Validation</div>
+<h1>Understanding Your Brand's Technology</h1>
+<p class="subtitle">The platforms you will run the business on, and what they cost.</p>
+</div></div>
 
-  <p><span class="ph"><span class="ph__ref">PH-04</span> sourcing entity</span> sources our software platforms and negotiates vendor pricing using the scale of the full portfolio. They hold vendors accountable and provide support when something breaks.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 3 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep now"><div class="jnode">3</div><div class="jlbl">Validation</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Every brand's package is different. There is a one-time setup fee plus a monthly payment. <span class="ph"><span class="ph__ref">PH-04</span> sourcing entity</span> collects from you and pays the vendors.</p>
+<main class="stack">
 
-  <h2>Your Package</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Understanding Your Brand's Technology</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/kXK6u3O8hCU" title="1-Tom Service Titan Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · 1-Tom Service Titan Overview</div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · How Technology Sourcing Works</div>
+<h3>How Technology Sourcing Works</h3>
+<p><span class="flag-in">PH-04 sourcing entity</span> sources our software platforms and negotiates vendor pricing using the scale of the full portfolio. They hold vendors accountable and provide support when something breaks.</p>
+<p>Every brand's package is different. There is a one-time setup fee plus a monthly payment. <span class="flag-in">PH-04 sourcing entity</span> collects from you and pays the vendors.</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Your Package</div>
+<h3>Your Package</h3>
+<div class="t-scroll"><table>
+<caption>Your Package</caption>
+<thead><tr><th>Platform</th><th>Function</th></tr></thead>
+<tbody>
+<tr><td>ServiceTitan</td><td>Customer and technician management, dispatch, scheduling</td></tr>
+<tr><td>CareerPlug</td><td>Recruiting and applicant tracking</td></tr>
+<tr><td><span class="flag-in">PH-02 financial analysis</span></td><td>Financial reporting, used with your Franchise Business Coach</td></tr>
+<tr><td><span class="flag-in">PH-02 reviews / NPS</span></td><td>Review generation and Net Promoter Score</td></tr>
+<tr><td><span class="flag-in">PH-02 productivity</span></td><td>Email and productivity licenses</td></tr>
+<tr><td><span class="flag-in">PH-02 resource library</span></td><td>Franchise resource library and documentation</td></tr>
+</tbody>
+</table></div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/3aL_T7_3Ojo" title="EverSmith Career Plug" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Career Plug</div>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · Pricing</div>
+<h3>Pricing</h3>
+<div class="t-scroll"><table>
+<caption>Pricing</caption>
+<thead><tr><th>Line Item</th><th>Cost</th></tr></thead>
+<tbody>
+<tr><td>One-time setup fee</td><td><span class="flag-in">pending</span></td></tr>
+<tr><td>Monthly technology fee</td><td><span class="flag-in">pending</span></td></tr>
+<tr><td>ServiceTitan — first admin user and field technician</td><td><span class="flag-in">pending</span></td></tr>
+<tr><td>Each additional admin user</td><td><span class="flag-in">pending</span></td></tr>
+<tr><td>Each additional field technician</td><td><span class="flag-in">pending</span></td></tr>
+</tbody>
+</table></div>
+<p>Pricing subject to change.</p>
+<div class="gate">
+  <div class="glabel">Required acknowledgment</div>
+  <p class="gtext">I understand that the one-time technology fee and my first monthly payment will draft within a few weeks of being awarded, and that this may occur before my SBA or ROBS funding has completed.</p>
+  <div class="gcheck"><input type="checkbox" id="g-tech-fee-timing"><label for="g-tech-fee-timing">I understand</label></div>
+</div>
+</section>
 
-  <div class="t-scroll">
-    <table>
-      <caption>Platforms included in your technology package</caption>
-      <tr><th>Platform</th><th>Function</th></tr>
-      <tr><td>ServiceTitan</td><td>Customer and technician management, dispatch, scheduling</td></tr>
-      <tr><td>CareerPlug</td><td>Recruiting and applicant tracking</td></tr>
-      <tr><td><span class="ph"><span class="ph__ref">PH-02</span> financial analysis</span></td><td>Financial reporting, used with your Franchise Business Coach</td></tr>
-      <tr><td><span class="ph"><span class="ph__ref">PH-02</span> reviews / NPS</span></td><td>Review generation and Net Promoter Score</td></tr>
-      <tr><td><span class="ph"><span class="ph__ref">PH-02</span> productivity</span></td><td>Email and productivity licenses</td></tr>
-      <tr><td><span class="ph"><span class="ph__ref">PH-02</span> resource library</span></td><td>Franchise resource library and documentation</td></tr>
-    </table>
-  </div>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to Stage 4, Seeking Approval.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/3aL_T7_3Ojo" title="EverSmith Career Plug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-
-  <h2>Pricing</h2>
-
-  <div class="t-scroll">
-    <table>
-      <caption>Technology pricing</caption>
-      <tr><th>Line Item</th><th>Cost</th></tr>
-      <tr><td>One-time setup fee</td><td><span class="ph"><span class="ph__ref">PH-03</span> pending</span></td></tr>
-      <tr><td>Monthly technology fee</td><td><span class="ph"><span class="ph__ref">PH-03</span> pending</span></td></tr>
-      <tr><td>ServiceTitan - first admin user and field technician</td><td><span class="ph"><span class="ph__ref">PH-03</span> pending</span></td></tr>
-      <tr><td>Each additional admin user</td><td><span class="ph"><span class="ph__ref">PH-03</span> pending</span></td></tr>
-      <tr><td>Each additional field technician</td><td><span class="ph"><span class="ph__ref">PH-03</span> pending</span></td></tr>
-    </table>
-  </div>
-
-  <p>Pricing subject to change.</p>
-
-  <div class="gate">
-    <div class="gate__label">Required acknowledgment</div>
-    <p class="gate__text">I understand that the one-time technology fee and my first monthly payment will draft within a few weeks of being awarded, and that this may occur before my SBA or ROBS funding has completed.</p>
-    <div class="gate__check">
-      <input type="checkbox" id="gate-tech-fee-timing">
-      <label for="gate-tech-fee-timing">I understand</label>
-    </div>
-  </div>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to Stage 4, Seeking Approval.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-04-seeking-approval__index.html" hidden>
-  <div class="page-eyebrow">Stage 4 of 6</div>
-  <h1 class="page-title">Seeking Approval</h1>
-  <p class="page-lede">Present your case to executive leadership and build your timeline.</p>
 
-  <a class="slot" href="#" data-asset="video:seeking-approval-overview">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Seeking Approval Overview</span>
-  </a>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 4 of 6</span></div>
 
-  <p>Up to this point, your Franchise Developer has been presenting the BRAND to YOU.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 04 · Seeking Approval</div>
+<h1>Seeking Approval</h1>
+<p class="subtitle">Present your case to executive leadership and build your timeline.</p>
+</div></div>
 
-  <p>That flips now. In this stage, they present YOU to the BRAND.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 4 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep now"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Two things happen here. You meet with an executive. If approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.</p>
+<main class="stack">
 
-  <h2>Steps in this stage</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Seeking Approval</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Seeking Approval Overview</span></div>
+<p>Up to this point, your Franchise Developer has been presenting the BRAND to YOU.</p>
+<p>That flips now. In this stage, they present YOU to the BRAND.</p>
+<p>Two things happen here. You meet with an executive. If approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-executive-approval-call.html"><span class="ssn">1</span><span class="sst">Executive Approval Call</span><span class="ssnote"></span></a></li>
+<li><a href="02-dap-contingencies.html"><span class="ssn">2</span><span class="sst">Development Action Plan / Contingencies</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
 
-  <ul class="substeps">
-    <li><a href="01-executive-approval-call.html"><span class="ss__n">1</span><span class="ss__title">Executive Approval Call</span><span class="ss__note"></span></a></li>
-    <li><a href="02-dap-contingencies.html"><span class="ss__n">2</span><span class="ss__title">Development Action Plan / Contingencies</span><span class="ss__note"></span></a></li>
-  </ul>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Start with the Executive Approval Call.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Start with the Executive Approval Call.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-04-seeking-approval__01-executive-approval-call.html" hidden>
-  <div class="page-eyebrow">Stage 4 · Step 1 of 2</div>
-  <h1 class="page-title">Executive Approval Call</h1>
-  <p class="page-lede">Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.</p>
 
-  <a class="slot" href="#" data-asset="video:executive-approval-call-prep">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Executive Approval Call prep</span>
-  </a>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 4 of 6</span></div>
 
-  <h2>What This Milestone Means</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 04 · Seeking Approval</div>
+<h1>Executive Approval Call</h1>
+<p class="subtitle">Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.</p>
+</div></div>
 
-  <p>Reaching this stage means you are being considered for an invitation to Meet The Team Day, our brand orientation event at headquarters.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 4 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep now"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-01</span> 1TP selectivity figures. The original read "fewer than 5% of candidates introduced to a Franchise Developer are eventually invited to Meet The Team Day" and "statistically, only 2 out of 3 candidates who attend are awarded a franchise." Pull 1TP's actuals before publishing.</div>
+<main class="stack">
 
-  <h2>Who You Will Meet</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Executive Approval Call</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Executive Approval Call prep</span></div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · What This Milestone Means</div>
+<h3>What This Milestone Means</h3>
+<p>Reaching this stage means you are being considered for an invitation to Meet The Team Day, our brand orientation event at headquarters.</p>
+<span class="flag"><b>PLACEHOLDER — PH-01</b>1TP selectivity figures. The original read "fewer than 5% of candidates introduced to a Franchise Developer are eventually invited to Meet The Team Day" and "statistically, only 2 out of 3 candidates who attend are awarded a franchise." Pull 1TP's actuals before publishing.</span>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Who You Will Meet</div>
+<h3>Who You Will Meet</h3>
+<p>Our <span class="flag-in">PH-14 executive title</span> will meet with you, and with your spouse or partner if they are part of this decision.</p>
+<p>This is not a grueling interview. It is informal. The purpose is for our executive to understand your interest in their brand, and to validate that your Franchise Developer has guided you thoroughly through the process.</p>
+<p>By this point, our executive often already knows a great deal about you. Your Franchise Developer has been advocating for you internally the whole way. It is not unusual for the invitation to Meet The Team Day to be extended on this first call.</p>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · The Frame</div>
+<h3>The Frame</h3>
+<p><strong>Meet The Team Day is more of a validation of a decision you have already made in your mind.</strong></p>
+<p>That is the honest framing. If you arrive at Meet The Team Day still deciding whether you want this, something earlier in the process did not work. This call is where we confirm you are past that point.</p>
+</section>
+<section class="slide" data-n="05">
+<div class="eyebrow">Slide 05 · What Happens If You Are Approved</div>
+<h3>What Happens If You Are Approved</h3>
+<p>If our executive approves you for Meet The Team Day, they will ask your Franchise Developer to do two things.</p>
+<ol class="loose"><li>Build your timeline. A specific plan from orientation through training to your Grand Opening.</li><li>Draft your sample set of agreements. Populated with your specific territory, demographics, and the nuances of your situation.</li></ol>
+<p>Both arrive in the next step.</p>
+</section>
+<section class="slide" data-n="06">
+<div class="eyebrow">Slide 06 · How to Prepare</div>
+<h3>How to Prepare</h3>
+<p>Be ready to speak to why business ownership and why now. What you heard from owners during Validation, in your own words. Your funding path and where it stands. The territory you want and why. Your timeline to open.</p>
+<p>Bring the questions you have not been able to get answered elsewhere. Our executive has visibility your Franchise Developer does not.</p>
+<p>---</p>
+</section>
 
-  <p>Our <span class="ph"><span class="ph__ref">PH-14</span> executive title</span> will meet with you, and with your spouse or partner if they are part of this decision.</p>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Attend your Executive Approval Call, then continue to your Development Action Plan.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>This is not a grueling interview. It is informal. The purpose is for our executive to understand your interest in their brand, and to validate that your Franchise Developer has guided you thoroughly through the process.</p>
-
-  <p>By this point, our executive often already knows a great deal about you. Your Franchise Developer has been advocating for you internally the whole way. It is not unusual for the invitation to Meet The Team Day to be extended on this first call.</p>
-
-  <h2>The Frame</h2>
-
-  <p><strong>Meet The Team Day is more of a validation of a decision you have already made in your mind.</strong></p>
-
-  <p>That is the honest framing. If you arrive at Meet The Team Day still deciding whether you want this, something earlier in the process did not work. This call is where we confirm you are past that point.</p>
-
-  <h2>What Happens If You Are Approved</h2>
-
-  <p>If our executive approves you for Meet The Team Day, they will ask your Franchise Developer to do two things.</p>
-
-  <ol>
-    <li>Build your timeline. A specific plan from orientation through training to your Grand Opening.</li>
-    <li>Draft your sample set of agreements. Populated with your specific territory, demographics, and the nuances of your situation.</li>
-  </ol>
-
-  <p>Both arrive in the next step.</p>
-
-  <h2>How to Prepare</h2>
-
-  <p>Be ready to speak to why business ownership and why now. What you heard from owners during Validation, in your own words. Your funding path and where it stands. The territory you want and why. Your timeline to open.</p>
-
-  <p>Bring the questions you have not been able to get answered elsewhere. Our executive has visibility your Franchise Developer does not.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Attend your Executive Approval Call, then continue to your Development Action Plan.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-04-seeking-approval__02-dap-contingencies.html" hidden>
-  <div class="page-eyebrow">Stage 4 · Step 2 of 2</div>
-  <h1 class="page-title">Development Action Plan / Contingencies</h1>
-  <p class="page-lede">Your timeline, your documents, and your sample agreements.</p>
 
-  <a class="slot" href="#" data-asset="video:dap-and-document-acknowledgment">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Development Action Plan and Document Acknowledgment</span>
-  </a>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 4 of 6</span></div>
 
-  <h2>Your Development Action Plan</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 04 · Seeking Approval</div>
+<h1>Development Action Plan / Contingencies</h1>
+<p class="subtitle">Your timeline, your documents, and your sample agreements.</p>
+</div></div>
 
-  <p>The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 4 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep now"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and your funding path. An SBA timeline moves differently than a ROBS timeline, which moves differently than cash.</p>
+<main class="stack">
 
-  <a class="slot" href="#" data-asset="download:development-action-plan">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">Your Development Action Plan</span>
-  </a>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Development Action Plan / Contingencies</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Development Action Plan and Document Acknowledgment</span></div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Your Development Action Plan</div>
+<h3>Your Development Action Plan</h3>
+<p>The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.</p>
+<p>It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and your funding path. An SBA timeline moves differently than a ROBS timeline, which moves differently than cash.</p>
+<a class="asset" href="#" data-asset="download:your-development-action-plan"><span class="kind">Download</span><span class="lbl">Your Development Action Plan</span></a>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Your Sample Set of Agreements</div>
+<h3>Your Sample Set of Agreements</h3>
+<p>You saw these agreements listed in FDD Item 22. Now you will see them filled in for your specific situation. Your territory, your fee, your equity injection, your dates.</p>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · What Your Franchise Developer Needs From You</div>
+<h3>What Your Franchise Developer Needs From You</h3>
+<div class="t-scroll"><table>
+<caption>What Your Franchise Developer Needs From You</caption>
+<thead><tr><th>#</th><th>Item</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Qualification Summary</td><td>Updated from Stage 2 if anything has changed</td></tr>
+<tr><td>2</td><td>Credit Report</td><td>Your Experian self-pull</td></tr>
+<tr><td>3</td><td>FDD Receipt</td><td>The executed receipt page from Item 23</td></tr>
+<tr><td>4</td><td>Territory Map</td><td>Marketing runs the DBA smell test on it</td></tr>
+<tr><td>5</td><td>Franchise Proposal</td><td>Fee investment derived from the map. Equity injection based on your funding path</td></tr>
+<tr><td>6</td><td>SBA Pre-Approval Letter</td><td>If you are funding through SBA</td></tr>
+<tr><td>7</td><td>ROBS or Self-Funding Proof</td><td>Bank or retirement statements</td></tr>
+<tr><td>8</td><td>DAP Timeline</td><td>Reviewed with your Franchise Developer</td></tr>
+<tr><td>9</td><td>Bio</td><td>Your Franchise Developer writes an executive bio. You provide a family photo</td></tr>
+<tr><td>10</td><td>Address Confirmation</td><td>Your in-territory address, or your plan to secure one</td></tr>
+</tbody>
+</table></div>
+<p>Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&amp;L for conversions of an existing business.</p>
+</section>
+<section class="slide" data-n="05">
+<div class="eyebrow">Slide 05 · Read This Carefully</div>
+<h3>Read This Carefully</h3>
+<p>Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.</p>
+<p>The DocuSign email you receive will say <strong>"Begin Signing Process."</strong> That wording is the platform's, not ours.</p>
+<p><strong>This is only an acknowledgment of receipt. It is not execution.</strong></p>
+<p>You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.</p>
+<p>Please acknowledge promptly. The hold clock does not start until you do.</p>
+</section>
+<section class="slide" data-n="06">
+<div class="eyebrow">Slide 06 · DocuSign Walkthrough</div>
+<h3>DocuSign Walkthrough</h3>
+<ol>
+<li>Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.</li>
+<li>You receive a second email from DocuSign, "Step One: Begin Signing Process."</li>
+<li>Log in with the credentials from the first email.</li>
+<li>Accept the Terms.</li>
+<li>Sign your name exactly as it appears on the document.</li>
+<li>Complete the signing process.</li>
+</ol>
+<p>If anything does not work, contact your Franchise Developer. Do not create a second account.</p>
+<p>---</p>
+</section>
 
-  <h2>Your Sample Set of Agreements</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>You saw these agreements listed in FDD Item 22. Now you will see them filled in for your specific situation. Your territory, your fee, your equity injection, your dates.</p>
-
-  <h2>What Your Franchise Developer Needs From You</h2>
-
-  <div class="t-scroll">
-    <table>
-      <caption>Documents your Franchise Developer needs from you</caption>
-      <tr><th>#</th><th>Item</th><th>Notes</th></tr>
-      <tr><td>1</td><td>Qualification Summary</td><td>Updated from Stage 2 if anything has changed</td></tr>
-      <tr><td>2</td><td>Credit Report</td><td>Your Experian self-pull</td></tr>
-      <tr><td>3</td><td>FDD Receipt</td><td>The executed receipt page from Item 23</td></tr>
-      <tr><td>4</td><td>Territory Map</td><td>Marketing runs the DBA smell test on it</td></tr>
-      <tr><td>5</td><td>Franchise Proposal</td><td>Fee investment derived from the map. Equity injection based on your funding path</td></tr>
-      <tr><td>6</td><td>SBA Pre-Approval Letter</td><td>If you are funding through SBA</td></tr>
-      <tr><td>7</td><td>ROBS or Self-Funding Proof</td><td>Bank or retirement statements</td></tr>
-      <tr><td>8</td><td>DAP Timeline</td><td>Reviewed with your Franchise Developer</td></tr>
-      <tr><td>9</td><td>Bio</td><td>Your Franchise Developer writes an executive bio. You provide a family photo</td></tr>
-      <tr><td>10</td><td>Address Confirmation</td><td>Your in-territory address, or your plan to secure one</td></tr>
-    </table>
-  </div>
-
-  <p>Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&amp;L for conversions of an existing business.</p>
-
-  <div class="warn">
-    <div class="warn__label">Read this carefully</div>
-    <p>Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.</p>
-    <p>The DocuSign email you receive will say <strong>"Begin Signing Process."</strong> That wording is the platform's, not ours.</p>
-    <p><strong>This is only an acknowledgment of receipt. It is not execution.</strong></p>
-    <p>You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.</p>
-    <p>Please acknowledge promptly. The hold clock does not start until you do.</p>
-  </div>
-
-  <h2>DocuSign Walkthrough</h2>
-
-  <ol class="steps">
-    <li>Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.</li>
-    <li>You receive a second email from DocuSign, "Step One: Begin Signing Process."</li>
-    <li>Log in with the credentials from the first email.</li>
-    <li>Accept the Terms.</li>
-    <li>Sign your name exactly as it appears on the document.</li>
-    <li>Complete the signing process.</li>
-  </ol>
-
-  <p>If anything does not work, contact your Franchise Developer. Do not create a second account.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-05-meet-the-team-day__index.html" hidden>
-  <div class="page-eyebrow">Stage 5 of 6</div>
-  <h1 class="page-title">Meet The Team Day</h1>
-  <p class="page-lede">Visit headquarters and meet the team in person.</p>
 
-  <p>This is the biggest step in the process.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 5 of 6</span></div>
 
-  <p>You will leave the virtual world behind, come see us in person, meet the leadership team, tour the operation, and go deep on the business in ways no video call can match.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 05 · Meet The Team Day</div>
+<h1>Meet The Team Day</h1>
+<p class="subtitle">Visit headquarters and meet the team in person.</p>
+</div></div>
 
-  <p>For most candidates, this is when the decision starts to feel real.</p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 5 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep now"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <h2>Steps in this stage</h2>
+<main class="stack">
 
-  <ul class="substeps">
-    <li><a href="01-what-who-to-expect.html"><span class="ss__n">1</span><span class="ss__title">What / Who to Expect at Meet The Team Day</span><span class="ss__note"></span></a></li>
-    <li><a href="02-pre-mttd-questionnaire.html"><span class="ss__n">2</span><span class="ss__title">Pre Meet The Team Day Questionnaire</span><span class="ss__note"></span></a></li>
-    <li><a href="03-meet-the-team-day.html"><span class="ss__n">3</span><span class="ss__title">Meet The Team Day</span><span class="ss__note"></span></a></li>
-    <li><a href="04-post-mttd-assessment.html"><span class="ss__n">4</span><span class="ss__title">Post Meet The Team Day Assessment</span><span class="ss__note"></span></a></li>
-  </ul>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Meet The Team Day</div>
+<p>This is the biggest step in the process.</p>
+<p>You will leave the virtual world behind, come see us in person, meet the leadership team, tour the operation, and go deep on the business in ways no video call can match.</p>
+<p>For most candidates, this is when the decision starts to feel real.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-what-who-to-expect.html"><span class="ssn">1</span><span class="sst">What / Who to Expect at Meet The Team Day</span><span class="ssnote"></span></a></li>
+<li><a href="02-pre-mttd-questionnaire.html"><span class="ssn">2</span><span class="sst">Pre Meet The Team Day Questionnaire</span><span class="ssnote"></span></a></li>
+<li><a href="03-meet-the-team-day.html"><span class="ssn">3</span><span class="sst">Meet The Team Day</span><span class="ssnote"></span></a></li>
+<li><a href="04-post-mttd-assessment.html"><span class="ssn">4</span><span class="sst">Post Meet The Team Day Assessment</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Start with What and Who to Expect.</p>
-  </div>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Start with What and Who to Expect.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-05-meet-the-team-day__01-what-who-to-expect.html" hidden>
-  <div class="page-eyebrow">Stage 5 · Step 1 of 4</div>
-  <h1 class="page-title">What / Who to Expect at Meet The Team Day</h1>
-  <p class="page-lede">Who you will meet and what to bring.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/LBU9FTGv0NE" title="EverSmith Meet The Team Day" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 5 of 6</span></div>
 
-  <h2>Who You Will Meet</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 05 · Meet The Team Day</div>
+<h1>What / Who to Expect at Meet The Team Day</h1>
+<p class="subtitle">Who you will meet and what to bring.</p>
+</div></div>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-15</span> Operations Team org chart. Needs real names, titles, and what each person owns in your business after you open.</div>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 5 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep now"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <h2>Your Workbook</h2>
+<main class="stack">
 
-  <p>Download and bring the workbook below. You will use it throughout the day.</p>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · What / Who to Expect at Meet The Team Day</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LBU9FTGv0NE" title="EverSmith Meet The Team Day" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Meet The Team Day</div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Who You Will Meet</div>
+<h3>Who You Will Meet</h3>
+<span class="flag"><b>PLACEHOLDER — PH-15</b>Operations Team org chart. Needs real names, titles, and what each person owns in your business after you open.</span>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Your Workbook</div>
+<h3>Your Workbook</h3>
+<p>Download and bring the workbook below. You will use it throughout the day.</p>
+<a class="asset" href="#" data-asset="download:1-tom-plumber-meet-the-team-day-handout"><span class="kind">Download</span><span class="lbl">1-Tom-Plumber Meet The Team Day Handout</span></a>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · One Form to Save for Later</div>
+<h3>One Form to Save for Later</h3>
+<p>You will also see a form titled "Reasons to Become or Not Become a Franchise Owner."</p>
+<p><strong>Do not complete it in advance.</strong> Our last speaker of the day will prompt you to fill it out near the end of the event, either by QR code or by button. It is designed to be completed at that moment, with everything you learned that day fresh.</p>
+<p>---</p>
+</section>
 
-  <a class="slot" href="#" data-asset="download:mttd-handout">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">1-Tom-Plumber Meet The Team Day Handout</span>
-  </a>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Complete your pre-event questionnaires before you travel.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <h2>One Form to Save for Later</h2>
-
-  <p>You will also see a form titled "Reasons to Become or Not Become a Franchise Owner."</p>
-
-  <p><strong>Do not complete it in advance.</strong> Our last speaker of the day will prompt you to fill it out near the end of the event, either by QR code or by button. It is designed to be completed at that moment, with everything you learned that day fresh.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Complete your pre-event questionnaires before you travel.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-05-meet-the-team-day__02-pre-mttd-questionnaire.html" hidden>
-  <div class="page-eyebrow">Stage 5 · Step 2 of 4</div>
-  <h1 class="page-title">Pre Meet The Team Day Questionnaire</h1>
-  <p class="page-lede">Two items to complete before you travel.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/3wI0n4g9eOQ" title="EverSmith Pre-MTTD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 5 of 6</span></div>
 
-  <p>Two items must be completed before you attend.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 05 · Meet The Team Day</div>
+<h1>Pre Meet The Team Day Questionnaire</h1>
+<p class="subtitle">Two items to complete before you travel.</p>
+</div></div>
 
-  <a class="slot" href="#" data-asset="form:pre-mttd-questionnaire">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Pre-MTTD Questionnaire</span>
-  </a>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 5 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep now"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <a class="slot" href="#" data-asset="form:behavioral-assessment">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Behavioral Assessment</span>
-  </a>
+<main class="stack">
 
-  <div class="ph ph--block"><span class="ph__ref">PH-10</span> confirm behavioral assessment tool</div>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Pre Meet The Team Day Questionnaire</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/3wI0n4g9eOQ" title="EverSmith Pre-MTTD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Pre-MTTD</div>
+<p>Two items must be completed before you attend.</p>
+<a class="asset" href="#" data-asset="form:pre-mttd-questionnaire"><span class="kind">Form</span><span class="lbl">Pre-MTTD Questionnaire</span></a>
+<a class="asset" href="#" data-asset="form:behavioral-assessment"><span class="kind">Form</span><span class="lbl">Behavioral Assessment</span></a>
+<span class="flag"><b>PLACEHOLDER</b>confirm tool</span>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Extra Credit — Design Your Life</div>
+<h3>Extra Credit — Design Your Life</h3>
+<p>Time to start thinking big.</p>
+<p>Meet The Team Day includes personal development exercises. They are not filler. They are there because the owners who do best are the ones who know what they are building toward.</p>
+<p>Watch the video below before you travel. It will put you in the right frame of mind for the exercises we run on the day.</p>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Design Your Life</span></div>
+<p>This is extra credit. It is not required to advance. We recommend it anyway.</p>
+<p>---</p>
+</section>
 
-  <h2>Extra Credit - Design Your Life</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Complete both questionnaires, then travel to Meet The Team Day.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <p>Time to start thinking big.</p>
-
-  <p>Meet The Team Day includes personal development exercises. They are not filler. They are there because the owners who do best are the ones who know what they are building toward.</p>
-
-  <p>Watch the video below before you travel. It will put you in the right frame of mind for the exercises we run on the day.</p>
-
-  <a class="slot" href="#" data-asset="video:design-your-life">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Design Your Life</span>
-  </a>
-
-  <p>This is extra credit. It is not required to advance. We recommend it anyway.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Complete both questionnaires, then travel to Meet The Team Day.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-05-meet-the-team-day__03-meet-the-team-day.html" hidden>
-  <div class="page-eyebrow">Stage 5 · Step 3 of 4</div>
-  <h1 class="page-title">Meet The Team Day</h1>
-  <p class="page-lede">The event itself.</p>
 
-  <a class="slot" href="#" data-asset="video:mttd-logistics">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: MTTD logistics</span>
-  </a>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 5 of 6</span></div>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-24</span> full MTTD agenda and logistics. Needs day-by-day schedule, headquarters location, travel arrangements - what is covered versus what the candidate covers, what to bring, guidance on bringing a spouse or partner.</div>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 05 · Meet The Team Day</div>
+<h1>Meet The Team Day</h1>
+<p class="subtitle">The event itself.</p>
+</div></div>
 
-  <h2>Reasons to Become or Not Become a Franchise Owner</h2>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 5 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep now"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Our last speaker of the day will prompt you to complete this form near the end of the event.</p>
+<main class="stack">
 
-  <p><strong>Do not complete it in advance.</strong></p>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Meet The Team Day</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — MTTD logistics</span></div>
+<span class="flag"><b>PLACEHOLDER — PH-24</b>full MTTD agenda and logistics. Needs day-by-day schedule, headquarters location, travel arrangements — what is covered versus what the candidate covers, what to bring, guidance on bringing a spouse or partner.</span>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Reasons to Become or Not Become a Franchise Owner</div>
+<h3>Reasons to Become or Not Become a Franchise Owner</h3>
+<p>Our last speaker of the day will prompt you to complete this form near the end of the event.</p>
+<p><strong>Do not complete it in advance.</strong></p>
+<a class="asset" href="#" data-asset="form:reasons-to-become-or-not-become-a-franchise-owner"><span class="kind">Form</span><span class="lbl">Reasons to Become or Not Become a Franchise Owner</span></a>
+<p>---</p>
+</section>
 
-  <a class="slot" href="#" data-asset="form:reasons-to-become-or-not-become-a-franchise-owner">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Reasons to Become or Not Become a Franchise Owner</span>
-  </a>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>After the event, complete your Post Meet The Team Day Assessment.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>After the event, complete your Post Meet The Team Day Assessment.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-05-meet-the-team-day__04-post-mttd-assessment.html" hidden>
-  <div class="page-eyebrow">Stage 5 · Step 4 of 4</div>
-  <h1 class="page-title">Post Meet The Team Day Assessment</h1>
-  <p class="page-lede">Complete while the event is still fresh.</p>
 
-  <p>Thank you for making the trip.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 5 of 6</span></div>
 
-  <p>Please complete the assessment below while the event is still fresh. It captures what you saw, what landed, what did not, and where you stand.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 05 · Meet The Team Day</div>
+<h1>Post Meet The Team Day Assessment</h1>
+<p class="subtitle">Complete while the event is still fresh.</p>
+</div></div>
 
-  <a class="slot" href="#" data-asset="form:post-mttd-assessment">
-    <span class="slot__kind">Form</span>
-    <span class="slot__label">Post-Meet The Team Day Franchise Assessment and Evaluation Form</span>
-  </a>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 5 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep now"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-  <p>Your Franchise Developer reviews your responses before your debrief call.</p>
+<main class="stack">
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to Stage 6, Agreement Stage.</p>
-  </div>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Post Meet The Team Day Assessment</div>
+<p>Thank you for making the trip.</p>
+<p>Please complete the assessment below while the event is still fresh. It captures what you saw, what landed, what did not, and where you stand.</p>
+<a class="asset" href="#" data-asset="form:post-meet-the-team-day-franchise-assessment-and-evaluation-form"><span class="kind">Form</span><span class="lbl">Post-Meet The Team Day Franchise Assessment and Evaluation Form</span></a>
+<p>Your Franchise Developer reviews your responses before your debrief call.</p>
+<p>---</p>
+</section>
+
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to Stage 6, Agreement Stage.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-06-agreement-stage__index.html" hidden>
-  <div class="page-eyebrow">Stage 6 of 6</div>
-  <h1 class="page-title">Agreement Stage</h1>
-  <p class="page-lede">Final approval, execution, and welcome.</p>
 
-  <p>Three things happen in this stage. The Executive Committee makes its decision. You execute your Franchise Agreement. And we welcome you into the system.</p>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 6 of 6</span></div>
 
-  <h2>Steps in this stage</h2>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 06 · Agreement Stage</div>
+<h1>Agreement Stage</h1>
+<p class="subtitle">Final approval, execution, and welcome.</p>
+</div></div>
 
-  <ul class="substeps">
-    <li><a href="01-executive-board-approval.html"><span class="ss__n">1</span><span class="ss__title">Executive Board Approval</span><span class="ss__note"></span></a></li>
-    <li><a href="02-executing-your-agreement.html"><span class="ss__n">2</span><span class="ss__title">Executing Your Franchise Agreement</span><span class="ss__note"></span></a></li>
-    <li><a href="03-brand-welcome-call.html"><span class="ss__n">3</span><span class="ss__title">Brand Welcome Call</span><span class="ss__note"></span></a></li>
-    <li><a href="04-thank-you.html"><span class="ss__n">4</span><span class="ss__title">Thank You For Putting Your Trust In Us</span><span class="ss__note"></span></a></li>
-  </ul>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 6 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep done"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep now"><div class="jnode">6</div><div class="jlbl">Agreement</div><div><span class="jhere">You are here</span></div></div>
+</div></div></div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Start with Executive Board Approval.</p>
-  </div>
+<main class="stack">
+
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Agreement Stage</div>
+<p>Three things happen in this stage. The Executive Committee makes its decision. You execute your Franchise Agreement. And we welcome you into the system.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Steps in This Stage</div>
+<h3>Steps in This Stage</h3>
+<ul class="substeps">
+<li><a href="01-executive-board-approval.html"><span class="ssn">1</span><span class="sst">Executive Board Approval</span><span class="ssnote"></span></a></li>
+<li><a href="02-executing-your-agreement.html"><span class="ssn">2</span><span class="sst">Executing Your Franchise Agreement</span><span class="ssnote"></span></a></li>
+<li><a href="03-brand-welcome-call.html"><span class="ssn">3</span><span class="sst">Brand Welcome Call</span><span class="ssnote"></span></a></li>
+<li><a href="04-thank-you.html"><span class="ssn">4</span><span class="sst">Thank You For Putting Your Trust In Us</span><span class="ssnote"></span></a></li>
+</ul>
+<p>---</p>
+</section>
+
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Start with Executive Board Approval.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-06-agreement-stage__01-executive-board-approval.html" hidden>
-  <div class="page-eyebrow">Stage 6 · Step 1 of 4</div>
-  <h1 class="page-title">Executive Board Approval</h1>
-  <p class="page-lede">How the decision actually gets made.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/qDuHvclW0kk" title="EverSmith Executive Board Approval" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 6 of 6</span></div>
 
-  <p>Your Franchise Developer presents you to our Executive Committee.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 06 · Agreement Stage</div>
+<h1>Executive Board Approval</h1>
+<p class="subtitle">How the decision actually gets made.</p>
+</div></div>
 
-  <p><strong>They have no vote.</strong></p>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 6 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep done"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep now"><div class="jnode">6</div><div class="jlbl">Agreement</div><div><span class="jhere">You are here</span></div></div>
+</div></div></div>
 
-  <p>That is deliberate. Your Franchise Developer's role in that room is to be your biggest cheerleader. To present your background, your territory, how you moved through the process, and why they believe you fit. The decision belongs to the committee.</p>
+<main class="stack">
 
-  <h2>Three Questions First</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Executive Board Approval</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/qDuHvclW0kk" title="EverSmith Executive Board Approval" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Executive Board Approval</div>
+<p>Your Franchise Developer presents you to our Executive Committee.</p>
+<p><strong>They have no vote.</strong></p>
+<p>That is deliberate. Your Franchise Developer's role in that room is to be your biggest cheerleader. To present your background, your territory, how you moved through the process, and why they believe you fit. The decision belongs to the committee.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Three Questions First</div>
+<h3>Three Questions First</h3>
+<p>Your Franchise Developer will not present you until you can answer YES to all three.</p>
+<ol class="loose"><li>Have all your questions regarding the brand been answered?</li><li>Have all your questions regarding the franchise agreement been answered?</li><li>Are you committed to the established timeline if awarded?</li></ol>
+<p>If any answer is no, we slow down. That is not a setback. It is the process working.</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · The Decision Comes the Same Day</div>
+<h3>The Decision Comes the Same Day</h3>
+<p>You will not wait a week. After deliberations, a member of the committee calls you directly.</p>
+<p>There are three possible outcomes.</p>
+<h4>1. Full Approval</h4>
+<p>You are awarded. Your Franchise Developer moves you into execution.</p>
+<h4>2. Conditional Approval</h4>
+<p>You receive full approval once a specific condition is met. Common examples are a clarification on a background item, or a funding milestone that needs to land first.</p>
+<p>Once the condition is satisfied, conditional approval converts to full approval. Your Franchise Developer will be explicit about what is needed and by when.</p>
+<h4>3. Not Approved</h4>
+<p>This is a healthy outcome, and we mean that.</p>
+<p>If the committee believes you would struggle in this business, or that this investment would put you in financial difficulty, they will not award you a franchise. <strong>We will not put people in financial peril.</strong></p>
+<p>A member of the committee will explain the reasoning directly. They will also offer guidance on where they think you would do better, inside the portfolio or outside it.</p>
+<p>Some candidates come back to us in a year or two when their situation has changed. That door stays open.</p>
+<p>---</p>
+</section>
 
-  <p>Your Franchise Developer will not present you until you can answer YES to all three.</p>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>On approval, continue to Executing Your Franchise Agreement.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <ol>
-    <li>Have all your questions regarding the brand been answered?</li>
-    <li>Have all your questions regarding the franchise agreement been answered?</li>
-    <li>Are you committed to the established timeline if awarded?</li>
-  </ol>
-
-  <p>If any answer is no, we slow down. That is not a setback. It is the process working.</p>
-
-  <h2>The Decision Comes the Same Day</h2>
-
-  <p>You will not wait a week. After deliberations, a member of the committee calls you directly.</p>
-
-  <p>There are three possible outcomes.</p>
-
-  <h3>1. Full Approval</h3>
-
-  <p>You are awarded. Your Franchise Developer moves you into execution.</p>
-
-  <h3>2. Conditional Approval</h3>
-
-  <p>You receive full approval once a specific condition is met. Common examples are a clarification on a background item, or a funding milestone that needs to land first.</p>
-
-  <p>Once the condition is satisfied, conditional approval converts to full approval. Your Franchise Developer will be explicit about what is needed and by when.</p>
-
-  <h3>3. Not Approved</h3>
-
-  <p>This is a healthy outcome, and we mean that.</p>
-
-  <p>If the committee believes you would struggle in this business, or that this investment would put you in financial difficulty, they will not award you a franchise. <strong>We will not put people in financial peril.</strong></p>
-
-  <p>A member of the committee will explain the reasoning directly. They will also offer guidance on where they think you would do better, inside the portfolio or outside it.</p>
-
-  <p>Some candidates come back to us in a year or two when their situation has changed. That door stays open.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>On approval, continue to Executing Your Franchise Agreement.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-06-agreement-stage__02-executing-your-agreement.html" hidden>
-  <div class="page-eyebrow">Stage 6 · Step 2 of 4</div>
-  <h1 class="page-title">Executing Your Franchise Agreement</h1>
-  <p class="page-lede">You are truly in elite air.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/lcOn6qL1uoo" title="EverSmith Agreement Execution" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 6 of 6</span></div>
 
-  <p>You have successfully navigated one of the most selective franchise development processes in the world.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 06 · Agreement Stage</div>
+<h1>Executing Your Franchise Agreement</h1>
+<p class="subtitle">You are truly in elite air.</p>
+</div></div>
 
-  <h2>What Happens Now</h2>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 6 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep done"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep now"><div class="jnode">6</div><div class="jlbl">Agreement</div><div><span class="jhere">You are here</span></div></div>
+</div></div></div>
 
-  <p>DocuSign sends you a link to Step 2 of execution. Your password is the same one you used for the Step 1 acknowledgment in Stage 4. If you cannot find it, Legal can resend.</p>
+<main class="stack">
 
-  <p>Alongside it, you will receive an ACH form for your franchise fee, or for your equity injection if you are funding through SBA.</p>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Executing Your Franchise Agreement</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lcOn6qL1uoo" title="EverSmith Agreement Execution" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Agreement Execution</div>
+<p>You have successfully navigated one of the most selective franchise development processes in the world.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · What Happens Now</div>
+<h3>What Happens Now</h3>
+<p>DocuSign sends you a link to Step 2 of execution. Your password is the same one you used for the Step 1 acknowledgment in Stage 4. If you cannot find it, Legal can resend.</p>
+<p>Alongside it, you will receive an ACH form for your franchise fee, or for your equity injection if you are funding through SBA.</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Seven Things to Know</div>
+<h3>Seven Things to Know</h3>
+<ol>
+<li>Phone company name and address. This field may be left blank. Sign anyway.</li>
+<li>Bank account information. You will need bank name, the name and address on the account, routing number, and account number. A personal checking account works as a placeholder and can be updated later. The account number must be real. A placeholder number kicks the agreements back and costs you days.</li>
+<li>Signature. Sign your full name exactly as it reads on the agreement.</li>
+<li>Schedule D. There are only three acceptable answers. Leave it blank. A clear confirmation that the statement is accurate. Or a statement that it is false, which pauses closing until we clarify it with you. You cannot answer "N/A." You cannot answer a bare "yes" or "no." Those will bounce.</li>
+<li>Schedule D skip. After you select "I agree" in the dropdown, hit skip on the comment section and move on.</li>
+<li>Signature verification. Your Franchise Developer coordinates with Legal to verify all signatures, including your spouse's if applicable.</li>
+<li>Countersignature routing. <span class="flag-in">PH-17 confirm the 1TP / EverSmith countersignature chain.</span> You receive a fully executed copy when it is complete.</li>
+</ol>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · The ACH Form</div>
+<h3>The ACH Form</h3>
+<a class="asset" href="#" data-asset="download:ach-form-franchise-fee-equity-injection"><span class="kind">Download</span><span class="lbl">ACH Form — Franchise Fee / Equity Injection</span></a>
+<p>Complete it and email it to your Franchise Developer. <strong>Double-check your account numbers.</strong> This is the single most common source of delay at this stage.</p>
+<p>---</p>
+</section>
 
-  <h2>Seven Things to Know</h2>
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Once executed, schedule your Brand Welcome Call.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
 
-  <ol class="steps">
-    <li>Phone company name and address. This field may be left blank. Sign anyway.</li>
-    <li>Bank account information. You will need bank name, the name and address on the account, routing number, and account number. A personal checking account works as a placeholder and can be updated later. The account number must be real. A placeholder number kicks the agreements back and costs you days.</li>
-    <li>Signature. Sign your full name exactly as it reads on the agreement.</li>
-    <li>Schedule D. There are only three acceptable answers. Leave it blank. A clear confirmation that the statement is accurate. Or a statement that it is false, which pauses closing until we clarify it with you. You cannot answer "N/A." You cannot answer a bare "yes" or "no." Those will bounce.</li>
-    <li>Schedule D skip. After you select "I agree" in the dropdown, hit skip on the comment section and move on.</li>
-    <li>Signature verification. Your Franchise Developer coordinates with Legal to verify all signatures, including your spouse's if applicable.</li>
-    <li>Countersignature routing. <span class="ph"><span class="ph__ref">PH-17</span> confirm the 1TP / EverSmith countersignature chain.</span> You receive a fully executed copy when it is complete.</li>
-  </ol>
-
-  <h2>The ACH Form</h2>
-
-  <a class="slot" href="#" data-asset="download:ach-franchise-fee-equity-injection">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">ACH Form - Franchise Fee / Equity Injection</span>
-  </a>
-
-  <p>Complete it and email it to your Franchise Developer. <strong>Double-check your account numbers.</strong> This is the single most common source of delay at this stage.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Once executed, schedule your Brand Welcome Call.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-06-agreement-stage__03-brand-welcome-call.html" hidden>
-  <div class="page-eyebrow">Stage 6 · Step 3 of 4</div>
-  <h1 class="page-title">Brand Welcome Call</h1>
-  <p class="page-lede">Your handoff into Sure Start.</p>
 
-  <div class="video"><iframe src="https://www.youtube.com/embed/1NynLBubPv0" title="EverSmith Welcome Call" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 6 of 6</span></div>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-18</span> Brand Welcome Call detail. Needs who is on the call, what gets covered, what the new owner should bring, and how it hands off to Sure Start.</div>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 06 · Agreement Stage</div>
+<h1>Brand Welcome Call</h1>
+<p class="subtitle">Your handoff into Sure Start.</p>
+</div></div>
 
-  <a class="slot" href="#" data-asset="scheduler:brand-welcome-call">
-    <span class="slot__kind">Scheduler</span>
-    <span class="slot__label">Schedule Brand Welcome Call</span>
-  </a>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 6 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep done"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep now"><div class="jnode">6</div><div class="jlbl">Agreement</div><div><span class="jhere">You are here</span></div></div>
+</div></div></div>
 
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Continue to your Sure Start introduction.</p>
-  </div>
+<main class="stack">
+
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Brand Welcome Call</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/1NynLBubPv0" title="EverSmith Welcome Call" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">▶ Watch · EverSmith Welcome Call</div>
+<span class="flag"><b>PLACEHOLDER — PH-18</b>Brand Welcome Call detail. Needs who is on the call, what gets covered, what the new owner should bring, and how it hands off to Sure Start.</span>
+<a class="asset" href="#" data-asset="scheduler:schedule-brand-welcome-call"><span class="kind">Scheduler</span><span class="lbl">Schedule Brand Welcome Call</span></a>
+<p>---</p>
+</section>
+
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Continue to your Sure Start introduction.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
+</div>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article><article class="pane" id="p-06-agreement-stage__04-thank-you.html" hidden>
-  <div class="page-eyebrow">Stage 6 · Step 4 of 4</div>
-  <h1 class="page-title">Thank You For Putting Your Trust In Us</h1>
-  <p class="page-lede">Welcome to 1-Tom-Plumber.</p>
 
-  <h2>Sure Start</h2>
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 6 of 6</span></div>
 
-  <p>Schedule your formal training introduction with our Sure Start Coordinator using the link below.</p>
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 06 · Agreement Stage</div>
+<h1>Thank You For Putting Your Trust In Us</h1>
+<p class="subtitle">Welcome to 1-Tom-Plumber.</p>
+</div></div>
 
-  <a class="slot" href="#" data-asset="scheduler:sure-start-introduction">
-    <span class="slot__kind">Scheduler</span>
-    <span class="slot__label">Schedule Sure Start Introduction</span>
-  </a>
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 6 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep done"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
+<div class="jstep done"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep now"><div class="jnode">6</div><div class="jlbl">Agreement</div><div><span class="jhere">You are here</span></div></div>
+</div></div></div>
 
-  <p>Your relationship with your Franchise Developer does not end here. They remain your biggest cheerleader. Your Sure Start Coordinator takes over the work of making sure your business is set up for the highest possible chance of success.</p>
+<main class="stack">
 
-  <h2>Referral Program</h2>
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Sure Start</div>
+<h3>Sure Start</h3>
+<p>Schedule your formal training introduction with our Sure Start Coordinator using the link below.</p>
+<a class="asset" href="#" data-asset="scheduler:schedule-sure-start-introduction"><span class="kind">Scheduler</span><span class="lbl">Schedule Sure Start Introduction</span></a>
+<p>Your relationship with your Franchise Developer does not end here. They remain your biggest cheerleader. Your Sure Start Coordinator takes over the work of making sure your business is set up for the highest possible chance of success.</p>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Referral Program</div>
+<h3>Referral Program</h3>
+<span class="flag"><b>PLACEHOLDER — PH-06</b>1TP referral program name and all figures. The original structure was $5,000 per successful placed referral, a quarterly $1,350 drawing, Reunion travel comp, and a live $5,000 Reunion drawing, on an April 1 to March 31 award year. Replace every figure with 1TP's actual program, or remove this section if none exists yet.</span>
+<p><strong>What counts as qualified:</strong></p>
+<p>- We can verify a prior conversation with the referral</p>
+<p>- You provided accurate contact information</p>
+<p>- The referral is a new unit, not a resale or transfer</p>
+<p><strong>What does not count:</strong></p>
+<p>- Existing owners</p>
+<p>- Anyone already in Lead Development or Franchise Development</p>
+<p>- Immediate family — spouse, child, or sibling</p>
+<p>- Yourself</p>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Thank You</div>
+<h3>Thank You</h3>
+<p>The franchise development process can feel long and arduous. But when we slow down on the front end, we can really speed up on the back end.</p>
+<p>You asked hard questions. You talked to owners. You looked honestly at your finances and your family. You did the work.</p>
+<p>Welcome to 1-Tom-Plumber.</p>
+<p><strong>— The Franchise Development Team</strong></p>
+</section>
 
-  <div class="ph ph--block"><span class="ph__ref">PH-06</span> 1TP referral program name and all figures. The original structure was $5,000 per successful placed referral, a quarterly $1,350 drawing, Reunion travel comp, and a live $5,000 Reunion drawing, on an April 1 to March 31 award year. Replace every figure with 1TP's actual program, or remove this section if none exists yet.</div>
 
-  <p><strong>What counts as qualified:</strong></p>
 
-  <ul>
-    <li>We can verify a prior conversation with the referral</li>
-    <li>You provided accurate contact information</li>
-    <li>The referral is a new unit, not a resale or transfer</li>
-  </ul>
-
-  <p><strong>What does not count:</strong></p>
-
-  <ul>
-    <li>Existing owners</li>
-    <li>Anyone already in Lead Development or Franchise Development</li>
-    <li>Immediate family - spouse, child, or sibling</li>
-    <li>Yourself</li>
-  </ul>
-
-  <h2>Thank You</h2>
-
-  <p>The franchise development process can feel long and arduous. But when we slow down on the front end, we can really speed up on the back end.</p>
-
-  <p>You asked hard questions. You talked to owners. You looked honestly at your finances and your family. You did the work.</p>
-
-  <p>Welcome to 1-Tom-Plumber.</p>
-
-  <p><strong>- The Franchise Development Team</strong></p>
-
-  <div class="next">
-    <div class="next__label">Last step</div>
-    <p>Your Sure Start Coordinator takes it from here.</p>
-  </div>
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
 </article></div>
 </div>
 

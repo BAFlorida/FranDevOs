@@ -1,226 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Development Action Plan / Contingencies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --red:#C8102E;--red-dk:#9B0C23;--ink:#141414;--steel:#3A3F45;--pipe:#6B7280;
-  --paper:#FAFAF7;--card:#FFFFFF;--line:#DCDAD3;--wash:#F2F0EA;
-  --gate-bd:#C8102E;--gate-bg:#FDF6F7;--ph-bd:#E8B84B;--ph-bg:#FBF5E4;--ph-tx:#7A5B10;
-  --warn-bd:#C8102E;--warn-bg:#FDF6F7;
-  --disp:'Barlow Condensed','Arial Narrow',sans-serif;
-  --body:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
-  --measure:74ch;
+  --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
+  --slate:#5B6470; --line:#E5E2DC; --flag-bg:#FBF3D6; --flag-ink:#7A5E12; --flag-line:#E4CE8A;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);
-     line-height:1.6;font-size:16px;padding:32px 24px 64px}
-.wrap{max-width:820px;margin:0 auto}
-:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){
-  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',-apple-system,'Segoe UI',sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+a{color:var(--pink-dk)}
+/* top bar */
+.topbar{background:var(--ink);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:22px;letter-spacing:.06em}
+.topbar .meg b{color:var(--pink)}
+.topbar .sub{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AE}
+.topbar .chip{margin-left:auto;border:1px solid var(--pink);color:var(--pink);font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:56px 24px 44px}
+.hero-in{max-width:880px;margin:0 auto}
+.hero .stageno{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.hero h1{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:clamp(40px,7vw,68px);
+  line-height:.98;text-transform:uppercase;letter-spacing:.01em;overflow-wrap:break-word}
+.hero .subtitle{margin-top:14px;color:#C6CBD2;font-size:18px;max-width:56ch}
+.ticket{margin-top:30px;display:flex;flex-wrap:wrap;gap:0;border:1px solid #2A2F37}
+.ticket div{padding:10px 18px;border-right:1px solid #2A2F37;min-width:150px;flex:1}
+.ticket div:last-child{border-right:none}
+.ticket .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A93A0}
+.ticket .v{font-size:14px;color:#EDEFF2;margin-top:3px}
+/* journey */
+.journey{background:var(--ink);border-top:1px solid #23272E;padding:26px 24px 32px}
+.journey-in{max-width:880px;margin:0 auto}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
+.jhead .jt{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
+.jhead .jc{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--pink)}
+.jtrack{display:flex}
+.jstep{flex:1;text-align:center;position:relative}
+.jstep::before{content:"";position:absolute;top:16px;left:calc(-50% + 17px);width:calc(100% - 34px);height:3px;background:#2C313A;border-radius:2px}
+.jstep:first-child::before{display:none}
+.jstep.done::before{background:var(--pink-dk)}
+.jstep.now::before{background:linear-gradient(90deg,var(--pink-dk),var(--pink))}
+.jnode{width:34px;height:34px;border-radius:50%;margin:0 auto;position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;
+  border:2px solid #39404B;color:#7C8592;background:var(--ink)}
+.jstep.done .jnode{background:var(--pink-dk);border-color:var(--pink-dk);color:#fff}
+.jstep.now .jnode{background:var(--pink);border-color:#fff;color:#fff;
+  box-shadow:0 0 0 5px rgba(232,23,93,.22),0 4px 14px rgba(232,23,93,.45)}
+.jlbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7C8592;margin-top:10px}
+.jstep.done .jlbl{color:#A8AFB9}
+.jstep.now .jlbl{color:#fff;font-weight:500}
+.jhere{display:inline-block;margin-top:6px;background:var(--pink);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:8.5px;letter-spacing:.16em;padding:3px 8px;border-radius:2px}
+/* video embed */
+.video-embed{margin:6px 0 8px;border-radius:4px;overflow:hidden;border:1px solid var(--line);
+  position:relative;padding-top:56.25%;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cap{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);margin:8px 0 18px}
+/* slide stack + spine */
+.stack{max-width:880px;margin:0 auto;padding:48px 24px 24px;position:relative}
+.stack::before{content:"";position:absolute;top:60px;bottom:40px;left:24px;width:3px;background:linear-gradient(var(--pink),var(--pink-dk))}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:4px;margin:0 0 34px 44px;padding:34px 38px;position:relative;
+  box-shadow:0 1px 2px rgba(18,21,26,.05)}
+.slide::before{content:attr(data-n);position:absolute;left:-44px;top:26px;transform:translateX(-50%);
+  width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:16px;box-shadow:0 0 0 5px var(--paper)}
+.slide .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--pink-dk);margin-bottom:10px}
+.slide h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:32px;line-height:1.04;
+  text-transform:uppercase;margin-bottom:16px}
+.slide h4{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;font-size:21px;text-transform:uppercase;
+  letter-spacing:.02em;margin:26px 0 8px;color:var(--ink)}
+.slide p{margin:0 0 14px;color:#2A2F37}
+.slide p:last-child{margin-bottom:0}
+.slide strong{color:var(--ink)}
+.slide ul,.slide ol{margin:0 0 16px 22px}
+.slide li{margin-bottom:7px;color:#2A2F37}
+.slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-size:15px}
+.slide th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;color:var(--slate);border-bottom:2px solid var(--ink);padding:8px 12px}
+.slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
+.slide tr td:first-child{white-space:nowrap;font-weight:600}
+.t-scroll{overflow-x:auto}
+.slide caption{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate);text-align:left;padding-bottom:8px}
+blockquote{background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
+  border-radius:3px;padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--flag-ink)}
+blockquote p{color:var(--flag-ink)!important;margin-bottom:8px}
+blockquote::before{content:"\2699 INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.18em;margin-bottom:8px}
+.video-slot{border:2px dashed #C9CDD4;border-radius:4px;background:#F3F2EE;padding:22px;margin:6px 0 18px;
+  display:flex;align-items:center;gap:14px;color:var(--slate)}
+.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:none}
+.video-slot .t{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.flag{display:block;background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
+  border-radius:3px;padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--flag-ink)}
+.flag b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;display:block;margin-bottom:6px}
+.flag-in{display:inline;background:var(--flag-bg);border:1px solid var(--flag-line);border-radius:3px;
+  padding:1px 7px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--flag-ink)}
+/* GATE - compliance acknowledgment. Pink-bordered, real control. */
+.gate{border:2px solid var(--pink);border-radius:4px;background:#FEF2F6;padding:22px 24px;margin:10px 0 20px}
+.gate .glabel{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pink-dk);margin-bottom:10px}
+.gate .gtext{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:16px;line-height:1.5}
+.gate .gnote{font-size:14.5px;color:var(--slate);margin-bottom:16px}
+.gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid rgba(232,23,93,.25);padding-top:14px}
+.gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--pink);cursor:pointer}
+.gate .gcheck label{font-weight:600;cursor:pointer}
+.gate select{font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:9px 11px;border:1px solid var(--line);
+  background:var(--card);width:100%;max-width:340px;border-radius:2px}
+.sr-only{position:absolute;left:-9999px}
+/* asset slots - download / form / scheduler */
+.asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
+.asset:hover{border-color:var(--pink)}
+.asset .kind{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:#fff;padding:5px 9px;border-radius:2px;flex:none}
+.asset .lbl{font-weight:600}
+.quiz{list-style:none;margin:4px 0 18px 0!important}
+.quiz li{border:1px solid var(--line);border-radius:3px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:baseline;background:#FCFCFA}
+.quiz li .box{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#AEB4BC;flex:none}
+.quiz li.correct{border-color:var(--pink);background:#FEF2F6}
+.quiz li.correct .box{color:var(--pink);font-weight:700}
+.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.16em;color:var(--pink);align-self:center}
+.ui-chip{display:inline-block;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:2px;margin:2px 6px 2px 0}
+/* substep list - bucket index pages only */
+.substeps{list-style:none;margin:4px 0 0 0!important}
+.substeps li{border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--ink)}
+.substeps a:hover .sst{color:var(--pink-dk)}
+.ssn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pink);flex:none;width:22px}
+.sst{font-weight:600}
+.ssnote{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate)}
+.nextstep{background:var(--ink);color:#fff;border-radius:4px;margin:6px 0 34px 44px;padding:30px 38px}
+.nextstep .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.nextstep p{color:#D9DDE2;margin-bottom:12px}
+.nextstep strong{color:#fff}
+footer{max-width:880px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+footer a{color:var(--slate)}
+@media(max-width:640px){
+  .stack::before{left:14px}
+  .slide{margin-left:30px;padding:24px 20px}
+  .slide::before{left:-30px;width:28px;height:28px;font-size:14px}
+  .nextstep{margin-left:30px;padding:24px 20px}
+  .jlbl{display:none}
+  .jstep.now .jlbl{display:block;font-size:9px}
+  .jhere{display:none}
+  .jnode{width:28px;height:28px;font-size:13px}
+  .jstep::before{top:13px;left:calc(-50% + 14px);width:calc(100% - 28px)}
+  .ticket div{min-width:46%}
+  /* The template's nowrap first column assumes short labels. Real copy is
+     longer, so let it wrap rather than push the page sideways. */
+  .slide tr td:first-child{white-space:normal}
+  .asset{flex-wrap:wrap}
+  .asset .lbl,.video-slot .t{overflow-wrap:anywhere;min-width:0}
 }
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+</style></head><body>
 
-/* --- header --- */
-.page-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
-.page-title{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.2vw,42px);
-  line-height:1.02;text-transform:uppercase;margin-bottom:14px}
-.page-lede{font-size:17.5px;color:var(--steel);max-width:var(--measure);margin-bottom:28px}
+<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="chip">Stage 4 of 6</span></div>
 
-/* --- text --- */
-h2{font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,27px);
-  text-transform:uppercase;margin:38px 0 12px}
-h3{font-family:var(--disp);font-weight:600;font-size:18px;text-transform:uppercase;
-  letter-spacing:.02em;color:var(--steel);margin:26px 0 8px}
-p{margin-bottom:14px;max-width:var(--measure)}
-ul,ol{margin:0 0 18px 22px;max-width:var(--measure)}
-li{margin-bottom:7px}
-strong{font-weight:600}
-blockquote{border-left:3px solid var(--red);background:var(--wash);
-  padding:12px 0 12px 16px;margin:18px 0;max-width:var(--measure);color:var(--steel)}
-blockquote p:last-child{margin-bottom:0}
-hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+<div class="hero"><div class="hero-in">
+<div class="stageno">Stage 04 · Seeking Approval</div>
+<h1>Development Action Plan / Contingencies</h1>
+<p class="subtitle">Your timeline, your documents, and your sample agreements.</p>
+</div></div>
 
-/* --- tables --- */
-.t-scroll{overflow-x:auto;margin:14px 0 26px}
-table{width:100%;border-collapse:collapse;background:var(--card);font-size:14.5px;min-width:520px}
-caption{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--pipe);text-align:left;padding-bottom:8px}
-th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-  text-align:left;background:var(--ink);color:#fff;padding:9px 11px}
-td{padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 4 of 6</span></div>
+<div class="jtrack">
+<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
+<div class="jstep done"><div class="jnode">2</div><div class="jlbl">Brand Overview</div></div>
+<div class="jstep done"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
+<div class="jstep now"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div><div><span class="jhere">You are here</span></div></div>
+<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
+<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+</div></div></div>
 
-/* --- COMPLIANCE GATE --- */
-.gate{border:2px solid var(--gate-bd);background:var(--gate-bg);
-  padding:20px 22px;margin:26px 0;max-width:var(--measure)}
-.gate__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:10px}
-.gate__text{font-size:16.5px;font-weight:500;margin-bottom:16px;line-height:1.5}
-.gate__check{display:flex;align-items:flex-start;gap:11px;
-  border-top:1px solid rgba(200,16,46,.25);padding-top:14px}
-.gate__check input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;
-  margin-top:2px;accent-color:var(--red);cursor:pointer}
-.gate__check label{font-weight:600;cursor:pointer;font-size:15.5px}
-.gate__note{font-size:14.5px;color:var(--steel);margin-bottom:16px;line-height:1.5}
-.gate--select .gate__check{display:block}
-.gate--select label{display:block;font-family:var(--mono);font-size:11px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:7px}
-.gate select{font-family:var(--body);font-size:15px;padding:9px 11px;
-  border:1px solid var(--line);background:var(--card);width:100%;max-width:340px;color:var(--ink)}
-.gate + .gate{margin-top:-6px}
+<main class="stack">
 
-/* --- PLACEHOLDER FLAG --- */
-.ph{display:inline-block;font-family:var(--mono);font-size:13px;
-  border:1px dashed var(--ph-bd);background:var(--ph-bg);color:var(--ph-tx);
-  padding:1px 7px;border-radius:2px}
-.ph--block{display:block;padding:12px 14px;margin:16px 0;max-width:var(--measure);line-height:1.5}
-.ph__ref{font-weight:500;letter-spacing:.06em}
+<section class="slide" data-n="01">
+<div class="eyebrow">Slide 01 · Development Action Plan / Contingencies</div>
+<div class="video-slot"><span class="play">▶</span><span class="t">Pending — Development Action Plan and Document Acknowledgment</span></div>
+</section>
+<section class="slide" data-n="02">
+<div class="eyebrow">Slide 02 · Your Development Action Plan</div>
+<h3>Your Development Action Plan</h3>
+<p>The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.</p>
+<p>It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and your funding path. An SBA timeline moves differently than a ROBS timeline, which moves differently than cash.</p>
+<a class="asset" href="#" data-asset="download:your-development-action-plan"><span class="kind">Download</span><span class="lbl">Your Development Action Plan</span></a>
+</section>
+<section class="slide" data-n="03">
+<div class="eyebrow">Slide 03 · Your Sample Set of Agreements</div>
+<h3>Your Sample Set of Agreements</h3>
+<p>You saw these agreements listed in FDD Item 22. Now you will see them filled in for your specific situation. Your territory, your fee, your equity injection, your dates.</p>
+</section>
+<section class="slide" data-n="04">
+<div class="eyebrow">Slide 04 · What Your Franchise Developer Needs From You</div>
+<h3>What Your Franchise Developer Needs From You</h3>
+<div class="t-scroll"><table>
+<caption>What Your Franchise Developer Needs From You</caption>
+<thead><tr><th>#</th><th>Item</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Qualification Summary</td><td>Updated from Stage 2 if anything has changed</td></tr>
+<tr><td>2</td><td>Credit Report</td><td>Your Experian self-pull</td></tr>
+<tr><td>3</td><td>FDD Receipt</td><td>The executed receipt page from Item 23</td></tr>
+<tr><td>4</td><td>Territory Map</td><td>Marketing runs the DBA smell test on it</td></tr>
+<tr><td>5</td><td>Franchise Proposal</td><td>Fee investment derived from the map. Equity injection based on your funding path</td></tr>
+<tr><td>6</td><td>SBA Pre-Approval Letter</td><td>If you are funding through SBA</td></tr>
+<tr><td>7</td><td>ROBS or Self-Funding Proof</td><td>Bank or retirement statements</td></tr>
+<tr><td>8</td><td>DAP Timeline</td><td>Reviewed with your Franchise Developer</td></tr>
+<tr><td>9</td><td>Bio</td><td>Your Franchise Developer writes an executive bio. You provide a family photo</td></tr>
+<tr><td>10</td><td>Address Confirmation</td><td>Your in-territory address, or your plan to secure one</td></tr>
+</tbody>
+</table></div>
+<p>Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&amp;L for conversions of an existing business.</p>
+</section>
+<section class="slide" data-n="05">
+<div class="eyebrow">Slide 05 · Read This Carefully</div>
+<h3>Read This Carefully</h3>
+<p>Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.</p>
+<p>The DocuSign email you receive will say <strong>"Begin Signing Process."</strong> That wording is the platform's, not ours.</p>
+<p><strong>This is only an acknowledgment of receipt. It is not execution.</strong></p>
+<p>You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.</p>
+<p>Please acknowledge promptly. The hold clock does not start until you do.</p>
+</section>
+<section class="slide" data-n="06">
+<div class="eyebrow">Slide 06 · DocuSign Walkthrough</div>
+<h3>DocuSign Walkthrough</h3>
+<ol>
+<li>Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.</li>
+<li>You receive a second email from DocuSign, "Step One: Begin Signing Process."</li>
+<li>Log in with the credentials from the first email.</li>
+<li>Accept the Terms.</li>
+<li>Sign your name exactly as it appears on the document.</li>
+<li>Complete the signing process.</li>
+</ol>
+<p>If anything does not work, contact your Franchise Developer. Do not create a second account.</p>
+<p>---</p>
+</section>
 
-/* --- ASSET SLOT --- */
-.slot{display:flex;align-items:center;gap:14px;border:1px dashed var(--line);
-  background:var(--card);padding:14px 16px;margin:14px 0;max-width:var(--measure);
-  text-decoration:none;color:inherit}
-.slot:hover{border-color:var(--red)}
-.slot__kind{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:#fff;background:var(--steel);padding:4px 8px;flex:0 0 auto}
-.slot__label{font-weight:500}
-
-/* --- HARD WARNING --- */
-.warn{border-left:4px solid var(--warn-bd);background:var(--warn-bg);
-  padding:16px 18px;margin:22px 0;max-width:var(--measure)}
-.warn__label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--red);margin-bottom:8px}
-.warn p:last-child{margin-bottom:0}
-
-/* --- PROCEDURE STEPS --- */
-.steps{list-style:none;margin:16px 0 24px;padding:0;counter-reset:s;max-width:var(--measure)}
-.steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}
-.steps li::before{content:counter(s);position:absolute;left:0;top:1px;
-  font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;background:var(--red);
-  width:24px;height:24px;display:grid;place-items:center}
-
-/* --- SUB-STEP LIST (bucket index pages) --- */
-.substeps{list-style:none;margin:20px 0 0;padding:0;max-width:var(--measure)}
-.substeps li{margin-bottom:0;border-bottom:1px solid var(--line)}
-.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;
-  text-decoration:none;color:var(--ink)}
-.substeps a:hover .ss__title{color:var(--red)}
-.ss__n{font-family:var(--mono);font-size:12px;color:var(--red);flex:0 0 22px}
-.ss__title{font-weight:600}
-.ss__note{font-size:13.5px;color:var(--pipe);margin-left:auto;text-align:right}
-
-/* --- MILESTONE (bucket index pages) --- */
-.milestone{border:1px solid var(--line);border-left:4px solid var(--ink);
-  background:var(--card);padding:14px 18px;margin:22px 0;max-width:var(--measure)}
-.milestone__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:5px}
-.milestone__value{font-family:var(--disp);font-weight:700;font-size:21px;text-transform:uppercase}
-
-/* --- CLOSER --- */
-.next{border-top:2px solid var(--ink);margin-top:44px;padding-top:20px;max-width:var(--measure)}
-.next__label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--pipe);margin-bottom:8px}
-.next p{font-size:17px;font-weight:500;margin-bottom:0}
-
-@media (max-width:420px){
-  body{padding:24px 16px 48px}
-  .gate{padding:16px 15px}
-  .slot{flex-wrap:wrap;gap:9px}
-  .ss__note{margin-left:0;width:100%;text-align:left}
-  .substeps a{flex-wrap:wrap;row-gap:2px}
-}
-
-@media print{
-  body{padding:0}
-  .gate,.slot,.warn,.ph,.milestone{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .slot,.gate,.warn{break-inside:avoid}
-}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <div class="page-eyebrow">Stage 4 · Step 2 of 2</div>
-  <h1 class="page-title">Development Action Plan / Contingencies</h1>
-  <p class="page-lede">Your timeline, your documents, and your sample agreements.</p>
-
-  <a class="slot" href="#" data-asset="video:dap-and-document-acknowledgment">
-    <span class="slot__kind">Video</span>
-    <span class="slot__label">Pending: Development Action Plan and Document Acknowledgment</span>
-  </a>
-
-  <h2>Your Development Action Plan</h2>
-
-  <p>The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.</p>
-
-  <p>It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and your funding path. An SBA timeline moves differently than a ROBS timeline, which moves differently than cash.</p>
-
-  <a class="slot" href="#" data-asset="download:development-action-plan">
-    <span class="slot__kind">Download</span>
-    <span class="slot__label">Your Development Action Plan</span>
-  </a>
-
-  <h2>Your Sample Set of Agreements</h2>
-
-  <p>You saw these agreements listed in FDD Item 22. Now you will see them filled in for your specific situation. Your territory, your fee, your equity injection, your dates.</p>
-
-  <h2>What Your Franchise Developer Needs From You</h2>
-
-  <div class="t-scroll">
-    <table>
-      <caption>Documents your Franchise Developer needs from you</caption>
-      <tr><th>#</th><th>Item</th><th>Notes</th></tr>
-      <tr><td>1</td><td>Qualification Summary</td><td>Updated from Stage 2 if anything has changed</td></tr>
-      <tr><td>2</td><td>Credit Report</td><td>Your Experian self-pull</td></tr>
-      <tr><td>3</td><td>FDD Receipt</td><td>The executed receipt page from Item 23</td></tr>
-      <tr><td>4</td><td>Territory Map</td><td>Marketing runs the DBA smell test on it</td></tr>
-      <tr><td>5</td><td>Franchise Proposal</td><td>Fee investment derived from the map. Equity injection based on your funding path</td></tr>
-      <tr><td>6</td><td>SBA Pre-Approval Letter</td><td>If you are funding through SBA</td></tr>
-      <tr><td>7</td><td>ROBS or Self-Funding Proof</td><td>Bank or retirement statements</td></tr>
-      <tr><td>8</td><td>DAP Timeline</td><td>Reviewed with your Franchise Developer</td></tr>
-      <tr><td>9</td><td>Bio</td><td>Your Franchise Developer writes an executive bio. You provide a family photo</td></tr>
-      <tr><td>10</td><td>Address Confirmation</td><td>Your in-territory address, or your plan to secure one</td></tr>
-    </table>
-  </div>
-
-  <p>Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&amp;L for conversions of an existing business.</p>
-
-  <div class="warn">
-    <div class="warn__label">Read this carefully</div>
-    <p>Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.</p>
-    <p>The DocuSign email you receive will say <strong>"Begin Signing Process."</strong> That wording is the platform's, not ours.</p>
-    <p><strong>This is only an acknowledgment of receipt. It is not execution.</strong></p>
-    <p>You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.</p>
-    <p>Please acknowledge promptly. The hold clock does not start until you do.</p>
-  </div>
-
-  <h2>DocuSign Walkthrough</h2>
-
-  <ol class="steps">
-    <li>Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.</li>
-    <li>You receive a second email from DocuSign, "Step One: Begin Signing Process."</li>
-    <li>Log in with the credentials from the first email.</li>
-    <li>Accept the Terms.</li>
-    <li>Sign your name exactly as it appears on the document.</li>
-    <li>Complete the signing process.</li>
-  </ol>
-
-  <p>If anything does not work, contact your Franchise Developer. Do not create a second account.</p>
-
-  <div class="next">
-    <div class="next__label">Next</div>
-    <p>Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.</p>
-  </div>
-
+<div class="nextstep">
+<div class="eyebrow">Next Step</div>
+<p><strong>Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.</strong></p>
+<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
 </div>
-</body>
-</html>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
+</body></html>

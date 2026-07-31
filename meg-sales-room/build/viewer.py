@@ -61,16 +61,12 @@ pages, page_css = {}, None
 for rel in ORDER:
     html = open(os.path.join(DIST, rel), encoding="utf-8").read()
     if page_css is None:
-        page_css = scope(re.search(r"<style>\n(.*?)\n</style>", html, re.S).group(1), ".pane")
-    body = re.search(r'<div class="wrap">\n(.*?)\n</div>\n</body>', html, re.S).group(1)
+        page_css = scope(re.search(r"<style>\n(.*?)\n</style></head>", html, re.S).group(1), ".pane")
+    body = re.search(r"</style></head><body>(.*?)</body>", html, re.S).group(1)
     title = re.search(r"<title>(.*?)</title>", html).group(1)
     pages[rel] = (title, body)
 
-# The video rule only ships on pages that use it; the viewer needs it once.
-page_css += (".pane .video{position:relative;padding-bottom:56.25%;height:0;"
-             "margin:20px 0 26px;max-width:74ch;background:#141414}"
-             ".pane .video iframe{position:absolute;top:0;left:0;width:100%;"
-             "height:100%;border:0}")
+
 
 nav, panes = [], []
 for bucket_id, num, label in BUCKETS:
@@ -93,7 +89,7 @@ HTML = f"""<title>1-Tom-Plumber MEG Sales Room - 24 Page Preview</title>
 <style>
 :root{{
   --shell:#16181C; --shell-2:#1E2126; --edge:#2C3037;
-  --txt:#E6E4DF; --dim:#8B9099; --accent:#C8102E; --paper:#FAFAF7;
+  --txt:#E6E4DF; --dim:#8B9099; --accent:#E8175D; --paper:#FAF9F6;
   --ui:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }}

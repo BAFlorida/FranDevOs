@@ -1,103 +1,102 @@
 /* ============================================================
-   1-Tom-Plumber MEG Sales Room — Design Tokens
-   Copy these values into each page's inline <style> block.
-   Pages are self-contained; this file is the reference, not a link target.
+   1-Tom-Plumber MEG — Design Tokens
+   Extracted from the production page. These are the real values.
+   Do not substitute. Do not invent.
    ============================================================ */
 
 :root{
-  /* Color
-     WARNING: --red is a WORKING VALUE, not an official brand hex.
-     Confirm against 1TP / EverSmith brand assets before publishing. */
-  --red:      #C8102E;   /* primary accent — PLACEHOLDER */
-  --red-dk:   #9B0C23;
-  --ink:      #141414;   /* headings, high-contrast text */
-  --steel:    #3A3F45;   /* secondary text */
-  --pipe:     #6B7280;   /* tertiary, labels */
-  --paper:    #FAFAF7;   /* page background */
-  --card:     #FFFFFF;
-  --line:     #DCDAD3;   /* borders, rules */
-  --wash:     #F2F0EA;   /* blockquote / callout fill */
+  /* Core */
+  --ink:      #12151A;   /* topbar, hero, journey, nextstep, footer */
+  --paper:    #FAF9F6;   /* page background */
+  --card:     #FFFFFF;   /* slide cards */
+  --pink:     #E8175D;   /* PRIMARY ACCENT — spine, nodes, eyebrows, chips */
+  --pink-dk:  #B80E48;   /* links, completed nodes, spine gradient end */
+  --slate:    #5B6470;   /* secondary text, captions, footer */
+  --line:     #E5E2DC;   /* borders, table rules */
 
-  /* Semantic */
-  --gate-bd:  #C8102E;   /* compliance gate border */
-  --gate-bg:  #FDF6F7;
-  --ph-bd:    #E8B84B;   /* placeholder flag */
-  --ph-bg:    #FBF5E4;
-  --ph-tx:    #7A5B10;
-  --warn-bd:  #C8102E;   /* hard warning callout */
-  --warn-bg:  #FDF6F7;
+  /* Amber flag — internal notes and placeholders */
+  --flag-bg:   #FBF3D6;
+  --flag-ink:  #7A5E12;
+  --flag-line: #E4CE8A;
 
-  /* Type */
-  --disp: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-  --body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-
-  /* Scale */
-  --t-h1:   clamp(28px, 4.2vw, 42px);
-  --t-h2:   clamp(21px, 2.6vw, 27px);
-  --t-h3:   18px;
-  --t-body: 16px;
-  --t-sm:   14px;
-  --t-xs:   11px;
-
-  /* Space */
-  --s-1: 6px;
-  --s-2: 12px;
-  --s-3: 20px;
-  --s-4: 32px;
-  --s-5: 52px;
-
-  /* Measure */
-  --measure: 74ch;
+  /* Dark-surface support (hero / journey / nextstep) */
+  --on-dark-body:   #C6CBD2;
+  --on-dark-muted:  #9AA3AE;
+  --on-dark-dim:    #8A93A0;
+  --on-dark-value:  #EDEFF2;
+  --on-dark-next:   #D9DDE2;
+  --rule-dark:      #2A2F37;
+  --rule-dark-2:    #23272E;
+  --node-off-bd:    #39404B;
+  --node-off-tx:    #7C8592;
+  --node-track:     #2C313A;
 }
 
-/* Google Fonts link to include in each page <head>:
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-*/
-
 /* ============================================================
-   COMPONENT CONTRACTS
-   These class names must be consistent across all 24 pages.
+   TYPE
    ============================================================ */
 
 /*
-.page-eyebrow    — "Stage 3 · Step 1 of 4", mono, uppercase, --pipe
-.page-title      — H1, --disp, 800, uppercase
-.page-lede       — first paragraph, --t-body +1, --steel
+  Display   Barlow Condensed 600 / 700    uppercase, tight leading
+  Body      IBM Plex Sans 400 / 600       16.5px, line-height 1.62
+  Utility   IBM Plex Mono 500             eyebrows, labels, captions, footer
 
-.gate            — compliance gate wrapper. Border 2px --gate-bd, bg --gate-bg.
-.gate__label     — mono, uppercase, --red, "Required acknowledgment"
-.gate__text      — the statement itself, quoted, larger than body
-.gate__check     — <input type="checkbox"> + <label>, 20px box, real control
-.gate--select    — variant for the two funding self-assessment dropdowns
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 
-.ph              — placeholder flag. Inline. Dashed 1px --ph-bd, bg --ph-bg,
-                   color --ph-tx, mono, --t-sm. Never silently resolved.
-
-.slot            — asset slot. Dashed border --line, bg --card.
-.slot__kind      — mono uppercase badge: VIDEO / DOWNLOAD / FORM / SCHEDULER / INTERACTIVE
-.slot__label     — the asset name
-.slot[data-asset]— attribute names the required asset
-
-.warn            — hard warning callout. Left border 4px --warn-bd, bg --warn-bg.
-                   Used for "acknowledgment is not execution" and Schedule D.
-
-.steps           — ordered procedure list (Experian pull, ROBS, e-sign, execution)
-.steps li        — marker in --red, mono
-
-.next            — closing block. Top rule 2px --ink. States the next action.
+  hero h1       clamp(40px,7vw,68px)  Barlow Condensed 700 uppercase, line-height .98
+  slide h3      32px                  Barlow Condensed 700 uppercase
+  slide h4      21px                  Barlow Condensed 600 uppercase
+  body          16.5px / 1.62         IBM Plex Sans 400
+  eyebrow       10.5px                Mono, ls .2em, uppercase, --pink-dk
+  hero stageno  15px                  Barlow Condensed 700, ls .32em, --pink
+  footer        11px                  Mono, ls .1em, uppercase, --slate
 */
 
 /* ============================================================
-   FLOOR REQUIREMENTS
+   COMPONENT CONTRACTS — names must match across all 24 pages
    ============================================================ */
 
 /*
-  - Responsive to 360px. Tables scroll horizontally below 600px.
-  - :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
-  - @media (prefers-reduced-motion: reduce) — no transitions or scroll behavior
-  - Every checkbox has an explicit <label for>
-  - Body copy never exceeds --measure
-  - Print: gates and slots keep their borders, backgrounds forced visible
+  PAGE CHROME — every page carries all four
+  .topbar       dark bar. "MEG." wordmark (pink period) + subtitle + stage chip right
+  .hero         dark block. .stageno (pink) + h1 + .subtitle
+  .journey      dark block. .jtrack of .jstep nodes, .done / .now states
+  footer        mono, two spans, space-between
+
+  SPINE + SLIDES — the signature element
+  .stack        max-width 880px. ::before draws the 3px pink gradient spine at left:24px
+  .slide        white card, margin-left 44px. data-n renders the numbered pink node on the spine
+  .slide .eyebrow  "Slide 03 · Territory"
+  .nextstep     dark card, same left margin as slides, closes the page
+
+  CONTENT
+  .video-embed  16:9 iframe wrapper, 1px border, black bg
+  .video-cap    mono caption below the embed, prefixed with a play triangle
+  .video-slot   dashed placeholder for a pending video, dark circular play button
+  .quiz         knowledge check. .correct adds pink border, tinted bg, "CORRECT" label
+  .flag         amber block for placeholders. b element is the mono label
+  blockquote    amber block, auto-prefixed "⚙ INTERNAL — BUILD AUTOMATION"
+  .ui-chip      dark pill for UI actions ("Mark Complete")
+  .mono         utility
+
+  JOURNEY STATES
+  .jstep.done   node filled --pink-dk, track behind it --pink-dk
+  .jstep.now    node filled --pink, white border, pink glow, gradient track
+  .jhere        "You are here" pink badge under the current node
+*/
+
+/* ============================================================
+   FLOOR
+   ============================================================ */
+
+/*
+  :focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  Breakpoint 640px:
+    spine left:24px -> 14px, slides margin-left 44px -> 30px
+    nodes 34px -> 28px
+    .jlbl hidden except on .now
+    .jhere hidden
 */
