@@ -13,6 +13,12 @@ DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 from build import ORDER  # noqa: E402
 
+JOHNS = {
+    "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
+    "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
+    "02-brand-overview/02-fdd.html",
+}
+
 BUCKETS = [
     ("01-welcome", "1", "Welcome"),
     ("02-brand-overview", "2", "Brand Overview"),
@@ -76,7 +82,9 @@ for bucket_id, num, label in BUCKETS:
         title, _ = pages[rel]
         leaf = rel.split("/")[1]
         kind = "idx" if leaf == "index.html" else "sub"
-        nav.append(f'<button class="nav {kind}" data-page="{rel}" type="button">{title}</button>')
+        tag = ' <span class="own">John</span>' if rel in JOHNS else ""
+        nav.append(f'<button class="nav {kind}" data-page="{rel}" type="button">'
+                   f'{title}{tag}</button>')
     nav.append("</div>")
 
 for rel in ORDER:
@@ -86,6 +94,19 @@ for rel in ORDER:
 meta = {r: pages[r][0] for r in ORDER}
 
 HTML = f"""<title>1-Tom-Plumber MEG Sales Room - 24 Page Preview</title>
+<script>
+/* Without a viewport meta a phone lays the page out at ~980px and scales it
+   down, so the max-width:860px rules never fire and the Pages button stays
+   hidden. Supply one if the host page has not. */
+(function(){{
+  if (!document.querySelector('meta[name="viewport"]')) {{
+    var m = document.createElement('meta');
+    m.name = 'viewport';
+    m.content = 'width=device-width,initial-scale=1';
+    (document.head || document.documentElement).appendChild(m);
+  }}
+}})();
+</script>
 <style>
 :root{{
   --shell:#16181C; --shell-2:#1E2126; --edge:#2C3037;
@@ -171,6 +192,8 @@ body{{font-family:var(--ui);background:var(--shell);color:var(--txt);
       <button class="pg" id="next" type="button">Next &rarr;</button>
     </span>
   </div>
+  <div class="hint">Pages tagged <span class="own">John</span> are his rebuilds. Mine are shown
+     for layout only - his copy is newer.</div>
   <div class="wrapper">{''.join(panes)}</div>
 </div>
 
