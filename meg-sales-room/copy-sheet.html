@@ -1,4 +1,15 @@
 <title>1-Tom-Plumber MEG - Page Source for CMS Upload</title>
+<script>
+/* Supply a viewport meta if the host page has not, or a phone lays this out
+   at ~980px and scales it down. */
+(function(){
+  if (!document.querySelector('meta[name="viewport"]')) {
+    var m = document.createElement('meta');
+    m.name = 'viewport'; m.content = 'width=device-width,initial-scale=1';
+    (document.head || document.documentElement).appendChild(m);
+  }
+})();
+</script>
 <style>
 :root{
   --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
@@ -47,6 +58,11 @@ main{max-width:940px;margin:0 auto;padding:24px}
   text-transform:uppercase;padding:9px 16px;cursor:pointer}
 .copy:hover{background:var(--pink);color:#fff}
 .copy[data-done="1"]{background:var(--ok);color:#fff}
+.held{flex:none;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate);border:1px dashed var(--line);
+  padding:8px 14px;border-radius:3px}
+.row.is-john{opacity:.62}
+.row.is-john .path{font-weight:500}
 details{border-top:1px solid var(--line)}
 summary{cursor:pointer;padding:10px 16px;font-family:ui-monospace,Menlo,monospace;
   font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
@@ -75,17 +91,17 @@ textarea{display:block;width:100%;height:300px;border:0;border-top:1px solid var
 
   <div class="bar">
     <button class="copy" type="button" id="expand">Expand all</button>
-    <span class="count" id="status">24 pages ready</span>
+    <span class="count" id="status">19 ready to copy · 5 held for John</span>
   </div>
 
-<article class="row" id="r1">
+<article class="row is-john" id="r1">
   <div class="head">
     <span class="n">01</span>
     <div class="id">
       <div class="path">01-welcome/index.html</div>
-      <div class="meta">Welcome · Bucket index · 107 KB</div>
+      <div class="meta">Welcome · Bucket index · 107 KB · newer copy lives in John's build</div>
     </div>
-    <button class="copy" type="button" data-target="src1">Copy HTML</button>
+    <span class="held">John owns this</span>
   </div>
   <details>
     <summary>View source</summary>
@@ -526,14 +542,14 @@ renders as illegible noise, whereas bars read as &quot;text&quot; cleanly. --&gt
 </textarea>
   </details>
 </article>
-<article class="row" id="r2">
+<article class="row is-john" id="r2">
   <div class="head">
     <span class="n">02</span>
     <div class="id">
       <div class="path">01-welcome/01-mep-end-to-end.html</div>
-      <div class="meta">Welcome · Sub-step · 107 KB</div>
+      <div class="meta">Welcome · Sub-step · 107 KB · newer copy lives in John's build</div>
     </div>
-    <button class="copy" type="button" data-target="src2">Copy HTML</button>
+    <span class="held">John owns this</span>
   </div>
   <details>
     <summary>View source</summary>
@@ -971,14 +987,14 @@ renders as illegible noise, whereas bars read as &quot;text&quot; cleanly. --&gt
 </textarea>
   </details>
 </article>
-<article class="row" id="r3">
+<article class="row is-john" id="r3">
   <div class="head">
     <span class="n">03</span>
     <div class="id">
       <div class="path">02-brand-overview/index.html</div>
-      <div class="meta">Brand Overview · Bucket index · 107 KB</div>
+      <div class="meta">Brand Overview · Bucket index · 107 KB · newer copy lives in John's build</div>
     </div>
-    <button class="copy" type="button" data-target="src3">Copy HTML</button>
+    <span class="held">John owns this</span>
   </div>
   <details>
     <summary>View source</summary>
@@ -1419,14 +1435,14 @@ renders as illegible noise, whereas bars read as &quot;text&quot; cleanly. --&gt
 </textarea>
   </details>
 </article>
-<article class="row" id="r4">
+<article class="row is-john" id="r4">
   <div class="head">
     <span class="n">04</span>
     <div class="id">
       <div class="path">02-brand-overview/01-qualification-summary.html</div>
-      <div class="meta">Brand Overview · Sub-step · 108 KB</div>
+      <div class="meta">Brand Overview · Sub-step · 108 KB · newer copy lives in John's build</div>
     </div>
-    <button class="copy" type="button" data-target="src4">Copy HTML</button>
+    <span class="held">John owns this</span>
   </div>
   <details>
     <summary>View source</summary>
@@ -1884,14 +1900,14 @@ renders as illegible noise, whereas bars read as &quot;text&quot; cleanly. --&gt
 </textarea>
   </details>
 </article>
-<article class="row" id="r5">
+<article class="row is-john" id="r5">
   <div class="head">
     <span class="n">05</span>
     <div class="id">
       <div class="path">02-brand-overview/02-fdd.html</div>
-      <div class="meta">Brand Overview · Sub-step · 109 KB</div>
+      <div class="meta">Brand Overview · Sub-step · 109 KB · newer copy lives in John's build</div>
     </div>
-    <button class="copy" type="button" data-target="src5">Copy HTML</button>
+    <span class="held">John owns this</span>
   </div>
   <details>
     <summary>View source</summary>

@@ -16,6 +16,15 @@ DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 
 from build import ORDER  # noqa: E402
+
+# John has rebuilt these five with newer copy. They are listed so the sheet
+# reads in portal order, but flagged and their copy button disarmed, so his
+# work cannot be pasted over by accident.
+JOHNS = {
+    "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
+    "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
+    "02-brand-overview/02-fdd.html",
+}
 from parse import BUCKETS  # noqa: E402
 
 rows = []
@@ -25,14 +34,20 @@ for i, rel in enumerate(ORDER, 1):
     leaf = rel.split("/")[1]
     kind = "Bucket index" if leaf == "index.html" else "Sub-step"
     kb = f"{len(src.encode('utf-8')) / 1024:.0f} KB"
-    rows.append(f"""<article class="row" id="r{i}">
+    johns = rel in JOHNS
+    btn = ('<span class="held">John owns this</span>' if johns else
+           f'<button class="copy" type="button" data-target="src{i}">Copy HTML</button>')
+    meta = f"{html.escape(stage)} · {kind} · {kb}"
+    if johns:
+        meta += " · newer copy lives in John's build"
+    rows.append(f"""<article class="row{' is-john' if johns else ''}" id="r{i}">
   <div class="head">
     <span class="n">{i:02d}</span>
     <div class="id">
       <div class="path">{html.escape(rel)}</div>
-      <div class="meta">{html.escape(stage)} · {kind} · {kb}</div>
+      <div class="meta">{meta}</div>
     </div>
-    <button class="copy" type="button" data-target="src{i}">Copy HTML</button>
+    {btn}
   </div>
   <details>
     <summary>View source</summary>
@@ -41,6 +56,17 @@ for i, rel in enumerate(ORDER, 1):
 </article>""")
 
 PAGE = """<title>1-Tom-Plumber MEG - Page Source for CMS Upload</title>
+<script>
+/* Supply a viewport meta if the host page has not, or a phone lays this out
+   at ~980px and scales it down. */
+(function(){
+  if (!document.querySelector('meta[name="viewport"]')) {
+    var m = document.createElement('meta');
+    m.name = 'viewport'; m.content = 'width=device-width,initial-scale=1';
+    (document.head || document.documentElement).appendChild(m);
+  }
+})();
+</script>
 <style>
 :root{
   --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
@@ -89,6 +115,11 @@ main{max-width:940px;margin:0 auto;padding:24px}
   text-transform:uppercase;padding:9px 16px;cursor:pointer}
 .copy:hover{background:var(--pink);color:#fff}
 .copy[data-done="1"]{background:var(--ok);color:#fff}
+.held{flex:none;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate);border:1px dashed var(--line);
+  padding:8px 14px;border-radius:3px}
+.row.is-john{opacity:.62}
+.row.is-john .path{font-weight:500}
 details{border-top:1px solid var(--line)}
 summary{cursor:pointer;padding:10px 16px;font-family:ui-monospace,Menlo,monospace;
   font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
@@ -117,7 +148,7 @@ textarea{display:block;width:100%;height:300px;border:0;border-top:1px solid var
 
   <div class="bar">
     <button class="copy" type="button" id="expand">Expand all</button>
-    <span class="count" id="status">24 pages ready</span>
+    <span class="count" id="status">19 ready to copy · 5 held for John</span>
   </div>
 
 __ROWS__
