@@ -23,8 +23,8 @@ import os
 import re
 
 from shell import (
-    asset, flag, flag_inline, gate, gate_select, next_step, render, substeps,
-    table, video, video_slot,
+    asset, btnrow, flag, flag_inline, gate, gate_select, next_step, render,
+    substeps, table, video, video_slot,
 )
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -331,6 +331,22 @@ def build_page(rel, lines, all_paths, titles):
     flush()
 
     slides = [s for s in slides if s[2]]
+
+    # Runs of adjacent buttons become one .btnrow, so they share a gap rather
+    # than each carrying its own vertical margin.
+    for sl in slides:
+        merged, run = [], []
+        for part in sl[2]:
+            if part.startswith('<a class="btn"'):
+                run.append(part)
+                continue
+            if run:
+                merged.append(btnrow(run) if len(run) > 1 else run[0])
+                run = []
+            merged.append(part)
+        if run:
+            merged.append(btnrow(run) if len(run) > 1 else run[0])
+        sl[2] = merged
 
     return render(
         title=meta.get("H1", rel),

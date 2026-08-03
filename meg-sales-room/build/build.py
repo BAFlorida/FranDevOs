@@ -123,10 +123,14 @@ def check(pages):
         if "<table>" in html and 't-scroll' not in html:
             fails.append(f"{path}: a table is not in a scroll container")
 
-        # Asset slots name their asset.
-        for a in re.findall(r'<a class="asset"[^>]*>', html):
+        # Every actionable link is a .btn and names the asset it stands for.
+        if '<a class="asset"' in html:
+            fails.append(f"{path}: uses .asset; the system uses .btn for links")
+        for a in re.findall(r'<a class="btn"[^>]*>', html):
             if "data-asset=" not in a:
-                fails.append(f"{path}: an .asset has no data-asset attribute")
+                fails.append(f"{path}: a .btn has no data-asset attribute")
+            if 'rel="noopener"' not in a:
+                fails.append(f"{path}: a .btn opens a new tab without rel=noopener")
 
         # Videos are embed URLs from the known list, in a 16:9 wrapper.
         for vid in re.findall(r"youtube\.com/embed/([A-Za-z0-9_-]+)", html):
@@ -183,7 +187,7 @@ def stats(html):
         flags=len(re.findall(r'class="flag[ "]', html)),
         vids=len(re.findall(r"youtube\.com/embed/", html)),
         pending=len(re.findall(r'class="video-slot"', html)),
-        assets=len(re.findall(r'<a class="asset"', html)),
+        assets=len(re.findall(r'<a class="btn"', html)),
     )
 
 

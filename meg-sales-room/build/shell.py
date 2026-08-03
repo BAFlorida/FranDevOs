@@ -163,8 +163,19 @@ def video_slot(label):
 
 
 def asset(kind, label, ref):
-    return (f'<a class="asset" href="#" data-asset="{ref}">'
-            f'<span class="kind">{kind}</span><span class="lbl">{label}</span></a>')
+    """Every actionable link is a .btn.
+
+    The template's own comment is explicit: "Every actionable link on the page
+    uses this one class - forms, scheduler and B-Verify alike - so there is a
+    single button appearance to maintain." data-asset is kept so the real URL
+    can be wired by attribute rather than by hunting through markup.
+    """
+    return (f'<a class="btn" href="#" data-asset="{ref}" target="_blank" '
+            f'rel="noopener">{label} <span aria-hidden="true">&#8599;</span></a>')
+
+
+def btnrow(buttons):
+    return '<div class="btnrow">' + "".join(buttons) + "</div>"
 
 
 def flag(text, ref=None):
