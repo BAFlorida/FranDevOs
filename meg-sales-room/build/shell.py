@@ -29,6 +29,16 @@ def _grab(pattern, what):
 
 CSS = _grab(r"<style>\n(.*?)\n</style>", "the <style> block")
 
+# The type system is embedded rather than linked. A linked webfont dies wherever
+# the outbound request is blocked - a strict CMS, an offline copy, a page under
+# a content policy - and Anton then falls back to a generic sans, which is
+# exactly the "greyed out headline" failure. Regenerate with subset_fonts.py.
+_FONTS_CSS = os.path.join(HERE, "fonts.css")
+FONTS_EMBEDDED = os.path.exists(_FONTS_CSS)
+if FONTS_EMBEDDED:
+    with open(_FONTS_CSS, encoding="utf-8") as _fh:
+        CSS = _fh.read() + "\n" + CSS
+
 # Refinements the real content needs, kept out of spec/page-template.html so
 # the handed-over template stays pristine and these stay reviewable.
 CSS += """
@@ -38,7 +48,9 @@ CSS += """
    rather than `hidden` so the caution sign can still stand up out of the
    puddle on the y axis, which the template's comment calls load-bearing. */
 .journey{overflow-x:clip}"""
-FONTS = "\n".join(re.findall(r'<link[^>]*(?:preconnect|fonts\.googleapis)[^>]*>', _T))
+# With the faces embedded there is nothing to preconnect or fetch.
+FONTS = ("" if FONTS_EMBEDDED else
+         "\n".join(re.findall(r'<link[^>]*(?:preconnect|fonts\.googleapis)[^>]*>', _T)))
 SWOOSH = _grab(r'(<svg class="hero-swoosh".*?</svg>)', "the hero swoosh svg")
 SPILL = _grab(r'(<div class="spill">.*?</svg></div>)', "the journey leak svg")
 

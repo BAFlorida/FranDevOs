@@ -19,7 +19,7 @@ DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 
 from parse import BUCKETS, VIDEOS, all_pages  # noqa: E402
-from shell import LOGO_MISSING  # noqa: E402
+from shell import FONTS_EMBEDDED, LOGO_MISSING  # noqa: E402
 
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
@@ -102,12 +102,19 @@ def check(pages):
             if f'<label for="{sel_id}"' not in html:
                 fails.append(f"{path}: select #{sel_id} has no <label for>")
 
-        # Self-contained.
-        no_fonts = re.sub(r"<link[^>]*fonts\.googleapis\.com[^>]*>", "", html)
-        if re.search(r'<link[^>]+rel="stylesheet"', no_fonts):
-            fails.append(f"{path}: links a non-font stylesheet")
+        # Self-contained: no stylesheet, no script, and - since the faces are
+        # embedded - no outbound request of any kind except the video iframes.
+        if re.search(r'<link[^>]+rel="stylesheet"', html):
+            fails.append(f"{path}: links an external stylesheet")
         if "<script" in html:
             fails.append(f"{path}: contains a <script> tag")
+        if html.count("@font-face") != 3:
+            fails.append(f"{path}: expected 3 embedded @font-face rules, "
+                         f"found {html.count('@font-face')}")
+        outbound = {u for u in re.findall(r'(?:href|src)="(https?://[^"]+)"', html)
+                    if "youtube.com/embed/" not in u}
+        if outbound:
+            fails.append(f"{path}: outbound request(s) besides video: {sorted(outbound)}")
 
         # Tables scroll and are captioned.
         for tbl in re.findall(r"<table>(.*?)</table>", html, re.S):

@@ -1,0 +1,19 @@
+Embedded typefaces
+==================
+
+The MEG pages embed three typefaces as subset woff2 data URIs so that no
+outbound font request is needed. All three are licensed under the SIL Open
+Font License, Version 1.1, which permits embedding in documents.
+
+  Anton         - Vernon Adams, Cyreal.  https://fonts.google.com/specimen/Anton
+  Montserrat    - Julieta Ulanovsky et al. https://fonts.google.com/specimen/Montserrat
+  Nunito Sans   - Vernon Adams, Jacques Le Bailly.
+                  https://fonts.google.com/specimen/Nunito+Sans
+
+Full licence text: https://openfontlicense.org/
+
+Per tokens.css these stand in for the brand faces: Anton for Abolition,
+Montserrat for Gotham, Nunito Sans for Avenir Next. If 1-Tom-Plumber licenses
+the real faces, replace the woff2 files here, rerun build/subset_fonts.py and
+rebuild. Note that Abolition, Gotham and Avenir Next are commercial faces whose
+licences must be checked before they are embedded as data URIs.
