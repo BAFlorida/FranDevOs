@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OBB Decision Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --everblue:#00B3C6; --everblue-dk:#00808F; --everblue-bg:#E5F7F9;
+  --navy:#12303F; --navy-bg:#EAF0F2;
+  --indigo:#574AA8; --indigo-dk:#40357E; --indigo-bg:#EEECF9;
+  --ink:#22343E; --ink2:#5B6E78; --ink3:#8A9AA2;
+  --amber:#B8830F; --amber-bg:#FCF3E0;
+  --coral:#C0392B; --coral-bg:#FBEDEB;
+  --green:#1E7A45; --green-bg:#E8F5EC;
+  --slate:#3E5C6B; --slate-bg:#EDF2F4;
+  --paper:#FFFFFF; --bg:#F4F8F9;
+  --line:#DCE5E8; --line-dk:#C2D0D5;
+
+  /* spacing scale — hold to these */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:34px;
+  /* elevation — two levels, no more */
+  --sh1:0 1px 2px rgba(18,48,63,.06), 0 1px 1px rgba(18,48,63,.04);
+  --sh2:0 2px 4px rgba(18,48,63,.07), 0 6px 16px -6px rgba(18,48,63,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Poppins",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;font-size:13px;line-height:1.45;
+  font-variant-numeric:tabular-nums}
+
+header{background:var(--paper);border-bottom:3px solid var(--everblue);padding:12px 20px 0;
+  position:sticky;top:0;z-index:20;box-shadow:var(--sh1)}
+.hrow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+h1{font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+h1 span{font-weight:500;color:var(--ink3);font-size:11px;margin-left:var(--s2);letter-spacing:.06em;
+  text-transform:uppercase}
+.asof{font-size:11.5px;color:var(--ink3)}
+.asof b{color:var(--navy);font-weight:600}
+.tabs{display:flex;gap:2px;margin-top:11px}
+.tb{font-family:inherit;font-size:11.5px;font-weight:600;padding:8px 15px 9px;cursor:pointer;
+  background:transparent;color:var(--ink2);border:0;border-bottom:3px solid transparent;
+  margin-bottom:-3px;letter-spacing:.01em;transition:color .12s,border-color .12s}
+.tb:hover{color:var(--navy)}
+.tb.on{color:var(--navy);border-bottom-color:var(--navy)}
+.tb .n{font-size:9px;font-weight:700;opacity:.45;margin-right:6px}
+.tb:focus-visible{outline:2px solid var(--everblue);outline-offset:-2px}
+
+.wrap{padding:var(--s5) 20px 60px;max-width:1500px;margin:0 auto}
+.page{display:none} .page.on{display:block}
+
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:var(--s3);margin-bottom:var(--s5)}
+.k{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--everblue);
+  padding:11px 13px 12px;box-shadow:var(--sh1)}
+.k.g{border-top-color:var(--green)} .k.a{border-top-color:var(--amber)} .k.r{border-top-color:var(--coral)}
+.k.i{border-top-color:var(--indigo)} .k.s{border-top-color:var(--slate)}
+.kl{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
+.kv{font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-.035em;line-height:1.05;margin-top:var(--s1)}
+.k.g .kv{color:var(--green)} .k.a .kv{color:var(--amber)} .k.r .kv{color:var(--coral)}
+.k.i .kv{color:var(--indigo-dk)} .k.s .kv{color:var(--slate)}
+.kd{font-size:10.5px;margin-top:3px;color:var(--ink3)}
+.kd .up{color:var(--green);font-weight:700} .kd .dn{color:var(--coral);font-weight:700}
+.spark{margin-top:var(--s2);display:block}
+
+h2{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);
+  padding-bottom:var(--s2);border-bottom:2px solid var(--navy);margin:var(--s6) 0 0}
+h2:first-of-type{margin-top:0}
+h2 em{font-style:normal;color:var(--ink3);text-transform:none;letter-spacing:0;font-weight:400;
+  font-size:11.5px;margin-left:var(--s2)}
+
+table{width:100%;border-collapse:separate;border-spacing:0;margin-top:var(--s3);background:var(--paper);
+  box-shadow:var(--sh1)}
+th{font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--navy);
+  text-align:left;padding:8px;white-space:nowrap;border-bottom:2px solid var(--everblue)}
+th.r,td.r{text-align:right} th.c,td.c{text-align:center}
+td{padding:6px 8px;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.nm{font-weight:600;color:var(--navy)}
+td.n{font-weight:600;color:var(--navy)}
+tr.g td{background:var(--green-bg)} tr.r td{background:var(--coral-bg)} tr.a td{background:var(--amber-bg)}
+tr.i td{background:var(--indigo-bg)} tr.s td{background:var(--slate-bg)}
+tr.off td{opacity:.45}
+tr.tot td{background:var(--navy-bg);font-weight:700;border-top:2px solid var(--navy);color:var(--navy)}
+tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
+.up{color:var(--green);font-weight:700} .dn{color:var(--coral);font-weight:700}
+.mut{color:var(--ink3)}
+
+.p{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.075em;text-transform:uppercase;
+  padding:3px 8px;border:1px solid var(--line-dk);color:var(--ink3);border-radius:2px;line-height:1.3}
+.p.f{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.p.h{border-color:var(--everblue);color:var(--everblue-dk);background:var(--everblue-bg)}
+.p.w{border-color:var(--amber);color:var(--amber);background:var(--amber-bg)}
+.p.c{border-color:var(--coral);color:var(--coral);background:var(--coral-bg)}
+.p.i{border-color:var(--indigo);color:var(--indigo-dk);background:var(--indigo-bg)}
+.p.s{border-color:var(--slate);color:var(--slate);background:var(--slate-bg)}
+
+.bar{height:14px;background:var(--line);position:relative;min-width:82px;display:inline-block;vertical-align:middle;
+  border-radius:1px;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--everblue);opacity:.88}
+.bar.a i{background:var(--amber)} .bar.r i{background:var(--coral)} .bar.g i{background:var(--green)}
+.bar.s i{background:var(--slate)} .bar.ind i{background:var(--indigo)}
+.bar span{position:absolute;right:4px;top:0;line-height:14px;font-size:9px;font-weight:700;color:var(--navy)}
+
+.cf{letter-spacing:1.5px;font-size:11px;color:var(--everblue-dk)}
+.cf .o{color:var(--line-dk)}
+
+/* stage funnel (existing tabs) */
+.fn{margin-top:var(--s3)}
+.fs{display:grid;grid-template-columns:150px 1fr 300px;gap:var(--s3);align-items:center;margin-bottom:5px}
+.fsl{font-size:11.5px;font-weight:600;color:var(--navy);text-align:right}
+.fsb{height:30px;background:var(--everblue);position:relative;color:#fff;display:flex;align-items:center;padding:0 11px}
+.fsb.s2{background:#3FC6D5;color:var(--navy)} .fsb.s3{background:#00A5B8}
+.fsb.s4{background:var(--everblue-dk)} .fsb.s5{background:var(--navy)}
+.fsb.anon{background:var(--slate)} .fsb.named{background:var(--indigo)}
+.fsv{font-size:14px;font-weight:700}
+.fsn{font-size:10.5px;color:var(--ink2)}
+.fsn b{color:var(--navy);font-weight:600}
+
+/* depth pyramid (existing tab) */
+.dep{display:grid;grid-template-columns:118px 1fr 165px 1fr;gap:10px;align-items:center;margin-bottom:6px}
+.depl{font-size:11.5px;font-weight:600;color:var(--navy)}
+.depb{height:26px;background:var(--line);position:relative}
+.depb i{position:absolute;left:0;top:0;bottom:0;background:var(--indigo);opacity:.82}
+.depb.s i{background:var(--slate)}
+.depb span{position:absolute;left:9px;top:0;line-height:26px;font-size:11.5px;font-weight:700;color:#fff}
+.depa{font-size:10.5px;color:var(--ink2)}
+
+.empty{background:repeating-linear-gradient(45deg,#F7FAFB,#F7FAFB 4px,#EDF2F4 4px,#EDF2F4 8px);
+  color:var(--ink3);text-align:center;font-size:9.5px}
+.h1c{background:#EEF9FA}.h2c{background:#D6F0F4}.h3c{background:#AEE3EA}.h4c{background:#7FD3DE}
+
+.note{font-size:11px;color:var(--ink3);margin-top:var(--s2);max-width:112ch}
+.mock{background:var(--indigo-bg);border:1px solid #C9C3EC;padding:7px 12px;font-size:10.5px;color:var(--indigo-dk);
+  font-weight:600;margin-bottom:var(--s4);letter-spacing:.03em;border-radius:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s3)}
+
+/* ============ FUNNEL HOMEPAGE ============ */
+.fnl{background:var(--paper);border:1px solid var(--line);box-shadow:var(--sh2);
+  padding:var(--s4) var(--s5) var(--s2);margin-bottom:var(--s4)}
+#fsvg{width:100%;height:auto;display:block}
+#fsvg text{font-family:"Poppins",system-ui,sans-serif}
+.frn{font-size:18px;font-weight:600;fill:var(--navy)}
+.frs{font-size:13px;fill:var(--ink3)}
+.frv{font-size:23px;font-weight:700;fill:var(--navy);letter-spacing:-.03em}
+.frs2{font-size:13px;fill:var(--ink2)}
+.fbl{font-size:13px;font-weight:600;fill:#fff}
+.fbls{font-size:10px;font-weight:700;letter-spacing:.16em;fill:#fff;fill-opacity:.75}
+.fsg-n{font-size:11px;font-weight:700;letter-spacing:.19em}
+.fsg-t{font-size:28px;font-weight:700;fill:var(--navy);letter-spacing:-.03em}
+.fsg-s{font-size:14px;fill:var(--ink2)}
+.fsg-r{font-size:14px;font-weight:600;fill:var(--ink2)}
+.fpt{font-size:13px;font-weight:700;text-anchor:middle;fill:var(--navy)}
+.fpb{fill:#fff;stroke:var(--line-dk);stroke-width:1}
+.fpb.conv{stroke:var(--everblue)} .fpt.conv{fill:var(--everblue-dk)}
+.fpb.ind{stroke:var(--indigo)} .fpt.ind{fill:var(--indigo-dk)}
+.fpb.sl{stroke:var(--slate)} .fpt.sl{fill:var(--slate)}
+.fpb.brk{fill:var(--bg);stroke:var(--line-dk);stroke-dasharray:3 3}
+.fpt.brk{font-size:11px;letter-spacing:.1em;font-weight:700;fill:var(--ink3)}
+.fbrk{stroke:var(--line-dk);stroke-width:1;stroke-dasharray:3 3}
+.fspine{stroke:var(--indigo);stroke-width:2;opacity:.35}
+.fret{fill:none;stroke:var(--slate);stroke-width:2;stroke-dasharray:6 5;opacity:.75}
+.fretx{font-size:13px;fill:var(--ink2)}
+.fcapx{font-size:10px;font-weight:700;letter-spacing:.15em;fill:var(--slate);text-anchor:middle}
+.flead{stroke:var(--line-dk);stroke-width:1;stroke-dasharray:2 3}
+.fhit{fill:transparent}
+.fstep[data-go]{cursor:pointer}
+.fstep[data-go]:hover .fhit{fill:rgba(0,179,198,.07)}
+.fstep[data-go]:hover .fbnd{filter:brightness(1.09)}
+.fstep:focus{outline:none}
+.fstep[data-go]:focus-visible .fhit{fill:rgba(0,179,198,.12);stroke:var(--everblue);stroke-width:1.5}
+#fsvg .fstep{opacity:0}
+#fsvg.go .fstep{animation:fin .32s cubic-bezier(.2,.75,.3,1) both}
+@keyframes fin{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  #fsvg .fstep,#fsvg.go .fstep{opacity:1;animation:none!important;transform:none!important}
+}
+.flgd{display:flex;flex-wrap:wrap;gap:var(--s5);font-size:10.5px;color:var(--ink3);
+  border-top:1px solid var(--line);padding:10px 2px 4px;margin-top:var(--s2)}
+.flgd b{color:var(--ink2);font-weight:600}
+.flgd i{display:inline-block;width:20px;height:9px;vertical-align:-1px;margin-right:6px}
+.flgd i.t{background:linear-gradient(90deg,var(--everblue),var(--everblue-dk))}
+.flgd i.sp{background:none;border-top:2px solid var(--indigo);opacity:.55;height:0;vertical-align:3px}
+.flgd i.dt{background:none;border-top:2px dashed var(--slate);height:0;vertical-align:3px}
+
+.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-top:var(--s3)}
+.pan{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--everblue);
+  box-shadow:var(--sh1);padding:var(--s3) var(--s4) var(--s4)}
+.pan.co{border-top-color:var(--indigo)} .pan.op{border-top-color:var(--navy)}
+.pan h3{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.pan h3 b{color:var(--navy);font-size:14px;letter-spacing:-.01em;text-transform:none;display:block;
+  margin-top:2px;font-weight:700}
+.mrow{display:grid;grid-template-columns:1fr auto;gap:var(--s2);align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--line)}
+.mrow:last-of-type{border-bottom:none}
+.ml{font-size:11.5px;color:var(--ink2)}
+.ml small{display:block;font-size:10px;color:var(--ink3)}
+.mv{font-size:19px;font-weight:700;color:var(--navy);letter-spacing:-.025em;text-align:right}
+.mv small{display:block;font-size:10px;font-weight:600;letter-spacing:0}
+.mv .up{color:var(--green)} .mv .dn{color:var(--coral)}
+.gap{background:var(--indigo-bg);border:1px solid #C9C3EC;padding:10px 12px;margin-top:var(--s3);border-radius:2px}
+.gap .gt{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-dk)}
+.gap .gv{display:flex;align-items:baseline;gap:var(--s2);margin-top:var(--s1)}
+.gap .gv b{font-size:20px;font-weight:700;color:var(--indigo-dk);letter-spacing:-.03em}
+.gap .gv span{font-size:11px;color:var(--ink2)}
+.gap .gn{font-size:10.5px;color:var(--ink2);margin-top:5px}
+
+@media (max-width:940px){.panels{grid-template-columns:1fr}}
+@media (max-width:960px){.two{grid-template-columns:1fr}.fs{grid-template-columns:1fr}.dep{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hrow">
+    <h1>OBB Decision Board <span>EverSmith FranDev</span></h1>
+    <div class="asof"><b>Wk 17</b>/26 · Mon 15 Dec · 4 carves live, 6 bench · <b>$98,400</b> of $150,000 media</div>
+  </div>
+  <div class="tabs">
+    <button class="tb on" data-p="fn">Funnel</button>
+    <button class="tb" data-p="aw"><span class="n">1</span>Awareness</button>
+    <button class="tb" data-p="co"><span class="n">2</span>Consideration</button>
+    <button class="tb" data-p="op"><span class="n">3</span>Opportunity</button>
+    <button class="tb" data-p="dec">Decisions</button>
+    <button class="tb" data-p="coh">Cohorts</button>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="mock">MOCKUP — illustrative data, no live sources connected</div>
+
+<!-- ============ FUNNEL (default) ============ -->
+<div class="page on" id="p-fn">
+
+  <div class="fnl">
+    <svg id="fsvg" role="img" aria-label="Three-stage acquisition funnel: Awareness, Consideration, Opportunity"></svg>
+    <div class="flgd">
+      <span><i class="t"></i><b>Solid taper</b> — flow between steps, width proportional within the stage</span>
+      <span><i class="sp"></i><b>Spine</b> — depth classification, levels are exclusive</span>
+      <span><i class="dt"></i><b>Dotted</b> — return path from anonymous into named</span>
+      <span><b>Scale resets</b> at every stage boundary. Never read width across one.</span>
+      <span>Bands under 7px are floored so they stay visible. The number is always the truth.</span>
+    </div>
+  </div>
+
+  <h2>What matters at each stage <em>two or three numbers, nothing else</em></h2>
+  <div class="panels">
+
+    <div class="pan">
+      <h3>Stage 1<b>Awareness</b></h3>
+      <div class="mrow"><div class="ml">Cold CPM<small>target $25.00</small></div>
+        <div class="mv">$23.33<small class="up">−6.7% · beat</small></div></div>
+      <div class="mrow"><div class="ml">Click-through<small>target 1.00%</small></div>
+        <div class="mv">0.87%<small class="dn">−13% · miss</small></div></div>
+      <div class="mrow"><div class="ml">Universe consumed<small>385,600 of 940,464</small></div>
+        <div class="mv">41%<small class="mut">6 carves on the bench</small></div></div>
+    </div>
+
+    <div class="pan co">
+      <h3>Stage 2<b>Consideration</b></h3>
+      <div class="mrow"><div class="ml">Site conversion<small>target 1.50%</small></div>
+        <div class="mv">1.62%<small class="up">+8% · beat</small></div></div>
+      <div class="mrow"><div class="ml">Identification rate<small>target 30.0%</small></div>
+        <div class="mv">31.1%<small class="up">+3.7% · beat</small></div></div>
+      <div class="gap">
+        <div class="gt">The gap that only the split reveals</div>
+        <div class="gv"><b>$5.15</b><span>per visit</span><b>$16.57</b><span>per named person</span></div>
+        <div class="gn"><b>3.2×</b> — invisible unless named and anonymous are tracked apart.
+          Averaging them into one "visitors" number hides the real cost of a person you can speak to.</div>
+      </div>
+    </div>
+
+    <div class="pan op">
+      <h3>Stage 3<b>Opportunity</b></h3>
+      <div class="mrow"><div class="ml">Cost per qualified lead<small>benchmark $2,102</small></div>
+        <div class="mv">$1,697<small class="up">−19% · beat</small></div></div>
+      <div class="mrow"><div class="ml">Qualified<small>20.2% of 287 leads · model 16.7%</small></div>
+        <div class="mv">58<small class="up">above model</small></div></div>
+      <div class="mrow"><div class="ml">Deals created<small>6 paid-originated · 3 referral</small></div>
+        <div class="mv">9<small class="mut">1 closed, 68 days</small></div></div>
+    </div>
+  </div>
+
+  <h2>Open decisions <em>four highest-value · full list on the Decisions tab</em></h2>
+  <table>
+    <tr><th style="width:9%">Action</th><th style="width:24%">Target</th><th class="c" style="width:14%">Stage</th>
+      <th style="width:26%">Why</th><th class="r">Value</th><th class="c" style="width:9%">Due</th></tr>
+    <tr class="r"><td><span class="p c">Cut</span></td><td class="nm">ICP_ROUTE_SALES_IC</td><td class="c">Awareness</td>
+      <td>Cost/QL $4,920 vs $2,050 gate</td><td class="r n">$1,450/wk</td><td class="c">Today</td></tr>
+    <tr class="r"><td><span class="p c">Retire</span></td><td class="nm">Angle: eat what you kill</td><td class="c">Awareness</td>
+      <td>All assets failed, past 17,300 gate</td><td class="r n">$310/wk</td><td class="c">Today</td></tr>
+    <tr><td><span class="p h">Shift</span></td><td class="nm">R1 budget → R3</td><td class="c">Consideration</td>
+      <td>R3 converts 9.0× R1 per dollar</td><td class="r n">+6 leads/wk</td><td class="c">Wed</td></tr>
+    <tr class="g"><td><span class="p f">Rebuild</span></td><td class="nm">/franchise-vs-going-solo</td><td class="c">Consideration</td>
+      <td>0.81% vs 1.50% commitment</td><td class="r n">+34 QL</td><td class="c">Wk 19</td></tr>
+  </table>
+  <div class="note">Four of eight open decisions. Confidence, gates and full triggers are on the Decisions tab.</div>
+</div>
+
+<!-- ============ AWARENESS ============ -->
+<div class="page" id="p-aw">
+
+  <div class="kpi">
+    <div class="k s"><div class="kl">People we know exist</div><div class="kv">940,464</div><div class="kd">10 carves · 4 live</div></div>
+    <div class="k"><div class="kl">Matched to platforms</div><div class="kv">89,760</div><div class="kd">60.0% of 149,600 enriched</div></div>
+    <div class="k"><div class="kl">Reached</div><div class="kv">84,320</div><div class="kd">94% of matched · 26.7 freq</div></div>
+    <div class="k g"><div class="kl">Now know we exist</div><div class="kv">19,120</div><div class="kd">22.7% of reached</div></div>
+    <div class="k g"><div class="kl">Cold CPM</div><div class="kv">$23.33</div><div class="kd">tgt $25.00 · <span class="up">-6.7%</span></div>
+      <svg class="spark" width="100%" height="22" viewBox="0 0 100 16" preserveAspectRatio="none">
+        <polygon points="0,5 14,7 28,6 42,8 56,10 70,9 85,11 100,12 100,16 0,16" fill="#1E7A45" fill-opacity=".13"/>
+        <polyline points="0,5 14,7 28,6 42,8 56,10 70,9 85,11 100,12" fill="none" stroke="#1E7A45" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></div>
+    <div class="k a"><div class="kl">Click-through</div><div class="kv">0.87%</div><div class="kd">tgt 1.00% · <span class="dn">-13%</span></div>
+      <svg class="spark" width="100%" height="22" viewBox="0 0 100 16" preserveAspectRatio="none">
+        <polygon points="0,4 14,3 28,6 42,5 56,8 70,10 85,9 100,11 100,16 0,16" fill="#B8830F" fill-opacity=".13"/>
+        <polyline points="0,4 14,3 28,6 42,5 56,8 70,10 85,9 100,11" fill="none" stroke="#B8830F" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></div>
+    <div class="k r"><div class="kl">Universe used</div><div class="kv">41%</div><div class="kd">385,600 / 940,464</div></div>
+  </div>
+
+  <h2>Do they know we exist <em>people we know → people who know us</em></h2>
+  <div class="fn">
+    <div class="fs"><div class="fsl">Known to exist</div><div class="fsb"><span class="fsv">940,464</span></div><div class="fsn">10 carves counted in Clay · <b>656,624</b> on the bench</div></div>
+    <div class="fs"><div class="fsl">Enriched</div><div class="fsb s2" style="width:62%"><span class="fsv">149,600</span></div><div class="fsn">15.9% of universe · <b>0.8 credits</b> each</div></div>
+    <div class="fs"><div class="fsl">Matched</div><div class="fsb s3" style="width:44%"><span class="fsv">89,760</span></div><div class="fsn">60.0% match rate · tgt 60% · <b>on plan</b></div></div>
+    <div class="fs"><div class="fsl">Reached</div><div class="fsb s4" style="width:41%"><span class="fsv">84,320</span></div><div class="fsn">2,247,000 impressions · <b>26.7</b> avg frequency</div></div>
+    <div class="fs"><div class="fsl">Clicked</div><div class="fsb s5" style="width:18%"><span class="fsv">19,120</span></div><div class="fsn">0.87% CTR · <b>22.7%</b> of reached have now seen us</div></div>
+  </div>
+  <div class="note">Match rate is the only step above that costs credits rather than media. At 60% it is on plan; below 41% the credit budget cannot fund 26 weeks.</div>
+
+  <h2>By carve <em>reach and cost</em></h2>
+  <table>
+    <tr><th style="width:15%">Carve</th><th class="r">Universe</th><th class="r">Enriched</th><th class="r">Matched</th><th class="r">Match rate</th><th class="r">Impressions</th><th class="r">Freq</th><th class="r">CPM</th><th class="r">CTR</th><th class="r">Now know us</th><th class="r">Cost / aware</th><th class="c" style="width:7%">Call</th></tr>
+    <tr class="g"><td class="nm">BRANCH_MGMT</td><td class="r">80,032</td><td class="r">37,400</td><td class="r">23,120</td><td class="r n">61.8%</td><td class="r">550,000</td><td class="r">23.8</td><td class="r n">$22.90</td><td class="r n">1.08%</td><td class="r n">5,940</td><td class="r n">$4.14</td><td class="c"><span class="p f">Fund</span></td></tr>
+    <tr><td class="nm">FIELD_SERVICE</td><td class="r">85,616</td><td class="r">37,400</td><td class="r">22,650</td><td class="r n">60.6%</td><td class="r">550,000</td><td class="r">24.3</td><td class="r n">$23.10</td><td class="r n">0.94%</td><td class="r n">5,170</td><td class="r n">$4.76</td><td class="c"><span class="p h">Hold</span></td></tr>
+    <tr class="a"><td class="nm">RT_SALES_LEADER</td><td class="r">60,958</td><td class="r">37,400</td><td class="r">22,180</td><td class="r n">59.3%</td><td class="r">550,000</td><td class="r">24.8</td><td class="r n">$23.40</td><td class="r n">0.81%</td><td class="r n">4,460</td><td class="r n">$5.52</td><td class="c"><span class="p w">Watch</span></td></tr>
+    <tr class="r"><td class="nm">RT_SALES_IC</td><td class="r">57,234</td><td class="r">37,400</td><td class="r">21,810</td><td class="r n">58.3%</td><td class="r">547,000</td><td class="r">25.1</td><td class="r n">$23.90</td><td class="r n">0.64%</td><td class="r n">3,550</td><td class="r n">$6.93</td><td class="c"><span class="p c">Cut</span></td></tr>
+    <tr class="tot"><td class="nm">Live</td><td class="r">283,840</td><td class="r">149,600</td><td class="r">89,760</td><td class="r">60.0%</td><td class="r">2,197,000</td><td class="r">24.5</td><td class="r">$23.33</td><td class="r">0.87%</td><td class="r">19,120</td><td class="r">$5.15</td><td class="c">—</td></tr>
+  </table>
+
+  <h2>Named vs lookalike <em>seed quality test</em></h2>
+  <table>
+    <tr><th style="width:16%">Source</th><th class="r">Audience</th><th class="r">Spend</th><th class="r">CPM</th><th class="r">CTR</th><th class="r">vs seed</th><th class="r">Break-even</th><th class="r">Visits</th><th class="c" style="width:9%">Status</th></tr>
+    <tr><td class="nm">Named (Clay)</td><td class="r">89,760</td><td class="r">$89,760</td><td class="r n">$25.72</td><td class="r n">0.87%</td><td class="r mut">—</td><td class="r mut">—</td><td class="r n">16,000</td><td class="c"><span class="p f">Baseline</span></td></tr>
+    <tr class="i"><td class="nm">Lookalike 1%</td><td class="r">312,350</td><td class="r">$8,640</td><td class="r n">$17.10</td><td class="r n">0.61%</td><td class="r n">70%</td><td class="r mut">71%</td><td class="r n">3,120</td><td class="c"><span class="p w">On the line</span></td></tr>
+  </table>
+  <div class="note">Cheaper inventory offsets weaker click-through almost exactly. Three more weeks of volume decides whether expansion is a credit-free scale lever.</div>
+</div>
+
+<!-- ============ CONSIDERATION ============ -->
+<div class="page" id="p-co">
+
+  <div class="kpi">
+    <div class="k"><div class="kl">Visits</div><div class="kv">19,120</div><div class="kd">people who know we exist</div></div>
+    <div class="k i"><div class="kl">Named</div><div class="kv">5,937</div><div class="kd">31.1% · person-level</div></div>
+    <div class="k s"><div class="kl">Anonymous</div><div class="kv">13,183</div><div class="kd">68.9% · cohort-level only</div></div>
+    <div class="k g"><div class="kl">Site conversion</div><div class="kv">1.62%</div><div class="kd">tgt 1.50% · <span class="up">+8%</span></div>
+      <svg class="spark" width="100%" height="22" viewBox="0 0 100 16" preserveAspectRatio="none">
+        <polygon points="0,13 14,12 28,11 42,8 56,7 70,5 85,4 100,3 100,16 0,16" fill="#1E7A45" fill-opacity=".13"/>
+        <polyline points="0,13 14,12 28,11 42,8 56,7 70,5 85,4 100,3" fill="none" stroke="#1E7A45" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></div>
+    <div class="k"><div class="kl">Objection captured</div><div class="kv">287</div><div class="kd">4.8% of named</div></div>
+    <div class="k a"><div class="kl">Cost per named</div><div class="kv">$16.57</div><div class="kd">vs $5.15 per visit · 3.2x</div></div>
+  </div>
+
+  <h2>The split <em>identity resolution decides what we can do with a person</em></h2>
+  <div class="fn">
+    <div class="fs"><div class="fsl">Visits</div><div class="fsb"><span class="fsv">19,120</span></div><div class="fsn">All carry cohort, carve, angle, asset and page in the URL</div></div>
+    <div class="fs"><div class="fsl">Named</div><div class="fsb named" style="width:31%"><span class="fsv">5,937</span></div><div class="fsn">RB2B resolved <b>5,650</b> · form gave us <b>287</b></div></div>
+    <div class="fs"><div class="fsl">Anonymous</div><div class="fsb anon" style="width:69%"><span class="fsv">13,183</span></div><div class="fsn">Cohort known, person unknown · <b>pixel retargeting only</b></div></div>
+  </div>
+
+  <div class="two">
+    <table>
+      <tr><th colspan="3" style="background:var(--indigo)">Named — what we can do</th></tr>
+      <tr><td class="nm">Person-level record in HubSpot</td><td class="r n">5,937</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">List-based retargeting</td><td class="r n">5,937</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Objection-aimed creative</td><td class="r n">287</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">LinkedIn outreach</td><td class="r n">640</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Cold email</td><td class="r n">640</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Routed to a brand</td><td class="r n">58</td><td class="c"><span class="p f">Yes</span></td></tr>
+    </table>
+    <table>
+      <tr><th colspan="3" style="background:var(--slate)">Anonymous — what we can do</th></tr>
+      <tr><td class="nm">Person-level record</td><td class="r mut">—</td><td class="c"><span class="p c">No</span></td></tr>
+      <tr><td class="nm">Pixel retargeting (R1)</td><td class="r n">13,183</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Aimed at page they read</td><td class="r n">13,183</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Counted in carve performance</td><td class="r n">13,183</td><td class="c"><span class="p f">Yes</span></td></tr>
+      <tr><td class="nm">Outreach of any kind</td><td class="r mut">—</td><td class="c"><span class="p c">No</span></td></tr>
+      <tr><td class="nm">Can become named later</td><td class="r n">13,183</td><td class="c"><span class="p w">On return</span></td></tr>
+    </table>
+  </div>
+  <div class="note">Anonymous visitors are not lost. Campaign string still attributes them to cohort, carve, angle and asset, so they count in every aggregate read. They just cannot be spoken to individually.</div>
+
+  <h2>How much we know <em>named people by depth</em></h2>
+  <div class="dep">
+    <div class="depl">L1 Identified</div><div class="depb"><i style="width:100%"></i><span>3,720</span></div>
+    <div class="depa">Name, company, title, one page</div><div class="depa">→ list retargeting, generic</div>
+  </div>
+  <div class="dep">
+    <div class="depl">L2 Engaged</div><div class="depb"><i style="width:35%"></i><span>1,290</span></div>
+    <div class="depa">2+ pages or 60s+ on site</div><div class="depa">→ retarget aimed at pages read</div>
+  </div>
+  <div class="dep">
+    <div class="depl">L3 Returned</div><div class="depb"><i style="width:17%"></i><span>640</span></div>
+    <div class="depa">Came back unprompted</div><div class="depa">→ outreach eligible, LinkedIn + email</div>
+  </div>
+  <div class="dep">
+    <div class="depl">L4 Signal</div><div class="depb"><i style="width:8%"></i><span>287</span></div>
+    <div class="depa">Downloaded, objection known</div><div class="depa">→ objection-aimed creative + sales</div>
+  </div>
+  <div class="dep">
+    <div class="depl">Anonymous</div><div class="depb s"><i style="width:100%;opacity:.5"></i><span>13,183</span></div>
+    <div class="depa">Cohort only, no identity</div><div class="depa">→ pixel retargeting by page</div>
+  </div>
+  <div class="note">Each level unlocks a capability the level below cannot use. Roughly 4.8% of named people reach L4, which is where objection-aimed creative becomes possible.</div>
+
+  <h2>Intent captured <em>objection signal, L4 only</em></h2>
+  <div class="two">
+    <table>
+      <tr><th style="width:16%">Signal</th><th class="r">Leads</th><th class="r">Share</th><th class="r">Qual</th><th class="r">L→Q</th><th class="r">Deals</th><th class="r">Days</th></tr>
+      <tr class="g"><td class="nm">Not me</td><td class="r n">132</td><td class="r">46%</td><td class="r n">31</td><td class="r n">23.5%</td><td class="r n">5</td><td class="r">68</td></tr>
+      <tr><td class="nm">Not now</td><td class="r n">106</td><td class="r">37%</td><td class="r n">19</td><td class="r n">17.9%</td><td class="r n">3</td><td class="r">84</td></tr>
+      <tr><td class="nm">Not this</td><td class="r n">35</td><td class="r">12%</td><td class="r n">6</td><td class="r n">17.1%</td><td class="r n">1</td><td class="r">79</td></tr>
+      <tr class="r"><td class="nm">Unknown</td><td class="r n">14</td><td class="r">5%</td><td class="r n">2</td><td class="r n">14.3%</td><td class="r n">0</td><td class="r">—</td></tr>
+    </table>
+    <table>
+      <tr><th style="width:30%">Landing page</th><th class="r">Visits</th><th class="r">Conv</th><th class="r">vs 1.50%</th><th class="c">Objection set</th><th class="c" style="width:10%">Call</th></tr>
+      <tr class="g"><td class="nm">/am-i-the-right-fit</td><td class="r">7,240</td><td class="r n">2.11%</td><td class="r up">+41%</td><td class="c">Not me</td><td class="c"><span class="p f">Model</span></td></tr>
+      <tr><td class="nm">/funding-and-runway</td><td class="r">5,180</td><td class="r n">1.68%</td><td class="r up">+12%</td><td class="c">Not now</td><td class="c"><span class="p h">Hold</span></td></tr>
+      <tr class="a"><td class="nm">/what-a-week-looks-like</td><td class="r">4,110</td><td class="r n">1.34%</td><td class="r dn">-11%</td><td class="c">Not me</td><td class="c"><span class="p w">Rebuild</span></td></tr>
+      <tr class="r"><td class="nm">/franchise-vs-going-solo</td><td class="r">2,590</td><td class="r n">0.81%</td><td class="r dn">-46%</td><td class="c">Not this</td><td class="c"><span class="p c">Rebuild</span></td></tr>
+    </table>
+  </div>
+
+  <h2>Retargeting ladder <em>who is eligible for what</em></h2>
+  <table>
+    <tr><th style="width:9%">Tier</th><th style="width:19%">Eligibility</th><th class="c">Type</th><th class="r">Pool</th><th class="r">Spend/wk</th><th class="r">CPM</th><th class="r">CTR</th><th class="r">Visits</th><th class="r">Site conv</th><th class="r">Leads</th></tr>
+    <tr class="s"><td class="nm">R1</td><td>Any visitor, 30d</td><td class="c"><span class="p s">Pixel</span></td><td class="r">13,183</td><td class="r n">$570</td><td class="r n">$48.31</td><td class="r n">1.26%</td><td class="r">149</td><td class="r n">0.83%</td><td class="r n">1</td></tr>
+    <tr class="i"><td class="nm">R2</td><td>Named + engaged</td><td class="c"><span class="p i">List</span></td><td class="r">1,290</td><td class="r n">$412</td><td class="r n">$56.40</td><td class="r n">3.01%</td><td class="r">207</td><td class="r n">3.38%</td><td class="r n">7</td></tr>
+    <tr class="i"><td class="nm">R3</td><td>Named + returned</td><td class="c"><span class="p i">List</span></td><td class="r">640</td><td class="r n">$231</td><td class="r n">$71.20</td><td class="r n">4.72%</td><td class="r">148</td><td class="r n">7.43%</td><td class="r n">11</td></tr>
+    <tr class="tot"><td class="nm">All</td><td>—</td><td class="c">—</td><td class="r">15,113</td><td class="r">$1,213</td><td class="r">$54.20</td><td class="r">2.41%</td><td class="r">504</td><td class="r">3.77%</td><td class="r">19</td></tr>
+  </table>
+  <div class="note">R3 costs 47% more per thousand impressions than R1 and converts 9x better. If budget tightens, cut R1 first.</div>
+</div>
+
+<!-- ============ OPPORTUNITY ============ -->
+<div class="page" id="p-op">
+
+  <div class="kpi">
+    <div class="k"><div class="kl">Leads</div><div class="kv">287</div><div class="kd">objection known</div></div>
+    <div class="k g"><div class="kl">Qualified</div><div class="kv">58</div><div class="kd">20.2% of leads · model 16.7%</div></div>
+    <div class="k"><div class="kl">Routed to brand</div><div class="kv">21</div><div class="kd">36% of qualified</div></div>
+    <div class="k"><div class="kl">Deals</div><div class="kv">9</div><div class="kd">6 paid-originated</div></div>
+    <div class="k g"><div class="kl">Closed</div><div class="kv">1</div><div class="kd">SEALS · 68d from launch</div></div>
+    <div class="k g"><div class="kl">Cost / qual lead</div><div class="kv">$1,697</div><div class="kd">tgt $2,102 · <span class="up">-19%</span></div></div>
+  </div>
+
+  <h2>Handoff <em>what sales receives</em></h2>
+  <table>
+    <tr><th style="width:15%">Stage</th><th class="r">Count</th><th class="r">Conv</th><th class="r">Median days</th><th>What we hand over</th></tr>
+    <tr><td class="nm">Lead</td><td class="r n">287</td><td class="r mut">—</td><td class="r">41</td><td>Name, title, company, objection signal, pages read, source campaign</td></tr>
+    <tr><td class="nm">Qualified</td><td class="r n">58</td><td class="r n">20.2%</td><td class="r">54</td><td>All of the above plus score, engagement history, brand fit</td></tr>
+    <tr><td class="nm">Routed</td><td class="r n">21</td><td class="r n">36.2%</td><td class="r">62</td><td>Brand assignment, territory, routing reason, cohort ID inherited</td></tr>
+    <tr><td class="nm">Deal created</td><td class="r n">9</td><td class="r n">42.9%</td><td class="r">71</td><td>Full journey from cohort launch, deal_source = paid_originated</td></tr>
+    <tr class="g"><td class="nm">Closed</td><td class="r n">1</td><td class="r n">11.1%</td><td class="r">68</td><td>—</td></tr>
+  </table>
+  <div class="note">Every elapsed-time figure measured from cohort launch date, never from record creation.</div>
+
+  <h2>By brand <em>n=9, not rankable</em></h2>
+  <table>
+    <tr><th style="width:16%">Brand</th><th class="r">Exposures</th><th class="r">Routed</th><th class="r">Deals</th><th class="r">Conv</th><th class="r">Median days</th><th class="c">Paid-orig</th><th class="c">Referral</th><th class="r">Closed</th></tr>
+    <tr><td class="nm">The SEALS</td><td class="r">312</td><td class="r n">7</td><td class="r n">4</td><td class="r n">1.28%</td><td class="r">71</td><td class="c n">3</td><td class="c n">1</td><td class="r n">1</td></tr>
+    <tr><td class="nm">Kitchen Guard</td><td class="r">288</td><td class="r n">6</td><td class="r n">3</td><td class="r n">1.04%</td><td class="r">78</td><td class="c n">2</td><td class="c n">1</td><td class="r n">0</td></tr>
+    <tr><td class="nm">1-Tom Plumber</td><td class="r">241</td><td class="r n">4</td><td class="r n">1</td><td class="r n">0.41%</td><td class="r">84</td><td class="c n">1</td><td class="c n">0</td><td class="r n">0</td></tr>
+    <tr><td class="nm">U.S. Lawns</td><td class="r">196</td><td class="r n">4</td><td class="r n">1</td><td class="r n">0.51%</td><td class="r">66</td><td class="c n">0</td><td class="c n">1</td><td class="r n">0</td></tr>
+    <tr class="off"><td class="nm">Clintar</td><td class="r">154</td><td class="r n">0</td><td class="r n">0</td><td class="r">—</td><td class="r">—</td><td class="c">—</td><td class="c">—</td><td class="r">—</td></tr>
+    <tr class="off"><td class="nm">MilliCare</td><td class="r">148</td><td class="r n">0</td><td class="r n">0</td><td class="r">—</td><td class="r">—</td><td class="c">—</td><td class="c">—</td><td class="r">—</td></tr>
+    <tr class="off"><td class="nm">Prism Specialties</td><td class="r">131</td><td class="r n">0</td><td class="r n">0</td><td class="r">—</td><td class="r">—</td><td class="c">—</td><td class="c">—</td><td class="r">—</td></tr>
+  </table>
+
+  <h2>Scorecard <em>agreed August, before media ran</em></h2>
+  <table>
+    <tr><th style="width:20%">Metric</th><th class="c">Stage</th><th class="r">Committed</th><th class="r">Actual</th><th class="r">Delta</th><th class="c">First read</th><th class="c" style="width:8%">Status</th></tr>
+    <tr class="g"><td class="nm">Cold CPM</td><td class="c">Awareness</td><td class="r">$25.00</td><td class="r n">$23.33</td><td class="r up">-6.7%</td><td class="c">Month 1</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="a"><td class="nm">Click-through</td><td class="c">Awareness</td><td class="r">1.00%</td><td class="r n">0.87%</td><td class="r dn">-13%</td><td class="c">Month 1</td><td class="c"><span class="p w">Miss</span></td></tr>
+    <tr class="g"><td class="nm">Branded search lift</td><td class="c">Awareness</td><td class="r">directional</td><td class="r n">+34%</td><td class="r up">—</td><td class="c">Month 2</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="g"><td class="nm">Site conversion</td><td class="c">Consideration</td><td class="r">1.50%</td><td class="r n">1.62%</td><td class="r up">+8%</td><td class="c">Month 1-2</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="g"><td class="nm">Identification rate</td><td class="c">Consideration</td><td class="r">30.0%</td><td class="r n">31.1%</td><td class="r up">+3.7%</td><td class="c">Week 1</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="g"><td class="nm">Cost per qualified lead</td><td class="c">Opportunity</td><td class="r">&lt;$2,102</td><td class="r n">$1,697</td><td class="r up">-19%</td><td class="c">Month 3</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="g"><td class="nm">Cost per unit</td><td class="c">Opportunity</td><td class="r">$14,000</td><td class="r n">$12,940</td><td class="r up">-7.6%</td><td class="c">December</td><td class="c"><span class="p f">Beat</span></td></tr>
+    <tr class="off"><td class="nm">Closed deals</td><td class="c">Opportunity</td><td class="r">excluded</td><td class="r n">1</td><td class="r">—</td><td class="c">Q1 2026</td><td class="c"><span class="p">N/A</span></td></tr>
+  </table>
+  <div class="note">Closed deals excluded as pass mark: 24-week cycle, December is month 5.</div>
+</div>
+
+<!-- ============ DECISIONS ============ -->
+<div class="page" id="p-dec">
+
+  <h2>Open decisions <em>gates crossed or thresholds breached</em></h2>
+  <table>
+    <tr><th style="width:7%">Action</th><th style="width:18%">Target</th><th class="c">Stage</th><th style="width:20%">Trigger</th><th class="r">Actual</th><th class="r">Gate</th><th class="r">Value</th><th class="c">Conf</th><th class="c" style="width:7%">Due</th></tr>
+    <tr class="r"><td><span class="p c">Cut</span></td><td class="nm">ICP_ROUTE_SALES_IC</td><td class="c">Awareness</td><td>Cost/QL &gt; 2x best carve</td><td class="r n">$4,920</td><td class="r mut">$2,050</td><td class="r n">$1,450/wk</td><td class="c cf">●●●●<span class="o">○</span></td><td class="c">Today</td></tr>
+    <tr><td><span class="p c">Kill</span></td><td class="nm">operator-pnl/img-04</td><td class="c">Awareness</td><td>Asset past impression gate</td><td class="r n">6,410</td><td class="r mut">6,216</td><td class="r n">$155/wk</td><td class="c cf">●●●●●</td><td class="c">Today</td></tr>
+    <tr class="r"><td><span class="p c">Retire</span></td><td class="nm">Angle: eat what you kill</td><td class="c">Awareness</td><td>All assets failed + gate</td><td class="r n">17,640</td><td class="r mut">17,300</td><td class="r n">$310/wk</td><td class="c cf">●●●●●</td><td class="c">Today</td></tr>
+    <tr class="g"><td><span class="p f">Promote</span></td><td class="nm">ICP_FACILITIES</td><td class="c">Awareness</td><td>Slot open, audience ready</td><td class="r n">45,504</td><td class="r mut">—</td><td class="r n">2 days</td><td class="c cf">●●<span class="o">○○○</span></td><td class="c">Wed</td></tr>
+    <tr class="a"><td><span class="p w">Hold</span></td><td class="nm">Lookalike expansion</td><td class="c">Awareness</td><td>CTR vs seed break-even</td><td class="r n">70%</td><td class="r mut">71%</td><td class="r n">$20,000</td><td class="c cf">●●<span class="o">○○○</span></td><td class="c">Wk 20</td></tr>
+    <tr class="g"><td><span class="p f">Rebuild</span></td><td class="nm">/franchise-vs-going-solo</td><td class="c">Consideration</td><td>Conv vs commitment</td><td class="r n">0.81%</td><td class="r mut">1.50%</td><td class="r n">+34 QL</td><td class="c cf">●●●●<span class="o">○</span></td><td class="c">Wk 19</td></tr>
+    <tr><td><span class="p h">Shift</span></td><td class="nm">R1 budget → R3</td><td class="c">Consideration</td><td>Conv per dollar by tier</td><td class="r n">9.0x</td><td class="r mut">3.0x</td><td class="r n">+6 leads/wk</td><td class="c cf">●●●●<span class="o">○</span></td><td class="c">Wed</td></tr>
+    <tr><td><span class="p h">Reweight</span></td><td class="nm">Brand rotation → SEALS</td><td class="c">Opportunity</td><td>Conv off shared warm pool</td><td class="r n">1.28%</td><td class="r mut">1.04%</td><td class="r n">+3 deals</td><td class="c cf">●●<span class="o">○○○</span></td><td class="c">Wed</td></tr>
+  </table>
+  <div class="note">Conf: ●●●●● pre-agreed gate crossed · ●●●●○ pattern held 6+ wks · ●●○○○ directional, move spend not strategy</div>
+
+  <h2>Creative <em>angle retire gate 17,300 · asset kill gate 6,216</em></h2>
+  <table>
+    <tr><th style="width:22%">Angle</th><th class="r">Assets</th><th class="r">Pooled impr</th><th style="width:11%">To gate</th><th class="r">Best CTR</th><th class="r">Worst CTR</th><th class="r">Leads</th><th class="r">Cost/lead</th><th class="c" style="width:8%">Call</th></tr>
+    <tr class="g"><td class="nm">You built the team</td><td class="r">3</td><td class="r">14,820</td><td><div class="bar g"><i style="width:86%"></i><span>86%</span></div></td><td class="r n">1.34%</td><td class="r n">0.91%</td><td class="r n">94</td><td class="r n">$262</td><td class="c"><span class="p f">Scale</span></td></tr>
+    <tr><td class="nm">You already run a P&amp;L</td><td class="r">2</td><td class="r">10,530</td><td><div class="bar"><i style="width:61%"></i><span>61%</span></div></td><td class="r n">1.14%</td><td class="r n">0.41%</td><td class="r n">71</td><td class="r n">$347</td><td class="c"><span class="p h">Re-exec</span></td></tr>
+    <tr><td class="nm">The maths of leaving</td><td class="r">2</td><td class="r">9,940</td><td><div class="bar a"><i style="width:58%"></i><span>58%</span></div></td><td class="r n">1.02%</td><td class="r n">0.79%</td><td class="r n">58</td><td class="r n">$425</td><td class="c"><span class="p h">Hold</span></td></tr>
+    <tr><td class="nm">Not what you think</td><td class="r">2</td><td class="r">8,410</td><td><div class="bar"><i style="width:49%"></i><span>49%</span></div></td><td class="r n">0.93%</td><td class="r n">0.72%</td><td class="r n">41</td><td class="r n">$601</td><td class="c"><span class="p w">Watch</span></td></tr>
+    <tr class="r"><td class="nm">Eat what you kill</td><td class="r">2</td><td class="r">17,640</td><td><div class="bar r"><i style="width:100%"></i><span>102%</span></div></td><td class="r n">0.68%</td><td class="r n">0.44%</td><td class="r n">23</td><td class="r n">$1,072</td><td class="c"><span class="p c">Retire</span></td></tr>
+  </table>
+
+  <h2>Source health</h2>
+  <table>
+    <tr><th style="width:18%">Source</th><th class="c">Feeds</th><th class="c">Last sync</th><th class="c">Status</th><th class="r">Lag</th></tr>
+    <tr><td class="nm">HubSpot</td><td class="c">Consideration, Opportunity</td><td class="c">06:04</td><td class="c"><span class="p f">OK</span></td><td class="r">4m</td></tr>
+    <tr><td class="nm">RB2B webhook</td><td class="c">Named identity</td><td class="c">live</td><td class="c"><span class="p f">OK</span></td><td class="r">&lt;1m</td></tr>
+    <tr><td class="nm">Meta Ads</td><td class="c">Awareness</td><td class="c">06:04</td><td class="c"><span class="p f">OK</span></td><td class="r">4m</td></tr>
+    <tr><td class="nm">Google Ads</td><td class="c">Awareness</td><td class="c">06:05</td><td class="c"><span class="p f">OK</span></td><td class="r">5m</td></tr>
+    <tr><td class="nm">GA4</td><td class="c">Consideration, anonymous</td><td class="c">06:05</td><td class="c"><span class="p f">OK</span></td><td class="r">5m</td></tr>
+    <tr class="a"><td class="nm">Search Console</td><td class="c">Branded search</td><td class="c">13 Dec</td><td class="c"><span class="p w">Lag</span></td><td class="r">48h</td></tr>
+    <tr class="r"><td class="nm">LinkedIn Ads</td><td class="c">Awareness</td><td class="c">13 Dec</td><td class="c"><span class="p c">Token</span></td><td class="r">2d</td></tr>
+    <tr class="a"><td class="nm">Clay credits</td><td class="c">Universe, match rate</td><td class="c">12 Dec</td><td class="c"><span class="p w">Manual</span></td><td class="r">3d</td></tr>
+  </table>
+</div>
+
+<!-- ============ COHORTS ============ -->
+<div class="page" id="p-coh">
+
+  <div class="kpi">
+    <div class="k"><div class="kl">Cohorts launched</div><div class="kv">17</div><div class="kd">4 mature, 13 in flight</div></div>
+    <div class="k g"><div class="kl">Day-30 trend</div><div class="kv">+79%</div><div class="kd">0.19% → 0.34% over 4</div></div>
+    <div class="k a"><div class="kl">Leads after day 60</div><div class="kv">71%</div><div class="kd">warming lag confirmed</div></div>
+    <div class="k r"><div class="kl">Pooled (wrong)</div><div class="kv">0.19%</div><div class="kd">vs mature 1.61%</div></div>
+    <div class="k"><div class="kl">Per cohort</div><div class="kv">2,200</div><div class="kd">people · 4 carves/wk</div></div>
+  </div>
+
+  <h2>Recent cohorts <em>compared at matched age only</em></h2>
+  <table>
+    <tr><th style="width:14%">Cohort</th><th style="width:11%">Carve</th><th class="c">Launched</th><th class="r">Age</th><th class="r">People</th><th class="r">Visits</th><th class="r">Named</th><th class="r">ID rate</th><th class="r">Leads</th><th class="r">Day-30</th><th class="r">Day-60</th><th class="r">Day-90</th><th class="c" style="width:7%">Read</th></tr>
+    <tr><td class="nm">W34-BRANCH</td><td>Branch</td><td class="c">17 Aug</td><td class="r">120d</td><td class="r">2,210</td><td class="r">396</td><td class="r n">127</td><td class="r n">32.1%</td><td class="r n">9</td><td class="r n">0.19%</td><td class="r n">0.71%</td><td class="r n">1.34%</td><td class="c"><span class="p h">Mature</span></td></tr>
+    <tr><td class="nm">W38-BRANCH</td><td>Branch</td><td class="c">14 Sep</td><td class="r">92d</td><td class="r">2,190</td><td class="r">352</td><td class="r n">112</td><td class="r n">31.8%</td><td class="r n">8</td><td class="r n">0.27%</td><td class="r n">0.88%</td><td class="r n">1.52%</td><td class="c"><span class="p f">Up</span></td></tr>
+    <tr><td class="nm">W42-BRANCH</td><td>Branch</td><td class="c">12 Oct</td><td class="r">64d</td><td class="r">2,230</td><td class="r">318</td><td class="r n">103</td><td class="r n">32.4%</td><td class="r n">7</td><td class="r n">0.31%</td><td class="r n">0.79%</td><td class="r mut">—</td><td class="c"><span class="p f">Up</span></td></tr>
+    <tr class="g"><td class="nm">W46-BRANCH</td><td>Branch</td><td class="c">9 Nov</td><td class="r">36d</td><td class="r">2,200</td><td class="r">241</td><td class="r n">78</td><td class="r n">32.4%</td><td class="r n">5</td><td class="r n">0.34%</td><td class="r mut">—</td><td class="r mut">—</td><td class="c"><span class="p f">Best</span></td></tr>
+    <tr><td class="nm">W46-FIELD</td><td>Field svc</td><td class="c">9 Nov</td><td class="r">36d</td><td class="r">2,210</td><td class="r">263</td><td class="r n">83</td><td class="r n">31.6%</td><td class="r n">5</td><td class="r n">0.23%</td><td class="r mut">—</td><td class="r mut">—</td><td class="c"><span class="p h">Hold</span></td></tr>
+    <tr class="a"><td class="nm">W46-RTLEAD</td><td>RT leader</td><td class="c">9 Nov</td><td class="r">36d</td><td class="r">2,190</td><td class="r">228</td><td class="r n">68</td><td class="r n">29.8%</td><td class="r n">4</td><td class="r n">0.18%</td><td class="r mut">—</td><td class="r mut">—</td><td class="c"><span class="p w">Watch</span></td></tr>
+    <tr class="r"><td class="nm">W46-RTIC</td><td>RT IC</td><td class="c">9 Nov</td><td class="r">36d</td><td class="r">2,200</td><td class="r">182</td><td class="r n">48</td><td class="r n">26.4%</td><td class="r n">2</td><td class="r n">0.09%</td><td class="r mut">—</td><td class="r mut">—</td><td class="c"><span class="p c">Fail</span></td></tr>
+    <tr class="off"><td class="nm">W50-BRANCH</td><td>Branch</td><td class="c">7 Dec</td><td class="r">8d</td><td class="r">2,180</td><td class="r">88</td><td class="r n">27</td><td class="r n">30.7%</td><td class="r n">1</td><td class="r mut">—</td><td class="r mut">—</td><td class="r mut">—</td><td class="c"><span class="p">Immature</span></td></tr>
+  </table>
+  <div class="note">Four W46 cohorts launched same day, same creative: 0.34% / 0.23% / 0.18% / 0.09%. Audience is the only variable. Note ID rate also drops with carve quality.</div>
+
+  <h2>Maturity triangle <em>cumulative lead conversion by age</em></h2>
+  <table>
+    <tr><th style="width:13%">Cohort</th><th class="c">Carve</th><th class="c">Launch</th><th class="c">0-30d</th><th class="c">31-60d</th><th class="c">61-90d</th><th class="c">91-180d</th><th class="c">Final</th></tr>
+    <tr><td class="nm">W34</td><td class="c">Branch</td><td class="c">17 Aug</td><td class="c n h1c">0.19%</td><td class="c n h2c">0.71%</td><td class="c n h3c">1.34%</td><td class="c n h4c">1.61%</td><td class="c n">1.61%</td></tr>
+    <tr><td class="nm">W38</td><td class="c">Branch</td><td class="c">14 Sep</td><td class="c n h1c">0.27%</td><td class="c n h2c">0.88%</td><td class="c n h3c">1.52%</td><td class="c empty">—</td><td class="c mut">proj 1.79%</td></tr>
+    <tr><td class="nm">W42</td><td class="c">Branch</td><td class="c">12 Oct</td><td class="c n h1c">0.31%</td><td class="c n h2c">0.79%</td><td class="c empty">—</td><td class="c empty">—</td><td class="c mut">proj 1.71%</td></tr>
+    <tr><td class="nm">W46</td><td class="c">Branch</td><td class="c">9 Nov</td><td class="c n h2c">0.34%</td><td class="c empty">—</td><td class="c empty">—</td><td class="c empty">—</td><td class="c mut">proj 1.88%</td></tr>
+    <tr><td class="nm">W50</td><td class="c">Branch</td><td class="c">7 Dec</td><td class="c empty">maturing</td><td class="c empty">—</td><td class="c empty">—</td><td class="c empty">—</td><td class="c mut">—</td></tr>
+  </table>
+  <div class="note">Pooling all leads over all people reads 0.19% and looks like failure. 13 of 17 cohorts have not had time to convert.</div>
+</div>
+
+</div>
+
+<script>
+/* ---------------- funnel homepage ---------------- */
+(function(){
+  var VW=1400, AX=710, FW=700, BH=42, GAP=34;
+  var LR=332, RR=1090, NR=560;          /* label rails */
+  var GUT=50, NW=FW-GUT;                /* usable width across the fork */
+  var L=AX-FW/2, R=AX+FW/2;             /* 360 .. 1060 */
+  var MINW=7, STG=20;                   /* min band width, animation stagger */
+  var o=[], y=18, seq=0;
+
+  function d(){ return ' style="animation-delay:'+(seq++*STG)+'ms"'; }
+  function G(inner,go,aria){
+    return '<g class="fstep"'+(go?' data-go="'+go+'" role="button" tabindex="0" aria-label="'+aria+'"':'')+d()+'>'+inner+'</g>';
+  }
+  function hit(t,h){ return '<rect class="fhit" x="14" y="'+(t-7)+'" width="1372" height="'+(h+14)+'"/>'; }
+  function W(v,scale,max){ return Math.max(v/scale*max, MINW); }
+  function band(cx,w,t,fill,extra){
+    return '<rect class="fbnd" x="'+(cx-w/2).toFixed(1)+'" y="'+t+'" width="'+w.toFixed(1)+'" height="'+BH+
+           '" rx="1.5" fill="'+fill+'"'+(extra||'')+'/>';
+  }
+  function tap(w1,c1,t1,w2,c2,t2,fill){
+    var p=[[c1-w1/2,t1+BH],[c1+w1/2,t1+BH],[c2+w2/2,t2],[c2-w2/2,t2]];
+    return '<polygon points="'+p.map(function(a){return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' ')+
+           '" fill="'+fill+'" fill-opacity=".34"/>';
+  }
+  function pill(cx,cy,t,cls){
+    var w=t.length*7.0+22;
+    return '<rect class="fpb '+cls+'" x="'+(cx-w/2).toFixed(1)+'" y="'+(cy-11)+'" width="'+w.toFixed(1)+'" height="22" rx="11"/>'+
+           '<text class="fpt '+cls+'" x="'+cx+'" y="'+(cy+4.5)+'">'+t+'</text>';
+  }
+  function lrail(t,n,s){
+    return '<text class="frn" x="'+LR+'" y="'+(t+18)+'" text-anchor="end">'+n+'</text>'+
+           '<text class="frs" x="'+LR+'" y="'+(t+35)+'" text-anchor="end">'+s+'</text>';
+  }
+  function vrail(x,t,v,s){
+    return '<text class="frv" x="'+x+'" y="'+(t+17)+'">'+v+'</text>'+
+           '<text class="frs2" x="'+x+'" y="'+(t+35)+'">'+s+'</text>';
+  }
+  function header(num,title,sub,right,color){
+    o.push(G('<text class="fsg-n" x="20" y="'+(y+13)+'" fill="'+color+'">STAGE '+num+'</text>'+
+             '<text class="fsg-t" x="20" y="'+(y+46)+'">'+title+'</text>'+
+             '<text class="fsg-s" x="20" y="'+(y+67)+'">'+sub+'</text>'+
+             '<text class="fsg-r" x="1380" y="'+(y+46)+'" text-anchor="end">'+right+'</text>'+
+             '<rect x="20" y="'+(y+79)+'" width="1360" height="3" fill="'+color+'"/>'));
+    y+=104;
+  }
+  function boundary(t){
+    o.push(G('<line class="fbrk" x1="20" y1="'+y+'" x2="1380" y2="'+y+'"/>'+pill(AX,y,t,'brk')));
+    y+=44;
+  }
+  /* a plain single-track stage: rows share the main axis */
+  function track(rows,scale,cols,go){
+    var prev=null;
+    rows.forEach(function(r,i){
+      var w=W(r.v,scale,FW);
+      if(prev){
+        y=prev.y+BH+GAP;
+        o.push(G(tap(prev.w,AX,prev.y,w,AX,y,cols[i-1])+pill(AX,prev.y+BH+GAP/2,r.c,'conv')));
+      }
+      o.push(G(hit(y,BH)+band(AX,w,y,cols[i])+lrail(y,r.n,r.s)+vrail(RR,y,r.v2,r.note),
+               go, r.n+', '+r.v2+'. Opens the '+(go==='aw'?'Awareness':'Opportunity')+' tab.'));
+      prev={w:w,y:y};
+    });
+    y=prev.y+BH+40;
+  }
+
+  /* ---- stage 1 ---- */
+  var C1=['#8FDCE5','#4FCBD9','#00B3C6','#009DB0','#00808F'];
+  header(1,'Awareness','People we know exist, becoming people who know we exist.',
+         '2.03% of the universe now knows we exist','#00B3C6');
+  track([
+    {n:'Known to exist',      s:'Ten ICP carves counted in Clay', v:940464, v2:'940,464', note:'10 carves · 656,624 still on the bench'},
+    {n:'Enriched',            s:'Costs credits, not media',       v:149600, v2:'149,600', note:'15.9% of universe · 0.8 credits each', c:'15.9%'},
+    {n:'Matched to platforms',s:'Hashed personal email',          v:89760,  v2:'89,760',  note:'60.0% match rate · target 60%',        c:'60.0%'},
+    {n:'Reached',             s:'Impressions delivered',          v:84320,  v2:'84,320',  note:'2,197,000 impressions · 24.5 freq', c:'94.0%'},
+    {n:'Clicked',             s:'They now know we exist',         v:19120,  v2:'19,120',  note:'0.87% click-through · 22.7% of reached',c:'22.7%'}
+  ],940464,C1,'aw');
+
+  boundary('SCALE RESETS · 19,120 CLICKED CARRY INTO CONSIDERATION');
+
+  /* ---- stage 2 ---- */
+  header(2,'Consideration','Identity resolution decides what we can do with a person.',
+         '31.1% named · 68.9% anonymous','#574AA8');
+
+  /* visits */
+  var yV=y, wV=FW;
+  o.push(G(hit(yV,BH)+band(AX,wV,yV,'url(#gfork)')+
+           lrail(yV,'Visits','Carried from Clicked · scale resets here')+
+           vrail(RR,yV,'19,120','Cohort, carve, angle, asset in the URL'),
+           'co','Visits, 19,120. Opens the Consideration tab.'));
+
+  /* fork */
+  var yF=yV+BH+GAP;
+  var wN=NW*5937/19120, xN=L, cN=xN+wN/2;
+  var wA=NW*13183/19120, xA=R-wA, cA=xA+wA/2;
+  var xSplit=L+FW*5937/19120;
+  o.push(G('<polygon points="'+L+','+(yV+BH)+' '+xSplit.toFixed(1)+','+(yV+BH)+' '+(xN+wN).toFixed(1)+','+yF+' '+xN+','+yF+
+             '" fill="#574AA8" fill-opacity=".34"/>'+
+           '<polygon points="'+xSplit.toFixed(1)+','+(yV+BH)+' '+R+','+(yV+BH)+' '+(xA+wA).toFixed(1)+','+yF+' '+xA.toFixed(1)+','+yF+
+             '" fill="#3E5C6B" fill-opacity=".34"/>'+
+           pill(cN,yV+BH+GAP/2,'31.1%','ind')+pill(cA,yV+BH+GAP/2,'68.9%','sl')));
+
+  var cap=yF+BH, capH=22;
+  o.push(G(hit(yF,BH+capH)+
+           band(cN,wN,yF,'#574AA8')+
+           '<text class="fbls" x="'+cN.toFixed(1)+'" y="'+(yF+17)+'" text-anchor="middle">NAMED</text>'+
+           '<text class="fbl" x="'+cN.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">5,937</text>'+
+           band(cA,wA,yF,'#3E5C6B')+
+           '<text class="fbls" x="'+cA.toFixed(1)+'" y="'+(yF+17)+'" text-anchor="middle">ANONYMOUS</text>'+
+           '<text class="fbl" x="'+cA.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">13,183</text>'+
+           '<rect x="'+xA.toFixed(1)+'" y="'+cap+'" width="'+wA.toFixed(1)+'" height="'+capH+'" fill="url(#hatch)"/>'+
+           '<text class="fcapx" x="'+cA.toFixed(1)+'" y="'+(cap+15)+'">TERMINATES · PIXEL RETARGETING ONLY</text>'+
+           lrail(yF,'The fork','RB2B resolved 5,650 · forms gave 287')+
+           vrail(RR,yF,'68.9%','of visits · cohort known, person unknown'),
+           'co','The fork: 5,937 named, 13,183 anonymous. Opens the Consideration tab.'));
+
+  /* named depth ladder — exclusive levels, so a spine, not a taper */
+  var LAD=[
+    {n:'L1 Identified',    s:'Name, company, title, one page', v:3720, v2:'3,720', note:'62.7% of named · list retargeting, generic'},
+    {n:'L2 Engaged',       s:'2+ pages or 60s+ on site',       v:1290, v2:'1,290', note:'21.7% of named · retarget aimed at pages read'},
+    {n:'L3 Returned',      s:'Came back unprompted',           v:640,  v2:'640',   note:'10.8% of named · outreach eligible, LinkedIn + email'},
+    {n:'L4 Signal captured',s:'Downloaded, objection known',   v:287,  v2:'287',   note:'4.8% of named · objection-aimed creative + sales'}
+  ];
+  var yL=cap+capH+62;
+  var yLast=yL+3*(BH+GAP);
+  o.push(G('<line class="fspine" x1="'+cN.toFixed(1)+'" y1="'+(yF+BH)+'" x2="'+cN.toFixed(1)+'" y2="'+(yLast+BH)+'"/>'));
+
+  /* dotted return path: anonymous → named */
+  o.push(G('<path class="fret" d="M '+cA.toFixed(1)+','+(cap+capH+3)+
+             ' C '+cA.toFixed(1)+','+(cap+capH+42)+' '+(cN+150).toFixed(1)+','+(cap+capH+40)+' '+(cN+22).toFixed(1)+','+(yL-9)+
+             '" marker-end="url(#rarr)"/>'+
+           '<text class="fretx" x="900" y="'+(cap+capH+28)+'">Return path · the 13,183 stay pixel-only, but R1 retargeting</text>'+
+           '<text class="fretx" x="900" y="'+(cap+capH+46)+'">brings 149 back; those who identify on return become named.</text>'));
+
+  LAD.forEach(function(r,i){
+    var t=yL+i*(BH+GAP), w=W(r.v,19120,NW), edge=cN+w/2;
+    o.push(G(hit(t,BH)+band(cN,w,t,['#7C71C6','#6559B4','#574AA8','#40357E'][i])+
+             '<line class="flead" x1="'+(edge+6).toFixed(1)+'" y1="'+(t+21)+'" x2="'+(NR-8)+'" y2="'+(t+21)+'"/>'+
+             lrail(t,r.n,r.s)+vrail(NR,t,r.v2,r.note),
+             'co',r.n+', '+r.v2+' people. Opens the Consideration tab.'));
+  });
+  y=yLast+BH+40;
+
+  boundary('SCALE RESETS · 287 CARRIED FROM L4 SIGNAL');
+
+  /* ---- stage 3 ---- */
+  var C3=['#52738A','#3C6076','#2A4C62','#1C3E52','#12303F'];
+  header(3,'Opportunity','Who is ready.','1 closed · 68 days from cohort launch','#12303F');
+  track([
+    {n:'Leads',          s:'Objection signal captured',    v:287, v2:'287', note:'Carried from L4 · 4.8% of named'},
+    {n:'Qualified',      s:'Scored, engagement checked',   v:58,  v2:'58',  note:'20.2% of leads · model said 16.7%',       c:'20.2%'},
+    {n:'Routed to brand',s:'Territory and fit assigned',   v:21,  v2:'21',  note:'36.2% of qualified',                     c:'36.2%'},
+    {n:'Deals created',  s:'deal_source = paid_originated',v:9,   v2:'9',   note:'6 paid-originated · 3 referral-assisted', c:'42.9%'},
+    {n:'Closed',         s:'First unit awarded',           v:1,   v2:'1',   note:'The SEALS · 68 days from cohort launch',  c:'11.1%'}
+  ],287,C3,'op');
+
+  var H=y+8;
+  var defs='<defs>'+
+    '<linearGradient id="gfork" x1="0" x2="1" y1="0" y2="0">'+
+      '<stop offset="0" stop-color="#574AA8"/><stop offset="0.3105" stop-color="#574AA8"/>'+
+      '<stop offset="0.3105" stop-color="#3E5C6B"/><stop offset="1" stop-color="#3E5C6B"/></linearGradient>'+
+    '<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'+
+      '<rect width="8" height="8" fill="#E7EDEF"/><rect width="4" height="8" fill="#CBD8DC"/></pattern>'+
+    '<marker id="rarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">'+
+      '<path d="M0,0 L10,5 L0,10 z" fill="#3E5C6B"/></marker>'+
+    '</defs>';
+
+  var s=document.getElementById('fsvg');
+  s.setAttribute('viewBox','0 0 '+VW+' '+H);
+  s.innerHTML=defs+o.join('');
+  s.classList.add('go');
+
+  function go(el){ var b=document.querySelector('.tb[data-p="'+el.getAttribute('data-go')+'"]'); if(b) b.click(); }
+  s.addEventListener('click',function(e){ var t=e.target.closest('.fstep[data-go]'); if(t) go(t); });
+  s.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ') return;
+    var t=e.target.closest?e.target.closest('.fstep[data-go]'):null; if(t){ e.preventDefault(); go(t); }
+  });
+})();
+
+/* ---------------- tabs ---------------- */
+document.querySelectorAll('.tb').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tb').forEach(function(x){x.classList.toggle('on',x===t);});
+    var id='p-'+t.dataset.p;
+    document.querySelectorAll('.page').forEach(function(pg){pg.classList.toggle('on',pg.id===id);});
+    var s=document.getElementById('fsvg');
+    if(id==='p-fn'){s.classList.remove('go');void s.getBBox();s.classList.add('go');}
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
