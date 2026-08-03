@@ -15,32 +15,32 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
-| 1 | Welcome to Your Mutual Evaluation Guide | `01-welcome/index.html` | 3 | - | - | 2 embeds | - |
-| 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 2 | - | - | 1 embed | - |
-| 3 | Brand Overview | `02-brand-overview/index.html` | 3 | - | - | 1 pending | - |
-| 4 | Qualification Summary / Culture Index | `02-brand-overview/01-qualification-summary.html` | 5 | - | 1 | 1 embed | 3 |
-| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | 1 | 1 embed | - |
-| 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 4 | - | - | 2 embeds, 2 pending | - |
-| 7 | Validation | `03-validation/index.html` | 3 | - | - | 1 embed | - |
-| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 3 | 1 checkbox | 1 | - | 1 |
-| 9 | Funding | `03-validation/02-funding.html` | 6 | 2 select | - | 3 embeds, 1 pending | 1 |
-| 10 | Territory | `03-validation/03-territory.html` | 5 | 1 checkbox | 1 | 1 pending | - |
-| 11 | Understanding Your Brand's Technology | `03-validation/04-technology.html` | 5 | 1 checkbox | - | 2 embeds | - |
-| 12 | Seeking Approval | `04-seeking-approval/index.html` | 3 | - | - | 1 pending | - |
-| 13 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 7 | - | 1 | 1 pending | - |
-| 14 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 7 | - | - | 1 pending | 1 |
-| 15 | Meet The Team Day | `05-meet-the-team-day/index.html` | 3 | - | - | - | - |
-| 16 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 5 | - | 1 | 1 embed | 1 |
-| 17 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 3 | - | 1 | 1 embed, 1 pending | 2 |
-| 18 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 3 | - | 1 | 1 pending | 1 |
-| 19 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 2 | - | - | - | 1 |
-| 20 | Agreement Stage | `06-agreement-stage/index.html` | 3 | - | - | - | - |
-| 21 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 4 | - | - | 1 embed | - |
-| 22 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 5 | - | - | 1 embed | 1 |
-| 23 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | 1 | 1 embed | 1 |
+| 1 | Welcome to Your Mutual Evaluation Guide | `01-welcome/index.html` | 2 | - | - | 2 embeds | - |
+| 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 1 | - | - | 1 embed | - |
+| 3 | Brand Overview | `02-brand-overview/index.html` | 2 | - | - | 1 pending | - |
+| 4 | Qualification Summary / Culture Index | `02-brand-overview/01-qualification-summary.html` | 4 | - | 1 | 1 embed | 3 |
+| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 2 | - | 1 | 1 embed | - |
+| 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 3 | - | - | 2 embeds, 2 pending | - |
+| 7 | Validation | `03-validation/index.html` | 2 | - | - | 1 embed | - |
+| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | 1 | - | 1 |
+| 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 1 pending | 1 |
+| 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | 1 | 1 pending | - |
+| 11 | Understanding Your Brand's Technology | `03-validation/04-technology.html` | 4 | 1 checkbox | - | 2 embeds | - |
+| 12 | Seeking Approval | `04-seeking-approval/index.html` | 2 | - | - | 1 pending | - |
+| 13 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | 1 | 1 pending | - |
+| 14 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 6 | - | - | 1 pending | 1 |
+| 15 | Meet The Team Day | `05-meet-the-team-day/index.html` | 2 | - | - | - | - |
+| 16 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | 1 | 1 embed | 1 |
+| 17 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | 1 | 1 embed, 1 pending | 2 |
+| 18 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | 1 | 1 pending | 1 |
+| 19 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
+| 20 | Agreement Stage | `06-agreement-stage/index.html` | 2 | - | - | - | - |
+| 21 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
+| 22 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 1 embed | 1 |
+| 23 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | 1 | 1 embed | 1 |
 | 24 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 3 | - | 1 | - | 1 |
 
-**Totals:** 92 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 10 placeholder flags, 18 video embeds, 10 pending video slots, 14 asset slots.
+**Totals:** 69 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 10 placeholder flags, 18 video embeds, 10 pending video slots, 14 asset slots.
 
 
 ## Compliance gates

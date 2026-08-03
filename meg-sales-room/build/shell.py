@@ -227,6 +227,6 @@ def substeps(items):
 
 
 def next_step(text):
-    """The redesign has no .nextstep band, so the closer is a final card."""
-    return (f'<section class="slide">\n<div class="eyebrow">Next step</div>\n'
-            f"<p>{text}</p>\n</section>")
+    """Unused. John's pages carry the closing pointer as prose inside the last
+    content card rather than as a card of its own, and never use .eyebrow."""
+    return f"<p>{text}</p>"

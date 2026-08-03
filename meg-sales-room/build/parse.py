@@ -332,6 +332,11 @@ def build_page(rel, lines, all_paths, titles):
 
     slides = [s for s in slides if s[2]]
 
+    # John's pages close with the next-step pointer as prose in the final card,
+    # not as a separate card, and never use .eyebrow. Match that.
+    if next_text and slides:
+        slides[-1][2].append(f"<p>{inline(next_text)}</p>")
+
     # Runs of adjacent buttons become one .btnrow, so they share a gap rather
     # than each carrying its own vertical margin.
     for sl in slides:
@@ -356,7 +361,7 @@ def build_page(rel, lines, all_paths, titles):
         lede=esc(meta.get("Lede", "")),
         slides=[(esc(title), show_h3, "\n".join(parts))
                 for title, show_h3, parts in slides],
-        next_html=next_step(inline(next_text)) if next_text else "",
+        next_html="",
     )
 
 
