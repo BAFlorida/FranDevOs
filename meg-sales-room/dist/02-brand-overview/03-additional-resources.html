@@ -4,200 +4,409 @@
 <title>Additional Brand Specific Resources</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
-  --slate:#5B6470; --line:#E5E2DC; --flag-bg:#FBF3D6; --flag-ink:#7A5E12; --flag-line:#E4CE8A;
+/* Brand pink: HEX #ED0180 / RGB 237,1,128 / CMYK 0,100,11,0.
+--pink-dk is a darkened tint of it, used for pink text on white where
+the brand value alone falls under 4.5:1. */
+/* Brand black: HEX #231F20 / RGB 35,31,32 / CMYK 70,67,64,74. */
+--ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#ED0180; --pink-dk:#B00160;
+--brand-black:#231F20;
+--slate:#5B6470; --line:#E5E2DC; --line-2:#D8D4CC; --mute:#98A0AB;
+--flag-bg:#FBF3D6; --flag-ink:#7A5E12; --flag-line:#E4CE8A;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',-apple-system,'Segoe UI',sans-serif;
-  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
-.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+/* MEG type system. Anton stands in for Abolition (display), Montserrat for
+Gotham (labels, UI, subheads), Nunito Sans for Avenir Next (body). Anton
+ships a single weight - never set a bold on it or the browser synthesises
+a faux bold that thickens the letterforms unevenly. */
+body{background:var(--paper);color:var(--ink);font-family:'Nunito Sans',-apple-system,'Segoe UI',sans-serif;
+font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.mono{font-family:'Montserrat',sans-serif;font-weight:600}
 a{color:var(--pink-dk)}
-/* top bar */
-.topbar{background:var(--ink);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.topbar .meg{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:22px;letter-spacing:.06em}
+/* ---- PINK BAND: topbar + hero. Everything down to the journey rule. ---- */
+/* Black utility bar above the pink band. No rule between them - the colour
+change is the division, and the tones are far enough apart that a line
+just reads as a third element. */
+/* ONE 880px content grid, shared by topbar, hero, journey, cards, footer.
+Full-bleed bands get 24px padding plus an 880px inner track; the card
+stack and footer get 880+48 so their inner content lands on the same
+track. Every left edge on the page then resolves to the same x. */
+.topbar{background:var(--brand-black);color:#fff;padding:11px 24px}
+.topbar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:20px;letter-spacing:.06em;color:#fff}
 .topbar .meg b{color:var(--pink)}
-.topbar .sub{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AE}
-.topbar .chip{margin-left:auto;border:1px solid var(--pink);color:var(--pink);font-family:'IBM Plex Mono',monospace;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
-/* hero */
-.hero{background:var(--ink);color:#fff;padding:56px 24px 44px}
-.hero-in{max-width:880px;margin:0 auto}
-.hero .stageno{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--pink);margin-bottom:10px}
-.hero h1{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:clamp(40px,7vw,68px);
-  line-height:.98;text-transform:uppercase;letter-spacing:.01em;overflow-wrap:break-word}
-.hero .subtitle{margin-top:14px;color:#C6CBD2;font-size:18px;max-width:56ch}
-.ticket{margin-top:30px;display:flex;flex-wrap:wrap;gap:0;border:1px solid #2A2F37}
-.ticket div{padding:10px 18px;border-right:1px solid #2A2F37;min-width:150px;flex:1}
+.topbar .sub{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9CDD3}
+.topbar .chip{margin-left:auto;border:1px solid var(--pink);color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;
+font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:2px}
+/* hero - compact, brand-marked */
+.hero{background:var(--pink);color:#fff;padding:20px 24px 32px;position:relative;overflow:hidden}
+/* Swoosh. Sits behind the hero content: runs flat under the subtitle, then
+climbs out the top between the headline and the logo. preserveAspectRatio
+is "none" so it stretches to whatever height the copy forces, and the
+strokes are non-scaling so that stretch never fattens them. */
+.hero-swoosh{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* Gradient runs from brand pink at the keyline to brand black at the
+bottom-right, under the logo. objectBoundingBox units, so it re-maps
+itself to whatever the hero stretches to. */
+/* No stroke on the curve. The gradient's own top stop is the brand pink, so
+the fill's leading edge emerges out of the hero background instead of
+being drawn onto it - the division is tonal, not a line. */
+.sw-fill{fill:url(#swg)}
+/* Copy left, brand mark right. Wraps to a stack under 640px, where the
+logo is re-ordered above the copy. */
+.hero-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+position:relative;z-index:1}
+.hero-copy{flex:1 1 320px;min-width:0}
+/* Logo sits straight on the band - no card, no mat. The artwork is a
+transparent PNG, so the shadow has to be a filter on the glyph shapes
+rather than a box-shadow, which would shadow an invisible rectangle.
+Source PNG is 284x178, the largest the brand site publishes; 150px keeps
+it near 2x density. This is the tallest thing in the hero, so its width
+sets the hero's height. */
+.brandmark{flex:none;display:block;width:100%;max-width:150px;height:auto;
+filter:drop-shadow(0 5px 12px rgba(20,14,16,.4))}
+.hero .stageno{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.22em;
+text-transform:uppercase;color:#fff;margin-bottom:7px}
+/* 10deg lean to match the wordmark. Skew is applied per line with a
+bottom-left pivot, so each line's baseline-left lands exactly on the
+content grid - the way flush-left italic type is meant to set. Skewing
+the shared parent instead pivots the whole block off one corner and
+throws the headline several px inboard of everything else on the page.
+Anton is tightly fitted and the skew adds apparent sidebearing, so
+tracking sits at zero rather than positive. */
+.hero h1{font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:clamp(27px,4.2vw,38px);
+line-height:1.04;text-transform:uppercase;letter-spacing:0;overflow-wrap:break-word;color:#fff;
+text-wrap:balance;display:inline-block;transform:skewX(-10deg);transform-origin:left bottom}
+/* Reads as a kicker paired to the headline, not body copy: same lean, same
+pivot, so both baselines sit flush on the same left edge. */
+.hero .subtitle{margin-top:9px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;font-size:12.5px;
+letter-spacing:.15em;text-transform:uppercase;max-width:56ch;
+transform:skewX(-10deg);transform-origin:left bottom}
+/* Knockout outline, echoing the wordmark in the logo. Baseline is an
+8-direction text-shadow because it renders everywhere; browsers that
+support paint-order get a true stroke instead, which keeps the counters
+in tight letters like R and 8 from filling in. Display type only - at
+16px and below an outline just muddies the glyphs. */
+.outlined{text-shadow:
+-2px -2px 0 var(--brand-black), 0 -2px 0 var(--brand-black), 2px -2px 0 var(--brand-black),
+2px  0   0 var(--brand-black), 2px  2px 0 var(--brand-black), 0  2px 0 var(--brand-black),
+-2px  2px 0 var(--brand-black),-2px  0   0 var(--brand-black)}
+@supports (paint-order:stroke){
+.outlined{text-shadow:none;-webkit-text-stroke:4px var(--brand-black);paint-order:stroke fill}
+}
+.ticket{margin-top:18px;display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(255,255,255,.4)}
+.ticket div{padding:9px 16px;border-right:1px solid rgba(255,255,255,.4);min-width:150px;flex:1}
 .ticket div:last-child{border-right:none}
-.ticket .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A93A0}
-.ticket .v{font-size:14px;color:#EDEFF2;margin-top:3px}
+.ticket .k{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.ticket .v{font-size:14px;color:#fff;margin-top:3px}
+/* ---- end pink band ---- */
 /* journey */
-.journey{background:var(--ink);border-top:1px solid #23272E;padding:26px 24px 32px}
+.journey{background:var(--card);border-bottom:1px solid var(--line-2);padding:18px 24px 16px}
 .journey-in{max-width:880px;margin:0 auto}
-.jhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
-.jhead .jt{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
-.jhead .jc{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--pink)}
-.jtrack{display:flex}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.jhead .jt{font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+.jhead .jc{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.16em;color:var(--pink-dk)}
+/* ---- THE PIPE ----------------------------------------------------------
+The rail is a run of pipe. Water (brand pink) fills the completed span,
+reaches the candidate's current joint, and leaks out there - the process
+is the repair. Steps still to come are dry pipe. The bottom padding is
+the floor the leak pools on. */
+.jtrack{display:flex;padding-bottom:41px}
 .jstep{flex:1;text-align:center;position:relative}
-.jstep::before{content:"";position:absolute;top:16px;left:calc(-50% + 17px);width:calc(100% - 34px);height:3px;background:#2C313A;border-radius:2px}
-.jstep:first-child::before{display:none}
-.jstep.done::before{background:var(--pink-dk)}
-.jstep.now::before{background:linear-gradient(90deg,var(--pink-dk),var(--pink))}
-.jnode{width:34px;height:34px;border-radius:50%;margin:0 auto;position:relative;z-index:1;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:15px;
-  border:2px solid #39404B;color:#7C8592;background:var(--ink)}
-.jstep.done .jnode{background:var(--pink-dk);border-color:var(--pink-dk);color:#fff}
-.jstep.now .jnode{background:var(--pink);border-color:#fff;color:#fff;
-  box-shadow:0 0 0 5px rgba(232,23,93,.22),0 4px 14px rgba(232,23,93,.45)}
-.jlbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7C8592;margin-top:10px}
-.jstep.done .jlbl{color:#A8AFB9}
-.jstep.now .jlbl{color:#fff;font-weight:500}
-.jhere{display:inline-block;margin-top:6px;background:var(--pink);color:#fff;font-family:'IBM Plex Mono',monospace;
-  font-size:8.5px;letter-spacing:.16em;padding:3px 8px;border-radius:2px}
+/* The current step paints above the later ones. Without this, step 3's pipe
+segment is later in the DOM and would draw over the caution sign, putting
+the sign behind the pipe instead of in front of it. */
+.jstep.now{z-index:2}
+/* Pipe body. The vertical gradient is the cylinder: blown highlight near the
+top, core shadow low, then a faint bounce light along the bottom edge so
+it reads round rather than like a flat bar. Runs full-width behind the
+couplings so the run looks continuous. */
+.jstep::before{content:"";position:absolute;top:41px;left:-50%;width:100%;height:12px;
+background:linear-gradient(180deg,#EFECE6 0%,#FFFFFF 20%,#DCD7CE 56%,#B0AAA0 86%,#C9C3B9 100%);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(0,0,0,.17)}
+/* Water in the bore, inset from the pipe walls. The repeating diagonal is a
+surface glint scrolled along the run to give it flow direction. */
+.jstep.done::after,.jstep.now::after{content:"";position:absolute;top:43px;left:-50%;width:100%;height:8px;
+background:
+repeating-linear-gradient(112deg,rgba(255,255,255,.13) 0 4px,rgba(255,255,255,0) 4px 26px),
+linear-gradient(180deg,#FF63AE 0%,#ED0180 46%,#96014F 100%);
+background-size:52px 100%,100% 100%;
+animation:pipeflow 1.5s linear infinite}
+/* The run has to pass THROUGH the end couplings, not begin at them. Without
+these stubs the first node is a circle with a rectangle sprouting from one
+side; with them it reads as a coupling sitting on a line that carries on
+past it. Both stubs stop on the 880 content grid, so the pipe starts and
+ends where every other element on the page does. */
+.jstep:first-child::before,.jstep:first-child::after{left:0;width:50%}
+.jstep:last-child::before{width:150%}
+@keyframes pipeflow{to{background-position:52px 0,0 0}}
+/* Couplings. Same cylinder shading as the pipe; filled ones are charged. */
+/* z:3 must outrank .jstep.now's z:2, or that step's stacking context paints
+its water bar straight across the face of the node before it. Couplings
+sit on top of the run - always, every step. */
+.jnode{width:32px;height:32px;border-radius:50%;margin:0 auto;position:relative;z-index:3;
+display:flex;align-items:center;justify-content:center;
+font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:14px;
+background:linear-gradient(180deg,#FFFFFF,#E2DDD5 55%,#BDB7AD);
+border:2px solid #A9A399;color:#7C776E;box-shadow:0 1px 2px rgba(35,31,32,.18)}
+.jstep.done .jnode{background:linear-gradient(180deg,#FF74B7,#ED0180 52%,#A50158);border-color:#8B014A;color:#fff}
+.jstep.now .jnode{background:linear-gradient(180deg,#FF74B7,#ED0180 52%,#A50158);border-color:#8B014A;color:#fff;
+box-shadow:0 0 0 4px rgba(237,1,128,.15),0 1px 2px rgba(35,31,32,.2)}
+/* Labels sit ABOVE the pipe so the drip has a clear vertical run beneath it.
+Fixed-height, bottom-aligned box: a label that wraps to two lines would
+otherwise push its own coupling down and break the run. */
+.jlbl{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--mute);height:24px;margin-bottom:7px;line-height:1.15;
+display:flex;align-items:flex-end;justify-content:center}
+.jstep.done .jlbl{color:var(--slate)}
+.jstep.now .jlbl{color:var(--ink)}
+/* ---- THE LEAK ----------------------------------------------------------
+Static teardrops falling from the coupling into an irregular splat, held
+as a still image the way the reference is. The only motion left is the
+glint travelling inside the pipe, which carries the "water is running
+through this" idea.
+The sign is drawn at NEGATIVE y so it stands up out of the puddle and
+crosses in front of the dry pipe beside the current coupling. Reusing that
+already-empty space is what lets the block sit ~20px shorter, so
+overflow:visible on the svg is load-bearing here, not decoration. */
+.spill{position:absolute;left:50%;top:61px;width:140px;margin-left:-70px;pointer-events:none;line-height:0}
+.spill svg{width:100%;height:auto;display:block;overflow:visible}
+.drip{fill:#ED0180}
+/* Irregular path, not an ellipse. The lighter rim is a pink tint - a white
+rim would vanish against the white section behind it. */
+.puddle{fill:#ED0180;stroke:#FF7DBB;stroke-width:2.4;stroke-linejoin:round}
+.puddle-hi{fill:rgba(255,255,255,.42)}
+.splash{fill:#ED0180;stroke:#FF7DBB;stroke-width:1.6}
+@media (prefers-reduced-motion:reduce){
+.jstep.done::after,.jstep.now::after{animation:none}
+}
 /* video embed */
-.video-embed{margin:6px 0 8px;border-radius:4px;overflow:hidden;border:1px solid var(--line);
-  position:relative;padding-top:56.25%;background:#000}
+.video-embed{margin:0 0 8px;border-radius:4px;overflow:hidden;border:1px solid var(--line);
+position:relative;padding-top:56.25%;background:#111}
 .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-cap{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--slate);margin:8px 0 18px}
-/* slide stack + spine */
-.stack{max-width:880px;margin:0 auto;padding:48px 24px 24px;position:relative}
-.stack::before{content:"";position:absolute;top:60px;bottom:40px;left:24px;width:3px;background:linear-gradient(var(--pink),var(--pink-dk))}
-.slide{background:var(--card);border:1px solid var(--line);border-radius:4px;margin:0 0 34px 44px;padding:34px 38px;position:relative;
-  box-shadow:0 1px 2px rgba(18,21,26,.05)}
-.slide::before{content:attr(data-n);position:absolute;left:-44px;top:26px;transform:translateX(-50%);
-  width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;
-  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:16px;box-shadow:0 0 0 5px var(--paper)}
-.slide .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--pink-dk);margin-bottom:10px}
-.slide h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:32px;line-height:1.04;
-  text-transform:uppercase;margin-bottom:16px}
-.slide h4{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;font-size:21px;text-transform:uppercase;
-  letter-spacing:.02em;margin:26px 0 8px;color:var(--ink)}
+.video-cap{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+color:var(--slate);margin:8px 0 18px}
+/* card stack */
+.stack{max-width:928px;margin:0 auto;padding:36px 24px 24px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:4px;margin:0 0 28px;padding:34px 38px;
+box-shadow:0 1px 2px rgba(18,21,26,.05)}
+.slide .eyebrow{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+color:var(--pink-dk);margin-bottom:10px}
+.slide h3{font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:32px;line-height:1.04;
+text-transform:uppercase;margin-bottom:16px}
+.slide h4{font-family:'Anton','Arial Narrow',sans-serif;font-weight:400;font-size:21px;text-transform:uppercase;
+letter-spacing:.02em;margin:26px 0 8px;color:var(--ink)}
 .slide p{margin:0 0 14px;color:#2A2F37}
-.slide p:last-child{margin-bottom:0}
+/* Direct-child selector, not just p: any last block in a card (flag, list,
+table, button row) would otherwise stack its own bottom margin on top of
+the card's padding and make that card look looser than its neighbours. */
+.slide > :last-child{margin-bottom:0}
 .slide strong{color:var(--ink)}
 .slide ul,.slide ol{margin:0 0 16px 22px}
 .slide li{margin-bottom:7px;color:#2A2F37}
 .slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-size:15px}
-.slide th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  text-align:left;color:var(--slate);border-bottom:2px solid var(--ink);padding:8px 12px}
+.slide th{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+text-align:left;color:var(--slate);border-bottom:2px solid var(--ink);padding:8px 12px}
 .slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
 .slide tr td:first-child{white-space:nowrap;font-weight:600}
 .t-scroll{overflow-x:auto}
-.slide caption{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--slate);text-align:left;padding-bottom:8px}
+.slide caption{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--slate);text-align:left;padding-bottom:8px}
 blockquote{background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
-  border-radius:3px;padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--flag-ink)}
+border-radius:3px;padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--flag-ink)}
 blockquote p{color:var(--flag-ink)!important;margin-bottom:8px}
-blockquote::before{content:"\2699 INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:'IBM Plex Mono',monospace;
-  font-size:10px;letter-spacing:.18em;margin-bottom:8px}
-.video-slot{border:2px dashed #C9CDD4;border-radius:4px;background:#F3F2EE;padding:22px;margin:6px 0 18px;
-  display:flex;align-items:center;gap:14px;color:var(--slate)}
-.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:flex;
-  align-items:center;justify-content:center;font-size:14px;flex:none}
-.video-slot .t{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+blockquote::before{content:"\2699 INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:'Montserrat',sans-serif;font-weight:600;
+font-size:10px;letter-spacing:.18em;margin-bottom:8px}
+.video-slot{border:2px dashed #C9CDD4;border-radius:4px;background:#F3F2EE;padding:22px;margin:0 0 22px;
+display:flex;align-items:center;gap:14px;color:var(--slate)}
+.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;display:flex;
+align-items:center;justify-content:center;font-size:14px;flex:none}
+.video-slot .t{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .flag{display:block;background:var(--flag-bg);border:1px solid var(--flag-line);border-left:4px solid var(--flag-ink);
-  border-radius:3px;padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--flag-ink)}
-.flag b{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;display:block;margin-bottom:6px}
+border-radius:3px;padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--flag-ink)}
+.flag b{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;display:block;margin-bottom:6px}
 .flag-in{display:inline;background:var(--flag-bg);border:1px solid var(--flag-line);border-radius:3px;
-  padding:1px 7px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--flag-ink)}
+padding:1px 7px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;color:var(--flag-ink)}
 /* GATE - compliance acknowledgment. Pink-bordered, real control. */
 .gate{border:2px solid var(--pink);border-radius:4px;background:#FEF2F6;padding:22px 24px;margin:10px 0 20px}
-.gate .glabel{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--pink-dk);margin-bottom:10px}
+.gate .glabel{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+color:var(--pink-dk);margin-bottom:10px}
 .gate .gtext{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:16px;line-height:1.5}
 .gate .gnote{font-size:14.5px;color:var(--slate);margin-bottom:16px}
 .gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid rgba(232,23,93,.25);padding-top:14px}
 .gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--pink);cursor:pointer}
 .gate .gcheck label{font-weight:600;cursor:pointer}
-.gate select{font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:9px 11px;border:1px solid var(--line);
-  background:var(--card);width:100%;max-width:340px;border-radius:2px}
+.gate select{font-family:'Nunito Sans',sans-serif;font-size:15px;padding:9px 11px;border:1px solid var(--line);
+background:var(--card);width:100%;max-width:340px;border-radius:2px}
 .sr-only{position:absolute;left:-9999px}
 /* asset slots - download / form / scheduler */
 .asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:4px;background:var(--card);
-  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
+padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
 .asset:hover{border-color:var(--pink)}
-.asset .kind{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--ink);color:#fff;padding:5px 9px;border-radius:2px;flex:none}
+.asset .kind{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+background:var(--pink);color:#fff;padding:5px 9px;border-radius:2px;flex:none}
 .asset .lbl{font-weight:600}
 .quiz{list-style:none;margin:4px 0 18px 0!important}
 .quiz li{border:1px solid var(--line);border-radius:3px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:baseline;background:#FCFCFA}
-.quiz li .box{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#AEB4BC;flex:none}
+.quiz li .box{font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;color:#AEB4BC;flex:none}
 .quiz li.correct{border-color:var(--pink);background:#FEF2F6}
 .quiz li.correct .box{color:var(--pink);font-weight:700}
-.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
-  letter-spacing:.16em;color:var(--pink);align-self:center}
-.ui-chip{display:inline-block;background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;
-  letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:2px;margin:2px 6px 2px 0}
+.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:'Montserrat',sans-serif;font-weight:600;font-size:9.5px;
+letter-spacing:.16em;color:var(--pink);align-self:center}
+.ui-chip{display:inline-block;background:var(--pink);color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;
+letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:2px;margin:2px 6px 2px 0}
 /* substep list - bucket index pages only */
 .substeps{list-style:none;margin:4px 0 0 0!important}
 .substeps li{border-bottom:1px solid var(--line)}
 .substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--ink)}
 .substeps a:hover .sst{color:var(--pink-dk)}
-.ssn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--pink);flex:none;width:22px}
+.ssn{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;color:var(--pink);flex:none;width:22px}
 .sst{font-weight:600}
-.ssnote{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--slate)}
-.nextstep{background:var(--ink);color:#fff;border-radius:4px;margin:6px 0 34px 44px;padding:30px 38px}
-.nextstep .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
-.nextstep p{color:#D9DDE2;margin-bottom:12px}
-.nextstep strong{color:#fff}
-footer{max-width:880px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.ssnote{margin-left:auto;font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.08em;
+text-transform:uppercase;color:var(--slate)}
+/* Outbound CTA. The brand-black keyline and hard offset shadow echo the
+treatment on the logo wordmark and the headline outline, so the button
+reads as part of the same system rather than a generic pink pill.
+Every actionable link on the page uses this one class - forms, scheduler
+and B-Verify alike - so there is a single button appearance to maintain. */
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 2px}
+.btnrow .btn{margin:0}
+.btn{display:inline-flex;align-items:center;gap:9px;margin:8px 0 2px;
+background:var(--pink);color:#fff;text-decoration:none;
+font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+padding:13px 24px;border-radius:2px;border:2px solid var(--brand-black);
+box-shadow:0 3px 0 var(--brand-black);transition:background .15s,transform .12s,box-shadow .12s}
+.btn:hover{background:var(--pink-dk)}
+/* Press knocks the button down onto its own shadow. */
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--brand-black)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+footer{max-width:928px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
 footer a{color:var(--slate)}
 @media(max-width:640px){
-  .stack::before{left:14px}
-  .slide{margin-left:30px;padding:24px 20px}
-  .slide::before{left:-30px;width:28px;height:28px;font-size:14px}
-  .nextstep{margin-left:30px;padding:24px 20px}
-  .jlbl{display:none}
-  .jstep.now .jlbl{display:block;font-size:9px}
-  .jhere{display:none}
-  .jnode{width:28px;height:28px;font-size:13px}
-  .jstep::before{top:13px;left:calc(-50% + 14px);width:calc(100% - 28px)}
-  .ticket div{min-width:46%}
-  /* The template's nowrap first column assumes short labels. Real copy is
-     longer, so let it wrap rather than push the page sideways. */
-  .slide tr td:first-child{white-space:normal}
-  .asset{flex-wrap:wrap}
-  .asset .lbl,.video-slot .t{overflow-wrap:anywhere;min-width:0}
+/* Stacked hero is far taller than it is wide, and preserveAspectRatio
+"none" would stretch the climb up through the headline and behind the
+logo. Pin the swoosh to a fixed band at the bottom instead, and reserve
+matching bottom padding so the band starts below the subtitle rather
+than cutting across it. */
+/* Stacked, the logo drops BELOW the copy and right-aligns onto the deep end
+of the band. Without the white card it has to land on dark: the mark's
+plunger cup is brand pink, so on the bright field its fill disappears and
+only the keyline survives. The band grows to cover that landing zone. */
+.hero{padding-bottom:26px}
+.hero-swoosh{top:auto;height:158px}
+.hero-in{gap:18px}
+.brandmark{max-width:140px;margin-left:auto}
+.slide{padding:24px 20px}
+/* All labels off at this width, including the current one. The leak has to
+stay attached to its joint to read as a leak, and at ~54px per step
+there is no room for both. Nothing is lost: the hero headline directly
+above already says BRAND OVERVIEW, and the caution sign marks the step. */
+.jlbl{display:none}
+/* Narrower gauge pipe, recentred on the smaller couplings. */
+.jnode{width:26px;height:26px;font-size:13px}
+.jstep::before{top:7px;height:12px;left:-50%;width:100%}
+.jstep.done::after,.jstep.now::after{top:9px;height:8px}
+/* Steps are ~54px wide here, so the leak scales down but stays anchored to
+its coupling. The puddle spreads wider than one step - that is fine, it
+is a puddle, and there are no labels left for it to collide with. */
+.jtrack{padding-bottom:30px}
+.spill{width:106px;margin-left:-53px;top:23px}
+.ticket div{min-width:46%}
+/* The template's nowrap first column assumes short labels. Real copy is
+longer, so let it wrap rather than push the page sideways. */
+.slide tr td:first-child{white-space:normal}
+/* Stack buttons full-width. Long labels are far too wide for a
+side-by-side pill at this width. */
+.btnrow{flex-direction:column;align-items:stretch}
+.btn{justify-content:center;text-align:center;padding:13px 18px}
+.asset{flex-wrap:wrap}
+.asset .lbl,.video-slot .t{overflow-wrap:anywhere;min-width:0}
 }
 :focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+/* ---- build refinements, not in spec/page-template.html ----------------- */
+/* The leak is deliberately wider than one step. On the final joint that pushes
+   the document sideways at narrow widths. Clip the band on x only: `clip`
+   rather than `hidden` so the caution sign can still stand up out of the
+   puddle on the y axis, which the template's comment calls load-bearing. */
+.journey{overflow-x:clip}
 </style></head><body>
 
-<div class="topbar"><span class="meg">MEG<b>.</b></span>
+<div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
 <span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
-<span class="chip">Stage 2 of 6</span></div>
+<span class="chip">Stage 2 of 6</span></div></div>
 
-<div class="hero"><div class="hero-in">
-<div class="stageno">Stage 02 · Brand Overview</div>
-<h1>Additional Brand Specific Resources</h1>
+<div class="hero">
+<svg class="hero-swoosh" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs><!-- Axis starts ON the curve's left end, not at the bbox corner, so the
+fill begins at exactly the hero pink and the leading edge is invisible
+there. It only deepens as the water runs right and down. -->
+<linearGradient id="swg" x1="0" y1=".85" x2=".95" y2="1">
+<stop offset="0" stop-color="#ED0180"/><stop offset=".26" stop-color="#E10179"/>
+<stop offset=".56" stop-color="#AE015F"/><stop offset="1" stop-color="#231F20"/>
+</linearGradient>
+<radialGradient id="bloom" cx=".1" cy="0" r=".95">
+<stop offset="0" stop-color="#fff" stop-opacity=".17"/><stop offset=".55" stop-color="#fff" stop-opacity=".05"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</radialGradient></defs>
+<!-- Three arcs with matched tangents at each join, so it reads as one
+continuous flow rather than spliced curves. Horizontal tangent at the
+left end (still water) and again where it meets the top edge (the crest
+easing out) - no corner at either end. -->
+<path class="sw-fill" d="M0,187 C210,187 330,185 460,152 C580,122 630,52 745,20 C800,5 840,0 900,0 L1200,0 L1200,220 L0,220 Z"/>
+<rect x="0" y="0" width="1200" height="220" fill="url(#bloom)"/>
+</svg>
+<div class="hero-in">
+<div class="hero-copy">
+<h1 class="outlined">Additional Brand Specific Resources</h1>
 <p class="subtitle">Optional depth. None of this is required to advance.</p>
+</div>
+
 </div></div>
 
 <div class="journey"><div class="journey-in">
 <div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 2 of 6</span></div>
 <div class="jtrack">
-<div class="jstep done"><div class="jnode">1</div><div class="jlbl">Welcome</div></div>
-<div class="jstep now"><div class="jnode">2</div><div class="jlbl">Brand Overview</div><div><span class="jhere">You are here</span></div></div>
-<div class="jstep"><div class="jnode">3</div><div class="jlbl">Validation</div></div>
-<div class="jstep"><div class="jnode">4</div><div class="jlbl">Seeking Approval</div></div>
-<div class="jstep"><div class="jnode">5</div><div class="jlbl">Meet The Team Day</div></div>
-<div class="jstep"><div class="jnode">6</div><div class="jlbl">Agreement</div></div>
+<div class="jstep done"><div class="jlbl">Welcome</div><div class="jnode">1</div></div>
+<div class="jstep now" aria-current="step"><div class="jlbl">Brand Overview</div><div class="jnode">2</div><span class="sr-only">You are here</span>
+<div class="spill"><svg viewBox="0 0 150 46" aria-hidden="true" focusable="false">
+<path class="drip" d="M75 1 C76.5 4 78 6.1 78 7.9 A3 3 0 1 1 72 7.9 C72 6.1 73.5 4 75 1 Z"/>
+<path class="drip" d="M75 13 C76.5 16 78 18.1 78 19.9 A3 3 0 1 1 72 19.9 C72 18.1 73.5 16 75 13 Z"/>
+<path class="puddle" d="M16 33 C16 27 28 24 46 24 C60 24 68 25.5 82 25 C97 24.5 114 25 125 27 C135 29 137 35 127 38.5 C116 42 98 41 80 41 C60 41 40 42 27 39.5 C20 38 16 36 16 33 Z"/>
+<ellipse class="puddle-hi" cx="46" cy="29" rx="14" ry="2"/>
+<circle class="splash" cx="129" cy="21" r="2.6"/>
+<circle class="splash" cx="136" cy="27" r="1.7"/>
+<!-- A-frame caution sign: near leg splayed left in a darker yellow, front
+face with handle cutout, two text bars and the red slip triangle. The
+wording is set as bars rather than glyphs - at this size real type
+renders as illegible noise, whereas bars read as "text" cleanly. -->
+<g transform="translate(96,-14)">
+<ellipse cx="18" cy="44" rx="15" ry="2.4" fill="rgba(35,31,32,.16)"/>
+<path d="M15 1.5 L9.6 3.6 L3.6 44 L10.8 44 Z" fill="#E0A800"/>
+<path d="M15 1.5 L27 1.5 L33.5 44 L27.2 44 L26.3 40.2 L19 40.2 L18.1 44 L10.8 44 Z" fill="#F7C51E" stroke="#D9A800" stroke-width=".8" stroke-linejoin="round"/>
+<rect x="18.5" y="5" width="8" height="4.6" rx="1.4" fill="#FFFFFF"/>
+<rect x="17.6" y="13" width="10.4" height="1.9" rx=".95" fill="#231F20"/>
+<rect x="17.2" y="16.4" width="11.6" height="1.9" rx=".95" fill="#231F20"/>
+<path d="M24.4 21.5 L29.8 33 C30.2 33.8 29.8 34.5 29 34.5 L19.8 34.5 C19 34.5 18.6 33.8 19 33 Z" fill="none" stroke="#C62F26" stroke-width="1.5" stroke-linejoin="round"/>
+<circle cx="22.4" cy="28" r="1.15" fill="#C62F26"/>
+<path d="M23.1 29 L26.2 31.6" stroke="#C62F26" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M24.2 30.2 L21.9 32.9" stroke="#C62F26" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M23.3 28 L25.9 27" stroke="#C62F26" stroke-width="1.2" stroke-linecap="round"/>
+</g>
+</svg></div></div>
+<div class="jstep"><div class="jlbl">Validation</div><div class="jnode">3</div></div>
+<div class="jstep"><div class="jlbl">Seeking Approval</div><div class="jnode">4</div></div>
+<div class="jstep"><div class="jlbl">Meet The Team Day</div><div class="jnode">5</div></div>
+<div class="jstep"><div class="jlbl">Agreement</div><div class="jnode">6</div></div>
 </div></div></div>
 
 <main class="stack">
 
-<section class="slide" data-n="01">
-<div class="eyebrow">Slide 01 · Additional Brand Specific Resources</div>
+<section class="slide">
 <p>Click each item below to go deeper on the parts of the business that matter most to you. None of this is required to advance. All of it is available when you want it.</p>
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/2gaiZ4BcF8Y" title="EverSmith EverConnect" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
 <div class="video-cap">▶ Watch · EverSmith EverConnect</div>
@@ -212,27 +421,23 @@ footer a{color:var(--slate)}
 <li><span class="flag-in">PH-20 podcast and press features</span></li>
 </ul>
 </section>
-<section class="slide" data-n="02">
-<div class="eyebrow">Slide 02 · The Basics of Franchising</div>
+<section class="slide">
 <h3>The Basics of Franchising</h3>
 <p>We take a holistic view of franchising. Not every concept suits every owner, and not every candidate is awarded a franchise. Those two facts are related.</p>
 <p>The videos below cover general franchise industry concepts. How franchising works, what a franchisor actually does, what obligations run both directions, and how to evaluate any brand you are considering. They are brand-agnostic on purpose. Watch them with 1-Tom-Plumber in mind, and with whatever other brands you are exploring in mind too.</p>
 <div class="video-slot"><span class="play">▶</span><span class="t">Pending — General Franchising Concepts series</span></div>
 </section>
-<section class="slide" data-n="03">
-<div class="eyebrow">Slide 03 · Is Business Ownership Really Right for Me?</div>
+<section class="slide">
 <h3>Is Business Ownership Really Right for Me?</h3>
 <p>Let's pause.</p>
 <p>You have learned the brand. Before you go further, we want you to step back and ask a harder question. Not whether 1-Tom-Plumber is a good business, but whether business ownership is right for you and your family at this point in your life.</p>
 <p>There is no wrong answer here. Some of the best conversations we have are the ones where a candidate decides the timing is not right. We would rather have that conversation now than two years into an agreement.</p>
 <div class="video-slot"><span class="play">▶</span><span class="t">Pending — executive perspective on business ownership readiness</span></div>
 </section>
-
-<div class="nextstep">
-<div class="eyebrow">Next Step</div>
-<p><strong>Continue to Stage 3, Validation.</strong></p>
-<p><span class="ui-chip">Mark Complete</span> <span class="mono" style="font-size:11px;color:#8A93A0">→ returns candidate to MEG dashboard</span></p>
-</div>
+<section class="slide">
+<div class="eyebrow">Next step</div>
+<p>Continue to Stage 3, Validation.</p>
+</section>
 
 </main>
 <footer><span>MEG · Mutual Evaluation Guide</span>

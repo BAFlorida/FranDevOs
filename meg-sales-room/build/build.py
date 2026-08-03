@@ -19,6 +19,7 @@ DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 
 from parse import BUCKETS, VIDEOS, all_pages  # noqa: E402
+from shell import LOGO_MISSING  # noqa: E402
 
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
@@ -76,12 +77,13 @@ def check(pages):
 
         # The spine and at least one numbered slide.
         if 'class="stack"' not in html:
-            fails.append(f"{path}: missing .stack spine")
-        if not re.search(r'<section class="slide" data-n="\d\d">', html):
-            fails.append(f"{path}: no numbered slides")
+            fails.append(f"{path}: missing .stack")
+        if '<section class="slide">' not in html:
+            fails.append(f"{path}: no slide cards")
 
         # Journey marks exactly one current stage, and it is this page's.
-        nows = re.findall(r'<div class="jstep now"><div class="jnode">(\d)</div>', html)
+        nows = re.findall(r'<div class="jstep now" aria-current="step">'
+                          r'<div class="jlbl">[^<]*</div><div class="jnode">(\d)</div>', html)
         if nows != [str(stage)]:
             fails.append(f"{path}: journey .now is {nows}, expected ['{stage}']")
         if len(re.findall(r'class="jstep', html)) != 6:
@@ -136,9 +138,18 @@ def check(pages):
             if stray in html:
                 fails.append(f"{path}: unrendered markdown {stray!r}")
 
-        # Closing card. The final page has no NEXT section in the source, by design.
-        if 'class="nextstep"' not in html and path != ORDER[-1]:
-            fails.append(f"{path}: missing .nextstep closing card")
+        # Hero brand elements from the redesign.
+        for needed, what in (
+            ('class="hero-swoosh"', "hero swoosh"),
+            ('class="outlined"', "outlined headline"),
+            ('class="spill"', "journey leak"),
+        ):
+            if needed not in html:
+                fails.append(f"{path}: missing {what}")
+        # The leak belongs to the current joint only.
+        leaks = html.count('class="spill"')
+        if leaks != 1:
+            fails.append(f"{path}: expected exactly one leak, found {leaks}")
 
     # Every bucket index links all of its sub-steps.
     for path in pages:
@@ -303,4 +314,7 @@ if __name__ == "__main__":
         for f in failures:
             print(f"    - {f}")
         sys.exit(1)
+    if LOGO_MISSING:
+        print("\n  NOTE: hero logo omitted. The template's data URI arrived\n"
+              "  truncated; drop the full base64 in build/logo.b64 and rebuild.")
     print("\n  all checks passed")
