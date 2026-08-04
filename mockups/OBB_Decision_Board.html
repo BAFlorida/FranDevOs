@@ -206,6 +206,68 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
 .gap .gv span{font-size:11px;color:var(--ink2)}
 .gap .gn{font-size:10.5px;color:var(--ink2);margin-top:5px}
 
+/* ============ PLAYGROUND ============ */
+.pgbar{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);flex-wrap:wrap;
+  background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--everblue);
+  box-shadow:var(--sh1);padding:10px 14px;margin-bottom:var(--s4)}
+.pgb-t{font-size:11.5px;color:var(--ink2)}
+.pgb-a{display:flex;gap:var(--s2)}
+.pb{font-family:inherit;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 11px;cursor:pointer;background:var(--bg);color:var(--ink2);border:1px solid var(--line-dk);
+  border-radius:2px}
+.pb:hover{border-color:var(--everblue);color:var(--everblue-dk)}
+.pb.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pb.sm{width:100%;margin-top:var(--s2);font-size:9.5px;padding:5px}
+.pb:focus-visible{outline:2px solid var(--everblue);outline-offset:1px}
+
+.pgwrap{display:grid;grid-template-columns:326px 1fr;gap:var(--s5);align-items:start}
+.pgin{display:flex;flex-direction:column;gap:var(--s4);position:sticky;top:96px;
+  max-height:calc(100vh - 112px);overflow-y:auto;padding-right:6px}
+.fg{background:var(--paper);border:1px solid var(--line);box-shadow:var(--sh1);padding:var(--s3) var(--s4) var(--s4)}
+.fg.gs{border-left:3px solid var(--indigo)}
+.fg h4{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
+  padding-bottom:var(--s2);border-bottom:1px solid var(--line);margin-bottom:var(--s3);
+  display:flex;justify-content:space-between;align-items:baseline}
+.fg h4 span{font-size:10px;letter-spacing:0;text-transform:none;font-weight:600}
+.fld{margin-bottom:11px}
+.fld:last-of-type{margin-bottom:0}
+.fh{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-bottom:3px}
+.fh label{font-size:11.5px;font-weight:600;color:var(--navy)}
+.fh em{font-style:normal;font-size:9.5px;color:var(--ink3);white-space:nowrap}
+.fb{display:grid;grid-template-columns:1fr 78px;gap:var(--s2);align-items:center}
+.fb input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--line);
+  border-radius:2px;outline:none;cursor:pointer}
+.fb input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;
+  border-radius:50%;background:var(--everblue);border:2px solid #fff;box-shadow:var(--sh1);cursor:pointer}
+.fb input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--everblue);
+  border:2px solid #fff;cursor:pointer}
+.fb input[type=range]:focus-visible{outline:2px solid var(--everblue);outline-offset:3px}
+.fb input[type=number]{font-family:inherit;font-size:12px;font-weight:600;color:var(--navy);text-align:right;
+  padding:5px 7px;border:1px solid var(--line-dk);border-radius:2px;background:var(--paper);width:100%;
+  font-variant-numeric:tabular-nums}
+.fb input[type=number]:focus{outline:none;border-color:var(--everblue);box-shadow:0 0 0 2px var(--everblue-bg)}
+.fld.bad .fb input[type=number]{border-color:var(--coral);background:var(--coral-bg)}
+.gsout{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:11.5px;color:var(--ink2)}
+.gsout b{display:block;font-size:22px;font-weight:700;color:var(--indigo-dk);letter-spacing:-.03em;margin-bottom:2px}
+.gsout span{color:var(--ink3);font-size:10.5px}
+
+.ptiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--s3);margin-bottom:var(--s4)}
+.pt{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--everblue);
+  box-shadow:var(--sh1);padding:10px 12px 11px}
+.pt.i{border-top-color:var(--indigo)} .pt.n{border-top-color:var(--navy)} .pt.s{border-top-color:var(--slate)}
+.pt .l{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
+.pt .v{font-size:24px;font-weight:700;color:var(--navy);letter-spacing:-.035em;line-height:1.05;margin-top:3px}
+.pt .d{font-size:10.5px;margin-top:2px;color:var(--ink3)}
+.pt .d .up{color:var(--green);font-weight:700} .pt .d .dn{color:var(--coral);font-weight:700}
+
+.flag{font-size:11px;padding:8px 12px;margin-bottom:var(--s3);border-radius:2px;border:1px solid}
+.flag.w{background:var(--amber-bg);border-color:#E3C77E;color:#7A5606}
+.flag.c{background:var(--coral-bg);border-color:#E8B0A8;color:#8E2B20}
+.flag.i{background:var(--everblue-bg);border-color:#9CDCE4;color:var(--everblue-dk)}
+.flag b{font-weight:700}
+.tscroll{overflow-x:auto}
+
+@media (max-width:1100px){.pgwrap{grid-template-columns:1fr}.pgin{position:static}}
 @media (max-width:940px){.panels{grid-template-columns:1fr}}
 @media (max-width:960px){.two{grid-template-columns:1fr}.fs{grid-template-columns:1fr}.dep{grid-template-columns:1fr}}
 </style>
@@ -219,6 +281,7 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
   </div>
   <div class="tabs">
     <button class="tb on" data-p="fn">Funnel</button>
+    <button class="tb" data-p="pg">Playground</button>
     <button class="tb" data-p="aw"><span class="n">1</span>Awareness</button>
     <button class="tb" data-p="co"><span class="n">2</span>Consideration</button>
     <button class="tb" data-p="op"><span class="n">3</span>Opportunity</button>
@@ -296,6 +359,90 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
       <td>0.81% vs 1.50% commitment</td><td class="r n">+34 QL</td><td class="c">Wk 19</td></tr>
   </table>
   <div class="note">Four of eight open decisions. Confidence, gates and full triggers are on the Decisions tab.</div>
+</div>
+
+<!-- ============ PLAYGROUND ============ -->
+<div class="page" id="p-pg">
+
+  <div class="pgbar">
+    <div class="pgb-t">Planning model — every number below is recomputed from the rates you enter.
+      CPM defaults to <b>$44.79</b>, the rate implied by the board&rsquo;s own spend and impressions.</div>
+    <div class="pgb-a">
+      <button class="pb on" data-preset="board">Board actuals</button>
+      <button class="pb" data-preset="stated">Board&rsquo;s stated CPM</button>
+      <button class="pb" data-preset="reset">Reset</button>
+    </div>
+  </div>
+
+  <div class="pgwrap">
+    <div class="pgin">
+
+      <div class="fg">
+        <h4>Awareness</h4>
+        <div class="fld" data-k="universe"><div class="fh"><label>Universe</label><em>people known to exist</em></div>
+          <div class="fb"><input type="range" min="100000" max="2000000" step="1000"><input type="number" step="1000"></div></div>
+        <div class="fld" data-k="enrichPct"><div class="fh"><label>Enriched</label><em>% of universe</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.1"><input type="number" step="0.1"></div></div>
+        <div class="fld" data-k="creditsPer"><div class="fh"><label>Credits per record</label><em>Clay</em></div>
+          <div class="fb"><input type="range" min="0" max="4" step="0.1"><input type="number" step="0.1"></div></div>
+        <div class="fld" data-k="matchPct"><div class="fh"><label>Match rate</label><em>target 60.0%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.1"><input type="number" step="0.1"></div></div>
+        <div class="fld" data-k="reachPct"><div class="fh"><label>Reach</label><em>% of matched</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.1"><input type="number" step="0.1"></div></div>
+        <div class="fld" data-k="budget"><div class="fh"><label>Media budget</label><em>$</em></div>
+          <div class="fb"><input type="range" min="0" max="500000" step="100"><input type="number" step="100"></div></div>
+        <div class="fld" data-k="cpm"><div class="fh"><label>Cold CPM</label><em>board implies $44.79</em></div>
+          <div class="fb"><input type="range" min="1" max="90" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="ctr"><div class="fh"><label>Click-through</label><em>target 1.00%</em></div>
+          <div class="fb"><input type="range" min="0" max="4" step="0.01"><input type="number" step="0.01"></div></div>
+      </div>
+
+      <div class="fg">
+        <h4>Consideration <span id="dsum"></span></h4>
+        <div class="fld" data-k="idPct"><div class="fh"><label>Identification rate</label><em>target 30.0%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="l1"><div class="fh"><label>L1 Identified</label><em>% of named</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="l2"><div class="fh"><label>L2 Engaged</label><em>% of named</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="l3"><div class="fh"><label>L3 Returned</label><em>% of named</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="l4"><div class="fh"><label>L4 Signal &rarr; leads</label><em>% of named</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <button class="pb sm" id="normd">Normalise split to 100%</button>
+      </div>
+
+      <div class="fg">
+        <h4>Opportunity</h4>
+        <div class="fld" data-k="qualPct"><div class="fh"><label>Lead &rarr; Qualified</label><em>model 16.7%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="routePct"><div class="fh"><label>Qualified &rarr; Routed</label><em>%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="dealPct"><div class="fh"><label>Routed &rarr; Deal</label><em>%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+        <div class="fld" data-k="closePct"><div class="fh"><label>Deal &rarr; Closed</label><em>%</em></div>
+          <div class="fb"><input type="range" min="0" max="100" step="0.01"><input type="number" step="0.01"></div></div>
+      </div>
+
+      <div class="fg gs">
+        <h4>Work backwards</h4>
+        <div class="fld" data-k="goalQL" data-nomodel="1"><div class="fh"><label>Qualified leads wanted</label><em>at the rates above</em></div>
+          <div class="fb"><input type="range" min="1" max="500" step="1"><input type="number" step="1"></div></div>
+        <div class="gsout" id="gsout"></div>
+      </div>
+    </div>
+
+    <div class="pgout">
+      <div class="ptiles" id="ptiles"></div>
+      <div id="pflags"></div>
+
+      <h2>Plan vs board <em>board actuals in the left column</em></h2>
+      <div class="tscroll"><table id="ptbl"></table></div>
+
+      <h2>Funnel at these rates <em>same geometry rules · widths proportional within each stage</em></h2>
+      <div class="fnl"><svg id="psvg" role="img" aria-label="Funnel recomputed from the planning inputs"></svg></div>
+    </div>
+  </div>
 </div>
 
 <!-- ============ AWARENESS ============ -->
@@ -573,13 +720,60 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
 </div>
 
 <script>
-/* ---------------- funnel homepage ---------------- */
-(function(){
+/* ================= model =================
+   Board actuals. These reproduce the Decision Board's funnel and unit economics.
+   Note on CPM: the board reports a $23.33 cold CPM, but $98,400 of media buying
+   2,197,000 impressions is $44.79. Cost per visit, cost per named, cost per
+   qualified lead and impressions x CTR all foot at $44.79, so that is what the
+   model uses. The "Board's stated CPM" preset shows what $23.33 would imply. */
+var BOARD={universe:940464,enrichPct:15.907,creditsPer:0.8,matchPct:60,reachPct:93.94,
+  budget:98400,cpm:44.79,ctr:0.87,
+  idPct:31.05,l1:62.66,l2:21.73,l3:10.78,l4:4.83,
+  qualPct:20.21,routePct:36.21,dealPct:42.86,closePct:11.11};
+var STATED=Object.assign({},BOARD,{cpm:23.33});
+
+function derive(I){
+  var M={},d=function(a,b){return b>0?a/b:0};
+  M.universe=I.universe;
+  M.enriched=I.universe*I.enrichPct/100;
+  M.credits =M.enriched*I.creditsPer;
+  M.matched =M.enriched*I.matchPct/100;
+  M.impr    =I.cpm>0?I.budget/I.cpm*1000:0;
+  M.freq    =d(M.impr,M.matched);
+  M.reached =M.matched*I.reachPct/100;
+  M.clicks  =M.impr*I.ctr/100;
+  M.named   =M.clicks*I.idPct/100;
+  M.anon    =M.clicks-M.named;
+  M.L1=M.named*I.l1/100; M.L2=M.named*I.l2/100; M.L3=M.named*I.l3/100; M.L4=M.named*I.l4/100;
+  M.leads =M.L4;
+  M.qual  =M.leads*I.qualPct/100;
+  M.routed=M.qual*I.routePct/100;
+  M.deals =M.routed*I.dealPct/100;
+  M.closed=M.deals*I.closePct/100;
+  M.cpVisit=d(I.budget,M.clicks); M.cpNamed=d(I.budget,M.named); M.cpLead=d(I.budget,M.leads);
+  M.cpQual =d(I.budget,M.qual);   M.cpDeal =d(I.budget,M.deals); M.cpUnit=d(I.budget,M.closed);
+  M.siteConv=d(M.leads,M.clicks)*100;
+  M.clickOfReached=d(M.clicks,M.reached)*100;
+  M.awareOfUniverse=d(M.clicks,M.universe)*100;
+  M.depthSum=I.l1+I.l2+I.l3+I.l4;
+  M.I=I;
+  return M;
+}
+
+/* ---------------- formatters ---------------- */
+function n0(x){ return isFinite(x)?Math.round(x).toLocaleString('en-US'):'—'; }
+function p1(x){ return isFinite(x)?(Math.round(x*10)/10).toFixed(1):'—'; }
+function p2(x){ return isFinite(x)?(Math.round(x*100)/100).toFixed(2):'—'; }
+function m0(x){ if(!(isFinite(x)&&x>0)) return '—';
+  return x<100?'$'+x.toFixed(2):'$'+Math.round(x).toLocaleString('en-US'); }
+
+/* ================= funnel ================= */
+function buildFunnel(el,M,opt){
+  opt=opt||{};
+  var I=M.I, drill=opt.drill;
   var VW=1400, AX=710, FW=700, BH=42, GAP=34;
-  var LR=332, RR=1090, NR=560;          /* label rails */
-  var GUT=50, NW=FW-GUT;                /* usable width across the fork */
-  var L=AX-FW/2, R=AX+FW/2;             /* 360 .. 1060 */
-  var MINW=7, STG=20;                   /* min band width, animation stagger */
+  var LR=332, RR=1090, NR=560, GUT=50, NW=FW-GUT;
+  var L=AX-FW/2, R=AX+FW/2, MINW=7, STG=20;
   var o=[], y=18, seq=0;
 
   function d(){ return ' style="animation-delay:'+(seq++*STG)+'ms"'; }
@@ -587,10 +781,9 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
     return '<g class="fstep"'+(go?' data-go="'+go+'" role="button" tabindex="0" aria-label="'+aria+'"':'')+d()+'>'+inner+'</g>';
   }
   function hit(t,h){ return '<rect class="fhit" x="14" y="'+(t-7)+'" width="1372" height="'+(h+14)+'"/>'; }
-  function W(v,scale,max){ return Math.max(v/scale*max, MINW); }
-  function band(cx,w,t,fill,extra){
-    return '<rect class="fbnd" x="'+(cx-w/2).toFixed(1)+'" y="'+t+'" width="'+w.toFixed(1)+'" height="'+BH+
-           '" rx="1.5" fill="'+fill+'"'+(extra||'')+'/>';
+  function W(v,scale,max){ if(!(scale>0)||!(v>0)) return MINW; return Math.max(v/scale*max,MINW); }
+  function band(cx,w,t,fill){
+    return '<rect class="fbnd" x="'+(cx-w/2).toFixed(1)+'" y="'+t+'" width="'+w.toFixed(1)+'" height="'+BH+'" rx="1.5" fill="'+fill+'"/>';
   }
   function tap(w1,c1,t1,w2,c2,t2,fill){
     var p=[[c1-w1/2,t1+BH],[c1+w1/2,t1+BH],[c2+w2/2,t2],[c2-w2/2,t2]];
@@ -622,134 +815,273 @@ tr:hover td{box-shadow:inset 0 0 0 9999px rgba(18,48,63,.035)}
     o.push(G('<line class="fbrk" x1="20" y1="'+y+'" x2="1380" y2="'+y+'"/>'+pill(AX,y,t,'brk')));
     y+=44;
   }
-  /* a plain single-track stage: rows share the main axis */
-  function track(rows,scale,cols,go){
+  function track(rows,scale,cols,go,tab){
     var prev=null;
     rows.forEach(function(r,i){
       var w=W(r.v,scale,FW);
       if(prev){
         y=prev.y+BH+GAP;
-        o.push(G(tap(prev.w,AX,prev.y,w,AX,y,cols[i-1])+pill(AX,prev.y+BH+GAP/2,r.c,'conv')));
+        o.push(G(tap(prev.w,AX,prev.y,w,AX,y,cols[i-1])+(r.c?pill(AX,prev.y+BH+GAP/2,r.c,'conv'):'')));
       }
-      o.push(G(hit(y,BH)+band(AX,w,y,cols[i])+lrail(y,r.n,r.s)+vrail(RR,y,r.v2,r.note),
-               go, r.n+', '+r.v2+'. Opens the '+(go==='aw'?'Awareness':'Opportunity')+' tab.'));
+      o.push(G(hit(y,BH)+band(AX,w,y,cols[i])+lrail(y,r.n,r.s)+vrail(RR,y,n0(r.v),r.note),
+               go,r.n+', '+n0(r.v)+'. Opens the '+tab+' tab.'));
       prev={w:w,y:y};
     });
     y=prev.y+BH+40;
   }
 
   /* ---- stage 1 ---- */
-  var C1=['#8FDCE5','#4FCBD9','#00B3C6','#009DB0','#00808F'];
   header(1,'Awareness','People we know exist, becoming people who know we exist.',
-         '2.03% of the universe now knows we exist','#00B3C6');
+         p2(M.awareOfUniverse)+'% of the universe now knows we exist','#00B3C6');
   track([
-    {n:'Known to exist',      s:'Ten ICP carves counted in Clay', v:940464, v2:'940,464', note:'10 carves · 656,624 still on the bench'},
-    {n:'Enriched',            s:'Costs credits, not media',       v:149600, v2:'149,600', note:'15.9% of universe · 0.8 credits each', c:'15.9%'},
-    {n:'Matched to platforms',s:'Hashed personal email',          v:89760,  v2:'89,760',  note:'60.0% match rate · target 60%',        c:'60.0%'},
-    {n:'Reached',             s:'Impressions delivered',          v:84320,  v2:'84,320',  note:'2,197,000 impressions · 24.5 freq', c:'94.0%'},
-    {n:'Clicked',             s:'They now know we exist',         v:19120,  v2:'19,120',  note:'0.87% click-through · 22.7% of reached',c:'22.7%'}
-  ],940464,C1,'aw');
+    {n:'Known to exist',      s:'ICP carves counted in Clay',v:M.universe,note:'Universe as entered'},
+    {n:'Enriched',            s:'Costs credits, not media',  v:M.enriched,note:p1(I.enrichPct)+'% of universe · '+n0(M.credits)+' credits',c:p1(I.enrichPct)+'%'},
+    {n:'Matched to platforms',s:'Hashed personal email',     v:M.matched, note:p1(I.matchPct)+'% match rate · target 60%',c:p1(I.matchPct)+'%'},
+    {n:'Reached',             s:'Impressions delivered',     v:M.reached, note:n0(M.impr)+' impressions · '+p1(M.freq)+' freq',c:p1(I.reachPct)+'%'},
+    {n:'Clicked',             s:'They now know we exist',    v:M.clicks,  note:p2(I.ctr)+'% click-through · '+p1(M.clickOfReached)+'% of reached',c:p1(M.clickOfReached)+'%'}
+  ],M.universe,['#8FDCE5','#4FCBD9','#00B3C6','#009DB0','#00808F'],drill&&'aw','Awareness');
 
-  boundary('SCALE RESETS · 19,120 CLICKED CARRY INTO CONSIDERATION');
+  boundary('SCALE RESETS · '+n0(M.clicks)+' CLICKED CARRY INTO CONSIDERATION');
 
   /* ---- stage 2 ---- */
   header(2,'Consideration','Identity resolution decides what we can do with a person.',
-         '31.1% named · 68.9% anonymous','#574AA8');
+         p1(I.idPct)+'% named · '+p1(100-I.idPct)+'% anonymous','#574AA8');
 
-  /* visits */
-  var yV=y, wV=FW;
-  o.push(G(hit(yV,BH)+band(AX,wV,yV,'url(#gfork)')+
+  var yV=y, sc2=M.clicks;
+  o.push(G(hit(yV,BH)+band(AX,FW,yV,'url(#gfork'+(opt.uid||'')+')')+
            lrail(yV,'Visits','Carried from Clicked · scale resets here')+
-           vrail(RR,yV,'19,120','Cohort, carve, angle, asset in the URL'),
-           'co','Visits, 19,120. Opens the Consideration tab.'));
+           vrail(RR,yV,n0(M.clicks),'Cohort, carve, angle, asset in the URL'),
+           drill&&'co','Visits, '+n0(M.clicks)+'. Opens the Consideration tab.'));
 
-  /* fork */
   var yF=yV+BH+GAP;
-  var wN=NW*5937/19120, xN=L, cN=xN+wN/2;
-  var wA=NW*13183/19120, xA=R-wA, cA=xA+wA/2;
-  var xSplit=L+FW*5937/19120;
+  var fN=sc2>0?M.named/sc2:0.5;
+  var wN=NW*fN, xN=L, cN=xN+wN/2;
+  var wA=NW*(1-fN), xA=R-wA, cA=xA+wA/2;
+  var xSplit=L+FW*fN;
   o.push(G('<polygon points="'+L+','+(yV+BH)+' '+xSplit.toFixed(1)+','+(yV+BH)+' '+(xN+wN).toFixed(1)+','+yF+' '+xN+','+yF+
              '" fill="#574AA8" fill-opacity=".34"/>'+
            '<polygon points="'+xSplit.toFixed(1)+','+(yV+BH)+' '+R+','+(yV+BH)+' '+(xA+wA).toFixed(1)+','+yF+' '+xA.toFixed(1)+','+yF+
              '" fill="#3E5C6B" fill-opacity=".34"/>'+
-           pill(cN,yV+BH+GAP/2,'31.1%','ind')+pill(cA,yV+BH+GAP/2,'68.9%','sl')));
+           pill(cN,yV+BH+GAP/2,p1(I.idPct)+'%','ind')+pill(cA,yV+BH+GAP/2,p1(100-I.idPct)+'%','sl')));
 
   var cap=yF+BH, capH=22;
   o.push(G(hit(yF,BH+capH)+
            band(cN,wN,yF,'#574AA8')+
            '<text class="fbls" x="'+cN.toFixed(1)+'" y="'+(yF+17)+'" text-anchor="middle">NAMED</text>'+
-           '<text class="fbl" x="'+cN.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">5,937</text>'+
+           '<text class="fbl" x="'+cN.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">'+n0(M.named)+'</text>'+
            band(cA,wA,yF,'#3E5C6B')+
            '<text class="fbls" x="'+cA.toFixed(1)+'" y="'+(yF+17)+'" text-anchor="middle">ANONYMOUS</text>'+
-           '<text class="fbl" x="'+cA.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">13,183</text>'+
-           '<rect x="'+xA.toFixed(1)+'" y="'+cap+'" width="'+wA.toFixed(1)+'" height="'+capH+'" fill="url(#hatch)"/>'+
+           '<text class="fbl" x="'+cA.toFixed(1)+'" y="'+(yF+35)+'" text-anchor="middle">'+n0(M.anon)+'</text>'+
+           '<rect x="'+xA.toFixed(1)+'" y="'+cap+'" width="'+wA.toFixed(1)+'" height="'+capH+'" fill="url(#hatch'+(opt.uid||'')+')"/>'+
            '<text class="fcapx" x="'+cA.toFixed(1)+'" y="'+(cap+15)+'">TERMINATES · PIXEL RETARGETING ONLY</text>'+
-           lrail(yF,'The fork','RB2B resolved 5,650 · forms gave 287')+
-           vrail(RR,yF,'68.9%','of visits · cohort known, person unknown'),
-           'co','The fork: 5,937 named, 13,183 anonymous. Opens the Consideration tab.'));
+           lrail(yF,'The fork',opt.forkNote||'Identity resolved on arrival')+
+           vrail(RR,yF,p1(100-I.idPct)+'%','of visits · cohort known, person unknown'),
+           drill&&'co','The fork: '+n0(M.named)+' named, '+n0(M.anon)+' anonymous. Opens the Consideration tab.'));
 
-  /* named depth ladder — exclusive levels, so a spine, not a taper */
   var LAD=[
-    {n:'L1 Identified',    s:'Name, company, title, one page', v:3720, v2:'3,720', note:'62.7% of named · list retargeting, generic'},
-    {n:'L2 Engaged',       s:'2+ pages or 60s+ on site',       v:1290, v2:'1,290', note:'21.7% of named · retarget aimed at pages read'},
-    {n:'L3 Returned',      s:'Came back unprompted',           v:640,  v2:'640',   note:'10.8% of named · outreach eligible, LinkedIn + email'},
-    {n:'L4 Signal captured',s:'Downloaded, objection known',   v:287,  v2:'287',   note:'4.8% of named · objection-aimed creative + sales'}
+    {n:'L1 Identified',      s:'Name, company, title, one page',v:M.L1,p:I.l1,u:'list retargeting, generic'},
+    {n:'L2 Engaged',         s:'2+ pages or 60s+ on site',      v:M.L2,p:I.l2,u:'retarget aimed at pages read'},
+    {n:'L3 Returned',        s:'Came back unprompted',          v:M.L3,p:I.l3,u:'outreach eligible, LinkedIn + email'},
+    {n:'L4 Signal captured', s:'Downloaded, objection known',   v:M.L4,p:I.l4,u:'objection-aimed creative + sales'}
   ];
-  var yL=cap+capH+62;
-  var yLast=yL+3*(BH+GAP);
+  var yL=cap+capH+62, yLast=yL+3*(BH+GAP);
   o.push(G('<line class="fspine" x1="'+cN.toFixed(1)+'" y1="'+(yF+BH)+'" x2="'+cN.toFixed(1)+'" y2="'+(yLast+BH)+'"/>'));
-
-  /* dotted return path: anonymous → named */
   o.push(G('<path class="fret" d="M '+cA.toFixed(1)+','+(cap+capH+3)+
              ' C '+cA.toFixed(1)+','+(cap+capH+42)+' '+(cN+150).toFixed(1)+','+(cap+capH+40)+' '+(cN+22).toFixed(1)+','+(yL-9)+
-             '" marker-end="url(#rarr)"/>'+
-           '<text class="fretx" x="900" y="'+(cap+capH+28)+'">Return path · the 13,183 stay pixel-only, but R1 retargeting</text>'+
-           '<text class="fretx" x="900" y="'+(cap+capH+46)+'">brings 149 back; those who identify on return become named.</text>'));
+             '" marker-end="url(#rarr'+(opt.uid||'')+')"/>'+
+           '<text class="fretx" x="900" y="'+(cap+capH+28)+'">Return path · the '+n0(M.anon)+' stay pixel-only.'+(opt.retExtra||'')+'</text>'+
+           '<text class="fretx" x="900" y="'+(cap+capH+46)+'">Those who identify on return enter the named branch.</text>'));
 
   LAD.forEach(function(r,i){
-    var t=yL+i*(BH+GAP), w=W(r.v,19120,NW), edge=cN+w/2;
+    var t=yL+i*(BH+GAP), w=W(r.v,sc2,NW), edge=cN+w/2;
     o.push(G(hit(t,BH)+band(cN,w,t,['#7C71C6','#6559B4','#574AA8','#40357E'][i])+
              '<line class="flead" x1="'+(edge+6).toFixed(1)+'" y1="'+(t+21)+'" x2="'+(NR-8)+'" y2="'+(t+21)+'"/>'+
-             lrail(t,r.n,r.s)+vrail(NR,t,r.v2,r.note),
-             'co',r.n+', '+r.v2+' people. Opens the Consideration tab.'));
+             lrail(t,r.n,r.s)+vrail(NR,t,n0(r.v),p2(r.p)+'% of named · '+r.u),
+             drill&&'co',r.n+', '+n0(r.v)+' people. Opens the Consideration tab.'));
   });
   y=yLast+BH+40;
 
-  boundary('SCALE RESETS · 287 CARRIED FROM L4 SIGNAL');
+  boundary('SCALE RESETS · '+n0(M.leads)+' CARRIED FROM L4 SIGNAL');
 
   /* ---- stage 3 ---- */
-  var C3=['#52738A','#3C6076','#2A4C62','#1C3E52','#12303F'];
-  header(3,'Opportunity','Who is ready.','1 closed · 68 days from cohort launch','#12303F');
+  header(3,'Opportunity','Who is ready.',
+         n0(M.closed)+' closed · '+m0(M.cpQual)+' per qualified lead','#12303F');
   track([
-    {n:'Leads',          s:'Objection signal captured',    v:287, v2:'287', note:'Carried from L4 · 4.8% of named'},
-    {n:'Qualified',      s:'Scored, engagement checked',   v:58,  v2:'58',  note:'20.2% of leads · model said 16.7%',       c:'20.2%'},
-    {n:'Routed to brand',s:'Territory and fit assigned',   v:21,  v2:'21',  note:'36.2% of qualified',                     c:'36.2%'},
-    {n:'Deals created',  s:'deal_source = paid_originated',v:9,   v2:'9',   note:'6 paid-originated · 3 referral-assisted', c:'42.9%'},
-    {n:'Closed',         s:'First unit awarded',           v:1,   v2:'1',   note:'The SEALS · 68 days from cohort launch',  c:'11.1%'}
-  ],287,C3,'op');
+    {n:'Leads',          s:'Objection signal captured',    v:M.leads, note:'Carried from L4 · '+p2(I.l4)+'% of named'},
+    {n:'Qualified',      s:'Scored, engagement checked',   v:M.qual,  note:p1(I.qualPct)+'% of leads · model 16.7%',c:p1(I.qualPct)+'%'},
+    {n:'Routed to brand',s:'Territory and fit assigned',   v:M.routed,note:p1(I.routePct)+'% of qualified',c:p1(I.routePct)+'%'},
+    {n:'Deals created',  s:'deal_source = paid_originated',v:M.deals, note:p1(I.dealPct)+'% of routed',c:p1(I.dealPct)+'%'},
+    {n:'Closed',         s:'First unit awarded',           v:M.closed,note:p1(I.closePct)+'% of deals · '+m0(M.cpUnit)+' per unit',c:p1(I.closePct)+'%'}
+  ],M.leads,['#52738A','#3C6076','#2A4C62','#1C3E52','#12303F'],drill&&'op','Opportunity');
 
-  var H=y+8;
+  var u=opt.uid||'';
   var defs='<defs>'+
-    '<linearGradient id="gfork" x1="0" x2="1" y1="0" y2="0">'+
-      '<stop offset="0" stop-color="#574AA8"/><stop offset="0.3105" stop-color="#574AA8"/>'+
-      '<stop offset="0.3105" stop-color="#3E5C6B"/><stop offset="1" stop-color="#3E5C6B"/></linearGradient>'+
-    '<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'+
+    '<linearGradient id="gfork'+u+'" x1="0" x2="1" y1="0" y2="0">'+
+      '<stop offset="0" stop-color="#574AA8"/><stop offset="'+fN.toFixed(4)+'" stop-color="#574AA8"/>'+
+      '<stop offset="'+fN.toFixed(4)+'" stop-color="#3E5C6B"/><stop offset="1" stop-color="#3E5C6B"/></linearGradient>'+
+    '<pattern id="hatch'+u+'" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'+
       '<rect width="8" height="8" fill="#E7EDEF"/><rect width="4" height="8" fill="#CBD8DC"/></pattern>'+
-    '<marker id="rarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">'+
+    '<marker id="rarr'+u+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">'+
       '<path d="M0,0 L10,5 L0,10 z" fill="#3E5C6B"/></marker>'+
     '</defs>';
 
-  var s=document.getElementById('fsvg');
-  s.setAttribute('viewBox','0 0 '+VW+' '+H);
-  s.innerHTML=defs+o.join('');
-  s.classList.add('go');
+  el.setAttribute('viewBox','0 0 '+VW+' '+(y+8));
+  el.innerHTML=defs+o.join('');
+}
 
-  function go(el){ var b=document.querySelector('.tb[data-p="'+el.getAttribute('data-go')+'"]'); if(b) b.click(); }
-  s.addEventListener('click',function(e){ var t=e.target.closest('.fstep[data-go]'); if(t) go(t); });
-  s.addEventListener('keydown',function(e){
-    if(e.key!=='Enter'&&e.key!==' ') return;
-    var t=e.target.closest?e.target.closest('.fstep[data-go]'):null; if(t){ e.preventDefault(); go(t); }
+/* ---------------- funnel homepage ---------------- */
+var BOARD_M=derive(BOARD);
+var fsvg=document.getElementById('fsvg');
+buildFunnel(fsvg,BOARD_M,{drill:true,retExtra:' R1 retargeting brings 149 back.',
+  forkNote:'RB2B resolved 5,650 · forms gave 287'});
+fsvg.classList.add('go');
+
+function goTab(p){ var b=document.querySelector('.tb[data-p="'+p+'"]'); if(b) b.click(); }
+fsvg.addEventListener('click',function(e){ var t=e.target.closest('.fstep[data-go]'); if(t) goTab(t.getAttribute('data-go')); });
+fsvg.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ') return;
+  var t=e.target.closest?e.target.closest('.fstep[data-go]'):null;
+  if(t){ e.preventDefault(); goTab(t.getAttribute('data-go')); }
+});
+
+/* ================= playground ================= */
+(function(){
+  var S=Object.assign({},BOARD), goalQL=100;
+  var flds=[].slice.call(document.querySelectorAll('.fld[data-k]'));
+  var psvg=document.getElementById('psvg');
+
+  var ROWS=[
+    ['h','Awareness'],
+    ['n','Enriched','enriched',1],['n','Credits used','credits',-1],['n','Matched','matched',1],
+    ['n','Impressions','impr',1],['f','Frequency','freq',0],['n','Reached','reached',1],
+    ['n','Visits','clicks',1],
+    ['h','Consideration'],
+    ['n','Named','named',1],['n','Anonymous','anon',0],['n','Leads (L4 signal)','leads',1],
+    ['pc','Site conversion','siteConv',1],
+    ['h','Opportunity'],
+    ['n','Qualified','qual',1],['n','Routed to brand','routed',1],
+    ['n','Deals created','deals',1],['n','Closed','closed',1],
+    ['h','Unit economics'],
+    ['m','Cost per visit','cpVisit',-1],['m','Cost per named person','cpNamed',-1],
+    ['m','Cost per lead','cpLead',-1],['m','Cost per qualified lead','cpQual',-1],
+    ['m','Cost per deal','cpDeal',-1],['m','Cost per unit closed','cpUnit',-1]
+  ];
+  var FMT={n:n0,f:p1,pc:function(x){return p2(x)+'%'},m:m0};
+
+  function setFields(){
+    flds.forEach(function(f){
+      var k=f.getAttribute('data-k');
+      var v=(k==='goalQL')?goalQL:S[k];
+      f.querySelector('input[type=range]').value=v;
+      f.querySelector('input[type=number]').value=v;
+    });
+  }
+
+  function tile(l,v,d,cls){
+    return '<div class="pt '+(cls||'')+'"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div></div>';
+  }
+  function delta(now,was,dir){
+    if(!(isFinite(now)&&isFinite(was))||was===0) return '<span class="mut">—</span>';
+    var pc=(now-was)/was*100;
+    if(Math.abs(pc)<0.05) return '<span class="mut">level</span>';
+    var good=dir===0?null:(dir>0?pc>0:pc<0);
+    var cls=good===null?'mut':(good?'up':'dn');
+    return '<span class="'+cls+'">'+(pc>0?'+':'')+p1(pc)+'%</span>';
+  }
+
+  function render(){
+    var M=derive(S);
+
+    /* tiles */
+    document.getElementById('ptiles').innerHTML=
+      tile('Visits',n0(M.clicks),delta(M.clicks,BOARD_M.clicks,1)+' vs board','')+
+      tile('Named',n0(M.named),delta(M.named,BOARD_M.named,1)+' vs board','i')+
+      tile('Leads',n0(M.leads),delta(M.leads,BOARD_M.leads,1)+' vs board','i')+
+      tile('Qualified',n0(M.qual),delta(M.qual,BOARD_M.qual,1)+' vs board','n')+
+      tile('Deals',n0(M.deals),delta(M.deals,BOARD_M.deals,1)+' vs board','n')+
+      tile('Cost / qual lead',m0(M.cpQual),delta(M.cpQual,BOARD_M.cpQual,-1)+' · benchmark $2,102','s');
+
+    /* flags */
+    var fl=[];
+    if(Math.abs(M.depthSum-100)>0.01)
+      fl.push('<div class="flag c">Depth split sums to <b>'+p2(M.depthSum)+'%</b>, not 100%. '+
+              'L1&ndash;L4 are exclusive levels, so they must partition the named population. Leads are taken from L4 regardless.</div>');
+    if(M.freq>35)
+      fl.push('<div class="flag w">Frequency is <b>'+p1(M.freq)+'</b> impressions per matched person. '+
+              'Above roughly 35 you are buying the same people repeatedly rather than reaching new ones.</div>');
+    if(S.cpm<30)
+      fl.push('<div class="flag i">At a <b>$'+p2(S.cpm)+'</b> CPM, $'+n0(S.budget)+' buys '+n0(M.impr)+' impressions. '+
+              'The board shows 2,197,000 impressions for $98,400, which is a <b>$44.79</b> CPM. '+
+              'The board&rsquo;s reported $23.33 cannot hold alongside its own impression count, spend and CTR.</div>');
+    if(!(S.budget>0)) fl.push('<div class="flag c">Media budget is zero, so nothing downstream can be costed.</div>');
+    document.getElementById('pflags').innerHTML=fl.join('');
+
+    /* table */
+    var h='<tr><th style="width:26%">Metric</th><th class="r">Board actuals</th><th class="r">Your plan</th><th class="r" style="width:14%">Delta</th></tr>';
+    var body=ROWS.map(function(r){
+      if(r[0]==='h') return '<tr class="tot"><td class="nm" colspan="4">'+r[1]+'</td></tr>';
+      var f=FMT[r[0]], k=r[2];
+      return '<tr><td class="nm">'+r[1]+'</td><td class="r mut">'+f(BOARD_M[k])+'</td>'+
+             '<td class="r n">'+f(M[k])+'</td><td class="r">'+delta(M[k],BOARD_M[k],r[3])+'</td></tr>';
+    }).join('');
+    document.getElementById('ptbl').innerHTML=h+body;
+
+    /* work backwards */
+    var qlPer$=S.cpm>0?(1/S.cpm*1000)*(S.ctr/100)*(S.idPct/100)*(S.l4/100)*(S.qualPct/100):0;
+    var need=qlPer$>0?goalQL/qlPer$:0;
+    document.getElementById('gsout').innerHTML= qlPer$>0
+      ? '<b>'+m0(need)+'</b><span>of media to reach '+n0(goalQL)+' qualified leads at these rates. '+
+        n0(goalQL*S.routePct/100*S.dealPct/100)+' deals, '+
+        p1(goalQL*S.routePct/100*S.dealPct/100*S.closePct/100)+' closed.</span>'
+      : '<b>—</b><span>Set a CPM and the rates above to work backwards.</span>';
+
+    /* funnel */
+    buildFunnel(psvg,M,{uid:'p'});
+
+    /* depth sum readout + field validity */
+    var ds=document.getElementById('dsum');
+    ds.textContent='split '+p2(M.depthSum)+'%';
+    ds.style.color=Math.abs(M.depthSum-100)>0.01?'var(--coral)':'var(--ink3)';
+    ['l1','l2','l3','l4'].forEach(function(k){
+      var f=document.querySelector('.fld[data-k="'+k+'"]');
+      f.classList.toggle('bad',Math.abs(M.depthSum-100)>0.01);
+    });
+  }
+
+  flds.forEach(function(f){
+    var k=f.getAttribute('data-k');
+    var rng=f.querySelector('input[type=range]'), num=f.querySelector('input[type=number]');
+    function set(v,echo){
+      v=parseFloat(v); if(!isFinite(v)) return;
+      var lo=parseFloat(rng.min), hi=parseFloat(rng.max);
+      if(k==='goalQL'){ goalQL=Math.max(1,v); } else { S[k]=Math.max(0,v); }
+      rng.value=Math.min(hi,Math.max(lo,v));
+      if(echo) num.value=v;
+      render();
+    }
+    rng.addEventListener('input',function(){ set(rng.value,true); });
+    num.addEventListener('input',function(){ set(num.value,false); });
   });
+
+  document.querySelectorAll('.pb[data-preset]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var p=b.getAttribute('data-preset');
+      S=Object.assign({},p==='stated'?STATED:BOARD);
+      if(p==='reset') goalQL=100;
+      document.querySelectorAll('.pb[data-preset]').forEach(function(x){x.classList.toggle('on',x===b);});
+      setFields(); render();
+    });
+  });
+  document.getElementById('normd').addEventListener('click',function(){
+    var ks=['l1','l2','l3','l4'], s=S.l1+S.l2+S.l3+S.l4; if(!(s>0)) return;
+    ks.forEach(function(k){ S[k]=Math.round(S[k]/s*10000)/100; });
+    var tot=ks.reduce(function(a,k){return a+S[k];},0);
+    var big=ks.reduce(function(a,k){return S[k]>S[a]?k:a;},'l1');
+    S[big]=Math.round((S[big]+(100-tot))*100)/100;   /* residual to the largest tier */
+    setFields(); render();
+  });
+
+  setFields(); render();
 })();
 
 /* ---------------- tabs ---------------- */
@@ -758,8 +1090,7 @@ document.querySelectorAll('.tb').forEach(function(t){
     document.querySelectorAll('.tb').forEach(function(x){x.classList.toggle('on',x===t);});
     var id='p-'+t.dataset.p;
     document.querySelectorAll('.page').forEach(function(pg){pg.classList.toggle('on',pg.id===id);});
-    var s=document.getElementById('fsvg');
-    if(id==='p-fn'){s.classList.remove('go');void s.getBBox();s.classList.add('go');}
+    if(id==='p-fn'){ fsvg.classList.remove('go'); void fsvg.getBBox(); fsvg.classList.add('go'); }
     window.scrollTo({top:0,behavior:'smooth'});
   });
 });
