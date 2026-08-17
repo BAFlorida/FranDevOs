@@ -32,7 +32,7 @@ ROOT = os.path.dirname(HERE)
 CONTENT = os.path.join(ROOT, "content", "pages")
 
 VIDEOS = {
-    "1-Tom Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
+    # EverSmith process videos are brand-neutral and carry across brands.
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
     "EverSmith Qualification Summary Overview": "GWB3gkycrKw",
@@ -43,7 +43,6 @@ VIDEOS = {
     "EverSmith Funding Overview": "0Z9bjsRKN5c",
     "EverSmith Self Funding Overview": "oSIvxdHtO-o",
     "EverSmith Home Equity Funding": "TFpdCqMtxQQ",
-    "1-Tom Service Titan Overview": "kXK6u3O8hCU",
     "EverSmith Career Plug": "3aL_T7_3Ojo",
     "EverSmith Meet The Team Day": "LBU9FTGv0NE",
     "EverSmith Pre-MTTD": "3wI0n4g9eOQ",

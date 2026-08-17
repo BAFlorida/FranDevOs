@@ -13,11 +13,7 @@ DIST = os.path.join(ROOT, "dist")
 sys.path.insert(0, HERE)
 from build import ORDER  # noqa: E402
 
-JOHNS = {
-    "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
-    "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
-    "02-brand-overview/02-fdd.html",
-}
+JOHNS = set()
 
 BUCKETS = [
     ("01-welcome", "1", "Welcome"),
@@ -93,7 +89,7 @@ for rel in ORDER:
 
 meta = {r: pages[r][0] for r in ORDER}
 
-HTML = f"""<title>1-Tom-Plumber MEG Sales Room - 24 Page Preview</title>
+HTML = f"""<title>Kitchen Guard MEG Sales Room - 24 Page Preview</title>
 <script>
 /* Without a viewport meta a phone lays the page out at ~980px and scales it
    down, so the max-width:860px rules never fire and the Pages button stays
@@ -177,7 +173,7 @@ body{{font-family:var(--ui);background:var(--shell);color:var(--txt);
 <nav class="side" id="side">
   <div class="brand">
     <div class="brand__k">Preview build</div>
-    <div class="brand__t">1-Tom-Plumber Mutual Evaluation Guide</div>
+    <div class="brand__t">Kitchen Guard Mutual Evaluation Guide</div>
     <div class="brand__s">24 sales room pages · 5 compliance gates · 18 videos</div>
   </div>
   {''.join(nav)}

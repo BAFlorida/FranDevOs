@@ -19,10 +19,11 @@ DIST = os.path.join(ROOT, "dist")
 FONTS = os.path.join(HERE, "fonts")
 
 FACES = [
-    # file,               family,        weight range, variable?
-    ("Anton.woff2",       "Anton",       "400",        False),
-    ("Montserrat.woff2",  "Montserrat",  "500 700",    True),
-    ("NunitoSans.woff2",  "Nunito Sans", "400 700",    True),
+    ("Anton-400.woff2", "Anton", "400", False),
+    ("Poppins-400.woff2", "Poppins", "400", False),
+    ("Poppins-500.woff2", "Poppins", "500", False),
+    ("Poppins-600.woff2", "Poppins", "600", False),
+    ("Poppins-700.woff2", "Poppins", "700", False),
 ]
 
 

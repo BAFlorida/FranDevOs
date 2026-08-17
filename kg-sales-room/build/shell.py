@@ -1,11 +1,12 @@
-"""Page shell for the 1-Tom-Plumber MEG sales room.
+"""Page shell for the Kitchen Guard MEG sales room.
 
-The CSS, the font links, the hero swoosh and the journey leak artwork are all
-extracted from spec/page-template.html at build time rather than copied into
-this file. A redesign is therefore a drop-in: replace the template, rebuild.
+Same approach as the 1-Tom build: the CSS, the hero wave and the journey stove
+icon are extracted from spec/page-template.html at build time, so a redesign is
+a drop-in. Only the chrome differs between the two brands; every content
+component (gate, flag, btn, slide, table, quiz) has the same class names, so
+parse.py is shared.
 
-Every page carries topbar, pink hero, journey pipe, card stack and footer.
-Pages remain self-contained: inline CSS, no build step, no JS.
+Brand palette is verified against spec/Kitchen_Guard_Brand_Guide.pdf page 11.
 """
 
 import os
@@ -29,66 +30,50 @@ def _grab(pattern, what):
 
 CSS = _grab(r"<style>\n(.*?)\n</style>", "the <style> block")
 
-# The type system is embedded rather than linked. A linked webfont dies wherever
-# the outbound request is blocked - a strict CMS, an offline copy, a page under
-# a content policy - and Anton then falls back to a generic sans, which is
-# exactly the "greyed out headline" failure. Regenerate with subset_fonts.py.
 _FONTS_CSS = os.path.join(HERE, "fonts.css")
 FONTS_EMBEDDED = os.path.exists(_FONTS_CSS)
 if FONTS_EMBEDDED:
     with open(_FONTS_CSS, encoding="utf-8") as _fh:
         CSS = _fh.read() + "\n" + CSS
 
-# Refinements the real content needs, kept out of spec/page-template.html so
-# the handed-over template stays pristine and these stay reviewable.
-CSS += """
-/* ---- build refinements, not in spec/page-template.html ----------------- */
-/* The leak is deliberately wider than one step. On the final joint that pushes
-   the document sideways at narrow widths. Clip the band on x only: `clip`
-   rather than `hidden` so the caution sign can still stand up out of the
-   puddle on the y axis, which the template's comment calls load-bearing. */
-.journey{overflow-x:clip}"""
-# With the faces embedded there is nothing to preconnect or fetch.
 FONTS = ("" if FONTS_EMBEDDED else
          "\n".join(re.findall(r'<link[^>]*(?:preconnect|fonts\.googleapis)[^>]*>', _T)))
-SWOOSH = _grab(r'(<svg class="hero-swoosh".*?</svg>)', "the hero swoosh svg")
-SPILL = _grab(r'(<div class="spill">.*?</svg></div>)', "the journey leak svg")
+
+WAVE = _grab(r'(<svg class="hero-wave".*?</svg>)', "the hero wave svg")
+STOVE = _grab(r'<div class="jnode">(<svg.*?</svg>)<span class="jnum">',
+              "the journey stove icon svg")
 
 BUCKET_LABELS = [
     "Welcome", "Brand Overview", "Validation",
     "Seeking Approval", "Meet The Team Day", "Agreement",
 ]
 
-# The template's logo is a data URI that arrived truncated. Drop a full base64
-# payload in build/logo.b64 and it is embedded; until then the <img> is omitted
-# rather than emitting a broken image.
 LOGO = ""
 LOGO_MISSING = True
 if os.path.exists(LOGO_B64):
     with open(LOGO_B64, encoding="utf-8") as _fh:
         _b64 = "".join(_fh.read().split())
     if _b64:
-        LOGO = (f'<img class="brandmark" src="data:image/png;base64,{_b64}" '
-                'alt="1-Tom-Plumber" width="284" height="178" '
-                'fetchpriority="high" decoding="sync">')
+        # The brand book forbids shadows, outlines, rotation and compression on
+        # the mark. It sits flat on its white plate, no filter, exactly as the
+        # supplied draft has it.
+        LOGO = ('<div class="logo-plate"><img class="brandmark" '
+                f'src="data:image/png;base64,{_b64}" alt="Kitchen Guard" '
+                'width="420" height="204" fetchpriority="high" decoding="sync"></div>')
         LOGO_MISSING = False
 
 
 def journey(current):
-    """The pipe. Water fills completed spans and leaks at the current joint."""
+    """Six stoves. Completed steps polish up, the current one is lit."""
     out = []
     for i, label in enumerate(BUCKET_LABELS, 1):
-        if i < current:
-            out.append(f'<div class="jstep done"><div class="jlbl">{label}</div>'
-                       f'<div class="jnode">{i}</div></div>')
-        elif i == current:
-            out.append(
-                f'<div class="jstep now" aria-current="step">'
-                f'<div class="jlbl">{label}</div><div class="jnode">{i}</div>'
-                f'<span class="sr-only">You are here</span>\n{SPILL}</div>')
-        else:
-            out.append(f'<div class="jstep"><div class="jlbl">{label}</div>'
-                       f'<div class="jnode">{i}</div></div>')
+        cls = "jstep done" if i < current else ("jstep now" if i == current else "jstep")
+        aria = ' aria-current="step"' if i == current else ""
+        here = " — you are here" if i == current else ""
+        out.append(
+            f'<div class="{cls}"{aria}><div class="jlbl">{label}</div>\n'
+            f'<div class="jnode">{STOVE}<span class="jnum">{i}</span></div>'
+            f'<span class="sr-only">Step {i} of 6{here}</span></div>')
     return (
         '<div class="journey"><div class="journey-in">\n'
         '<div class="jhead"><span class="jt">Your path to ownership</span>'
@@ -98,11 +83,6 @@ def journey(current):
 
 
 def render(title, stage_n, stage_title, h1, lede, slides, next_html):
-    """Assemble one self-contained page.
-
-    slides: list of (section_title, show_h3, inner_html). The opening card
-    takes no h3, since the hero already carries the page title.
-    """
     cards = []
     for slide_title, show_h3, inner in slides:
         heading = f"<h3>{slide_title}</h3>\n" if (slide_title and show_h3) else ""
@@ -120,14 +100,14 @@ def render(title, stage_n, stage_title, h1, lede, slides, next_html):
 </style></head><body>
 
 <div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
-<span class="sub">1-Tom-Plumber · Mutual Evaluation Guide</span>
+<span class="sub">Kitchen Guard · Mutual Evaluation Guide</span>
 <span class="chip">Stage {stage_n} of 6</span></div></div>
 
 <div class="hero">
-{SWOOSH}
+{WAVE}
 <div class="hero-in">
 <div class="hero-copy">
-<h1 class="outlined">{h1}</h1>
+<h1>{h1}</h1>
 <p class="subtitle">{lede}</p>
 </div>
 {LOGO}
@@ -137,16 +117,16 @@ def render(title, stage_n, stage_title, h1, lede, slides, next_html):
 
 <main class="stack">
 
-{chr(10) .join(cards)}
+{chr(10).join(cards)}
 
 </main>
 <footer><span>MEG · Mutual Evaluation Guide</span>
-<span>1-Tom-Plumber · An EverSmith Brands Company</span></footer>
+<span>Kitchen Guard · An EverSmith Brands Company</span></footer>
 </body></html>
 """
 
 
-# ---------------------------------------------------------------- components
+# --------------------------------------------------- components (shared names)
 
 def video(url, title, caption=None):
     cap = f'\n<div class="video-cap">▶ {caption}</div>' if caption else ""
@@ -159,17 +139,10 @@ def video(url, title, caption=None):
 
 def video_slot(label):
     return (f'<div class="video-slot"><span class="play">▶</span>'
-            f'<span class="t">Pending — {label}</span></div>')
+            f'<span class="t">Video slot · {label}</span></div>')
 
 
 def asset(kind, label, ref):
-    """Every actionable link is a .btn.
-
-    The template's own comment is explicit: "Every actionable link on the page
-    uses this one class - forms, scheduler and B-Verify alike - so there is a
-    single button appearance to maintain." data-asset is kept so the real URL
-    can be wired by attribute rather than by hunting through markup.
-    """
     return (f'<a class="btn" href="#" data-asset="{ref}" target="_blank" '
             f'rel="noopener">{label} <span aria-hidden="true">&#8599;</span></a>')
 
@@ -227,6 +200,4 @@ def substeps(items):
 
 
 def next_step(text):
-    """Unused. John's pages carry the closing pointer as prose inside the last
-    content card rather than as a card of its own, and never use .eyebrow."""
     return f"<p>{text}</p>"

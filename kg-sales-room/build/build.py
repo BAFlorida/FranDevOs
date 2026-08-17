@@ -21,6 +21,13 @@ sys.path.insert(0, HERE)
 from parse import BUCKETS, VIDEOS, all_pages  # noqa: E402
 from shell import FONTS_EMBEDDED, LOGO_MISSING  # noqa: E402
 
+# However many faces the brand's type system needs, every page must carry all
+# of them. 1-Tom is three; Kitchen Guard is five (Anton plus four Poppins
+# weights, since Poppins is not a variable font).
+_fc = os.path.join(HERE, "fonts.css")
+FACE_COUNT = (open(_fc, encoding="utf-8").read().count("@font-face")
+              if os.path.exists(_fc) else 0)
+
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
     "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
@@ -83,7 +90,8 @@ def check(pages):
 
         # Journey marks exactly one current stage, and it is this page's.
         nows = re.findall(r'<div class="jstep now" aria-current="step">'
-                          r'<div class="jlbl">[^<]*</div><div class="jnode">(\d)</div>', html)
+                          r'<div class="jlbl">[^<]*</div>\n<div class="jnode">.*?'
+                          r'<span class="jnum">(\d)</span>', html, re.S)
         if nows != [str(stage)]:
             fails.append(f"{path}: journey .now is {nows}, expected ['{stage}']")
         if len(re.findall(r'class="jstep', html)) != 6:
@@ -108,8 +116,8 @@ def check(pages):
             fails.append(f"{path}: links an external stylesheet")
         if "<script" in html:
             fails.append(f"{path}: contains a <script> tag")
-        if html.count("@font-face") != 3:
-            fails.append(f"{path}: expected 3 embedded @font-face rules, "
+        if html.count("@font-face") != FACE_COUNT:
+            fails.append(f"{path}: expected {FACE_COUNT} embedded @font-face rules, "
                          f"found {html.count('@font-face')}")
         outbound = {u for u in re.findall(r'(?:href|src)="(https?://[^"]+)"', html)
                     if "youtube.com/embed/" not in u}
@@ -149,18 +157,18 @@ def check(pages):
             if stray in html:
                 fails.append(f"{path}: unrendered markdown {stray!r}")
 
-        # Hero brand elements from the redesign.
-        for needed, what in (
-            ('class="hero-swoosh"', "hero swoosh"),
-            ('class="outlined"', "outlined headline"),
-            ('class="spill"', "journey leak"),
-        ):
+        # Kitchen Guard chrome.
+        for needed, what in (('class="hero-wave"', "hero wave"),
+                             ('class="logo-plate"', "logo plate")):
             if needed not in html:
                 fails.append(f"{path}: missing {what}")
-        # The leak belongs to the current joint only.
-        leaks = html.count('class="spill"')
-        if leaks != 1:
-            fails.append(f"{path}: expected exactly one leak, found {leaks}")
+        stoves = html.count('class="jnode"')
+        if stoves != 6:
+            fails.append(f"{path}: expected 6 journey stoves, found {stoves}")
+        # The brand book forbids shadows/outline/rotation on the mark.
+        mark = re.search(r'<img class="brandmark"[^>]*>', html)
+        if mark and re.search(r"filter:|drop-shadow|rotate\(", mark.group(0)):
+            fails.append(f"{path}: brandmark carries a forbidden effect")
 
     # Every bucket index links all of its sub-steps.
     for path in pages:
