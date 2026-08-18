@@ -266,6 +266,10 @@ def build_page(rel, lines, all_paths, titles):
                 flush()
             continue
 
+        # A rule of dashes is the markdown file's page separator, not copy.
+        if re.fullmatch(r"-{3,}", t):
+            continue
+
         if t == "**STEPS:**":
             flush(); mode = "steps"; continue
         if t == "**TABLE:**":
