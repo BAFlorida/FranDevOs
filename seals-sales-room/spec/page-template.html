@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   PORTAL RULE - DO NOT put an angle bracket followed by a letter
+   anywhere in this stylesheet or in the HTML comments below, not even
+   inside a comment. Browsers do not care, but the Workshop portal scans
+   the raw text for tag openings and will drop this whole block, leaving
+   the page with no CSS at all. Write "defs", "text", "use" as bare
+   words. The working 1-Tom modules contain zero angle brackets in CSS.
+   =================================================================== */
+:root{
+  /* ================= THE SEALS PALETTE =============================
+     From THE SEALS Brand Guide, Colors page. All five swatches, with
+     the guide's own CMYK builds:
+       Red          C0  M100 Y100 K0    RGB 236, 29, 36    #EC1D24
+       Blue         C100 M68  Y1  K2    RGB   0, 91,167    #005BA7
+       Black        C0  M0   Y0  K100   RGB  35, 31, 32    #231F20
+       Grey Light   C0  M0   Y0  K40    RGB 167,169,172    #A7A9AC
+       Grey Dark    C0  M0   Y0  K70    RGB 109,111,113    #6D6F71
+     Do NOT re-derive these by sampling artwork or the website. Best
+     estimates taken that way were #ED1C24 and #007BBE - the red was
+     one step out and the blue was badly wrong.
+
+     CONTRAST, measured on the surface each colour actually sits on:
+       white     on Blue  ......... 6.79:1  AA any size
+       white     on Black ........ 15.60:1  AA any size
+       Grey Dark on white ......... 5.08:1  AA any size
+       Grey Lt   on Black ......... 7.00:1  AA any size
+       Grey Lt   on white ......... 2.34:1  FAILS - decorative only
+       Red       on white ......... 4.41:1  FAILS small; large + fills
+       white     on Red   ......... 4.41:1  FAILS small; large + fills
+     What follows from that, and it drives every choice below:
+       1. BLUE IS THE WORKHORSE. Unlike the Kitchen Guard green, white
+          reverses out of it cleanly at any size, so the hero band is
+          blue with white copy.
+       2. RED IS AN ACCENT, NEVER SMALL COPY. It marks the current step
+          and nothing else - at label sizes it misses AA both ways.
+       3. Secondary text on white is Grey Dark. Grey Light is for dark
+          surfaces and hairlines only.
+     ================================================================= */
+  --s-red:#EC1D24;
+  --s-blue:#005BA7;
+  --s-black:#231F20;
+  --s-grey-l:#A7A9AC;
+  --s-grey-d:#6D6F71;
+
+  --paper:#FFFFFF; --card:#FFFFFF; --wash:#F4F6F8;
+  /* Hairlines and tints are transparencies of the palette, never new hues. */
+  --line:rgba(35,31,32,.13); --line-2:rgba(35,31,32,.22);
+  --line-dark:rgba(255,255,255,.18);
+  --tint:rgba(0,91,167,.07);        /* blue wash for panels */
+  --tint-line:rgba(0,91,167,.34);
+
+  /* ---- TYPE ----------------------------------------------------
+     The guide lists Gotham, Trade Gothic and Universal Next. None is
+     free, so this uses the same substitution approach as the 1-Tom
+     modules:
+       Gotham         -  Montserrat 600/700/800  headlines, labels, UI
+       Universal Next -  Inter 400/500/600/700   body copy
+     Trade Gothic is not used here. The template needs two roles and a
+     third family would only add weight. Licensed machines pick the real
+     faces up first from the stacks below. */
+  --f-head:'Gotham','Gotham HTF','Montserrat',-apple-system,'Segoe UI',sans-serif;
+  --f:'Universal Next','Univers','Inter',-apple-system,'Segoe UI',sans-serif;
+  /* Hero only, to echo the logo wordmark. That wordmark is custom lettering,
+     NOT one of the three faces the guide lists - it is a squared oblique
+     techno face, and none of Gotham, Trade Gothic or Universal Next looks
+     anything like it. Audiowide is the closest free match on the squared
+     geometry and width. It ships ONE weight: never set a bold on it, or the
+     browser synthesises a faux bold that thickens the strokes unevenly. The
+     obliquing is done with a skew, since Audiowide has no italic. */
+  --f-logo:'Audiowide','Orbitron',var(--f-head);
+  --r:6px;                           /* squarer than KG - the wordmark is blocky */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--s-black);font-family:var(--f);font-weight:400;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--f-head);font-weight:600;letter-spacing:.04em}
+a{color:var(--s-blue);text-decoration-thickness:2px;text-underline-offset:2px}
+a:hover{color:var(--s-black)}
+
+/* ---- utility bar ------------------------------------------------------
+   ONE 880px content track is shared by the bar, hero, journey, card stack
+   and footer, so every left edge resolves to the same x. */
+.topbar{background:var(--s-black);color:#fff;padding:11px 24px}
+.topbar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-family:var(--f-head);font-weight:800;font-size:19px;letter-spacing:-.01em;color:#fff}
+.topbar .meg b{color:var(--s-red)}
+.topbar .sub{font-family:var(--f-head);font-weight:600;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--s-grey-l)}
+.topbar .chip{margin-left:auto;border:1px solid var(--s-grey-d);color:#fff;font-family:var(--f-head);
+  font-weight:600;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:3px}
+
+/* ---- hero -------------------------------------------------------------
+   Full blue band from the black utility bar down to the journey rule.
+   White copy: 6.79:1, so unlike the KG green this reverses cleanly and the
+   headline does not have to go dark. */
+.hero{background:var(--s-blue);color:#fff;padding:26px 24px 34px;position:relative;overflow:hidden}
+/* The sweep is tonal: its gradient starts at exactly the band blue, so the
+   leading edge emerges out of the background rather than being drawn as a
+   line across it, then deepens toward black at the bottom right. Its
+   gradient lives in this svg's own defs, so the element is self-contained -
+   nothing reaches outside it for a sanitiser to break. */
+.hero-wave{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wave-fill{fill:url(#sw)}
+.hero-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;
+  flex-wrap:wrap;position:relative;z-index:1}
+.hero-copy{flex:1 1 320px;min-width:0}
+/* NO white panel. The guide approves the primary logo on blue, and the
+   approved artwork "The-Seals-Logo-White" is a white mark on transparency,
+   so it sits straight on the band - which is the better treatment and the
+   one Kitchen Guard could not have, because that logo's wordmark is dark.
+   Sized to 210px against a 190px Kitchen Guard mark because this lockup is
+   much wider than it is tall. */
+.logo-plate{flex:none;display:block}
+.brandmark{display:block;width:210px;max-width:100%;height:auto}
+/* Set in the wordmark's face. Skewed 10 degrees to match the logo's oblique,
+   with a bottom-left pivot so each line's baseline-left stays on the content
+   track - skewing from the default centre would throw the headline inboard
+   of everything else on the page.
+   Weight stays 400. Audiowide has no bold, and asking for one only gets a
+   synthesised smear. Audiowide is also very wide, so the sizes here run
+   smaller than the other brands' heroes and the subtitle sheds most of its
+   tracking to stop the line running away. */
+.hero h1{font-family:var(--f-logo);font-weight:400;font-size:clamp(27px,4.2vw,40px);line-height:1.12;
+  letter-spacing:0;text-transform:uppercase;color:#fff;overflow-wrap:break-word;text-wrap:balance;
+  display:inline-block;transform:skewX(-10deg);transform-origin:left bottom}
+.hero .subtitle{margin-top:12px;color:#fff;font-family:var(--f-logo);font-weight:400;
+  font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;max-width:52ch;line-height:1.55;
+  display:inline-block;transform:skewX(-10deg);transform-origin:left bottom}
+.ticket{margin-top:18px;display:flex;flex-wrap:wrap;border:1px solid var(--line-dark);border-radius:var(--r);overflow:hidden}
+.ticket div{padding:9px 16px;border-right:1px solid var(--line-dark);min-width:150px;flex:1}
+.ticket div:last-child{border-right:none}
+.ticket .k{font-family:var(--f-head);font-weight:600;font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:rgba(255,255,255,.8)}
+.ticket .v{font-size:14px;color:#fff;margin-top:3px}
+
+/* ---- journey ---------------------------------------------------------- */
+.journey{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line-2);padding:18px 24px 16px}
+.journey-in{max-width:880px;margin:0 auto}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.jhead .jt{font-family:var(--f-head);font-weight:700;font-size:19px;letter-spacing:-.01em;color:var(--s-black)}
+.jhead .jc{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--s-blue)}
+
+/* ================= THE GASKET RUN ==================================
+   The rail is a refrigeration door gasket. Ahead of the candidate it is
+   perished - split, hardened, letting the cold out. Behind them it has
+   been replaced: new black rubber, compressed tight, holding a cold blue
+   line along its seal face. Progress is the seal being restored, which
+   is the business.
+   This is the SEALS counterpart to the 1-Tom leaking pipe and the Kitchen
+   Guard duct run: same mechanic, same CSS, brand-specific subject.
+   Like both of those, the run is pure CSS on before/after - no SVG. */
+.jtrack{display:flex;padding-bottom:2px}
+.jstep{flex:1;text-align:center;position:relative}
+/* The current step paints above the later ones, so its escaping-cold wisps
+   are never clipped by the gasket segment of the step after it. */
+.jstep.now{z-index:2}
+/* Perished gasket: hardened grey-brown rubber, cracked highlight on top,
+   dead shadow below. Runs full width behind the doors so it reads
+   continuous. */
+.jstep::before{content:"";position:absolute;top:32.5px;left:-50%;width:100%;height:14px;
+  background:linear-gradient(180deg,#6E6A66 0%,#4E4A47 26%,#332F2D 64%,#232120 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.45)}
+/* Replaced gasket: fresh black rubber with a compressed sheen, and a cold
+   blue line travelling along the seal face to show it is holding. */
+.jstep.done::after,.jstep.now::after{content:"";position:absolute;top:34.5px;left:-50%;width:100%;height:10px;
+  background:
+    repeating-linear-gradient(112deg,rgba(0,91,167,.55) 0 5px,rgba(0,91,167,0) 5px 26px),
+    linear-gradient(180deg,#3A3A3C 0%,#232120 40%,#111011 78%,#2E2C2B 100%);
+  background-size:52px 100%,100% 100%;
+  animation:sealflow 1.6s linear infinite}
+/* The run has to pass THROUGH the end doors, not begin at them. Both stubs
+   stop on the 880 content track. */
+.jstep:first-child::before,.jstep:first-child::after{left:0;width:50%}
+.jstep:last-child::before{width:150%}
+@keyframes sealflow{to{background-position:52px 0,0 0}}
+
+/* ---- STEP MARKER: two-door glass merchandiser ------------------------
+   Each step is a reach-in display cooler hanging off the gasket run, drawn
+   after the reference art: outlined cabinet, control panel top right, two
+   glass doors with diagonal highlights, centre handles, louvred base.
+   TWO states, not three:
+     done          seal replaced - gasket full and black, glass clear, no fog
+     not yet done  seal still broken, so blue fog is escaping
+   Fog is on EVERY step that is not finished, including the current one -
+   the gasket is broken until the work is done, and being part-way through
+   does not seal it. "You are here" is carried by the red number plate, so
+   the fog does not have to do that job as well.
+   The fog is brand Blue, entirely on-palette - the Kitchen Guard flames
+   needed an off-palette warm colour, this needs nothing.
+   FLAT FILLS, no svg gradients: every marker svg is self-contained, and
+   flat tones stay legible at 56px.
+   z:3 must outrank .jstep.now's z:2, or that step's stacking context paints
+   its gasket bar straight across the cabinet before it. */
+.jnode{width:56px;height:66px;margin:0 auto;position:relative;z-index:3;display:block}
+.jnode svg{width:100%;height:100%;display:block;overflow:visible}
+/* Cabinet. Not-yet-done reads duller; done reads as clean stainless. */
+.ic-body{fill:#B9BDC1}
+.jstep.done .ic-body{fill:#DDE1E5}
+.ic-edge{stroke:#4A4745;stroke-width:1.1;stroke-linejoin:round}
+.jstep.done .ic-edge{stroke:var(--s-grey-d)}
+/* Glass. */
+.ic-glass{fill:#93A6B6}
+.jstep.done .ic-glass{fill:#C6D6E2}
+/* THE GASKET - the one part of this drawing that is the product. Perished
+   reads thin and grey; replaced reads full and black. */
+.ic-gasket{fill:none;stroke:#6E6A66;stroke-width:2}
+.jstep.done .ic-gasket{stroke:#231F20;stroke-width:2.6}
+.ic-panel{fill:#231F20}
+.ic-streak{fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-linecap:round;opacity:.45}
+.jstep.done .ic-streak{opacity:.85}
+.ic-hw{fill:#5A5D60}
+.jstep.done .ic-hw{fill:#3E4144}
+.ic-louvre{fill:none;stroke:#5A5D60;stroke-width:1.3;stroke-linecap:round}
+.jstep.done .ic-louvre{stroke:#8B9095}
+/* Escaping cold. Shown by default and switched OFF once the step is done,
+   which is the inverse of how the shine worked on the other brands.
+   STATIC - no animation. The only thing that moves on this page is the cold
+   line travelling inside the replaced gasket, the same way the 1-Tom module
+   keeps its leak still and animates only the flow inside the pipe. Two
+   opacity tiers give the cloud depth without motion. */
+.ic-fog{display:block}
+.jstep.done .ic-fog{display:none}
+.fog-a{fill:var(--s-blue);opacity:.46}
+.fog-b{fill:var(--s-blue);opacity:.24}
+/* ---- step number ----------------------------------------------------
+   HTML text over the header plate, NOT an svg text element - the 1-Tom
+   modules keep their numbers as HTML inside .jnode, and matching that keeps
+   the digit out of reach of anything that sanitises svg content.
+   The box covers the plate: 19 of the marker's 66 viewBox units, so 28.8%
+   of its height, which holds at any marker size.
+   The plate carries the state cue now that there is no coloured chip:
+     upcoming  grey plate, dark numeral
+     done      light plate, dark numeral
+     now       RED plate, white numeral - the one place red is used, and it
+               is a fill with a large-enough numeral, so it clears AA. */
+.jstep.now .ic-plate{fill:var(--s-red)}
+.jnum{position:absolute;top:0;left:0;right:0;height:28.8%;
+  display:flex;align-items:center;justify-content:center;font-family:var(--f-head);
+  font-weight:700;font-size:12px;line-height:1;color:var(--s-black);pointer-events:none}
+.jstep.now .jnum{color:#fff}
+/* Fixed-height and bottom-aligned: a label that wrapped to two lines would
+   push its own door down and break the gasket run. */
+.jlbl{font-family:var(--f-head);font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--s-grey-d);height:24px;margin-bottom:6px;line-height:1.15;
+  display:flex;align-items:flex-end;justify-content:center}
+.jstep.now .jlbl{color:var(--s-black)}
+
+@media (prefers-reduced-motion:reduce){
+  .jstep.done::after,.jstep.now::after{animation:none}
+}
+
+/* ---- video ------------------------------------------------------------ */
+.video-embed{margin:0 0 8px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);
+  position:relative;padding-top:56.25%;background:var(--s-black)}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cap{font-family:var(--f-head);font-weight:600;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--s-grey-d);margin:8px 0 18px}
+
+/* ---- card stack ------------------------------------------------------- */
+.stack{max-width:928px;margin:0 auto;padding:36px 24px 24px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin:0 0 28px;padding:34px 38px}
+.slide .eyebrow{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--s-blue);margin-bottom:10px}
+.slide h3{font-family:var(--f-head);font-weight:800;font-size:clamp(26px,3.6vw,34px);line-height:1.08;
+  letter-spacing:-.02em;text-transform:uppercase;margin-bottom:16px}
+.slide h4{font-family:var(--f-head);font-weight:700;font-size:18px;letter-spacing:-.01em;margin:26px 0 8px;color:var(--s-black)}
+.slide p{margin:0 0 14px;color:#33383B}
+/* Direct-child selector: any last block in a card would otherwise stack its
+   own bottom margin on the card's padding. */
+.slide > :last-child{margin-bottom:0}
+.slide strong{font-weight:600;color:var(--s-black)}
+.slide ul,.slide ol{margin:0 0 16px 22px}
+.slide li{margin-bottom:7px;color:#33383B}
+.slide li::marker{color:var(--s-blue)}
+.slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-size:15px}
+.slide th{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;color:var(--s-grey-d);border-bottom:2px solid var(--s-black);padding:8px 12px}
+.slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
+.slide tr td:first-child{white-space:nowrap;font-weight:600}
+.t-scroll{overflow-x:auto}
+.slide caption{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--s-grey-d);text-align:left;padding-bottom:8px}
+
+/* Internal note, built from the palette rather than a borrowed hue. */
+blockquote{background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--s-blue);
+  border-radius:var(--r);padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--s-black)}
+blockquote p{color:var(--s-black)!important;margin-bottom:8px}
+blockquote::before{content:"INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:var(--f-head);
+  font-weight:700;font-size:10px;letter-spacing:.17em;color:var(--s-blue);margin-bottom:8px}
+
+.video-slot{border:2px dashed var(--s-grey-l);border-radius:var(--r);background:var(--wash);padding:22px;
+  margin:0 0 22px;display:flex;align-items:center;gap:14px;color:var(--s-grey-d)}
+.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--s-blue);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:none}
+.video-slot .t{font-family:var(--f-head);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.flag{display:block;background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--s-blue);
+  border-radius:var(--r);padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--s-black)}
+.flag b{font-family:var(--f-head);font-weight:700;font-size:10px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--s-blue);display:block;margin-bottom:6px}
+.flag-in{display:inline;background:var(--tint);border:1px solid var(--tint-line);border-radius:4px;
+  padding:1px 7px;font-weight:600;font-size:13px;color:var(--s-black)}
+
+/* ---- gate: compliance acknowledgment --------------------------------- */
+.gate{border:2px solid var(--s-blue);border-radius:var(--r);background:var(--tint);padding:22px 24px;margin:10px 0 20px}
+.gate .glabel{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--s-blue);margin-bottom:10px}
+.gate .gtext{font-size:16.5px;font-weight:600;color:var(--s-black);margin-bottom:16px;line-height:1.5}
+.gate .gnote{font-size:14.5px;color:var(--s-grey-d);margin-bottom:16px}
+.gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid var(--tint-line);padding-top:14px}
+.gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--s-blue);cursor:pointer}
+.gate .gcheck label{font-weight:600;cursor:pointer}
+.gate select{font-family:var(--f);font-size:15px;padding:9px 11px;border:1px solid var(--line-2);
+  background:var(--card);width:100%;max-width:340px;border-radius:4px}
+.sr-only{position:absolute;left:-9999px}
+
+/* ---- asset slots ------------------------------------------------------ */
+.asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
+.asset:hover{border-color:var(--s-blue)}
+.asset .kind{font-family:var(--f-head);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--s-blue);color:#fff;padding:5px 9px;border-radius:3px;flex:none}
+.asset .lbl{font-weight:600}
+
+.quiz{list-style:none;margin:4px 0 18px 0!important}
+.quiz li{border:1px solid var(--line);border-radius:4px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;
+  align-items:baseline;background:var(--card)}
+.quiz li .box{font-family:var(--f-head);font-weight:600;font-size:13px;color:var(--s-grey-d);flex:none}
+.quiz li.correct{border-color:var(--s-blue);background:var(--tint)}
+.quiz li.correct .box{color:var(--s-blue);font-weight:700}
+.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:var(--f-head);font-weight:700;
+  font-size:9.5px;letter-spacing:.15em;color:var(--s-blue);align-self:center}
+.ui-chip{display:inline-block;background:var(--s-blue);color:#fff;font-family:var(--f-head);font-weight:700;
+  font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r);margin:2px 6px 2px 0}
+
+/* ---- substep list: bucket index pages only --------------------------- */
+.substeps{list-style:none;margin:4px 0 0 0!important}
+.substeps li{border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--s-black)}
+.substeps a:hover .sst{color:var(--s-blue)}
+.ssn{font-family:var(--f-head);font-weight:700;font-size:12px;color:var(--s-blue);flex:none;width:22px}
+.sst{font-weight:600}
+.ssnote{margin-left:auto;font-family:var(--f-head);font-weight:600;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--s-grey-d)}
+
+/* ---- outbound CTA ----------------------------------------------------
+   Blue fill, white label, Gotham stand-in in caps. Red is deliberately NOT
+   used for buttons: white on red is 4.41:1 and a button label is small
+   text. Red stays on the current-step plate, where the numeral is large
+   enough to clear. */
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 2px}
+.btnrow .btn{margin:0}
+.btn{display:inline-flex;align-items:center;gap:9px;margin:8px 0 2px;
+  background:var(--s-blue);color:#fff;text-decoration:none;
+  font-family:var(--f-head);font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 26px;border-radius:var(--r);border:0;transition:background .15s}
+.btn:hover{background:var(--s-black);color:#fff}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+footer{max-width:928px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:var(--f-head);font-weight:600;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--s-grey-d)}
+footer a{color:var(--s-grey-d)}
+
+@media(max-width:640px){
+  /* Stacked, the logo drops below the copy and right-aligns. */
+  .hero{padding-bottom:30px}
+  .hero-in{gap:18px}
+  .logo-plate{margin-left:auto;padding:13px 15px}
+  .brandmark{width:186px}
+  .slide{padding:24px 20px}
+  /* All labels off at this width. At ~55px per step there is no room for a
+     label as well as a door - the plate numbers carry the step instead. */
+  .jlbl{display:none}
+  /* Narrower gasket, recentred on the smaller doors. The margin-top is what
+     gives the run somewhere to sit: with the labels gone the door starts at
+     y=0, and without it the gasket would need a negative offset and would
+     overlap the heading above. */
+  .jnode{width:42px;height:50px;margin-top:4px}
+  .jnum{font-size:9px}
+  .jstep::before{top:5px;height:12px;left:-50%;width:100%}
+  .jstep.done::after,.jstep.now::after{top:7px;height:8px}
+  .ticket div{min-width:46%}
+  /* The template's nowrap first column assumes short labels; real copy is
+     longer, so let it wrap rather than push the page sideways. */
+  .slide tr td:first-child{white-space:normal}
+  .btnrow{flex-direction:column;align-items:stretch}
+  .btn{justify-content:center;text-align:center;padding:13px 18px}
+  .asset{flex-wrap:wrap}
+  .asset .lbl,.video-slot .t{overflow-wrap:anywhere;min-width:0}
+}
+:focus-visible{outline:3px solid var(--s-blue);outline-offset:2px}
+</style></head><body>
+
+<div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
+<span class="sub">THE SEALS · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div></div>
+
+<div class="hero">
+<svg class="hero-wave" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs>
+<!-- Starts on exactly the band blue so the sweep's leading edge is invisible
+     where it emerges, then deepens toward brand black at the bottom right. -->
+<linearGradient id="sw" x1="0" y1="0" x2=".92" y2="1">
+<stop offset="0" stop-color="#005BA7"/><stop offset=".36" stop-color="#014E8E"/>
+<stop offset=".72" stop-color="#0A3355"/><stop offset="1" stop-color="#231F20"/>
+</linearGradient>
+<radialGradient id="bloom" cx=".08" cy="0" r=".9">
+<stop offset="0" stop-color="#fff" stop-opacity=".15"/>
+<stop offset=".6" stop-color="#fff" stop-opacity=".05"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<!-- Three arcs with matched tangents at each join, so it reads as one
+     continuous sweep rather than spliced curves. -->
+<path class="wave-fill" d="M0,203 C150,203 250,199 380,181 C510,163 600,131 740,120 C880,109 1010,112 1200,104 L1200,220 L0,220 Z"/>
+<rect x="0" y="0" width="1200" height="220" fill="url(#bloom)"/>
+</svg>
+<div class="hero-in">
+<div class="hero-copy">
+<h1>Welcome</h1>
+<p class="subtitle">Your guide through the Mutual Evaluation Process.</p>
+</div>
+<!-- PLACEHOLDER LOCKUP - set type, not the brand face. Replace the inner div
+     with the approved artwork:
+       Marketing / Shared Documents / Seals / Brand Assets LOGOS / Logos /
+       NEW 2025 / The Seals Logo Suite 072925 / Primary Logo / SVG /
+       The-Seals-Logo-White.svg
+     It is a white mark on transparency, so it drops straight onto the blue
+     band with no panel behind it. Being SVG it can be pasted inline as
+     markup - no base64 needed, and it stays sharp at any size. -->
+<div class="logo-plate"><img class="brandmark" src="data:image/png;base64,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dS2B1t4yj526uuBm3UNrXYjq3cRKUVYX76uoYKXH7na63vg47RqawuqTnmQ3qvse7uRjtmy13MRztbluxY4LeV9F05ON2Kkf9/F+Sp2peFYjfsrH87W61fsqwL0b8bv96JWfc6XURIijmUYbG6U42fXzuBER86Y0HXmQ2A14QusBbEREDEQX2XqxjYaa1PN6Pm4RETGgUsoF+hTP2q00falpTB+3iIgYkB7Mr+gmyh3Tgg4t7PAxi4iIAdUqqS/1i3CsqZmSV6JUQUTEaGnTnTZz+kU41tRNwJ21mSIiYgBKb6M0N34Rjj0fRD9SeiQfs4iIGJASfq5iluChKGGsEsf6uEVExIBUCkElEfwiHGtqKY1T+rhFRMRASimnqUXiokHFBVVk0MctIiIGpLLZyqTtF+FYo6zeXTm0IiJiIMCRQ5biXiXAL7uSV0ZExEBKKQcCr/CLcKwBPg0c4eMWEREDAq5UizdFA3BMKWV/H7eIiBgQ8AjVtfWLcOz5IDqpqwBYREQMBDg3cJxfhGMN8J5SyiE+bhERMSDgZsD3/CIca4DH+JhFRMSAgNMBz/ALcKwBvlZKubqPW0REDAi4WCnleL8Ixxrg2FLKWXzcIiJiIMABwCP9AhxrgJOBe/m4RUTEwICDgKPqhtc75Fh3HO5jFhERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER8f/+DxtiNc9G9b7iAAAAAElFTkSuQmCC" alt="THE SEALS" width="420" height="154" fetchpriority="high" decoding="sync"></div>
+</div></div>
+
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<!-- Each marker is the same drawing, inlined six times. Every svg is
+     self-contained: flat fills only, no defs, no reference reaching outside
+     itself. The copies are byte-identical - edit one, edit all six.
+     To mark a step complete, add class "done" to its .jstep. -->
+
+<div class="jstep now" aria-current="step"><div class="jlbl">Welcome</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">1</span></div><span class="sr-only">Step 1 of 6 — you are here</span></div>
+
+<div class="jstep"><div class="jlbl">Brand Overview</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">2</span></div><span class="sr-only">Step 2 of 6</span></div>
+
+<div class="jstep"><div class="jlbl">Validation</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">3</span></div><span class="sr-only">Step 3 of 6</span></div>
+
+<div class="jstep"><div class="jlbl">Seeking Approval</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">4</span></div><span class="sr-only">Step 4 of 6</span></div>
+
+<div class="jstep"><div class="jlbl">Meet The Team Day</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">5</span></div><span class="sr-only">Step 5 of 6</span></div>
+
+<div class="jstep"><div class="jlbl">Agreement</div>
+<div class="jnode"><svg viewBox="0 0 56 66" aria-hidden="true" focusable="false">
+<path class="ic-body ic-plate ic-edge" d="M18 0h20v19H18z"/>
+<rect class="ic-body ic-edge" x="9" y="20" width="38" height="43" rx="2"/>
+<path class="ic-edge" d="M9 26.8h38" fill="none"/>
+<rect class="ic-panel" x="35.5" y="21.8" width="8.5" height="3.4" rx="1"/>
+<rect class="ic-glass" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-glass" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="11.5" y="28.4" width="16" height="27" rx="1"/>
+<rect class="ic-gasket" x="28.5" y="28.4" width="16" height="27" rx="1"/>
+<g class="ic-streak"><path d="M14 39.5 20 31.5"/><path d="M14 51 20.5 42.5"/>
+<path d="M31 39.5 37 31.5"/><path d="M31 51 37.5 42.5"/></g>
+<g class="ic-hw"><rect x="25.3" y="34" width="1.8" height="15" rx=".9"/>
+<rect x="28.9" y="34" width="1.8" height="15" rx=".9"/></g>
+<g class="ic-louvre"><path d="M13 58h30"/><path d="M13 60.4h30"/></g>
+<rect class="ic-body ic-edge" x="12" y="63" width="5" height="3"/>
+<rect class="ic-body ic-edge" x="39" y="63" width="5" height="3"/>
+<g class="ic-fog">
+<ellipse class="fog-a" cx="6" cy="35" rx="4.6" ry="3.2"/>
+<ellipse class="fog-b" cx="2.6" cy="40" rx="3.4" ry="2.4"/>
+<ellipse class="fog-a" cx="5.6" cy="45.5" rx="4.2" ry="3"/>
+<ellipse class="fog-b" cx="2.2" cy="50" rx="2.8" ry="2"/>
+<ellipse class="fog-a" cx="50" cy="33.5" rx="4.4" ry="3"/>
+<ellipse class="fog-b" cx="53.4" cy="38.5" rx="3.2" ry="2.3"/>
+<ellipse class="fog-a" cx="50.4" cy="44" rx="4.4" ry="3.1"/>
+<ellipse class="fog-b" cx="53.8" cy="49" rx="2.9" ry="2.1"/>
+</g>
+</svg><span class="jnum">6</span></div><span class="sr-only">Step 6 of 6</span></div>
+</div></div></div>
+
+<main class="stack">
+
+<section class="slide">
+<!-- PLACEHOLDER. Swap this block for the .video-embed iframe once THE SEALS
+     welcome video is published. -->
+<div class="video-slot"><span class="play">▶</span><span class="t">Video slot · THE SEALS welcome — awaiting final cut</span></div>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<p>To learn about the EverSmith Mutual Evaluation Process, please see the next step entitled <strong>Mutual Evaluation Process End-to-End</strong>.</p>
+</section>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>THE SEALS · An EverSmith Brands Company</span></footer>
+</body></html>
