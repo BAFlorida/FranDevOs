@@ -17,14 +17,8 @@ sys.path.insert(0, HERE)
 
 from build import ORDER  # noqa: E402
 
-# John has rebuilt these five with newer copy. They are listed so the sheet
-# reads in portal order, but flagged and their copy button disarmed, so his
-# work cannot be pasted over by accident.
-JOHNS = {
-    "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
-    "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
-    "02-brand-overview/02-fdd.html",
-}
+JOHNS = set()  # every Kitchen Guard page is mine to ship
+
 from parse import BUCKETS  # noqa: E402
 
 rows = []
@@ -55,7 +49,7 @@ for i, rel in enumerate(ORDER, 1):
   </details>
 </article>""")
 
-PAGE = """<title>1-Tom-Plumber MEG - Page Source for CMS Upload</title>
+PAGE = """<title>Kitchen Guard MEG - Page Source for CMS Upload</title>
 <script>
 /* Supply a viewport meta if the host page has not, or a phone lays this out
    at ~980px and scales it down. */
@@ -69,20 +63,20 @@ PAGE = """<title>1-Tom-Plumber MEG - Page Source for CMS Upload</title>
 </script>
 <style>
 :root{
-  --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#E8175D; --pink-dk:#B80E48;
+  --ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --pink:#599C1E; --pink-dk:#3F7015;
   --slate:#5B6470; --line:#E5E2DC; --ok:#0F7B4F;
   --header:#12151A; --on-header:#FFFFFF; --on-header-dim:#B9C0C9; --btn-tx:#FAF9F6;
 }
 @media (prefers-color-scheme:dark){
   :root{--ink:#F2F3F5; --paper:#101317; --card:#171B20; --line:#282D34; --slate:#9BA3AE;
-        --pink:#FF4D80; --pink-dk:#FF7CA0; --ok:#3FBF86;
+        --pink:#8CDB86; --pink-dk:#A8E5A2; --ok:#3FBF86;
         --header:#07090B; --on-header:#F2F3F5; --on-header-dim:#98A0AA; --btn-tx:#101317}
 }
 :root[data-theme="dark"]{--ink:#F2F3F5; --paper:#101317; --card:#171B20; --line:#282D34;
-  --slate:#9BA3AE; --pink:#FF4D80; --pink-dk:#FF7CA0; --ok:#3FBF86;
+  --slate:#9BA3AE; --pink:#8CDB86; --pink-dk:#A8E5A2; --ok:#3FBF86;
   --header:#07090B; --on-header:#F2F3F5; --on-header-dim:#98A0AA; --btn-tx:#101317}
 :root[data-theme="light"]{--ink:#12151A; --paper:#FAF9F6; --card:#FFFFFF; --line:#E5E2DC;
-  --slate:#5B6470; --pink:#E8175D; --pink-dk:#B80E48; --ok:#0F7B4F;
+  --slate:#5B6470; --pink:#599C1E; --pink-dk:#3F7015; --ok:#0F7B4F;
   --header:#12151A; --on-header:#FFFFFF; --on-header-dim:#B9C0C9; --btn-tx:#FAF9F6}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);
@@ -148,7 +142,7 @@ textarea{display:block;width:100%;height:300px;border:0;border-top:1px solid var
 
   <div class="bar">
     <button class="copy" type="button" id="expand">Expand all</button>
-    <span class="count" id="status">19 ready to copy · 5 held for John</span>
+    <span class="count" id="status">24 pages ready to copy</span>
   </div>
 
 __ROWS__
