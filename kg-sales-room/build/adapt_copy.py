@@ -31,11 +31,12 @@ SWAPS = [
     ("Watch the videos above, then continue to the Mutual Evaluation Process End-to-End.",
      "To learn about the EverSmith Mutual Evaluation Process, please see the next step "
      "entitled **Mutual Evaluation Process End-to-End**."),
-    # 1-Tom branded videos have no Kitchen Guard cut yet.
+    # These two are process and technology videos, used across all brands, so
+    # they carry over. Only the caption is renamed off the 1-Tom title.
     ("[VIDEO: 1-Tom Mutual Evaluation Room Explanation]",
-     "[VIDEO SLOT — PENDING: Kitchen Guard welcome — awaiting final cut]"),
+     "[VIDEO: Mutual Evaluation Room Explanation]"),
     ("[VIDEO: 1-Tom Service Titan Overview]",
-     "[VIDEO SLOT — PENDING: Kitchen Guard ServiceTitan overview]"),
+     "[VIDEO: ServiceTitan Overview]"),
     ("[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview]",
      "[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview — script V3 drafted, not recorded]"),
 ]
@@ -82,7 +83,7 @@ That means you need a unique physical address inside your territory. No P.O. box
 
 Your Franchise Developer coordinates with our Local Marketing Specialist before your territory is finalized. You will form a legal entity under a name of your choosing, that entity name cannot include the brand name, and your public-facing name is your DBA.
 
-[PLACEHOLDER: confirm the Kitchen Guard DBA naming convention and provide a worked example, the way the 1-Tom guide does.]
+[PLACEHOLDER: confirm the Kitchen Guard DBA naming convention and provide a worked example.]
 
 ### GATE — acknowledgment, required
 

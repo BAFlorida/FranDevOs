@@ -215,7 +215,7 @@ Continue to Understanding Your Brand's Technology.
 
 ### BODY
 
-[VIDEO SLOT — PENDING: Kitchen Guard ServiceTitan overview]
+[VIDEO: ServiceTitan Overview]
 
 ### H2: How Technology Sourcing Works
 

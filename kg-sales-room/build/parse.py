@@ -33,6 +33,8 @@ CONTENT = os.path.join(ROOT, "content", "pages")
 
 VIDEOS = {
     # EverSmith process videos are brand-neutral and carry across brands.
+    "Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
+    "ServiceTitan Overview": "kXK6u3O8hCU",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
     "EverSmith Qualification Summary Overview": "GWB3gkycrKw",

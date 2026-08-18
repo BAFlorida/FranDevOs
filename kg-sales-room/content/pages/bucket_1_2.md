@@ -21,7 +21,7 @@ This portal is your guide through the Mutual Evaluation Process. Each stage buil
 
 The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.
 
-[VIDEO SLOT — PENDING: Kitchen Guard welcome — awaiting final cut]
+[VIDEO: Mutual Evaluation Room Explanation]
 
 [VIDEO: EverSmith What to Expect on the First Call]
 
