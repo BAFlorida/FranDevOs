@@ -162,6 +162,19 @@ def video_slot(label):
             f'<span class="t">Pending — {label}</span></div>')
 
 
+# Live destinations, exactly as wired on John's rebuilt CMS pages. An asset ref
+# absent here renders href="#" and is wired in the CMS; nothing is invented.
+ASSET_URLS = {
+    "form:qualification-summary-form":
+        "https://na4.docusign.net/Member/PowerFormSigning.aspx"
+        "?PowerFormId=ac9012b2-bd64-4b9d-8546-4423ed44ccae&amp;env=na4"
+        "&amp;acct=f3a07e16-9d68-4247-8407-8b476c0d9169&amp;v=2",
+    "form:culture-index-survey":
+        "https://surveys.cultureindex.com/s/unupYpLkij/114568",
+    "link:b-verify": "https://bverify.boefly.com/eversmith",
+}
+
+
 def asset(kind, label, ref):
     """Every actionable link is a .btn.
 
@@ -170,12 +183,15 @@ def asset(kind, label, ref):
     single button appearance to maintain." data-asset is kept so the real URL
     can be wired by attribute rather than by hunting through markup.
     """
-    return (f'<a class="btn" href="#" data-asset="{ref}" target="_blank" '
+    href = ASSET_URLS.get(ref, "#")
+    return (f'<a class="btn" href="{href}" data-asset="{ref}" target="_blank" '
             f'rel="noopener">{label} <span aria-hidden="true">&#8599;</span></a>')
 
 
 def btnrow(buttons):
-    return '<div class="btnrow">' + "".join(buttons) + "</div>"
+    # John's pages wrap every button run - singles included - so the mobile
+    # stacking rules apply uniformly.
+    return '<div class="btnrow">\n' + "\n".join(buttons) + "\n</div>"
 
 
 def flag(text, ref=None):
@@ -210,10 +226,12 @@ def gate_select(gate_id, statement, options, heading="Required — self assessme
 </div>"""
 
 
-def table(caption, headers, rows):
+def table(caption, headers, rows, caption_hidden=False):
     head = "".join(f"<th>{h}</th>" for h in headers)
     body = "\n".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
-    return (f'<div class="t-scroll"><table>\n<caption>{caption}</caption>\n'
+    cap = (f'<caption class="sr-only">{caption}</caption>' if caption_hidden
+           else f"<caption>{caption}</caption>")
+    return (f'<div class="t-scroll"><table>\n{cap}\n'
             f"<thead><tr>{head}</tr></thead>\n<tbody>\n{body}\n</tbody>\n</table></div>")
 
 

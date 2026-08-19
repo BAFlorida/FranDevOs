@@ -10,9 +10,10 @@ excluded so his newer copy is not overwritten:
   - 02-brand-overview/index.html
 
 Everything here matches John's conventions: .btn links with data-asset,
-no .eyebrow, the closing pointer as prose in the final card, and the
-"▶ Watch · <name>" video caption format.
+no .eyebrow, the closing pointer as prose in the final card, the
+"▶ Watch · <name>" video caption format, and no sub-step list on index
+pages (the platform supplies section navigation).
 
-One difference to confirm: John's two bucket index pages carry no
-sub-step list. Mine still do, because the source markdown specifies one.
-Say the word and I will drop them.
+The source markdown was reconciled to the live CMS export on 2026-08-19,
+so these pages differ from the CMS only where the CMS itself needs the
+fix: the stray "---" paragraph pasted before each closing line.

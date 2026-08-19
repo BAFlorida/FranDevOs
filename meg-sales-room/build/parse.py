@@ -32,6 +32,9 @@ ROOT = os.path.dirname(HERE)
 CONTENT = os.path.join(ROOT, "content", "pages")
 
 VIDEOS = {
+    # John's rebuilt Welcome page carries the room-explanation video captioned
+    # simply "Welcome"; the id is the same recording.
+    "Welcome": "fcaSfWLHMh8",
     "1-Tom Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
@@ -50,6 +53,11 @@ VIDEOS = {
     "EverSmith Executive Board Approval": "qDuHvclW0kk",
     "EverSmith Agreement Execution": "lcOn6qL1uoo",
     "EverSmith Welcome Call": "1NynLBubPv0",
+}
+
+# Iframe title attributes that differ from the caption name, per John's pages.
+VIDEO_TITLES = {
+    "Welcome": "Welcome — 1-Tom-Plumber Mutual Evaluation Guide",
 }
 
 # Maps a placeholder's text to its PLACEHOLDERS.md reference.
@@ -115,7 +123,8 @@ def inline(t):
     return t
 
 
-ASSET_KINDS = {"FORM": "Form", "DOWNLOAD": "Download", "SCHEDULER": "Scheduler"}
+ASSET_KINDS = {"FORM": "Form", "DOWNLOAD": "Download", "SCHEDULER": "Scheduler",
+               "LINK": "Link"}
 
 
 def slugify(s):
@@ -171,8 +180,12 @@ def build_page(rel, lines, all_paths, titles):
         elif mode == "table" and buf:
             rows = [[c.strip() for c in r.strip().strip("|").split("|")] for r in buf]
             caption = cur[0] if cur and cur[0] else meta.get("H1", "")
+            # When the slide's visible heading already names the table, the
+            # caption is kept for screen readers but not painted twice.
+            dup = bool(cur and cur[0] and cur[1])
             emit(table(caption, [esc(c) for c in rows[0]],
-                       [[inline(c) for c in r] for r in rows[1:]]))
+                       [[inline(c) for c in r] for r in rows[1:]],
+                       caption_hidden=dup))
         elif mode == "substeps" and buf:
             subs = sorted(p for p in all_paths
                           if p.startswith(bucket + "/") and not p.endswith("index.html"))
@@ -296,16 +309,22 @@ def build_page(rel, lines, all_paths, titles):
             vid = VIDEOS.get(name)
             if not vid:
                 raise SystemExit(f"{rel}: no URL known for video {name!r}")
-            emit(video(f"https://www.youtube.com/embed/{vid}", esc(name),
+            emit(video(f"https://www.youtube.com/embed/{vid}",
+                       esc(VIDEO_TITLES.get(name, name)),
                        caption=f"Watch · {esc(name)}"))
             continue
 
-        m = re.match(r"^\[(FORM|DOWNLOAD|SCHEDULER):\s*([^\]]+)\]$", t)
+        m = re.match(r"^\[(FORM|DOWNLOAD|SCHEDULER|LINK):\s*([^\]]+)\]$", t)
         if m:
             flush()
             kind, label = ASSET_KINDS[m.group(1)], m.group(2).strip()
+            # An explicit ref slug can follow the label: [LINK: Label | slug].
+            ref_slug = None
+            if "|" in label:
+                label, ref_slug = (s.strip() for s in label.rsplit("|", 1))
             clean = re.sub(r"\s*[—-]\s*PLACEHOLDER:.*$", "", label).strip()
-            emit(asset(kind, esc(clean), f"{m.group(1).lower()}:{slugify(clean)}"))
+            emit(asset(kind, esc(clean),
+                       f"{m.group(1).lower()}:{ref_slug or slugify(clean)}"))
             if "PLACEHOLDER" in label:
                 note = re.search(r"PLACEHOLDER:\s*([^\]]+)", label).group(1).strip()
                 emit(flag(esc(note), ph_ref(note)))
@@ -341,8 +360,8 @@ def build_page(rel, lines, all_paths, titles):
     if next_text and slides:
         slides[-1][2].append(f"<p>{inline(next_text)}</p>")
 
-    # Runs of adjacent buttons become one .btnrow, so they share a gap rather
-    # than each carrying its own vertical margin.
+    # Every button run - singles included - becomes one .btnrow, matching
+    # John's pages, so the buttons share a gap and stack uniformly on mobile.
     for sl in slides:
         merged, run = [], []
         for part in sl[2]:
@@ -350,11 +369,11 @@ def build_page(rel, lines, all_paths, titles):
                 run.append(part)
                 continue
             if run:
-                merged.append(btnrow(run) if len(run) > 1 else run[0])
+                merged.append(btnrow(run))
                 run = []
             merged.append(part)
         if run:
-            merged.append(btnrow(run) if len(run) > 1 else run[0])
+            merged.append(btnrow(run))
         sl[2] = merged
 
     return render(

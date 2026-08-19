@@ -104,6 +104,8 @@ def check(pages):
 
         # Self-contained: no stylesheet, no script, and - since the faces are
         # embedded - no outbound request of any kind except the video iframes.
+        # A resolved .btn destination is a navigation, not a page-load request,
+        # so an https href on a .btn that names its asset is allowed.
         if re.search(r'<link[^>]+rel="stylesheet"', html):
             fails.append(f"{path}: links an external stylesheet")
         if "<script" in html:
@@ -111,14 +113,18 @@ def check(pages):
         if html.count("@font-face") != 3:
             fails.append(f"{path}: expected 3 embedded @font-face rules, "
                          f"found {html.count('@font-face')}")
+        wired = {re.search(r'href="(https?://[^"]+)"', a).group(1)
+                 for a in re.findall(r'<a class="btn"[^>]*data-asset=[^>]*>', html)
+                 if re.search(r'href="(https?://[^"]+)"', a)}
         outbound = {u for u in re.findall(r'(?:href|src)="(https?://[^"]+)"', html)
-                    if "youtube.com/embed/" not in u}
+                    if "youtube.com/embed/" not in u and u not in wired}
         if outbound:
             fails.append(f"{path}: outbound request(s) besides video: {sorted(outbound)}")
 
-        # Tables scroll and are captioned.
+        # Tables scroll and are captioned (visibly, or sr-only when the slide
+        # heading already names the table).
         for tbl in re.findall(r"<table>(.*?)</table>", html, re.S):
-            if "<caption>" not in tbl:
+            if "<caption" not in tbl:
                 fails.append(f"{path}: a table has no <caption>")
         if "<table>" in html and 't-scroll' not in html:
             fails.append(f"{path}: a table is not in a scroll container")
@@ -162,15 +168,13 @@ def check(pages):
         if leaks != 1:
             fails.append(f"{path}: expected exactly one leak, found {leaks}")
 
-    # Every bucket index links all of its sub-steps.
+    # Index pages carry no sub-step list: the platform supplies section
+    # navigation, and John's rebuilt pages set the convention. Guard against
+    # the old block reappearing.
     for path in pages:
-        if not path.endswith("/index.html"):
-            continue
-        bucket = path.split("/")[0]
-        for sub in (p.split("/")[1] for p in pages
-                    if p.startswith(bucket + "/") and not p.endswith("index.html")):
-            if f'href="{sub}"' not in pages[path]:
-                fails.append(f"{path}: does not link {sub}")
+        if path.endswith("/index.html") and "Steps in This Stage" in pages[path]:
+            fails.append(f"{path}: carries a sub-step list; the platform "
+                         "provides section navigation")
 
     return fails
 
@@ -296,9 +300,10 @@ def write_index(pages):
              "chrome elements missing, a missing spine or slides, a journey track that does "
              "not mark this page's stage as current, a gate without a form control, an "
              "unlabelled checkbox or select, an uncaptioned or unscrollable table, an asset "
-             "without `data-asset`, an unknown video id, a `watch` URL in place of an "
-             "`embed` URL, an unrendered source marker or stray markdown, a missing closing "
-             "card, or a bucket index that does not link every sub-step.\n")
+             "without `data-asset`, an outbound request that is not a video embed or a "
+             "resolved `.btn` destination, an unknown video id, a `watch` URL in place of "
+             "an `embed` URL, an unrendered source marker or stray markdown, or an index "
+             "page that reintroduces a sub-step list.\n")
     L.append("A copy-fidelity check confirms every prose line of `content/pages/*.md` "
              "appears in its rendered page. All 24 pages are additionally loaded in headless "
              "Chromium to confirm the CSS applies, no console errors fire, no horizontal "

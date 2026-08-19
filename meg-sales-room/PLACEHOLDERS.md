@@ -16,7 +16,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 | `PH-04` | Technology sourcing entity | 3.4 | The party that negotiates vendor pricing and collects payment |
 | `PH-05` | Onboarding program name | 6.4 | Do **not** default to "Sure Start" — that is the source brand's program name, and PIRTEK uses it too |
 | `PH-06` | Referral program name and all figures | 6.4 | Source: $5,000 per placement, $1,350 quarterly drawing, Reunion travel, $5,000 live drawing, Apr 1–Mar 31 award year. Replace entirely or cut the section |
-| `PH-07` | Item 19 status | 2.2, 3.1 | Confirm against the current FDD. If no FPR, 2.2 states it plainly and 3.1's gate carries the full explanation |
+| `PH-07` | Item 19 status | ~~2.2~~, 3.1 | **Resolved on 2.2** — John's rebuilt FDD page drops the flag and keeps the neutral Item 19 note. 3.1's gate still carries the full explanation |
 
 ---
 
@@ -25,7 +25,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 | Ref | Unknown | Pages |
 |---|---|---|
 | `PH-08` | E-signature platform | 4.2, 6.2 |
-| `PH-09` | Background check vendor | 2.1 |
+| `PH-09` | ~~Background check vendor~~ | 2.1 — **Resolved**: B-Verify (bverify.boefly.com/eversmith) handles financial and background verification on John's rebuilt 2.1 |
 | `PH-10` | Behavioral assessment tool | 2.1, 5.2 — source used DISC; PIRTEK used Culture Index; the sales room says "Culture Index" on 2.1. Confirm one and use it on both pages |
 | `PH-11` | Procurement / buying group | 2.3 |
 | `PH-12` | Call center / dispatch support | 2.3 |

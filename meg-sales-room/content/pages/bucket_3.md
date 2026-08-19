@@ -20,15 +20,6 @@ This stage covers four things. Who you talk to and what to ask them. How you wil
 
 What our owners tell you carries more weight than anything we have said. That is by design.
 
-### SUBSTEP LIST
-1. Owner Calls
-2. Funding
-3. Territory
-4. Understanding Your Brand's Technology
-
-### NEXT
-Start with Owner Calls.
-
 ---
 
 ## PAGE: 03-validation/01-owner-calls.html
