@@ -1133,6 +1133,223 @@ export interface CrmPipelineStage {
   count: number;
 }
 
+/**
+ * Territory-lead priority tier driving map marker styling.
+ */
+export type TerritoryTier = typeof TerritoryTier[keyof typeof TerritoryTier];
+
+
+export const TerritoryTier = {
+  Tier_1: 'Tier 1',
+  Tier_2: 'Tier 2',
+  Tier_3: 'Tier 3',
+} as const;
+
+/**
+ * Where a territory lead originated. google_places rows were imported from the Google Places API; manual rows were created in-app or seeded.
+ */
+export type TerritoryLeadSource = typeof TerritoryLeadSource[keyof typeof TerritoryLeadSource];
+
+
+export const TerritoryLeadSource = {
+  google_places: 'google_places',
+  manual: 'manual',
+} as const;
+
+export interface TerritorySearchInput {
+  /**
+     * Free-text Places query, e.g. "commercial cleaning companies in Dallas, TX".
+     * @minLength 2
+     * @maxLength 256
+     */
+  query: string;
+  /**
+     * nextPageToken from a previous response to fetch the next page.
+     * @nullable
+     */
+  pageToken?: string | null;
+}
+
+/**
+ * A normalized Google Business Profile listing (not yet saved as a lead).
+ */
+export interface TerritoryPlaceResult {
+  placeId: string;
+  name: string;
+  /** @nullable */
+  category?: string | null;
+  /** @nullable */
+  address?: string | null;
+  /** @nullable */
+  phone?: string | null;
+  /** @nullable */
+  website?: string | null;
+  latitude: number;
+  longitude: number;
+  /** @nullable */
+  rating?: number | null;
+  /** @nullable */
+  ratingCount?: number | null;
+  /** @nullable */
+  businessStatus?: string | null;
+  suggestedTier: TerritoryTier;
+  /** Whether this place is already in the saved lead list. */
+  alreadyImported: boolean;
+}
+
+export interface TerritorySearchResponse {
+  places: TerritoryPlaceResult[];
+  /** @nullable */
+  nextPageToken?: string | null;
+}
+
+export interface TerritoryImportPlace {
+  /**
+     * @minLength 1
+     * @maxLength 128
+     */
+  placeId: string;
+  /**
+     * @minLength 1
+     * @maxLength 256
+     */
+  name: string;
+  /**
+     * @maxLength 128
+     * @nullable
+     */
+  category?: string | null;
+  /**
+     * @maxLength 512
+     * @nullable
+     */
+  address?: string | null;
+  /**
+     * @maxLength 64
+     * @nullable
+     */
+  phone?: string | null;
+  /**
+     * @maxLength 512
+     * @nullable
+     */
+  website?: string | null;
+  /**
+     * @minimum -90
+     * @maximum 90
+     */
+  latitude: number;
+  /**
+     * @minimum -180
+     * @maximum 180
+     */
+  longitude: number;
+  /** @nullable */
+  rating?: number | null;
+  /** @nullable */
+  ratingCount?: number | null;
+  /**
+     * @maxLength 32
+     * @nullable
+     */
+  businessStatus?: string | null;
+  tier?: TerritoryTier;
+  /**
+     * @maxLength 256
+     * @nullable
+     */
+  searchQuery?: string | null;
+}
+
+export interface ImportTerritoryLeadsInput {
+  /**
+     * @minItems 1
+     * @maxItems 40
+     */
+  places: TerritoryImportPlace[];
+}
+
+/**
+ * Untransformed Places result preserved for drill-down.
+ */
+export type CrmTerritoryLeadRawPayload = { [key: string]: unknown } | null;
+
+export interface CrmTerritoryLead {
+  id: number;
+  sourceSystem: TerritoryLeadSource;
+  /** Google place id for google_places rows; a manual id otherwise. */
+  sourceRecordId: string;
+  /** @nullable */
+  connectionId?: number | null;
+  /** @nullable */
+  externalLastModifiedAt?: string | null;
+  syncedAt: string;
+  /** Untransformed Places result preserved for drill-down. */
+  rawPayload?: CrmTerritoryLeadRawPayload;
+  name: string;
+  /** @nullable */
+  category?: string | null;
+  /** @nullable */
+  address?: string | null;
+  /** @nullable */
+  phone?: string | null;
+  /** @nullable */
+  website?: string | null;
+  latitude: number;
+  longitude: number;
+  /** @nullable */
+  rating?: number | null;
+  /** @nullable */
+  ratingCount?: number | null;
+  /** @nullable */
+  businessStatus?: string | null;
+  tier: TerritoryTier;
+  /**
+     * Decimal estimated value serialized as string.
+     * @nullable
+     */
+  value?: string | null;
+  /**
+     * The Places query that surfaced this lead.
+     * @nullable
+     */
+  searchQuery?: string | null;
+  /** @nullable */
+  accountId?: number | null;
+  /** @nullable */
+  ownerName?: string | null;
+  /** @nullable */
+  region?: string | null;
+  createdAt?: string;
+}
+
+export interface ImportTerritoryLeadsResponse {
+  /** Rows newly inserted. */
+  imported: number;
+  /** Places already present (deduped on place id). */
+  skipped: number;
+  leads: CrmTerritoryLead[];
+}
+
+export interface UpdateTerritoryLeadInput {
+  tier?: TerritoryTier;
+  /**
+     * Decimal estimated value serialized as string.
+     * @nullable
+     */
+  value?: string | null;
+  /**
+     * @maxLength 128
+     * @nullable
+     */
+  ownerName?: string | null;
+  /**
+     * @maxLength 64
+     * @nullable
+     */
+  region?: string | null;
+}
+
 export interface IntegrationConnectionCard {
   connection: CrmConnection;
   recentEvents: CrmSyncEvent[];
@@ -1371,5 +1588,10 @@ source?: CrmExternalSource;
 export type ListCrmEmailActivityParams = {
 source?: CrmExternalSource;
 campaignId?: number;
+};
+
+export type ListTerritoryLeadsParams = {
+tier?: TerritoryTier;
+source?: TerritoryLeadSource;
 };
 

@@ -17,6 +17,7 @@ import focusAreaTargetsRouter from "./focus-area-targets";
 import crmRouter from "./crm";
 import crmReportingRouter from "./crm-reporting";
 import integrationsRouter from "./integrations";
+import territoryRouter from "./territory";
 
 const router: IRouter = Router();
 
@@ -38,5 +39,6 @@ router.use(focusAreaTargetsRouter);
 router.use(crmRouter);
 router.use(crmReportingRouter);
 router.use(integrationsRouter);
+router.use(territoryRouter);
 
 export default router;

@@ -1994,6 +1994,182 @@ export const CreateLinkedTaskBody = zod.object({
 
 
 /**
+ * Proxies a Google Places API (New) text search using the server-side GOOGLE_MAPS_API_KEY — the key never reaches the browser. Results are normalized, flagged when already imported, and NOT persisted; import them explicitly via /crm/territory-leads/import.
+ * @summary Search Google Business Profile listings (Places API text search)
+ */
+export const searchTerritoryPlacesBodyQueryMin = 2;
+export const searchTerritoryPlacesBodyQueryMax = 256;
+
+
+
+export const SearchTerritoryPlacesBody = zod.object({
+  "query": zod.string().min(searchTerritoryPlacesBodyQueryMin).max(searchTerritoryPlacesBodyQueryMax).describe('Free-text Places query, e.g. \"commercial cleaning companies in Dallas, TX\".'),
+  "pageToken": zod.string().nullish().describe('nextPageToken from a previous response to fetch the next page.')
+})
+
+export const SearchTerritoryPlacesResponse = zod.object({
+  "places": zod.array(zod.object({
+  "placeId": zod.string(),
+  "name": zod.string(),
+  "category": zod.string().nullish(),
+  "address": zod.string().nullish(),
+  "phone": zod.string().nullish(),
+  "website": zod.string().nullish(),
+  "latitude": zod.number(),
+  "longitude": zod.number(),
+  "rating": zod.number().nullish(),
+  "ratingCount": zod.number().nullish(),
+  "businessStatus": zod.string().nullish(),
+  "suggestedTier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).describe('Territory-lead priority tier driving map marker styling.'),
+  "alreadyImported": zod.boolean().describe('Whether this place is already in the saved lead list.')
+}).describe('A normalized Google Business Profile listing (not yet saved as a lead).')),
+  "nextPageToken": zod.string().nullish()
+})
+
+
+/**
+ * @summary List the saved territory lead / target-customer list
+ */
+export const ListTerritoryLeadsQueryParams = zod.object({
+  "tier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).optional(),
+  "source": zod.enum(['google_places', 'manual']).optional()
+})
+
+export const ListTerritoryLeadsResponseItem = zod.object({
+  "id": zod.number(),
+  "sourceSystem": zod.enum(['google_places', 'manual']).describe('Where a territory lead originated. google_places rows were imported from the Google Places API; manual rows were created in-app or seeded.'),
+  "sourceRecordId": zod.string().describe('Google place id for google_places rows; a manual id otherwise.'),
+  "connectionId": zod.number().nullish(),
+  "externalLastModifiedAt": zod.coerce.date().nullish(),
+  "syncedAt": zod.coerce.date(),
+  "rawPayload": zod.union([zod.record(zod.string(), zod.unknown()),zod.null()]).optional().describe('Untransformed Places result preserved for drill-down.'),
+  "name": zod.string(),
+  "category": zod.string().nullish(),
+  "address": zod.string().nullish(),
+  "phone": zod.string().nullish(),
+  "website": zod.string().nullish(),
+  "latitude": zod.number(),
+  "longitude": zod.number(),
+  "rating": zod.number().nullish(),
+  "ratingCount": zod.number().nullish(),
+  "businessStatus": zod.string().nullish(),
+  "tier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).describe('Territory-lead priority tier driving map marker styling.'),
+  "value": zod.string().nullish().describe('Decimal estimated value serialized as string.'),
+  "searchQuery": zod.string().nullish().describe('The Places query that surfaced this lead.'),
+  "accountId": zod.number().nullish(),
+  "ownerName": zod.string().nullish(),
+  "region": zod.string().nullish(),
+  "createdAt": zod.coerce.date().optional()
+})
+export const ListTerritoryLeadsResponse = zod.array(ListTerritoryLeadsResponseItem)
+
+
+/**
+ * Bulk-saves search results as canonical crm_territory_leads rows with google_places provenance (sourceRecordId = place id). Places already in the list are skipped, not duplicated.
+ * @summary Import Google place results into the territory lead list
+ */
+export const importTerritoryLeadsBodyPlacesItemPlaceIdMax = 128;
+
+export const importTerritoryLeadsBodyPlacesItemNameMax = 256;
+
+export const importTerritoryLeadsBodyPlacesItemCategoryMax = 128;
+
+export const importTerritoryLeadsBodyPlacesItemAddressMax = 512;
+
+export const importTerritoryLeadsBodyPlacesItemPhoneMax = 64;
+
+export const importTerritoryLeadsBodyPlacesItemWebsiteMax = 512;
+
+export const importTerritoryLeadsBodyPlacesItemLatitudeMin = -90;
+export const importTerritoryLeadsBodyPlacesItemLatitudeMax = 90;
+
+export const importTerritoryLeadsBodyPlacesItemLongitudeMin = -180;
+export const importTerritoryLeadsBodyPlacesItemLongitudeMax = 180;
+
+export const importTerritoryLeadsBodyPlacesItemBusinessStatusMax = 32;
+
+export const importTerritoryLeadsBodyPlacesItemSearchQueryMax = 256;
+
+export const importTerritoryLeadsBodyPlacesMax = 40;
+
+
+
+export const ImportTerritoryLeadsBody = zod.object({
+  "places": zod.array(zod.object({
+  "placeId": zod.string().min(1).max(importTerritoryLeadsBodyPlacesItemPlaceIdMax),
+  "name": zod.string().min(1).max(importTerritoryLeadsBodyPlacesItemNameMax),
+  "category": zod.string().max(importTerritoryLeadsBodyPlacesItemCategoryMax).nullish(),
+  "address": zod.string().max(importTerritoryLeadsBodyPlacesItemAddressMax).nullish(),
+  "phone": zod.string().max(importTerritoryLeadsBodyPlacesItemPhoneMax).nullish(),
+  "website": zod.string().max(importTerritoryLeadsBodyPlacesItemWebsiteMax).nullish(),
+  "latitude": zod.number().min(importTerritoryLeadsBodyPlacesItemLatitudeMin).max(importTerritoryLeadsBodyPlacesItemLatitudeMax),
+  "longitude": zod.number().min(importTerritoryLeadsBodyPlacesItemLongitudeMin).max(importTerritoryLeadsBodyPlacesItemLongitudeMax),
+  "rating": zod.number().nullish(),
+  "ratingCount": zod.number().nullish(),
+  "businessStatus": zod.string().max(importTerritoryLeadsBodyPlacesItemBusinessStatusMax).nullish(),
+  "tier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).optional().describe('Territory-lead priority tier driving map marker styling.'),
+  "searchQuery": zod.string().max(importTerritoryLeadsBodyPlacesItemSearchQueryMax).nullish()
+})).min(1).max(importTerritoryLeadsBodyPlacesMax)
+})
+
+
+/**
+ * @summary Update a territory lead (tier, value, owner, region)
+ */
+export const UpdateTerritoryLeadParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+export const updateTerritoryLeadBodyOwnerNameMax = 128;
+
+export const updateTerritoryLeadBodyRegionMax = 64;
+
+
+
+export const UpdateTerritoryLeadBody = zod.object({
+  "tier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).optional().describe('Territory-lead priority tier driving map marker styling.'),
+  "value": zod.string().nullish().describe('Decimal estimated value serialized as string.'),
+  "ownerName": zod.string().max(updateTerritoryLeadBodyOwnerNameMax).nullish(),
+  "region": zod.string().max(updateTerritoryLeadBodyRegionMax).nullish()
+})
+
+export const UpdateTerritoryLeadResponse = zod.object({
+  "id": zod.number(),
+  "sourceSystem": zod.enum(['google_places', 'manual']).describe('Where a territory lead originated. google_places rows were imported from the Google Places API; manual rows were created in-app or seeded.'),
+  "sourceRecordId": zod.string().describe('Google place id for google_places rows; a manual id otherwise.'),
+  "connectionId": zod.number().nullish(),
+  "externalLastModifiedAt": zod.coerce.date().nullish(),
+  "syncedAt": zod.coerce.date(),
+  "rawPayload": zod.union([zod.record(zod.string(), zod.unknown()),zod.null()]).optional().describe('Untransformed Places result preserved for drill-down.'),
+  "name": zod.string(),
+  "category": zod.string().nullish(),
+  "address": zod.string().nullish(),
+  "phone": zod.string().nullish(),
+  "website": zod.string().nullish(),
+  "latitude": zod.number(),
+  "longitude": zod.number(),
+  "rating": zod.number().nullish(),
+  "ratingCount": zod.number().nullish(),
+  "businessStatus": zod.string().nullish(),
+  "tier": zod.enum(['Tier 1', 'Tier 2', 'Tier 3']).describe('Territory-lead priority tier driving map marker styling.'),
+  "value": zod.string().nullish().describe('Decimal estimated value serialized as string.'),
+  "searchQuery": zod.string().nullish().describe('The Places query that surfaced this lead.'),
+  "accountId": zod.number().nullish(),
+  "ownerName": zod.string().nullish(),
+  "region": zod.string().nullish(),
+  "createdAt": zod.coerce.date().optional()
+})
+
+
+/**
+ * @summary Remove a lead from the territory list
+ */
+export const DeleteTerritoryLeadParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+
+/**
  * @summary List saved report definitions (presets + custom)
  */
 

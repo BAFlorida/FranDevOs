@@ -31,6 +31,7 @@ import type {
   CrmEmailActivity,
   CrmOpportunity,
   CrmPipelineStage,
+  CrmTerritoryLead,
   Dashboard,
   ErrorEnvelope,
   EscalateInput,
@@ -46,6 +47,8 @@ import type {
   GroupWithMembers,
   HealthStatus,
   ImpersonationTarget,
+  ImportTerritoryLeadsInput,
+  ImportTerritoryLeadsResponse,
   IntegrationConnectionCard,
   Invitation,
   InvitationAcceptance,
@@ -60,6 +63,7 @@ import type {
   ListCrmEmailActivityParams,
   ListCrmOpportunitiesParams,
   ListTasksParams,
+  ListTerritoryLeadsParams,
   LoginCredentials,
   LogoutSuccess,
   PaginatedOpportunities,
@@ -85,7 +89,10 @@ import type {
   TaskAttachmentInput,
   TaskInput,
   TaskUpdate,
+  TerritorySearchInput,
+  TerritorySearchResponse,
   UnlockWeekInput,
+  UpdateTerritoryLeadInput,
   UserCreate,
   UserMerge,
   UserRole,
@@ -5133,6 +5140,376 @@ export const useCreateLinkedTask = <TError = ErrorType<ErrorEnvelope>,
         TContext
       > => {
       return useMutation(getCreateLinkedTaskMutationOptions(options));
+    }
+
+export const getSearchTerritoryPlacesUrl = () => {
+
+
+
+
+  return `/api/crm/territory/search`
+}
+
+/**
+ * Proxies a Google Places API (New) text search using the server-side GOOGLE_MAPS_API_KEY — the key never reaches the browser. Results are normalized, flagged when already imported, and NOT persisted; import them explicitly via /crm/territory-leads/import.
+ * @summary Search Google Business Profile listings (Places API text search)
+ */
+export const searchTerritoryPlaces = async (territorySearchInput: TerritorySearchInput, options?: RequestInit): Promise<TerritorySearchResponse> => {
+
+  return customFetch<TerritorySearchResponse>(getSearchTerritoryPlacesUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      territorySearchInput,)
+  }
+);}
+
+
+
+
+export const getSearchTerritoryPlacesMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof searchTerritoryPlaces>>, TError,{data: BodyType<TerritorySearchInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof searchTerritoryPlaces>>, TError,{data: BodyType<TerritorySearchInput>}, TContext> => {
+
+const mutationKey = ['searchTerritoryPlaces'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof searchTerritoryPlaces>>, {data: BodyType<TerritorySearchInput>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  searchTerritoryPlaces(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SearchTerritoryPlacesMutationResult = NonNullable<Awaited<ReturnType<typeof searchTerritoryPlaces>>>
+    export type SearchTerritoryPlacesMutationBody = BodyType<TerritorySearchInput>
+    export type SearchTerritoryPlacesMutationError = ErrorType<ErrorEnvelope>
+
+    /**
+ * @summary Search Google Business Profile listings (Places API text search)
+ */
+export const useSearchTerritoryPlaces = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof searchTerritoryPlaces>>, TError,{data: BodyType<TerritorySearchInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof searchTerritoryPlaces>>,
+        TError,
+        {data: BodyType<TerritorySearchInput>},
+        TContext
+      > => {
+      return useMutation(getSearchTerritoryPlacesMutationOptions(options));
+    }
+
+export const getListTerritoryLeadsUrl = (params?: ListTerritoryLeadsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/crm/territory-leads?${stringifiedParams}` : `/api/crm/territory-leads`
+}
+
+/**
+ * @summary List the saved territory lead / target-customer list
+ */
+export const listTerritoryLeads = async (params?: ListTerritoryLeadsParams, options?: RequestInit): Promise<CrmTerritoryLead[]> => {
+
+  return customFetch<CrmTerritoryLead[]>(getListTerritoryLeadsUrl(params),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListTerritoryLeadsQueryKey = (params?: ListTerritoryLeadsParams,) => {
+    return [
+    `/api/crm/territory-leads`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+
+export const getListTerritoryLeadsQueryOptions = <TData = Awaited<ReturnType<typeof listTerritoryLeads>>, TError = ErrorType<unknown>>(params?: ListTerritoryLeadsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listTerritoryLeads>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListTerritoryLeadsQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listTerritoryLeads>>> = ({ signal }) => listTerritoryLeads(params, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listTerritoryLeads>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListTerritoryLeadsQueryResult = NonNullable<Awaited<ReturnType<typeof listTerritoryLeads>>>
+export type ListTerritoryLeadsQueryError = ErrorType<unknown>
+
+
+/**
+ * @summary List the saved territory lead / target-customer list
+ */
+
+export function useListTerritoryLeads<TData = Awaited<ReturnType<typeof listTerritoryLeads>>, TError = ErrorType<unknown>>(
+ params?: ListTerritoryLeadsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listTerritoryLeads>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListTerritoryLeadsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+
+
+export const getImportTerritoryLeadsUrl = () => {
+
+
+
+
+  return `/api/crm/territory-leads/import`
+}
+
+/**
+ * Bulk-saves search results as canonical crm_territory_leads rows with google_places provenance (sourceRecordId = place id). Places already in the list are skipped, not duplicated.
+ * @summary Import Google place results into the territory lead list
+ */
+export const importTerritoryLeads = async (importTerritoryLeadsInput: ImportTerritoryLeadsInput, options?: RequestInit): Promise<ImportTerritoryLeadsResponse> => {
+
+  return customFetch<ImportTerritoryLeadsResponse>(getImportTerritoryLeadsUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      importTerritoryLeadsInput,)
+  }
+);}
+
+
+
+
+export const getImportTerritoryLeadsMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof importTerritoryLeads>>, TError,{data: BodyType<ImportTerritoryLeadsInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof importTerritoryLeads>>, TError,{data: BodyType<ImportTerritoryLeadsInput>}, TContext> => {
+
+const mutationKey = ['importTerritoryLeads'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof importTerritoryLeads>>, {data: BodyType<ImportTerritoryLeadsInput>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  importTerritoryLeads(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ImportTerritoryLeadsMutationResult = NonNullable<Awaited<ReturnType<typeof importTerritoryLeads>>>
+    export type ImportTerritoryLeadsMutationBody = BodyType<ImportTerritoryLeadsInput>
+    export type ImportTerritoryLeadsMutationError = ErrorType<unknown>
+
+    /**
+ * @summary Import Google place results into the territory lead list
+ */
+export const useImportTerritoryLeads = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof importTerritoryLeads>>, TError,{data: BodyType<ImportTerritoryLeadsInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof importTerritoryLeads>>,
+        TError,
+        {data: BodyType<ImportTerritoryLeadsInput>},
+        TContext
+      > => {
+      return useMutation(getImportTerritoryLeadsMutationOptions(options));
+    }
+
+export const getUpdateTerritoryLeadUrl = (id: number,) => {
+
+
+
+
+  return `/api/crm/territory-leads/${id}`
+}
+
+/**
+ * @summary Update a territory lead (tier, value, owner, region)
+ */
+export const updateTerritoryLead = async (id: number,
+    updateTerritoryLeadInput: UpdateTerritoryLeadInput, options?: RequestInit): Promise<CrmTerritoryLead> => {
+
+  return customFetch<CrmTerritoryLead>(getUpdateTerritoryLeadUrl(id),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateTerritoryLeadInput,)
+  }
+);}
+
+
+
+
+export const getUpdateTerritoryLeadMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateTerritoryLead>>, TError,{id: number;data: BodyType<UpdateTerritoryLeadInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof updateTerritoryLead>>, TError,{id: number;data: BodyType<UpdateTerritoryLeadInput>}, TContext> => {
+
+const mutationKey = ['updateTerritoryLead'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateTerritoryLead>>, {id: number;data: BodyType<UpdateTerritoryLeadInput>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  updateTerritoryLead(id,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UpdateTerritoryLeadMutationResult = NonNullable<Awaited<ReturnType<typeof updateTerritoryLead>>>
+    export type UpdateTerritoryLeadMutationBody = BodyType<UpdateTerritoryLeadInput>
+    export type UpdateTerritoryLeadMutationError = ErrorType<ErrorEnvelope>
+
+    /**
+ * @summary Update a territory lead (tier, value, owner, region)
+ */
+export const useUpdateTerritoryLead = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateTerritoryLead>>, TError,{id: number;data: BodyType<UpdateTerritoryLeadInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof updateTerritoryLead>>,
+        TError,
+        {id: number;data: BodyType<UpdateTerritoryLeadInput>},
+        TContext
+      > => {
+      return useMutation(getUpdateTerritoryLeadMutationOptions(options));
+    }
+
+export const getDeleteTerritoryLeadUrl = (id: number,) => {
+
+
+
+
+  return `/api/crm/territory-leads/${id}`
+}
+
+/**
+ * @summary Remove a lead from the territory list
+ */
+export const deleteTerritoryLead = async (id: number, options?: RequestInit): Promise<void> => {
+
+  return customFetch<void>(getDeleteTerritoryLeadUrl(id),
+  {
+    ...options,
+    method: 'DELETE'
+
+
+  }
+);}
+
+
+
+
+export const getDeleteTerritoryLeadMutationOptions = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteTerritoryLead>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof deleteTerritoryLead>>, TError,{id: number}, TContext> => {
+
+const mutationKey = ['deleteTerritoryLead'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteTerritoryLead>>, {id: number}> = (props) => {
+          const {id} = props ?? {};
+
+          return  deleteTerritoryLead(id,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteTerritoryLeadMutationResult = NonNullable<Awaited<ReturnType<typeof deleteTerritoryLead>>>
+
+    export type DeleteTerritoryLeadMutationError = ErrorType<ErrorEnvelope>
+
+    /**
+ * @summary Remove a lead from the territory list
+ */
+export const useDeleteTerritoryLead = <TError = ErrorType<ErrorEnvelope>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteTerritoryLead>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof deleteTerritoryLead>>,
+        TError,
+        {id: number},
+        TContext
+      > => {
+      return useMutation(getDeleteTerritoryLeadMutationOptions(options));
     }
 
 export const getListReportDefinitionsUrl = () => {

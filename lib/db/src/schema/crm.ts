@@ -9,7 +9,9 @@ import {
   date,
   jsonb,
   index,
+  uniqueIndex,
   boolean,
+  doublePrecision,
 } from "drizzle-orm/pg-core";
 import { usersTable } from "./auth";
 import { tasksTable } from "./app";
@@ -253,7 +255,68 @@ export const crmTaskLinksTable = pgTable(
   ],
 );
 
-// 9. report_definitions — saved report presets.
+// Fixed territory-lead priority vocabulary (map marker tiers).
+export const TERRITORY_TIER_VOCABULARY = ["Tier 1", "Tier 2", "Tier 3"] as const;
+
+export type TerritoryTier = (typeof TERRITORY_TIER_VOCABULARY)[number];
+
+// Where a territory lead originated. `google_places` rows are Google Business
+// Profile listings imported through the Google Places API; `manual` rows are
+// created in-app (or seeded).
+export type TerritoryLeadSource = "google_places" | "manual";
+
+// 9. crm_territory_leads — target-customer / lead list built from Google
+// Business Profile listings (Places API) plus manual entries. Carries the same
+// provenance shape as the other canonical tables: sourceSystem is
+// google_places | manual and sourceRecordId is the Google place id (stable,
+// safe to store indefinitely under Google's caching policy) or a manual id.
+// rawPayload keeps the untransformed Places response for drill-down.
+export const crmTerritoryLeadsTable = pgTable(
+  "crm_territory_leads",
+  {
+    id: serial("id").primaryKey(),
+    // provenance
+    sourceSystem: varchar("source_system", { length: 16 }).notNull(),
+    sourceRecordId: varchar("source_record_id", { length: 128 }).notNull(),
+    rawPayload: jsonb("raw_payload"),
+    externalLastModifiedAt: timestamp("external_last_modified_at", { withTimezone: true }),
+    syncedAt: timestamp("synced_at", { withTimezone: true }).notNull().defaultNow(),
+    connectionId: integer("connection_id").references(() => crmConnectionsTable.id, {
+      onDelete: "set null",
+    }),
+    // fields
+    name: varchar("name", { length: 256 }).notNull(),
+    category: varchar("category", { length: 128 }),
+    address: varchar("address", { length: 512 }),
+    phone: varchar("phone", { length: 64 }),
+    website: varchar("website", { length: 512 }),
+    latitude: doublePrecision("latitude").notNull(),
+    longitude: doublePrecision("longitude").notNull(),
+    rating: doublePrecision("rating"),
+    ratingCount: integer("rating_count"),
+    businessStatus: varchar("business_status", { length: 32 }),
+    tier: varchar("tier", { length: 16 }).notNull().default("Tier 3"),
+    value: numeric("value", { precision: 14, scale: 2 }),
+    searchQuery: varchar("search_query", { length: 256 }),
+    accountId: integer("account_id").references(() => crmAccountsTable.id, {
+      onDelete: "set null",
+    }),
+    ownerName: varchar("owner_name", { length: 128 }),
+    region: varchar("region", { length: 64 }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("idx_crm_territory_leads_source").on(t.sourceSystem),
+    index("idx_crm_territory_leads_tier").on(t.tier),
+    // Import dedup: one row per Google place (or manual id) per source.
+    uniqueIndex("crm_territory_leads_source_system_source_record_id_unique").on(
+      t.sourceSystem,
+      t.sourceRecordId,
+    ),
+  ],
+);
+
+// 10. report_definitions — saved report presets.
 export const reportDefinitionsTable = pgTable("report_definitions", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 256 }).notNull(),
@@ -273,6 +336,7 @@ export type CrmCampaign = typeof crmCampaignsTable.$inferSelect;
 export type CrmEmailActivity = typeof crmEmailActivityTable.$inferSelect;
 export type CrmSyncEvent = typeof crmSyncEventsTable.$inferSelect;
 export type CrmTaskLink = typeof crmTaskLinksTable.$inferSelect;
+export type CrmTerritoryLead = typeof crmTerritoryLeadsTable.$inferSelect;
 export type ReportDefinition = typeof reportDefinitionsTable.$inferSelect;
 
 export type InsertCrmConnection = typeof crmConnectionsTable.$inferInsert;
@@ -283,4 +347,5 @@ export type InsertCrmCampaign = typeof crmCampaignsTable.$inferInsert;
 export type InsertCrmEmailActivity = typeof crmEmailActivityTable.$inferInsert;
 export type InsertCrmSyncEvent = typeof crmSyncEventsTable.$inferInsert;
 export type InsertCrmTaskLink = typeof crmTaskLinksTable.$inferInsert;
+export type InsertCrmTerritoryLead = typeof crmTerritoryLeadsTable.$inferInsert;
 export type InsertReportDefinition = typeof reportDefinitionsTable.$inferInsert;

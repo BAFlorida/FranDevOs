@@ -32,6 +32,11 @@ tags:
     description: Saved report definitions and on-demand report runs over canonical CRM data.
   - name: Integrations
     description: CRM connection status and sync history (mock; future Salesforce/HubSpot sync seam).
+  - name: Territory
+    description: >-
+      Territory prospecting — search Google Business Profile listings via the
+      Google Places API (server-side key) and import them into a canonical
+      target-customer lead list.
 paths:
   /healthz:
     get:
@@ -1611,6 +1616,141 @@ paths:
                 $ref: "#/components/schemas/LinkedTaskResponse"
         "404":
           description: Linked CRM record not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /crm/territory/search:
+    post:
+      tags: [Territory]
+      operationId: searchTerritoryPlaces
+      summary: Search Google Business Profile listings (Places API text search)
+      description: >-
+        Proxies a Google Places API (New) text search using the server-side
+        GOOGLE_MAPS_API_KEY — the key never reaches the browser. Results are
+        normalized, flagged when already imported, and NOT persisted; import
+        them explicitly via /crm/territory-leads/import.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TerritorySearchInput"
+      responses:
+        "200":
+          description: Normalized place results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TerritorySearchResponse"
+        "502":
+          description: Google Places API rejected or failed the request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: GOOGLE_MAPS_API_KEY is not configured on the API server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /crm/territory-leads:
+    get:
+      tags: [Territory]
+      operationId: listTerritoryLeads
+      summary: List the saved territory lead / target-customer list
+      parameters:
+        - name: tier
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/TerritoryTier"
+        - name: source
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/TerritoryLeadSource"
+      responses:
+        "200":
+          description: Territory leads ordered by tier then rating
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CrmTerritoryLead"
+
+  /crm/territory-leads/import:
+    post:
+      tags: [Territory]
+      operationId: importTerritoryLeads
+      summary: Import Google place results into the territory lead list
+      description: >-
+        Bulk-saves search results as canonical crm_territory_leads rows with
+        google_places provenance (sourceRecordId = place id). Places already in
+        the list are skipped, not duplicated.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportTerritoryLeadsInput"
+      responses:
+        "201":
+          description: Import result with the newly created leads
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImportTerritoryLeadsResponse"
+
+  /crm/territory-leads/{id}:
+    patch:
+      tags: [Territory]
+      operationId: updateTerritoryLead
+      summary: Update a territory lead (tier, value, owner, region)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTerritoryLeadInput"
+      responses:
+        "200":
+          description: Updated lead
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrmTerritoryLead"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+    delete:
+      tags: [Territory]
+      operationId: deleteTerritoryLead
+      summary: Remove a lead from the territory list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
           content:
             application/json:
               schema:
@@ -3345,6 +3485,225 @@ components:
           description: Sum of opportunity amounts in this stage.
         count:
           type: integer
+
+    TerritoryTier:
+      description: Territory-lead priority tier driving map marker styling.
+      type: string
+      enum: ["Tier 1", "Tier 2", "Tier 3"]
+
+    TerritoryLeadSource:
+      description: >-
+        Where a territory lead originated. google_places rows were imported
+        from the Google Places API; manual rows were created in-app or seeded.
+      type: string
+      enum: [google_places, manual]
+
+    TerritorySearchInput:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          minLength: 2
+          maxLength: 256
+          description: Free-text Places query, e.g. "commercial cleaning companies in Dallas, TX".
+        pageToken:
+          type: [string, 'null']
+          description: nextPageToken from a previous response to fetch the next page.
+
+    TerritoryPlaceResult:
+      type: object
+      description: A normalized Google Business Profile listing (not yet saved as a lead).
+      required: [placeId, name, latitude, longitude, suggestedTier, alreadyImported]
+      properties:
+        placeId:
+          type: string
+        name:
+          type: string
+        category:
+          type: [string, 'null']
+        address:
+          type: [string, 'null']
+        phone:
+          type: [string, 'null']
+        website:
+          type: [string, 'null']
+        latitude:
+          type: number
+        longitude:
+          type: number
+        rating:
+          type: [number, 'null']
+        ratingCount:
+          type: [integer, 'null']
+        businessStatus:
+          type: [string, 'null']
+        suggestedTier:
+          $ref: "#/components/schemas/TerritoryTier"
+        alreadyImported:
+          type: boolean
+          description: Whether this place is already in the saved lead list.
+
+    TerritorySearchResponse:
+      type: object
+      required: [places]
+      properties:
+        places:
+          type: array
+          items:
+            $ref: "#/components/schemas/TerritoryPlaceResult"
+        nextPageToken:
+          type: [string, 'null']
+
+    TerritoryImportPlace:
+      type: object
+      required: [placeId, name, latitude, longitude]
+      properties:
+        placeId:
+          type: string
+          minLength: 1
+          maxLength: 128
+        name:
+          type: string
+          minLength: 1
+          maxLength: 256
+        category:
+          type: [string, 'null']
+          maxLength: 128
+        address:
+          type: [string, 'null']
+          maxLength: 512
+        phone:
+          type: [string, 'null']
+          maxLength: 64
+        website:
+          type: [string, 'null']
+          maxLength: 512
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        rating:
+          type: [number, 'null']
+        ratingCount:
+          type: [integer, 'null']
+        businessStatus:
+          type: [string, 'null']
+          maxLength: 32
+        tier:
+          $ref: "#/components/schemas/TerritoryTier"
+        searchQuery:
+          type: [string, 'null']
+          maxLength: 256
+
+    ImportTerritoryLeadsInput:
+      type: object
+      required: [places]
+      properties:
+        places:
+          type: array
+          minItems: 1
+          maxItems: 40
+          items:
+            $ref: "#/components/schemas/TerritoryImportPlace"
+
+    ImportTerritoryLeadsResponse:
+      type: object
+      required: [imported, skipped, leads]
+      properties:
+        imported:
+          type: integer
+          description: Rows newly inserted.
+        skipped:
+          type: integer
+          description: Places already present (deduped on place id).
+        leads:
+          type: array
+          items:
+            $ref: "#/components/schemas/CrmTerritoryLead"
+
+    UpdateTerritoryLeadInput:
+      type: object
+      minProperties: 1
+      properties:
+        tier:
+          $ref: "#/components/schemas/TerritoryTier"
+        value:
+          type: [string, 'null']
+          description: Decimal estimated value serialized as string.
+        ownerName:
+          type: [string, 'null']
+          maxLength: 128
+        region:
+          type: [string, 'null']
+          maxLength: 64
+
+    CrmTerritoryLead:
+      type: object
+      required: [id, sourceSystem, sourceRecordId, syncedAt, name, latitude, longitude, tier]
+      properties:
+        id:
+          type: integer
+        sourceSystem:
+          $ref: "#/components/schemas/TerritoryLeadSource"
+        sourceRecordId:
+          type: string
+          description: Google place id for google_places rows; a manual id otherwise.
+        connectionId:
+          type: [integer, 'null']
+        externalLastModifiedAt:
+          type: [string, 'null']
+          format: date-time
+        syncedAt:
+          type: string
+          format: date-time
+        rawPayload:
+          description: Untransformed Places result preserved for drill-down.
+          oneOf:
+            - type: object
+              additionalProperties: true
+            - type: 'null'
+        name:
+          type: string
+        category:
+          type: [string, 'null']
+        address:
+          type: [string, 'null']
+        phone:
+          type: [string, 'null']
+        website:
+          type: [string, 'null']
+        latitude:
+          type: number
+        longitude:
+          type: number
+        rating:
+          type: [number, 'null']
+        ratingCount:
+          type: [integer, 'null']
+        businessStatus:
+          type: [string, 'null']
+        tier:
+          $ref: "#/components/schemas/TerritoryTier"
+        value:
+          type: [string, 'null']
+          description: Decimal estimated value serialized as string.
+        searchQuery:
+          type: [string, 'null']
+          description: The Places query that surfaced this lead.
+        accountId:
+          type: [integer, 'null']
+        ownerName:
+          type: [string, 'null']
+        region:
+          type: [string, 'null']
+        createdAt:
+          type: string
+          format: date-time
 
     IntegrationConnectionCard:
       type: object
