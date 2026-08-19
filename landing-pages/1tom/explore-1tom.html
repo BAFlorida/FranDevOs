@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="See whether 1-Tom-Plumber franchise ownership fits how you want to work. Five questions, about three minutes, no contact information required.">
+<title>Explore 1-Tom-Plumber Ownership</title>
+<link rel="icon" href="data:,">
+
+<script>
+/* dataLayer must exist before GTM and before any page event fires. */
+window.dataLayer = window.dataLayer || [];
+(function () {
+  /* TODO(ryan): GTM container ID for the 1TP franchise site, e.g. 'GTM-XXXXXXX'.
+     While empty, no GTM request is made and events simply queue in dataLayer. */
+  var GTM_CONTAINER_ID = '';
+  if (!GTM_CONTAINER_ID) return;
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  var f = document.getElementsByTagName('script')[0];
+  var j = document.createElement('script');
+  j.async = true;
+  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_CONTAINER_ID;
+  f.parentNode.insertBefore(j, f);
+})();
+</script>
+
+<style>
+/* ==========================================================================
+   1-TOM-PLUMBER BRAND TOKENS — PLACEHOLDER SET
+   Every color, font, and spacing value on this page resolves to a custom
+   property in this one block. When Shane's brand export lands, swapping the
+   brand is an edit to this block only.
+   Placeholder palette approximates 1TP truck livery (red / near-black /
+   white) in a utilitarian, jobsite-signage register. Not official values.
+   ========================================================================== */
+:root {
+  /* Type */
+  --font-display: "Arial Black", "Arial Bold", Arial, system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Color */
+  --color-ink: #181a1b;            /* near-black: dark surfaces, text, rules */
+  --color-paper: #f3f1ea;          /* page background */
+  --color-surface: #ffffff;        /* cards, inputs */
+  --color-accent: #c8281c;         /* brand red: CTAs, markers, selected states */
+  --color-accent-contrast: #ffffff;/* text on accent */
+  --color-accent-on-dark: #ff6a5c; /* small red text/fills that must pass contrast on ink */
+  --color-line: #181a1b;           /* borders and rules on light surfaces */
+  --color-line-on-dark: #55585a;   /* quiet borders on dark surfaces */
+  --color-muted: #565a5e;          /* secondary text on light surfaces */
+  --color-muted-on-dark: #b8bcbe;  /* secondary text on dark surfaces */
+  --color-focus: #2f7df6;          /* keyboard focus ring, all surfaces */
+
+  /* Space */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 36px;
+  --s7: 56px;
+  --s8: 84px;
+
+  /* Structure */
+  --bw: 2px;              /* standard border width */
+  --rule: 3px;            /* heavy section rules */
+  --radius: 0px;          /* square corners; jobsite, not SaaS */
+  --container: 1080px;
+  --measure: 62ch;        /* prose line length */
+  --btn-shadow-size: 5px; /* hard offset shadow on light-surface buttons */
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+img { max-width: 100%; }
+p { margin: 0 0 var(--s4); }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--s4);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4.5vw, 40px);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: var(--s3) var(--s4);
+  z-index: 20;
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-link:focus-visible { left: 0; }
+
+/* Hazard strip — one decorative element, used at page top and above footer */
+.hazard {
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-accent) 0 14px,
+    var(--color-ink) 14px 28px
+  );
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: var(--bw) solid var(--color-ink);
+  border-radius: var(--radius);
+  padding: var(--s4) var(--s5);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+main .btn {
+  box-shadow: var(--btn-shadow-size) var(--btn-shadow-size) 0 0 var(--color-ink);
+}
+main .btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+}
+.sec-dark .btn { box-shadow: none; border-color: var(--color-accent); }
+.sec-dark .btn:active { transform: none; box-shadow: none; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.linkish {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: clamp(56px, 10vw, 110px) clamp(48px, 8vw, 96px);
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent-on-dark);
+  margin-bottom: var(--s5);
+}
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--color-accent);
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 3.4vw + 1.05rem, 3.75rem);
+  max-width: 24ch;
+  margin-bottom: var(--s5);
+}
+.hero .sub {
+  font-size: clamp(1.05rem, 0.4vw + 1rem, 1.2rem);
+  max-width: 56ch;
+  color: var(--color-muted-on-dark);
+  margin-bottom: var(--s6);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s5);
+}
+.hero-alt {
+  color: var(--color-paper);
+  text-underline-offset: 3px;
+}
+
+/* Hero load reveal — motion-gated; without animation support, content just shows */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+  .r2 { animation-delay: 0.08s; }
+  .r3 { animation-delay: 0.16s; }
+  .r4 { animation-delay: 0.24s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.sec {
+  padding-block: clamp(48px, 8vw, 88px);
+  border-top: var(--rule) solid var(--color-line);
+}
+.sec-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  margin: 0 0 var(--s3);
+}
+.sec-tag::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--color-accent);
+}
+.sec h2 {
+  font-size: clamp(1.5rem, 2vw + 0.85rem, 2.5rem);
+  max-width: 26ch;
+  margin-bottom: var(--s5);
+}
+.sec-lead {
+  max-width: var(--measure);
+  color: var(--color-muted);
+  margin-bottom: var(--s6);
+}
+.prose { max-width: var(--measure); }
+.prose strong { font-weight: 700; }
+
+.sec-dark {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-top: 0;
+}
+.sec-dark .sec-tag { color: var(--color-muted-on-dark); }
+.sec-dark .sec-lead { color: var(--color-muted-on-dark); }
+
+/* ==========================================================================
+   Fit / not-fit columns — deliberately equal visual weight
+   ========================================================================== */
+.fit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s5);
+}
+@media (min-width: 760px) {
+  .fit-grid { grid-template-columns: 1fr 1fr; }
+}
+.fit-col {
+  border: var(--bw) solid var(--color-line);
+  background: var(--color-surface);
+  padding: var(--s5);
+}
+.fit-col h3 {
+  font-size: 1.15rem;
+  padding-bottom: var(--s3);
+  border-bottom: var(--bw) solid var(--color-line);
+  margin-bottom: var(--s4);
+}
+.fit-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fit-col li {
+  position: relative;
+  padding-left: 1.7em;
+  margin-bottom: var(--s3);
+}
+.fit-col li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+.fit-yes li::before { content: "■"; color: var(--color-accent); }
+.fit-no li::before { content: "✕"; color: var(--color-ink); }
+
+/* ==========================================================================
+   How the model works — numbered steps
+   ========================================================================== */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 760px;
+  counter-reset: step;
+}
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s4);
+  padding-block: var(--s5);
+  border-top: var(--bw) solid var(--color-line);
+}
+.step-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: var(--bw) solid var(--color-line);
+  background: var(--color-surface);
+}
+.step h3 { font-size: 1.1rem; margin-bottom: var(--s2); }
+.step p { margin: 0; max-width: var(--measure); }
+.step-cta {
+  padding-block: var(--s5);
+  border-top: var(--bw) solid var(--color-line);
+}
+
+/* ==========================================================================
+   Ownership section — placeholders that cannot ship unnoticed
+   ========================================================================== */
+.todo-box,
+.image-box {
+  border: var(--bw) dashed var(--color-muted);
+  color: var(--color-muted);
+  padding: var(--s5);
+  margin-block: var(--s5);
+  max-width: var(--measure);
+}
+.todo-box .tag,
+.image-box .tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: var(--s2);
+}
+.image-box {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+}
+.todo-box p, .image-box p { margin: 0; }
+
+/* ==========================================================================
+   Numbers
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: var(--bw) solid var(--color-line);
+  background: var(--color-surface);
+  max-width: 900px;
+  margin-bottom: var(--s5);
+}
+@media (min-width: 760px) {
+  .stats { grid-template-columns: repeat(3, 1fr); }
+}
+.stat { padding: var(--s5); }
+.stat + .stat { border-top: var(--bw) solid var(--color-line); }
+@media (min-width: 760px) {
+  .stat + .stat { border-top: 0; border-left: var(--bw) solid var(--color-line); }
+}
+.stat .label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin-bottom: var(--s2);
+}
+.stat .value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.3rem, 1.2vw + 1rem, 1.7rem);
+  line-height: 1.1;
+}
+.stat .qual {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-top: var(--s2);
+}
+.fineprint {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  max-width: var(--measure);
+}
+
+/* ==========================================================================
+   Assessment
+   ========================================================================== */
+.assess-panel {
+  border: var(--bw) solid var(--color-line-on-dark);
+  padding: clamp(20px, 4vw, 36px);
+  max-width: 680px;
+}
+.assess-intro .btn { margin-top: var(--s3); }
+.q-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s4);
+  margin-bottom: var(--s3);
+}
+.assess-back {
+  background: none;
+  border: 0;
+  padding: var(--s1) 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-muted-on-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.q-progress {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted-on-dark);
+}
+.q-bar {
+  height: 6px;
+  background: var(--color-line-on-dark);
+  margin-bottom: var(--s5);
+}
+.q-bar span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent-on-dark);
+}
+.q-title {
+  font-size: clamp(1.25rem, 1.4vw + 1rem, 1.7rem);
+  margin-bottom: var(--s5);
+}
+.q-title:focus { outline: none; }
+.q-title:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
+.q-opts { display: grid; gap: var(--s3); }
+.opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--color-paper);
+  background: transparent;
+  border: var(--bw) solid var(--color-line-on-dark);
+  border-color: color-mix(in srgb, var(--color-paper) 36%, transparent);
+  border-radius: var(--radius);
+  padding: var(--s4);
+  cursor: pointer;
+  min-height: 52px;
+}
+.opt:hover { border-color: var(--color-paper); }
+.opt[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-weight: 700;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .q-anim { animation: stepin 0.22s ease-out both; }
+  @keyframes stepin {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+.kick {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent-on-dark);
+  border: var(--bw) solid var(--color-accent-on-dark);
+  padding: var(--s1) var(--s2);
+  margin-bottom: var(--s4);
+}
+.result-reasons {
+  margin: 0 0 var(--s4);
+  padding: 0;
+  list-style: none;
+}
+.result-reasons li {
+  position: relative;
+  padding-left: 1.7em;
+  margin-bottom: var(--s3);
+}
+.result-reasons li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent-on-dark);
+  font-family: var(--font-display);
+}
+.result-close { color: var(--color-muted-on-dark); }
+.result-actions { margin-top: var(--s5); }
+
+/* ==========================================================================
+   Contact step
+   ========================================================================== */
+.f-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+@media (min-width: 560px) {
+  .f-grid { grid-template-columns: 1fr 1fr; }
+  .f-full { grid-column: 1 / -1; }
+}
+.f-field label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s2);
+}
+.f-field input,
+.f-field select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px floor — prevents iOS zoom-on-focus */
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: var(--bw) solid var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--s3) var(--s4);
+  min-height: 48px;
+}
+.f-field input:user-invalid,
+.f-field select:user-invalid {
+  border-color: var(--color-accent-on-dark);
+}
+.lead-note {
+  font-size: 0.9rem;
+  color: var(--color-muted-on-dark);
+  margin: var(--s4) 0 0;
+  max-width: 48ch;
+}
+.lead-err {
+  font-weight: 700;
+  color: var(--color-accent-on-dark);
+  margin-top: var(--s4);
+}
+.noscript-note {
+  margin-top: var(--s5);
+  font-weight: 700;
+  color: var(--color-accent-on-dark);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  background: var(--color-ink);
+  color: var(--color-muted-on-dark);
+  padding-block: var(--s6);
+  font-size: 0.85rem;
+}
+footer p { max-width: var(--measure); margin-bottom: var(--s2); }
+.lp-mark {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+</style>
+</head>
+<body>
+<!-- TODO(ryan): when GTM_CONTAINER_ID is set above, add the standard GTM
+     <noscript> iframe here (googletagmanager.com/ns.html?id=GTM-XXXXXXX). -->
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="hazard" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow reveal r1" id="hero-eyebrow">For operators and field leaders considering their next move</p>
+    <h1 class="reveal r2" id="hero-h1">You’ve run the crew. You’ve run the branch. What would it look like to run the business?</h1>
+    <p class="sub reveal r3" id="hero-sub">1-Tom-Plumber is an emergency plumbing and drain franchise built around an operator who is actually in it. Before anyone asks you for a phone call, see whether the model fits how you want to work.</p>
+    <div class="hero-actions reveal r4">
+      <a class="btn" href="#assessment" id="hero-cta">See if 1Tom is a fit for you</a>
+      <a class="hero-alt" href="#model">Or read how the model works</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 01 — Who this is for, and who it isn't -->
+  <section class="sec" id="fit" data-view-event="fit_section_view" aria-labelledby="fit-title">
+    <div class="container">
+      <p class="sec-tag">01 / Fit, both directions</p>
+      <h2 id="fit-title">Who this is for, and who it isn’t</h2>
+      <div class="fit-grid">
+        <div class="fit-col fit-yes">
+          <h3>Worth exploring if you:</h3>
+          <ul>
+            <li>Have run a crew, a branch, a territory, or a P&amp;L</li>
+            <li>Are comfortable being in the business every day, not overseeing it from a distance</li>
+            <li>Want a service business with demand that does not wait for a good economy</li>
+            <li>Are willing to spend real time evaluating this before deciding anything</li>
+          </ul>
+        </div>
+        <div class="fit-col fit-no">
+          <h3>Not a fit if you:</h3>
+          <ul>
+            <li>Want passive income or an absentee investment</li>
+            <li>Need a guaranteed return or a promised income figure</li>
+            <li>Are not in a position to evaluate a $238,000 to $454,000 investment</li>
+            <li>Are looking for a job with 1-Tom-Plumber rather than ownership of a location</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — How the model works -->
+  <section class="sec" id="model" data-view-event="model_section_view" aria-labelledby="model-title">
+    <div class="container">
+      <p class="sec-tag">02 / The sequence</p>
+      <h2 id="model-title">How the model works</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <div>
+            <h3>Assess your fit.</h3>
+            <p>You answer questions about your background, your market, and how you want to work. Takes about three minutes.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <div>
+            <h3>Explore the system.</h3>
+            <p>Operations, technology, training, launch support, and what the first year actually demands.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="step-cta" style="max-width:760px">
+        <a class="btn btn-ghost" href="#assessment">Step one takes three minutes — start the fit assessment</a>
+      </div>
+      <ol class="steps" start="3">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <div>
+            <h3>Evaluate it properly.</h3>
+            <p>You review the FDD, talk to existing owners, and do real diligence. We answer questions, including the uncomfortable ones.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">04</span>
+          <div>
+            <h3>Decide together.</h3>
+            <p>If it fits both sides, you move into onboarding. If it doesn’t, you have lost a few conversations and gained a clear answer.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="step-cta" style="max-width:760px">
+        <a class="btn" href="#assessment">See if 1Tom is a fit for you</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — What ownership actually asks of you -->
+  <section class="sec" id="ownership" aria-labelledby="own-title">
+    <div class="container">
+      <p class="sec-tag">03 / The unflattering part</p>
+      <h2 id="own-title">What ownership actually asks of you</h2>
+      <div class="prose">
+        <p>This is an owner-operator business, and the title means what it says. In the early years you are in it: hiring technicians and keeping them, quoting jobs, chasing receivables, checking the work, taking the call yourself when a tech is out and a customer’s basement is filling. You are not reviewing a report from somewhere else. You are the operator.</p>
+        <p>Emergency service is the business, and emergencies keep emergency hours. Burst pipes and failed water heaters do not respect evenings, weekends, or the second week of your vacation. As the operation matures you build a team and an on-call rotation — but early on, some of those calls reach you. If that sounds unworkable, believe yourself now rather than eighteen months in.</p>
+      </div>
+
+      <div class="image-box" role="img" aria-label="Image placeholder: a real 1-Tom-Plumber owner or technician on an actual job">
+        <span class="tag">Image placeholder</span>
+        <p>A real 1-Tom-Plumber owner or technician on an actual job — supplied from the field. No stock photography.</p>
+      </div>
+
+      <div class="prose">
+        <p>Even investigating this properly is a commitment. The total investment runs $238,000 to $454,000 with a $500,000 net worth requirement, and a real evaluation — reading the FDD, talking with existing owners, working out funding — takes weeks of your attention, not an afternoon. If you cannot give it that yet, wait until you can.</p>
+        <p>What to bring to a first conversation: an honest picture of your liquid capital, a sense of the market you would operate in, and a straight answer to who would run this business day to day. We will bring straight answers back.</p>
+      </div>
+
+      <div class="todo-box">
+        <span class="tag">TODO(ryan)</span>
+        <p>Add two or three concrete operational specifics only an owner would know — what the first hire actually is, what a typical 2&nbsp;a.m. call involves, what surprised owners in year one. Generic language kills this section. Do not take live traffic with this box on the page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — The numbers we can state -->
+  <section class="sec" id="numbers" aria-labelledby="num-title">
+    <div class="container">
+      <p class="sec-tag">04 / From the 2026 FDD</p>
+      <h2 id="num-title">The numbers we can state</h2>
+      <div class="stats">
+        <div class="stat">
+          <span class="label">Total investment</span>
+          <span class="value">$238,000&nbsp;–&nbsp;$454,000</span>
+        </div>
+        <div class="stat">
+          <span class="label">Net worth requirement</span>
+          <span class="value">$500,000</span>
+        </div>
+        <div class="stat">
+          <span class="label">Veteran incentive</span>
+          <span class="value">$5,000&nbsp;–&nbsp;$10,000</span>
+          <span class="qual">franchise fee discount</span>
+        </div>
+      </div>
+      <p class="fineprint">Figures from the 2026 Franchise Disclosure Document.</p>
+      <p class="fineprint">No revenue or profit figures appear on this page, by design. Financial performance is a conversation for the FDD process, with the documents in front of you — not for an ad.</p>
+    </div>
+  </section>
+
+  <!-- 05 — The fit assessment -->
+  <section class="sec sec-dark" id="assessment" aria-labelledby="assess-title">
+    <div class="container">
+      <p class="sec-tag">05 / The fit assessment</p>
+      <h2 id="assess-title">Five questions. No contact fields. A straight answer.</h2>
+      <p class="sec-lead">The result is for you, not a form in disguise. Nothing you answer leaves this page unless you choose to continue afterward — and if the honest read is “not right now,” that is the read you will get.</p>
+
+      <div class="assess-panel">
+        <div id="assess-view">
+          <div class="assess-intro">
+            <p>Five questions about your background, your capital, and how you want to work. About three minutes. No name, no email, no phone number.</p>
+            <button type="button" class="btn" id="assess-begin">Start the assessment</button>
+          </div>
+        </div>
+
+        <div id="lead-step" hidden>
+          <div class="q-top">
+            <button type="button" class="assess-back" id="lead-back">&#8592; Back</button>
+            <p class="q-progress">Final step</p>
+          </div>
+          <div id="lead-wrap">
+            <h3 class="q-title" id="lead-title" tabindex="-1">Let’s set up a conversation</h3>
+            <form id="lead-form">
+              <div class="f-grid">
+                <div class="f-field">
+                  <label for="lf-first">First name</label>
+                  <input id="lf-first" name="first_name" autocomplete="given-name" required>
+                </div>
+                <div class="f-field">
+                  <label for="lf-last">Last name</label>
+                  <input id="lf-last" name="last_name" autocomplete="family-name" required>
+                </div>
+                <div class="f-field f-full">
+                  <label for="lf-email">Email</label>
+                  <input id="lf-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+                </div>
+                <div class="f-field">
+                  <label for="lf-mobile">Mobile</label>
+                  <input id="lf-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required>
+                </div>
+                <div class="f-field">
+                  <label for="lf-state">State or metro</label>
+                  <input id="lf-state" name="state_metro" autocomplete="address-level1" required>
+                </div>
+                <div class="f-field f-full">
+                  <label for="lf-heard">How did you first hear about us?</label>
+                  <select id="lf-heard" name="heard_about_us" required>
+                    <option value="" selected disabled>Choose one</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Assessment answers ride along; the reader already gave them. Values set by JS. -->
+              <input type="hidden" name="assessment_background" value="">
+              <input type="hidden" name="assessment_pl_experience" value="">
+              <input type="hidden" name="assessment_involvement" value="">
+              <input type="hidden" name="assessment_liquid_capital" value="">
+              <input type="hidden" name="assessment_timing" value="">
+              <input type="hidden" name="fit_band" value="">
+              <input type="hidden" name="fit_score" value="">
+              <input type="hidden" name="creative_angle" value="">
+              <input type="hidden" name="lp_version" value="cold-v1">
+              <input type="hidden" name="placement" value="">
+              <input type="hidden" name="campaign_id" value="">
+              <input type="hidden" name="adset_id" value="">
+              <input type="hidden" name="ad_id" value="">
+              <input type="hidden" name="utm_source" value="">
+              <input type="hidden" name="utm_medium" value="">
+              <input type="hidden" name="utm_campaign" value="">
+              <input type="hidden" name="utm_content" value="">
+              <input type="hidden" name="landing_page_url" value="">
+
+              <button class="btn" type="submit" id="lead-submit">Request a confidential overview</button>
+              <p class="lead-note">No obligation. We’ll use this to work out whether an introductory conversation makes sense.</p>
+              <p class="lead-err" id="lead-err" hidden>Something went wrong sending this. Your answers are still here — try again in a moment.</p>
+            </form>
+          </div>
+          <div id="lead-done" hidden>
+            <h3 class="q-title" id="done-title" tabindex="-1">Got it.</h3>
+            <p>We’ll review what you shared and reach out to set up a short conversation. If it turns out this isn’t a fit after all, we’ll tell you that straight too.</p>
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="noscript-note">The fit assessment needs JavaScript, which is turned off in your browser. Nothing else on this page requires it.</p>
+      </noscript>
+    </div>
+  </section>
+
+</main>
+
+<div class="hazard" aria-hidden="true"></div>
+<footer>
+  <div class="container">
+    <p>© 2026 1-Tom-Plumber. This page is informational only and is not an offer to sell a franchise. An offer can be made only through delivery of a Franchise Disclosure Document in compliance with applicable law.</p>
+    <p class="lp-mark">1tom / cold-v1</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =========================================================
+     CONFIG
+     ========================================================= */
+
+  /* TODO(ryan): HubSpot endpoint (or portal/form submit URL). While null,
+     submits log the full payload to the console and the page behaves as if
+     the submit succeeded. When wiring the real endpoint, move the
+     generate_lead push behind a 2xx response only. */
+  var SUBMIT_ENDPOINT = null;
+
+  var CONSTANT_SUBHEAD_LINE = 'Before anyone asks you for a phone call, see whether the model fits how you want to work.';
+  var DEFAULT_ANGLE = 'operator-scale';
+
+  /* Hero variants. Keyed by ?angle= value. `sub` is the variant-specific
+     first sentence; the constant message-match line is appended to all. */
+  var ANGLES = {
+    'operator-scale': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'You’ve run the crew. You’ve run the branch. What would it look like to run the business?',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise built around an operator who is actually in it.',
+      cta: 'See if 1Tom is a fit for you'
+    },
+    'essential-demand': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'Nobody shops around when the water is rising.',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise built on demand that does not wait for a good economy.',
+      cta: 'See if 1Tom is a fit for you'
+    },
+    'technology': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'The dispatch, the scheduling, the paperwork. Built before you get there.',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise where the operating system — dispatch, scheduling, back office — comes with the business.',
+      cta: 'See if 1Tom is a fit for you'
+    },
+    'ownership-transition': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'You’ve built somebody else’s business for a long time.',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise for operators ready to put that experience into something of their own.',
+      cta: 'See if 1Tom is a fit for you'
+    },
+    'multi-unit': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'You already know how service operations make money.',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise built for people who already understand how service businesses run.',
+      cta: 'See if 1Tom is a fit for you'
+    },
+    'structure': {
+      eyebrow: 'For operators and field leaders considering their next move',
+      h1: 'Ownership, without starting from a blank sheet of paper.',
+      sub: '1-Tom-Plumber is an emergency plumbing and drain franchise with the model, training, and launch support already built.',
+      cta: 'See if 1Tom is a fit for you'
+    }
+  };
+
+  /* Assessment questions. Copy is production-intent from the build spec. */
+  var QUESTIONS = [
+    {
+      id: 'q1', field: 'assessment_background',
+      title: 'Which is closest to your background?',
+      options: [
+        { v: 'field-ops', label: 'Field or operations leadership' },
+        { v: 'general-mgmt', label: 'General management or branch leadership' },
+        { v: 'sales-territory', label: 'Sales or territory leadership' },
+        { v: 'owner', label: 'Already own a business' },
+        { v: 'other', label: 'Something else' }
+      ]
+    },
+    {
+      id: 'q2', field: 'assessment_pl_experience',
+      title: 'Have you carried a P&L?',
+      options: [
+        { v: 'full-pl', label: 'Yes, full P&L responsibility' },
+        { v: 'partial', label: 'Partial, I owned some of the numbers' },
+        { v: 'people-schedules', label: 'No, but I’ve run people and schedules' },
+        { v: 'no', label: 'No' }
+      ]
+    },
+    {
+      id: 'q3', field: 'assessment_involvement',
+      title: 'How do you want to spend your days?',
+      options: [
+        { v: 'full-time', label: 'In the business full time, hands on' },
+        { v: 'manager-model', label: 'Running it, with a manager handling the field' },
+        { v: 'keep-role', label: 'Overseeing it while I keep my current role' },
+        { v: 'not-sure', label: 'Not sure yet' }
+      ]
+    },
+    {
+      id: 'q4', field: 'assessment_liquid_capital',
+      title: 'What liquid capital could you put toward this?',
+      options: [
+        { v: 'under-100k', label: 'Under $100K' },
+        { v: '100-150k', label: '$100K to $150K' },
+        { v: '150k-plus', label: '$150K or more' },
+        { v: 'work-it-out', label: 'I’d need to work that out' }
+      ]
+    },
+    {
+      id: 'q5', field: 'assessment_timing',
+      title: 'What’s your timing?',
+      options: [
+        { v: 'now', label: 'Actively looking now' },
+        { v: '3-6-months', label: 'Next 3 to 6 months' },
+        { v: 'within-year', label: 'Sometime in the next year' },
+        { v: 'learning', label: 'Just learning what’s out there' }
+      ]
+    }
+  ];
+
+  /* Single tunable scoring config. Adjust weights/bands here; logic reads
+     only from this object. Max additive score = 15.
+     Disqualifiers force the not_right_now band regardless of score. */
+  var SCORING = {
+    weights: {
+      q1: { 'field-ops': 3, 'general-mgmt': 3, 'sales-territory': 2, 'owner': 3, 'other': 1 },
+      q2: { 'full-pl': 3, 'partial': 2, 'people-schedules': 1, 'no': 0 },
+      q3: { 'full-time': 3, 'manager-model': 2, 'keep-role': 0, 'not-sure': 1 },
+      q4: { 'under-100k': 0, '100-150k': 2, '150k-plus': 3, 'work-it-out': 1 },
+      q5: { 'now': 3, '3-6-months': 2, 'within-year': 1, 'learning': 0 }
+    },
+    disqualifiers: [
+      { q: 'q3', v: 'keep-role' },
+      { q: 'q4', v: 'under-100k' }
+    ],
+    bands: { strongMin: 11, conversationMin: 7 }
+  };
+
+  /* Strong-fit reasons, keyed by answer. Only defined for answers that can
+     genuinely carry a named reason (weight >= 2). Top 3 by weight shown. */
+  var REASONS = {
+    q1: {
+      'field-ops': 'You’ve led field operations. The owner’s seat in this model is an operator’s seat — that’s your background, not a stretch.',
+      'general-mgmt': 'You’ve run a branch or a general operation — hiring, standards, accountability. That’s most of the early job here.',
+      'sales-territory': 'You’ve carried a territory. Pipeline discipline and owning a number translate directly to running demand for a service business.',
+      'owner': 'You already own a business. You know the difference between a job and ownership — most people finding this page don’t yet.'
+    },
+    q2: {
+      'full-pl': 'You’ve carried a full P&L. The financial side of operating won’t be new — just newly yours.',
+      'partial': 'You’ve owned part of the numbers — enough to know what a full P&L will ask of you.'
+    },
+    q3: {
+      'full-time': 'You want to be in the business full time. That isn’t a preference here; it’s what the early years require — and you’re already there.',
+      'manager-model': 'You’d run it with a manager in the field. That structure is real, and you’d still be the operator of record — worth pressure-testing in diligence.'
+    },
+    q4: {
+      '150k-plus': 'Your liquid capital clears the realistic entry range for a $238,000–$454,000 total investment.',
+      '100-150k': 'Your liquid capital is in working range — funding structure becomes a concrete early conversation, not a fantasy.'
+    },
+    q5: {
+      'now': 'You’re actively looking now, which makes every next step real instead of hypothetical.',
+      '3-6-months': 'Your three-to-six-month window matches what proper diligence actually takes.'
+    }
+  };
+
+  /* Worth-a-conversation: the single named uncertainty, keyed by the
+     lowest-weighted answer. Covers every non-disqualifying answer that can
+     be the minimum. */
+  var OPEN_QUESTIONS = {
+    q1: {
+      'sales-territory': 'Field depth. You’ve carried a territory — accountability and pipeline translate — but this business runs on operations, and we’d want to talk honestly about the gap between selling the work and delivering it.',
+      'other': 'Your background. “Something else” covers a lot of ground. The conversation would start with what you’ve actually run — crews, budgets, customers — and map it honestly against what this seat asks.'
+    },
+    q2: {
+      'partial': 'The numbers. You’ve owned part of a P&L. That’s a real base — the open question is stepping up to all of it, with your own capital behind it.',
+      'people-schedules': 'The numbers. You’ve run people and schedules but never carried the P&L. That’s closer than it sounds — and still a gap worth naming, including how training covers it.',
+      'no': 'The numbers. You haven’t carried a P&L before. It’s learnable, but it has to be learned on purpose — that would be the first honest topic.'
+    },
+    q3: {
+      'manager-model': 'The operating structure. You’d run it with a manager handling the field. That structure exists — and in an emergency service business it has to be built, not assumed, so we’d want to talk it through concretely.',
+      'not-sure': 'Your day-to-day. You’re not sure yet how deep in the business you want to be. This model has a strong opinion — the early years want the owner inside it — so that’s the first thing to resolve.'
+    },
+    q4: {
+      '100-150k': 'The funding path. $100K–$150K liquid can work against a $238,000–$454,000 total investment, but how you’d structure the rest is the first thing to make concrete.',
+      'work-it-out': 'Capital. “I’d need to work that out” is an honest answer — and it’s the one thing that has to become a real number before anything else can be serious.'
+    },
+    q5: {
+      '3-6-months': 'Timing. Your three-to-six-month window is realistic — it roughly matches what proper diligence takes — so the open question is simply whether you’re ready to start that clock.',
+      'within-year': 'Timing. “Sometime in the next year” means the useful work now is understanding the model properly, not being sold. We’d treat a first conversation exactly that way.',
+      'learning': 'Timing. You’re at the start of looking. That’s a fine place to be — and it means a conversation now is research, not a decision. We’re fine with that if you are.'
+    }
+  };
+
+  /* If several answers tie for lowest weight, name the uncertainty in this
+     order — capital and timing first, background last. */
+  var OPEN_QUESTION_PRIORITY = ['q4', 'q5', 'q2', 'q3', 'q1'];
+
+  /* Order used to rank strong-fit reasons when weights tie. */
+  var REASON_PRIORITY = ['q3', 'q4', 'q2', 'q1', 'q5'];
+
+  /* =========================================================
+     ANGLE RESOLUTION + HERO SWAP
+     ========================================================= */
+  var params = new URLSearchParams(window.location.search);
+  var requested = (params.get('angle') || '').trim().toLowerCase();
+  var angle = Object.prototype.hasOwnProperty.call(ANGLES, requested) ? requested : DEFAULT_ANGLE;
+  var A = ANGLES[angle];
+
+  document.getElementById('hero-eyebrow').textContent = A.eyebrow;
+  document.getElementById('hero-h1').textContent = A.h1;
+  document.getElementById('hero-sub').textContent = A.sub + ' ' + CONSTANT_SUBHEAD_LINE;
+  document.getElementById('hero-cta').textContent = A.cta;
+
+  /* =========================================================
+     TRACKING
+     Every event carries the full base parameter set. GTM forwards to
+     GA4/Meta; this page never loads gtag or fbq directly.
+     ========================================================= */
+  var BASE_PARAMS = {
+    brand: '1tom',
+    page_type: 'cold_lp',
+    lp_version: 'cold-v1',
+    creative_angle: angle,
+    placement: params.get('placement') || '',
+    campaign_id: params.get('campaign_id') || '',
+    adset_id: params.get('adset_id') || '',
+    ad_id: params.get('ad_id') || '',
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_content: params.get('utm_content') || ''
+  };
+
+  /* Held in memory only for the form payload. Never written to a cookie
+     or storage. */
+  var FBCLID = params.get('fbclid') || '';
+
+  function track(name, extra) {
+    var evt = Object.assign({ event: name }, BASE_PARAMS, extra || {});
+    window.dataLayer.push(evt);
+  }
+
+  track('cold_lp_view');
+
+  document.getElementById('hero-cta').addEventListener('click', function () {
+    track('hero_cta_click');
+  });
+
+  /* Section-view events: 50% visible, once each. */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var name = entry.target.getAttribute('data-view-event');
+          if (name) {
+            track(name);
+            entry.target.removeAttribute('data-view-event');
+            io.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-view-event]').forEach(function (el) { io.observe(el); });
+  }
+
+  /* =========================================================
+     ASSESSMENT
+     State lives in this object only — no cookies, no storage.
+     ========================================================= */
+  var state = { answers: {}, band: null, score: 0, dq: [] };
+  var view = document.getElementById('assess-view');
+  var leadStep = document.getElementById('lead-step');
+  var motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  var interacted = false; /* never steal focus on initial page load */
+
+  var INTRO_HTML =
+    '<div class="assess-intro q-anim">' +
+      '<p>Five questions about your background, your capital, and how you want to work. About three minutes. No name, no email, no phone number.</p>' +
+      '<button type="button" class="btn" id="assess-begin">Start the assessment</button>' +
+    '</div>';
+
+  function settleView(focusSel) {
+    if (!interacted) return;
+    var el = view.hidden ? leadStep : view;
+    var target = focusSel ? el.querySelector(focusSel) : null;
+    if (target) target.focus({ preventScroll: true });
+    var panel = el.closest('.assess-panel');
+    var top = panel.getBoundingClientRect().top;
+    if (top < 0 || top > 120) {
+      panel.scrollIntoView({ behavior: motionOK ? 'smooth' : 'auto', block: 'start' });
+    }
+  }
+
+  function showIntro() {
+    view.innerHTML = INTRO_HTML;
+    bindIntro();
+    settleView('#assess-begin');
+  }
+
+  function bindIntro() {
+    document.getElementById('assess-begin').addEventListener('click', function () {
+      interacted = true;
+      showQuestion(0);
+      track('assessment_start'); /* first question rendered */
+    });
+  }
+
+  function progressHTML(label, pct) {
+    return '<div class="q-bar" aria-hidden="true"><span style="width:' + pct + '%"></span></div>';
+  }
+
+  function topBarHTML(progressLabel) {
+    return '<div class="q-top">' +
+      '<button type="button" class="assess-back" id="assess-back">&#8592; Back</button>' +
+      '<p class="q-progress">' + progressLabel + '</p>' +
+    '</div>';
+  }
+
+  function showQuestion(i) {
+    var q = QUESTIONS[i];
+    var opts = q.options.map(function (o) {
+      var selected = state.answers[q.id] === o.v;
+      return '<button type="button" class="opt" data-v="' + o.v + '" aria-pressed="' + selected + '">' + o.label + '</button>';
+    }).join('');
+
+    view.innerHTML =
+      '<div class="q-anim">' +
+        topBarHTML('Question ' + (i + 1) + ' of ' + QUESTIONS.length) +
+        progressHTML('', (i / QUESTIONS.length) * 100) +
+        '<h3 class="q-title" id="q-title" tabindex="-1">' + q.title + '</h3>' +
+        '<div class="q-opts" role="group" aria-labelledby="q-title">' + opts + '</div>' +
+      '</div>';
+
+    document.getElementById('assess-back').addEventListener('click', function () {
+      if (i === 0) { showIntro(); } else { showQuestion(i - 1); }
+    });
+
+    view.querySelectorAll('.opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.answers[q.id] = btn.getAttribute('data-v');
+        track('assessment_q' + (i + 1) + '_complete', { question: q.id, answer: state.answers[q.id] });
+        if (i + 1 < QUESTIONS.length) { showQuestion(i + 1); } else { showResult(); }
+      });
+    });
+
+    settleView('#q-title');
+  }
+
+  function computeResult() {
+    var score = 0;
+    QUESTIONS.forEach(function (q) {
+      var w = SCORING.weights[q.id][state.answers[q.id]];
+      score += (typeof w === 'number' ? w : 0);
+    });
+    var dq = SCORING.disqualifiers
+      .filter(function (d) { return state.answers[d.q] === d.v; })
+      .map(function (d) { return d.v; });
+    var band;
+    if (dq.length) { band = 'not_right_now'; }
+    else if (score >= SCORING.bands.strongMin) { band = 'strong_fit'; }
+    else if (score >= SCORING.bands.conversationMin) { band = 'worth_a_conversation'; }
+    else { band = 'not_right_now'; }
+    return { band: band, score: score, dq: dq };
+  }
+
+  function strongReasons() {
+    var candidates = [];
+    REASON_PRIORITY.forEach(function (qid) {
+      var ans = state.answers[qid];
+      var w = SCORING.weights[qid][ans];
+      if (w >= 2 && REASONS[qid] && REASONS[qid][ans]) {
+        candidates.push({ w: w, text: REASONS[qid][ans] });
+      }
+    });
+    candidates.sort(function (a, b) { return b.w - a.w; }); /* stable: keeps priority order on ties */
+    return candidates.slice(0, 3).map(function (c) { return c.text; });
+  }
+
+  function openQuestion() {
+    var minW = Infinity;
+    OPEN_QUESTION_PRIORITY.forEach(function (qid) {
+      var w = SCORING.weights[qid][state.answers[qid]];
+      if (w < minW) minW = w;
+    });
+    for (var i = 0; i < OPEN_QUESTION_PRIORITY.length; i++) {
+      var qid = OPEN_QUESTION_PRIORITY[i];
+      var ans = state.answers[qid];
+      if (SCORING.weights[qid][ans] === minW && OPEN_QUESTIONS[qid] && OPEN_QUESTIONS[qid][ans]) {
+        return OPEN_QUESTIONS[qid][ans];
+      }
+    }
+    return 'Timing, capital, or day-to-day fit — one of them needs a straight conversation.';
+  }
+
+  function showResult() {
+    var r = computeResult();
+    state.band = r.band;
+    state.score = r.score;
+    state.dq = r.dq;
+
+    var html = '<div class="q-anim">' + topBarHTML('Your result') + progressHTML('', 100);
+
+    if (r.band === 'strong_fit') {
+      var items = strongReasons().map(function (t) { return '<li>' + t + '</li>'; }).join('');
+      html +=
+        '<span class="kick">Strong fit</span>' +
+        '<h3 class="q-title" id="result-title" tabindex="-1">On paper, this fits.</h3>' +
+        '<p>Five questions can’t know you. But based on what you answered:</p>' +
+        '<ul class="result-reasons">' + items + '</ul>' +
+        '<p class="result-close">The next step is a conversation, not a commitment — and it runs both ways. You evaluate the model; the model evaluates you.</p>' +
+        '<div class="result-actions"><button type="button" class="btn" id="to-contact">Continue to a conversation</button></div>';
+    } else if (r.band === 'worth_a_conversation') {
+      html +=
+        '<span class="kick">Worth a conversation</span>' +
+        '<h3 class="q-title" id="result-title" tabindex="-1">Worth a conversation — with one open question.</h3>' +
+        '<p>Most of your answers point the right way. Here’s the thing we’d want to be straight about:</p>' +
+        '<p><strong>' + openQuestion() + '</strong></p>' +
+        '<p class="result-close">That isn’t a disqualifier. It’s the first thing we’d discuss — no obligation in either direction.</p>' +
+        '<div class="result-actions"><button type="button" class="btn" id="to-contact">Continue to a conversation</button></div>';
+    } else {
+      var body;
+      if (r.dq.indexOf('keep-role') > -1 && r.dq.indexOf('under-100k') > -1) {
+        body =
+          '<p>Two of your answers point the same way: you’d keep your current role, and your liquid capital is under $100K today. Either one alone would make this the wrong moment. Together, they make it clear.</p>' +
+          '<p class="result-close">What would need to change: room to be in the business full time, and a capital position that doesn’t require stretching past what’s real — the total investment runs $238,000 to $454,000. If both happen, this is worth another look. We’d rather tell you that than collect your email.</p>';
+      } else if (r.dq.indexOf('keep-role') > -1) {
+        body =
+          '<p>You told us you’d want to oversee the business while keeping your current role. We’re not going to pretend that works here: emergency service needs an owner in the business — especially in the first years — and a location run from the side of a desk fails the people working in it.</p>' +
+          '<p class="result-close">What would need to change: a real window to be in it full time. If that day comes, this model is worth another look. Until then, a form from us would be a sales move, not an honest one — so you won’t get one.</p>';
+      } else if (r.dq.indexOf('under-100k') > -1) {
+        body =
+          '<p>You told us your liquid capital is under $100K today. The total investment here runs $238,000 to $454,000, with a $500,000 net worth requirement — and stretching past your real position is how ownership goes wrong before it starts.</p>' +
+          '<p class="result-close">What would need to change: the capital position itself. If it changes, this page will still be here, and the read may change with it. Until then, the honest answer is not right now.</p>';
+      } else {
+        body =
+          '<p>Adding your answers up honestly, this doesn’t look like the right move today. Not because you couldn’t do it — because the distance between where things stand and what this asks (time in the business, capital at risk, a real window to decide) is wide enough that pushing you toward a form would be a disservice.</p>' +
+          '<p class="result-close">What would need to change is usually some mix of capital, timing, and how much of your week the business could actually have. If that mix shifts, come back — this assessment will give you the same straight read.</p>';
+      }
+      html +=
+        '<span class="kick">Not right now</span>' +
+        '<h3 class="q-title" id="result-title" tabindex="-1">The honest answer: not right now.</h3>' +
+        body;
+      /* Deliberately nothing else: no form, no alternative CTA, no email capture. */
+    }
+
+    html += '</div>';
+    view.innerHTML = html;
+
+    document.getElementById('assess-back').addEventListener('click', function () {
+      showQuestion(QUESTIONS.length - 1);
+    });
+    var toContact = document.getElementById('to-contact');
+    if (toContact) {
+      toContact.addEventListener('click', showContact);
+    }
+
+    track('assessment_complete', { fit_band: r.band });
+    settleView('#result-title');
+  }
+
+  /* =========================================================
+     CONTACT STEP — reachable only from strong_fit / worth_a_conversation
+     ========================================================= */
+  var leadForm = document.getElementById('lead-form');
+  var formStarted = false;
+
+  function setHidden(name, value) {
+    var el = leadForm.elements[name];
+    if (el) el.value = value;
+  }
+
+  function showContact() {
+    QUESTIONS.forEach(function (q) { setHidden(q.field, state.answers[q.id] || ''); });
+    setHidden('fit_band', state.band || '');
+    setHidden('fit_score', String(state.score));
+    setHidden('creative_angle', angle);
+    setHidden('placement', BASE_PARAMS.placement);
+    setHidden('campaign_id', BASE_PARAMS.campaign_id);
+    setHidden('adset_id', BASE_PARAMS.adset_id);
+    setHidden('ad_id', BASE_PARAMS.ad_id);
+    setHidden('utm_source', BASE_PARAMS.utm_source);
+    setHidden('utm_medium', BASE_PARAMS.utm_medium);
+    setHidden('utm_campaign', BASE_PARAMS.utm_campaign);
+    setHidden('utm_content', BASE_PARAMS.utm_content);
+    setHidden('landing_page_url', window.location.href);
+
+    view.hidden = true;
+    leadStep.hidden = false;
+    settleView('#lead-title');
+  }
+
+  document.getElementById('lead-back').addEventListener('click', function () {
+    leadStep.hidden = true;
+    view.hidden = false;
+    settleView('#result-title');
+  });
+
+  /* form_start: first interaction with an actual contact field, once. */
+  leadForm.addEventListener('focusin', function (e) {
+    if (formStarted) return;
+    if (e.target && e.target.matches('input:not([type="hidden"]), select')) {
+      formStarted = true;
+      track('form_start');
+    }
+  });
+
+  leadForm.addEventListener('submit', function (e) {
+    e.preventDefault(); /* native required/email validation has already passed */
+
+    var payload = {};
+    Array.prototype.forEach.call(leadForm.elements, function (el) {
+      if (el.name) payload[el.name] = el.value;
+    });
+    payload.fbclid = FBCLID; /* from memory — never cookied */
+    payload.submitted_at = new Date().toISOString();
+
+    var submitBtn = document.getElementById('lead-submit');
+    var errEl = document.getElementById('lead-err');
+    errEl.hidden = true;
+    submitBtn.disabled = true;
+
+    function succeed() {
+      track('generate_lead', { fit_band: state.band });
+      document.getElementById('lead-wrap').hidden = true;
+      var done = document.getElementById('lead-done');
+      done.hidden = false;
+      settleView('#done-title');
+    }
+
+    if (!SUBMIT_ENDPOINT) {
+      /* Stub until the HubSpot endpoint is wired. */
+      console.info('[1tom cold-v1] SUBMIT_ENDPOINT not set — lead payload:', payload);
+      succeed();
+      return;
+    }
+
+    fetch(SUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      succeed();
+    }).catch(function () {
+      submitBtn.disabled = false;
+      errEl.hidden = false;
+    });
+  });
+
+  /* Wire the statically-rendered intro. */
+  bindIntro();
+})();
+</script>
+</body>
+</html>
