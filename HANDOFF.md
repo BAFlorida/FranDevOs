@@ -61,6 +61,7 @@ brand's `build/adapt_copy.py`, rebuild, re-subset fonts.
 
 | What | URL |
 |---|---|
+| **All-brands copy sheet** (one page, brand tabs - the paste tool) | https://claude.ai/code/artifact/3a9499b0-a862-492a-b797-35c08770ded7 |
 | 1-Tom preview | https://claude.ai/code/artifact/ba85ab0c-e0bc-40e5-b152-2c89a766919b |
 | 1-Tom copy sheet | https://claude.ai/code/artifact/fd85a6b7-2f7f-43d8-8a52-f37f1e73afd8 |
 | Kitchen Guard preview | https://claude.ai/code/artifact/58e1f9d2-7c59-4098-9b22-75c965b993c6 |
@@ -72,6 +73,12 @@ brand's `build/adapt_copy.py`, rebuild, re-subset fonts.
 
 Republishing from a new chat needs the URL passed explicitly, or it mints a
 new artifact instead of updating these.
+
+The all-brands sheet is built by `meg-shared/copysheet_all.py` from the four
+dist trees (rebuild the brands first, then it). It stores each brand's shared
+page head once and reassembles full documents at copy time; the build proves
+every reassembly byte-exact against dist before writing. On the 1-Tom tab the
+rows that clear the CMS `---` bug, and John's five, are chip-labelled.
 
 ---
 
