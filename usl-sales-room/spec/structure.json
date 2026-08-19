@@ -1,0 +1,317 @@
+{
+  "project": "U.S. Lawns MEG Sales Room",
+  "revision": "2.0",
+  "page_count": 24,
+  "output_dir": "dist",
+
+  "milestone_note": "Milestones are EXIT gates - completing the bucket produces the milestone. The milestones currently in the sales room are shifted one bucket forward starting at bucket 3. The 'proposed' values below correct that. 'current' shows what is in the tool today. Confirm before publishing.",
+
+  "buckets": [
+    {
+      "n": 1,
+      "id": "01-welcome",
+      "title": "Welcome to Your Mutual Evaluation Guide",
+      "summary": "Meet the brand and the commercial landscaping opportunity.",
+      "summary_status": "ok",
+      "milestone": { "current": "Welcome Completed", "proposed": "Welcome Completed", "status": "ok" },
+      "video": true,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-mep-end-to-end",
+          "title": "Mutual Evaluation Process End-to-End",
+          "source": "stage_1_design.md :: framing + new journey map",
+          "gates": [],
+          "assets": [
+            { "type": "video", "label": "Mutual Evaluation Process End-to-End" }
+          ],
+          "notes": "Walk all 6 buckets in order. Set the expectation that each stage gates the next. State the selectivity figure - see PLACEHOLDERS."
+        }
+      ]
+    },
+
+    {
+      "n": 2,
+      "id": "02-brand-overview",
+      "title": "Brand Overview",
+      "summary": "High Level Operational Overview",
+      "summary_status": "ok",
+      "milestone": { "current": "Financials Reviewed", "proposed": "FDD Receipt Signed", "status": "remap" },
+      "video": true,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-qualification-summary",
+          "title": "Qualification Summary / Culture Index",
+          "source": "stage_1_design.md :: Lesson 2 of 5",
+          "gates": [],
+          "assets": [
+            { "type": "form", "label": "Qualification Summary Form" },
+            { "type": "form", "label": "Culture Index Survey" },
+            { "type": "scheduler", "label": "Schedule Qualification Summary Review" }
+          ],
+          "notes": "Source pairs QS with the Experian credit pull and background check. The sales room pairs QS with Culture Index. Keep all four on this page: QS form, Culture Index, 7-step Experian self-pull, background check authorization."
+        },
+        {
+          "n": 2,
+          "id": "02-fdd",
+          "title": "Franchise Disclosure Document",
+          "source": "stage_1_design.md :: Lesson 3 of 5",
+          "gates": [],
+          "assets": [],
+          "notes": "Full 23-item table. The 14-day rule stated as protection. Item 19 and Item 20 each get their own callout."
+        },
+        {
+          "n": 3,
+          "id": "03-additional-resources",
+          "title": "Additional Brand Specific Resources",
+          "source": "stage_1_design.md :: Lesson 4 of 5 + Lesson 5 of 5",
+          "gates": [],
+          "assets": [
+            { "type": "video", "label": "General Franchising Concepts series" },
+            { "type": "video", "label": "Brand Overview (link back)" }
+          ],
+          "notes": "Merge two orphaned lessons here as optional depth: 'The Basics of Franchising' and 'Is Business Ownership Really Right for Me?'. Mark both as optional, not required to advance."
+        }
+      ]
+    },
+
+    {
+      "n": 3,
+      "id": "03-validation",
+      "title": "Validation",
+      "summary": "Talk Directly to Current U.S. Lawns Franchise Owners",
+      "summary_status": "ok",
+      "milestone": { "current": "Opportunity Reviewed", "proposed": "Validation Completed", "status": "remap" },
+      "video": false,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-owner-calls",
+          "title": "Owner Calls",
+          "source": "stage_2_validation.md :: Lesson 1 of 5",
+          "gates": [
+            {
+              "id": "item19",
+              "type": "acknowledgment",
+              "required": true,
+              "text": "I understand that my Franchise Developer can only speak to revenue and profitability numbers stated in the Franchise Disclosure Document Item 19. Any other information regarding aspects of financial performance must be obtained through conversations with franchise owners.",
+              "label": "I understand"
+            }
+          ],
+          "assets": [
+            { "type": "download", "label": "Questions to Ask a Franchise Owner" }
+          ],
+          "notes": "This gate is the single most important control in the portal. It must block advancement. Render prominently, above the fold."
+        },
+        {
+          "n": 2,
+          "id": "02-funding",
+          "title": "Funding",
+          "source": "stage_2_validation.md :: Lesson 2 of 5",
+          "gates": [
+            {
+              "id": "household-expenses",
+              "type": "select",
+              "required": true,
+              "text": "What are your combined total Personal Monthly Household Responsibilities?",
+              "options": ["Less than $1,000", "$1,000 - $2,999", "$3,000 - $4,999", "$5,000 - $7,999", "$8,000 - $11,999", "$12,000 or more"]
+            },
+            {
+              "id": "outside-coverage",
+              "type": "select",
+              "required": true,
+              "text": "What percentage of those expenses is covered by outside sources?",
+              "options": ["0 - 20%", "21 - 40%", "41 - 60%", "61 - 80%", "81 - 100%"]
+            }
+          ],
+          "assets": [
+            { "type": "download", "label": "SBA Personal Financial Statement - Fillable PDF" },
+            { "type": "video", "label": "ROBS Explained" },
+            { "type": "video", "label": "HELOC Options" }
+          ],
+          "notes": "Four paths: SBA 7(a)/Express, ROBS, self-fund, HELOC. Keep the ROBS 4-step and the PFS filing-requirement list verbatim from source. Keep the 'will not award to people who may be put in financial peril' line."
+        },
+        {
+          "n": 3,
+          "id": "03-territory",
+          "title": "Territory",
+          "source": "stage_2_validation.md :: Lesson 4 of 5",
+          "gates": [
+            {
+              "id": "address",
+              "type": "acknowledgment",
+              "required": true,
+              "text": "I understand that I will need a unique physical address within my territory, and that P.O. boxes and shared mailbox services do not qualify.",
+              "label": "I understand"
+            }
+          ],
+          "assets": [],
+          "notes": "Three sections: territory design criteria, the DBA smell test, the address requirement. Keep the 'This is Google's world, and we just live in it' line and the postcard-verification explanation."
+        },
+        {
+          "n": 4,
+          "id": "04-technology",
+          "title": "Understanding Your Brand's Technology",
+          "source": "stage_2_validation.md :: Lesson 5 of 5",
+          "gates": [
+            {
+              "id": "tech-fee-timing",
+              "type": "acknowledgment",
+              "required": true,
+              "text": "I understand that the one-time technology fee and my first monthly payment will draft within a few weeks of being awarded, and that this may occur before my SBA or ROBS funding has completed.",
+              "label": "I understand"
+            }
+          ],
+          "assets": [],
+          "notes": "Entire vendor stack and every dollar figure is a placeholder. Build the two tables with placeholder cells. Do not carry over Real Green, ZorWare, Qvinci, Paradox, or Broadly - those are a competitor's stack."
+        }
+      ]
+    },
+
+    {
+      "n": 4,
+      "id": "04-seeking-approval",
+      "title": "Seeking Approval",
+      "summary": { "current": "No summary yet", "proposed": "Present your case to executive leadership and build your timeline.", "status": "missing" },
+      "summary_status": "missing",
+      "milestone": { "current": "FDD Receipt Signed", "proposed": "Executive Approval Received", "status": "remap" },
+      "video": true,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-executive-approval-call",
+          "title": "Executive Approval Call",
+          "source": "stage_3_vp_approval.md :: Lesson 1 of 1",
+          "gates": [],
+          "assets": [],
+          "notes": "Lead with the role flip: 'Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.' Selectivity figures are placeholders. Keep the 'MTTD is more of a validation of a decision you have already made' framing."
+        },
+        {
+          "n": 2,
+          "id": "02-dap-contingencies",
+          "title": "Development Action Plan / Contingencies",
+          "source": "stage_4_booked_mttd.md :: Lesson 1 of 3",
+          "gates": [],
+          "assets": [
+            { "type": "download", "label": "Your Development Action Plan" }
+          ],
+          "notes": "Carries the 10-item document checklist, the sample-agreements explanation, and the e-signature walkthrough. The 'acknowledgment is not execution' warning must be visually prominent - candidates misread this and think they have signed. E-sign vendor is a placeholder."
+        }
+      ]
+    },
+
+    {
+      "n": 5,
+      "id": "05-meet-the-team-day",
+      "title": "Meet The Team Day",
+      "summary": { "current": "Talk to existing U.S. Lawns owners.", "proposed": "Visit headquarters and meet the team in person.", "status": "wrong - this is Validation's summary" },
+      "summary_status": "wrong",
+      "milestone": { "current": "Validation Completed", "proposed": "Discovery Day Completed", "status": "remap" },
+      "video": false,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-what-who-to-expect",
+          "title": "What / Who to Expect at Meet The Team Day",
+          "source": "stage_4_booked_mttd.md :: Lesson 3 of 3 (org chart + workbook portions)",
+          "gates": [],
+          "assets": [
+            { "type": "download", "label": "U.S. Lawns Meet The Team Day Handout" },
+            { "type": "interactive", "label": "Operations Team org chart" }
+          ],
+          "notes": "Org chart is a placeholder - needs real names, titles, and what each person owns in the owner's business after opening."
+        },
+        {
+          "n": 2,
+          "id": "02-pre-mttd-questionnaire",
+          "title": "Pre Meet The Team Day Questionnaire",
+          "source": "stage_4_booked_mttd.md :: Lesson 3 of 3 (pre-work portion) + Lesson 2 of 3",
+          "gates": [],
+          "assets": [
+            { "type": "form", "label": "Pre-MTTD Questionnaire" },
+            { "type": "form", "label": "Behavioral Assessment - see PLACEHOLDERS" },
+            { "type": "video", "label": "Design Your Life" }
+          ],
+          "notes": "Both forms must be completed before travel. Fold the orphaned 'Design Your Life' extra-credit lesson in here as pre-travel prep."
+        },
+        {
+          "n": 3,
+          "id": "03-meet-the-team-day",
+          "title": "Meet The Team Day",
+          "source": "NONE - new page",
+          "gates": [],
+          "assets": [
+            { "type": "form", "label": "Reasons to Become or Not Become a Franchise Owner" }
+          ],
+          "notes": "NO SOURCE CONTENT. Build as a structured stub: day-by-day agenda, travel logistics, what to bring, what is covered. The 'Reasons to Become or Not Become a Franchise Owner' form must carry a do-not-complete-in-advance instruction - it is filled in at the end of the day when the last speaker prompts it."
+        },
+        {
+          "n": 4,
+          "id": "04-post-mttd-assessment",
+          "title": "Post Meet The Team Day Assessment",
+          "source": "stage_5_mttd_completed.md :: Lesson 1 of 2",
+          "gates": [],
+          "assets": [
+            { "type": "form", "label": "Post-Meet The Team Day Franchise Assessment and Evaluation Form" }
+          ],
+          "notes": "Short page. Complete while the event is fresh. FD reviews responses before the debrief call."
+        }
+      ]
+    },
+
+    {
+      "n": 6,
+      "id": "06-agreement-stage",
+      "title": "Agreement Stage",
+      "summary": { "current": "Meet the team and see the operation firsthand.", "proposed": "Final approval, execution, and welcome.", "status": "wrong - this is Meet The Team Day's summary" },
+      "summary_status": "wrong",
+      "milestone": { "current": "Discovery Day Completed", "proposed": "Agreement Executed", "status": "remap" },
+      "video": false,
+      "substeps": [
+        {
+          "n": 1,
+          "id": "01-executive-board-approval",
+          "title": "Executive Board Approval",
+          "source": "stage_5_mttd_completed.md :: Lesson 2 of 2",
+          "gates": [],
+          "assets": [],
+          "notes": "Three YES questions before the FD presents. FD has no vote - keep that. Three outcomes: Full Approval, Conditional Approval, Not Approved. Keep 'We will not put people in financial peril' and the framing that Not Approved is a healthy outcome."
+        },
+        {
+          "n": 2,
+          "id": "02-executing-your-agreement",
+          "title": "Executing Your Franchise Agreement",
+          "source": "stage_6_agreement.md :: Lesson 1 of 3",
+          "gates": [],
+          "assets": [
+            { "type": "download", "label": "ACH Form - Franchise Fee / Equity Injection" }
+          ],
+          "notes": "Seven execution notes. Schedule D's three acceptable answers must be exact - candidates answer 'N/A' and it bounces. Countersignature routing chain is a placeholder."
+        },
+        {
+          "n": 3,
+          "id": "03-brand-welcome-call",
+          "title": "Brand Welcome Call",
+          "source": "NONE - new page",
+          "gates": [],
+          "assets": [
+            { "type": "scheduler", "label": "Schedule Brand Welcome Call" }
+          ],
+          "notes": "NO SOURCE CONTENT. This page does not exist in the source portal - it is a 1TP addition. Build as a structured stub: who is on the call, what gets covered, what the owner should bring, how it hands off to onboarding."
+        },
+        {
+          "n": 4,
+          "id": "04-thank-you",
+          "title": "Thank You For Putting Your Trust In Us",
+          "source": "stage_6_agreement.md :: Lesson 3 of 3 + Lesson 2 of 3",
+          "gates": [],
+          "assets": [
+            { "type": "scheduler", "label": "Schedule Onboarding Introduction" }
+          ],
+          "notes": "Merge the closing thank-you with the onboarding-program introduction and the referral program. Onboarding program name and all referral figures are placeholders. Keep 'when we slow down on the front end, we can really speed up on the back end.'"
+        }
+      ]
+    }
+  ]
+}

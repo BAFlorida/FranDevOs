@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   PORTAL RULE - DO NOT put an angle bracket followed by a letter
+   anywhere in this stylesheet or in the HTML comments below, not even
+   inside a comment. Browsers do not care, but the Workshop portal scans
+   the raw text for tag openings and will drop this whole block, leaving
+   the page with no CSS at all. Write "defs", "text", "use" as bare
+   words. The working 1-Tom modules contain zero angle brackets in CSS.
+   =================================================================== */
+:root{
+  /* ================= U.S. LAWNS PALETTE ============================
+     From the U.S. Lawns Brand Guidelines v1.1, June 2025, Color Palette
+     page. All six swatches, with the guide's own Pantone references -
+     these are stated in the guide, not sampled from anything:
+       Dark Blue    #0e1e3c   RGB  14, 30, 60   PMS 289 C
+       Blue         #20376C   RGB  32, 55,108   PMS 288 C
+       Cream        #eeeee7   RGB 238,238,231   PMS Warm Gray 1 C
+       Gold         #84754D   RGB 132,117, 77   PMS 871 C
+       Light Blue   #78b7df   RGB 120,183,223   PMS 292 C
+       Red          #ad262b   RGB 173, 38, 43   PMS 186 C
+
+     NOTE THERE IS NO GREEN. For a commercial landscaping brand that is
+     the single most important fact in this file - see the marker notes
+     further down for how the journey art works without one.
+
+     CONTRAST, measured on the surface each colour actually sits on:
+       white     on Blue      ... 11.50:1  AA any size
+       white     on Dark Blue ... 16.50:1  AA any size
+       Dark Blue on white     ... 16.50:1  AA any size
+       Red       on white     .... 6.79:1  AA any size
+       white     on Red       .... 6.79:1  AA any size
+       Gold      on white     .... 4.57:1  AA, but only just
+       Light Blue on Dark Blue ... 7.63:1  AA
+       Light Blue on white    .... 2.16:1  FAILS - decorative only
+     This is by far the most workable of the four brand palettes. Both
+     blues take white text at any size, and Red clears AA in both
+     directions, so it can be a text colour as well as a fill - which is
+     not true of the Kitchen Guard or SEALS reds. Only Light Blue is
+     restricted, to dark surfaces and decoration. Gold passes by a hair,
+     so it is kept off body copy. */
+  --u-navy:#0e1e3c;
+  --u-blue:#20376C;
+  --u-cream:#eeeee7;
+  --u-gold:#84754D;
+  --u-sky:#78b7df;
+  --u-red:#ad262b;
+
+  --paper:#FFFFFF; --card:#FFFFFF;
+  /* Hairlines and tints are transparencies of the palette, never new hues. */
+  --line:rgba(14,30,60,.14); --line-2:rgba(14,30,60,.24);
+  --line-dark:rgba(255,255,255,.20);
+  --tint:rgba(32,55,108,.06);
+  --tint-line:rgba(32,55,108,.30);
+  --ink-2:rgba(14,30,60,.68);
+
+  /* ---- TYPE ----------------------------------------------------
+     A first among these four brands: NO substitutions are needed. The
+     guide's whole typestack is free and on Google Fonts, so this file
+     uses the real faces rather than stand-ins.
+       Antonio   display - headlines, subheads, labels. The guide calls
+                 it a refined Anton, for larger display and banner use.
+       PT Serif  body copy. The guide sets it as the standard family for
+                 basic text setting.
+       Inter     UI and small text. Chosen in the guide for its tall
+                 x-height, which is exactly what labels and tables need. */
+  --f-display:'Antonio',Impact,'Arial Narrow',sans-serif;
+  --f-body:'PT Serif',Georgia,'Times New Roman',serif;
+  --f-ui:'Inter',-apple-system,'Segoe UI',sans-serif;
+  --r:4px;                          /* the logo is precise and squared */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--u-navy);font-family:var(--f-body);font-weight:400;
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--f-ui);font-weight:600;letter-spacing:.03em}
+a{color:var(--u-blue);text-decoration-thickness:2px;text-underline-offset:2px}
+a:hover{color:var(--u-red)}
+
+/* ---- utility bar ------------------------------------------------------
+   ONE 880px content track is shared by the bar, hero, journey, card stack
+   and footer, so every left edge resolves to the same x. */
+.topbar{background:var(--u-navy);color:#fff;padding:11px 24px}
+.topbar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.02em;color:#fff}
+.topbar .meg b{color:var(--u-sky)}
+.topbar .sub{font-family:var(--f-ui);font-weight:600;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.72)}
+.topbar .chip{margin-left:auto;border:1px solid rgba(255,255,255,.45);color:#fff;font-family:var(--f-ui);
+  font-weight:600;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:3px}
+
+/* ---- hero -------------------------------------------------------------
+   Blue band from the navy utility bar down to the journey rule. White copy
+   is 11.5:1 on it, so everything reverses cleanly at any size.
+   The dot field is the guide's own visual language - it lists DOT TEXTURES
+   for use in backgrounds at a light opacity, so this is a real brand
+   texture rather than decoration I invented. */
+.hero{background-color:var(--u-blue);color:#fff;padding:28px 24px 34px;position:relative;overflow:hidden;
+  background-image:radial-gradient(circle,rgba(255,255,255,.13) 1px,transparent 1.3px);
+  background-size:13px 13px}
+/* Tonal sweep. Its gradient starts at exactly the band blue so the leading
+   edge emerges out of the background rather than being drawn as a line, then
+   deepens to Dark Blue at the bottom right. The gradient lives in this svg's
+   own defs, so the element is self-contained. */
+.hero-wave{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wave-fill{fill:url(#uw)}
+.hero-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;
+  flex-wrap:wrap;position:relative;z-index:1}
+.hero-copy{flex:1 1 320px;min-width:0}
+/* White logo panel, and the guide forces it. Two rules combine: the supplied
+   logo file is blue and gold on an opaque WHITE background with no
+   transparency, and the guide says the logo appears in Blue on a light
+   background but must be WHITE on a coloured one. Dropped straight onto the
+   blue band, the file's own white ground would read as a hard white box
+   anyway - so the panel is made deliberate, and the light panel is then the
+   light background the blue logo is specified for.
+   If the white logo variant turns up, delete the panel background and put
+   the white mark straight on the band, which is the guide's preferred
+   treatment for coloured grounds.
+   Source is 450x112, shown at 210px - about 2.1x density, so no resampling. */
+.logo-plate{flex:none;background:#fff;border-radius:var(--r);padding:14px 18px;display:block}
+.brandmark{display:block;width:210px;max-width:100%;height:auto}
+/* Antonio, the guide's display face, used as the guide intends it - larger
+   display and banner setting. Caps with open tracking; Antonio is condensed
+   so it takes a little positive letter-spacing without crowding. */
+/* Set in Inter 800, NOT the guide's display face. Antonio is condensed and
+   the logotype is the opposite - a wide, heavy grotesque - so Antonio read
+   nothing like the mark. Inter at 800 matches it on width, weight and the
+   squarish letterforms, and Inter is already in the guide's typestack, so
+   this is both a closer match to the logo AND still on-guide. Antonio stays
+   on the section headings, where the guide intends it.
+   Negative tracking, because the logotype is tightly set. */
+.hero h1{font-family:var(--f-ui);font-weight:800;font-size:clamp(36px,5.6vw,56px);line-height:1.02;
+  letter-spacing:-.025em;text-transform:uppercase;color:#fff;overflow-wrap:break-word;text-wrap:balance}
+/* Kicker in Inter rather than Antonio. The guide picks Inter for its tall
+   x-height, which is what a small uppercase line needs; Antonio at 12px
+   would close up. */
+.hero .subtitle{margin-top:12px;color:#fff;font-family:var(--f-ui);font-weight:600;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;max-width:56ch;line-height:1.45}
+.ticket{margin-top:18px;display:flex;flex-wrap:wrap;border:1px solid var(--line-dark);border-radius:var(--r);overflow:hidden}
+.ticket div{padding:9px 16px;border-right:1px solid var(--line-dark);min-width:150px;flex:1}
+.ticket div:last-child{border-right:none}
+.ticket .k{font-family:var(--f-ui);font-weight:600;font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:rgba(255,255,255,.78)}
+.ticket .v{font-family:var(--f-ui);font-size:14px;color:#fff;margin-top:3px}
+
+/* ---- journey ---------------------------------------------------------- */
+.journey{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line-2);padding:18px 24px 16px}
+.journey-in{max-width:880px;margin:0 auto}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.jhead .jt{font-family:var(--f-display);font-weight:600;font-size:22px;letter-spacing:.01em;
+  text-transform:uppercase;color:var(--u-navy)}
+.jhead .jc{font-family:var(--f-ui);font-weight:700;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--u-blue)}
+
+/* ================= THE LAWN AND THE MOWER ==========================
+   This brand does NOT follow the other three. The 1-Tom pipe, the Kitchen
+   Guard duct and THE SEALS gasket all hang a marker off a rail. Here the
+   rail IS the subject: a strip of turf, cut behind the candidate and rank
+   in front, with a single ride-on mower standing at the stage they are on.
+   So the stage names move BELOW the strip, which leaves its top edge clear
+   for the grass to stand up out of and for the mower to sit on. There is
+   one mower on the page, not one per step.
+   The strip is an svg per step, stretched to that step's width, so the run
+   reads continuous across the track. Three states:
+     done       cut - flat top, lighter, with mower lines
+     now        HALF cut - the mower is mid-pass, so the turf is manicured
+                behind it and still rank in front of it
+     upcoming   uncut - tall ragged blades
+   Blades are drawn in the svg rather than faked in CSS because a serrated
+   top edge is what carries "not yet cut", and CSS cannot do that edge
+   without a mask or a data uri. Stretching the svg makes the blades wider
+   on desktop and narrower on mobile, which is fine - grass varies.
+   NO GREEN in the palette, so cut and uncut are separated by TONE, not
+   hue: rank turf sits dark, cut turf lifts and picks up Light Blue mower
+   lines. */
+.jtrack{display:flex;align-items:flex-start;padding-top:22px}
+.jstep{flex:1;position:relative;min-width:0;text-align:center}
+/* The current step paints above its neighbours so the mower is never
+   clipped by the turf strip of the step next to it. */
+.jstep.now{z-index:2}
+.jturf{position:relative;height:34px}
+.jlawn{display:block;width:100%;height:34px}
+/* GREEN IS OFF-PALETTE. The U.S. Lawns guide has no green in it at all,
+   so every value below is outside the brand palette. It is here because a
+   landscaping progress metaphor is unreadable without it - cut versus uncut
+   turf cannot be told apart by tone alone once a mower is standing on it.
+   Same standing as the Kitchen Guard flame colour: needs brand sign-off, and
+   it is confined to the journey art. Nothing else on the page uses green. */
+.g-soil{fill:#27591F}
+.g-tall{fill:#3B8C3F}
+.g-cut{fill:#58B25A}
+/* Mower stripes - alternating bands across the cut turf. This is what makes
+   a cut strip read as a manicured lawn rather than a plain bar; two thin
+   highlight lines were invisible at this size. */
+.g-stripe{fill:#6ECD70}
+.g-cutline{fill:none;stroke:rgba(255,255,255,.34);stroke-width:1.1}
+/* State toggles. Uncut is the default, so an upcoming step needs no class. */
+.s-tall{display:block} .s-cut{display:none} .s-half{display:none}
+.jstep.done .s-tall{display:none} .jstep.done .s-cut{display:block}
+.jstep.now .s-tall{display:none}  .jstep.now .s-half{display:block}
+/* The mower sits in every step and is revealed only on the current one, so
+   advancing a stage is still just a class change. Its base is parked on the
+   cut line - half the strip height - so it stands on the turf rather than
+   floating over it. */
+.jmower{position:absolute;left:50%;bottom:16px;width:52px;margin-left:-26px;display:none;z-index:2}
+.jstep.now .jmower{display:block}
+.jmower svg{display:block;width:100%;height:auto;overflow:visible}
+/* The rider maps onto the palette almost exactly: brand Red for the machine,
+   Light Blue for the shirt, Gold for the cap and trousers. Only the skin
+   tone and the clippings are outside it. */
+.m-red{fill:var(--u-red)}
+.m-blk{fill:#1A1A1E}
+.m-grey{fill:#B9BDC1}
+.m-shirt{fill:var(--u-sky)}
+.m-tan{fill:var(--u-gold)}
+.m-cap{fill:#9C8B5C}
+.m-skin{fill:#E8B48C}
+.m-clip{fill:#6ECD70}
+/* ---- stage name and number, BELOW the strip -------------------------
+   Numbers stay HTML text, as in the other modules, so nothing depends on
+   svg content surviving.
+   The number chip carries the state cue:
+     upcoming  cream chip, navy numeral
+     done      Blue chip, white numeral
+     current   RED chip, white numeral - Red clears AA both ways in this
+               palette, unlike the SEALS and KG reds. */
+.jnum{margin:9px auto 0;width:22px;height:22px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;font-family:var(--f-ui);
+  font-weight:700;font-size:12px;line-height:1;background:var(--u-cream);color:var(--u-navy)}
+.jstep.done .jnum{background:var(--u-blue);color:#fff}
+.jstep.now .jnum{background:var(--u-red);color:#fff}
+.jlbl{margin-top:7px;font-family:var(--f-ui);font-weight:600;font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);line-height:1.25;padding:0 2px}
+.jstep.now .jlbl{color:var(--u-red)}
+.jstep.done .jlbl{color:var(--u-blue)}
+
+/* ---- video ------------------------------------------------------------ */
+.video-embed{margin:0 0 8px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);
+  position:relative;padding-top:56.25%;background:var(--u-navy)}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cap{font-family:var(--f-ui);font-weight:600;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);margin:8px 0 18px}
+
+/* ---- card stack ------------------------------------------------------- */
+.stack{max-width:928px;margin:0 auto;padding:36px 24px 24px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin:0 0 28px;padding:34px 38px}
+.slide .eyebrow{font-family:var(--f-ui);font-weight:700;font-size:10.5px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--u-blue);margin-bottom:10px}
+.slide h3{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,4vw,40px);line-height:1.02;
+  letter-spacing:.01em;text-transform:uppercase;margin-bottom:16px}
+.slide h4{font-family:var(--f-display);font-weight:600;font-size:23px;letter-spacing:.02em;
+  text-transform:uppercase;margin:26px 0 8px;color:var(--u-navy)}
+.slide p{margin:0 0 15px;color:#22314B}
+/* Direct-child selector: any last block in a card would otherwise stack its
+   own bottom margin on the card's padding. */
+.slide > :last-child{margin-bottom:0}
+.slide strong{font-weight:700;color:var(--u-navy)}
+.slide ul,.slide ol{margin:0 0 16px 22px}
+.slide li{margin-bottom:7px;color:#22314B}
+.slide li::marker{color:var(--u-gold)}
+/* Tables and other furniture go to Inter - the guide picks it for exactly
+   this, and a serif in a dense table reads badly. */
+.slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-family:var(--f-ui);font-size:15px}
+.slide th{font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;color:var(--ink-2);border-bottom:2px solid var(--u-navy);padding:8px 12px}
+.slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
+.slide tr td:first-child{white-space:nowrap;font-weight:600}
+.t-scroll{overflow-x:auto}
+.slide caption{font-family:var(--f-ui);font-weight:700;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);text-align:left;padding-bottom:8px}
+
+/* Internal note, built from the palette. */
+blockquote{background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--u-blue);
+  border-radius:var(--r);padding:14px 18px;margin:0 0 16px;font-size:15px;color:var(--u-navy)}
+blockquote p{color:var(--u-navy)!important;margin-bottom:8px}
+blockquote::before{content:"INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:var(--f-ui);
+  font-weight:700;font-size:10px;letter-spacing:.17em;color:var(--u-blue);margin-bottom:8px}
+
+.video-slot{border:2px dashed var(--line-2);border-radius:var(--r);background:var(--u-cream);padding:22px;
+  margin:0 0 22px;display:flex;align-items:center;gap:14px;color:var(--ink-2)}
+.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--u-blue);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:none}
+.video-slot .t{font-family:var(--f-ui);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.flag{display:block;background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--u-gold);
+  border-radius:var(--r);padding:12px 16px;margin:10px 0 16px;font-size:14px;color:var(--u-navy)}
+.flag b{font-family:var(--f-ui);font-weight:700;font-size:10px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--u-gold);display:block;margin-bottom:6px}
+.flag-in{display:inline;background:var(--tint);border:1px solid var(--tint-line);border-radius:3px;
+  padding:1px 7px;font-family:var(--f-ui);font-weight:600;font-size:13px;color:var(--u-navy)}
+
+/* ---- gate: compliance acknowledgment --------------------------------- */
+.gate{border:2px solid var(--u-blue);border-radius:var(--r);background:var(--tint);padding:22px 24px;margin:10px 0 20px}
+.gate .glabel{font-family:var(--f-ui);font-weight:700;font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--u-blue);margin-bottom:10px}
+.gate .gtext{font-size:17px;font-weight:700;color:var(--u-navy);margin-bottom:16px;line-height:1.5}
+.gate .gnote{font-size:15px;color:var(--ink-2);margin-bottom:16px}
+.gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid var(--tint-line);padding-top:14px}
+.gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--u-blue);cursor:pointer}
+.gate .gcheck label{font-family:var(--f-ui);font-weight:600;cursor:pointer}
+.gate select{font-family:var(--f-ui);font-size:15px;padding:9px 11px;border:1px solid var(--line-2);
+  background:var(--card);width:100%;max-width:340px;border-radius:3px}
+.sr-only{position:absolute;left:-9999px}
+
+/* ---- asset slots ------------------------------------------------------ */
+.asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
+.asset:hover{border-color:var(--u-blue)}
+.asset .kind{font-family:var(--f-ui);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--u-blue);color:#fff;padding:5px 9px;border-radius:3px;flex:none}
+.asset .lbl{font-family:var(--f-ui);font-weight:600}
+
+.quiz{list-style:none;margin:4px 0 18px 0!important}
+.quiz li{border:1px solid var(--line);border-radius:3px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;
+  align-items:baseline;background:var(--card)}
+.quiz li .box{font-family:var(--f-ui);font-weight:600;font-size:13px;color:var(--ink-2);flex:none}
+.quiz li.correct{border-color:var(--u-blue);background:var(--tint)}
+.quiz li.correct .box{color:var(--u-blue);font-weight:700}
+.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:var(--f-ui);font-weight:700;
+  font-size:9.5px;letter-spacing:.15em;color:var(--u-blue);align-self:center}
+.ui-chip{display:inline-block;background:var(--u-blue);color:#fff;font-family:var(--f-ui);font-weight:600;
+  font-size:12.5px;padding:10px 20px;border-radius:var(--r);margin:2px 6px 2px 0}
+
+/* ---- substep list: bucket index pages only --------------------------- */
+.substeps{list-style:none;margin:4px 0 0 0!important}
+.substeps li{border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--u-navy)}
+.substeps a:hover .sst{color:var(--u-blue)}
+.ssn{font-family:var(--f-ui);font-weight:700;font-size:12px;color:var(--u-gold);flex:none;width:22px}
+.sst{font-family:var(--f-ui);font-weight:600}
+.ssnote{margin-left:auto;font-family:var(--f-ui);font-weight:600;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2)}
+
+/* ---- outbound CTA ----------------------------------------------------
+   Blue fill, white label. Red is held back for the current step marker and
+   for link hover, so a page never shows two competing accents. */
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 2px}
+.btnrow .btn{margin:0}
+.btn{display:inline-flex;align-items:center;gap:9px;margin:8px 0 2px;
+  background:var(--u-blue);color:#fff;text-decoration:none;
+  font-family:var(--f-ui);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  padding:13px 26px;border-radius:var(--r);border:0;transition:background .15s}
+.btn:hover{background:var(--u-navy);color:#fff}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+footer{max-width:928px;margin:0 auto;padding:10px 24px 56px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:var(--f-ui);font-weight:600;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+footer a{color:var(--ink-2)}
+
+@media(max-width:640px){
+  /* Stacked, the logo drops below the copy and right-aligns. */
+  .hero{padding-bottom:30px}
+  .hero-in{gap:18px}
+  .logo-plate{margin-left:auto;padding:12px 14px}
+  .brandmark{width:190px}
+  .slide{padding:24px 20px}
+  /* All labels off at this width. At ~55px per step there is no room for a
+     label as well as a tree - the plate numbers carry the step instead. */
+  .jlbl{font-size:8.5px;letter-spacing:.03em;margin-top:5px}
+  /* Narrower turf strip, recentred on the smaller trees. The margin-top is
+     what gives the strip somewhere to sit: with the labels gone the tree
+     starts at y=0, and without it the strip would need a negative offset
+     and would overlap the heading above. */
+  .jtrack{padding-top:16px}
+  .jturf{height:24px}
+  .jlawn{height:24px}
+  .jmower{width:38px;margin-left:-19px;bottom:11px}
+  .jnum{width:19px;height:19px;font-size:10px;margin-top:7px}
+  .jnum{font-size:9px}
+  .jstep::before{top:5px;height:12px;left:-50%;width:100%}
+  .jstep.done::after,.jstep.now::after{top:7px;height:8px}
+  .ticket div{min-width:46%}
+  /* The template's nowrap first column assumes short labels; real copy is
+     longer, so let it wrap rather than push the page sideways. */
+  .slide tr td:first-child{white-space:normal}
+  .btnrow{flex-direction:column;align-items:stretch}
+  .btn{justify-content:center;text-align:center;padding:13px 18px}
+  .asset{flex-wrap:wrap}
+  .asset .lbl,.video-slot .t{overflow-wrap:anywhere;min-width:0}
+}
+:focus-visible{outline:3px solid var(--u-blue);outline-offset:2px}
+</style></head><body>
+
+<div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
+<span class="sub">U.S. Lawns · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div></div>
+
+<div class="hero">
+<svg class="hero-wave" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="uw" x1="0" y1="0" x2=".92" y2="1">
+<stop offset="0" stop-color="#20376C"/><stop offset=".38" stop-color="#1B3060"/>
+<stop offset=".74" stop-color="#12244A"/><stop offset="1" stop-color="#0e1e3c"/>
+</linearGradient>
+<radialGradient id="ubloom" cx=".08" cy="0" r=".9">
+<stop offset="0" stop-color="#78b7df" stop-opacity=".22"/>
+<stop offset=".6" stop-color="#78b7df" stop-opacity=".06"/>
+<stop offset="1" stop-color="#78b7df" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<path class="wave-fill" d="M0,203 C150,203 250,199 380,181 C510,163 600,131 740,120 C880,109 1010,112 1200,104 L1200,220 L0,220 Z"/>
+<rect x="0" y="0" width="1200" height="220" fill="url(#ubloom)"/>
+</svg>
+<div class="hero-in">
+<div class="hero-copy">
+<h1>Welcome</h1>
+<p class="subtitle">Your guide through the Mutual Evaluation Process.</p>
+</div>
+<div class="logo-plate"><img class="brandmark" src="data:image/png;base64,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" alt="U.S. Lawns" width="450" height="112" fetchpriority="high" decoding="sync"></div>
+</div></div>
+
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<!-- Each marker is the same drawing, inlined six times. Every svg is
+     self-contained: flat fills only, no defs, no reference reaching outside
+     itself. The copies are byte-identical - edit one, edit all six.
+     To mark a step complete, add class "done" to its .jstep: the crown
+     lifts to brand Blue, the stray shoots disappear and the bed cleans up. -->
+
+<div class="jstep now" aria-current="step">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">1</div>
+<div class="jlbl">Welcome</div>
+<span class="sr-only">Step 1 of 6 — you are here</span></div>
+
+<div class="jstep">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">2</div>
+<div class="jlbl">Brand Overview</div>
+<span class="sr-only">Step 2 of 6</span></div>
+
+<div class="jstep">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">3</div>
+<div class="jlbl">Validation</div>
+<span class="sr-only">Step 3 of 6</span></div>
+
+<div class="jstep">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">4</div>
+<div class="jlbl">Seeking Approval</div>
+<span class="sr-only">Step 4 of 6</span></div>
+
+<div class="jstep">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">5</div>
+<div class="jlbl">Meet The Team Day</div>
+<span class="sr-only">Step 5 of 6</span></div>
+
+<div class="jstep">
+<div class="jturf">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-soil" x="0" y="28" width="120" height="6"/>
+<g class="s-tall"><rect class="g-tall" x="0" y="23" width="120" height="5"/><path class="g-tall" d="M0 25Q0.04 15 -0.1 5Q1.44 15 2.6 25ZM3.2 25Q4.52 18.5 6.3 12Q5.92 18.5 5.8 25ZM6.4 25Q6.68 13.5 6.9 2Q8.08 13.5 9 25ZM9.6 25Q11.08 20.5 13.1 16Q12.48 20.5 12.2 25ZM12.8 25Q12.68 16.5 12.3 8Q14.08 16.5 15.4 25ZM16 25Q17.08 19.5 18.5 14Q18.48 19.5 18.6 25ZM19.2 25Q19.64 14.5 20.1 4Q21.04 14.5 21.8 25ZM22.4 25Q24.04 17.5 26.3 10Q25.44 17.5 25 25ZM25.6 25Q25.72 21.5 25.7 18Q27.12 21.5 28.2 25ZM28.8 25Q30.04 15.5 31.7 6Q31.44 15.5 31.4 25ZM32 25Q32.04 19 31.9 13Q33.44 19 34.6 25ZM35.2 25Q36.52 14 38.3 3Q37.92 14 37.8 25ZM38.4 25Q38.68 20 38.9 15Q40.08 20 41 25ZM41.6 25Q43.08 17 45.1 9Q44.48 17 44.2 25ZM44.8 25Q44.68 21 44.3 17Q46.08 21 47.4 25ZM48 25Q49.08 16 50.5 7Q50.48 16 50.6 25ZM51.2 25Q51.64 18 52.1 11Q53.04 18 53.8 25ZM54.4 25Q56.04 14.5 58.3 4Q57.44 14.5 57 25ZM57.6 25Q57.72 19.5 57.7 14Q59.12 19.5 60.2 25ZM60.8 25Q62.04 13.5 63.7 2Q63.44 13.5 63.4 25ZM64 25Q64.04 18.5 63.9 12Q65.44 18.5 66.6 25ZM67.2 25Q68.52 16.5 70.3 8Q69.92 16.5 69.8 25ZM70.4 25Q70.68 20.5 70.9 16Q72.08 20.5 73 25ZM73.6 25Q75.08 15 77.1 5Q76.48 15 76.2 25ZM76.8 25Q76.68 17.5 76.3 10Q78.08 17.5 79.4 25ZM80 25Q81.08 19 82.5 13Q82.48 19 82.6 25ZM83.2 25Q83.64 15.5 84.1 6Q85.04 15.5 85.8 25ZM86.4 25Q88.04 21 90.3 17Q89.44 21 89 25ZM89.6 25Q89.72 14 89.7 3Q91.12 14 92.2 25ZM92.8 25Q94.04 17 95.7 9Q95.44 17 95.4 25ZM96 25Q96.04 20 95.9 15Q97.44 20 98.6 25ZM99.2 25Q100.52 16 102.3 7Q101.92 16 101.8 25ZM102.4 25Q102.68 18.5 102.9 12Q104.08 18.5 105 25ZM105.6 25Q107.08 14.5 109.1 4Q108.48 14.5 108.2 25ZM108.8 25Q108.68 19.5 108.3 14Q110.08 19.5 111.4 25ZM112 25Q113.08 16.5 114.5 8Q114.48 16.5 114.6 25ZM115.2 25Q115.64 18 116.1 11Q117.04 18 117.8 25Z"/></g>
+<g class="s-cut"><rect class="g-cut" x="0" y="22" width="120" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/><rect x="60" y="22" width="10" height="6"/><rect x="80" y="22" width="10" height="6"/><rect x="100" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22ZM59.4 22L60.5 20.7L61.6 22ZM61.6 22L62.7 20.7L63.8 22ZM63.8 22L64.9 20.7L66 22ZM66 22L67.1 20.7L68.2 22ZM68.2 22L69.3 20.7L70.4 22ZM70.4 22L71.5 20.7L72.6 22ZM72.6 22L73.7 20.7L74.8 22ZM74.8 22L75.9 20.7L77 22ZM77 22L78.1 20.7L79.2 22ZM79.2 22L80.3 20.7L81.4 22ZM81.4 22L82.5 20.7L83.6 22ZM83.6 22L84.7 20.7L85.8 22ZM85.8 22L86.9 20.7L88 22ZM88 22L89.1 20.7L90.2 22ZM90.2 22L91.3 20.7L92.4 22ZM92.4 22L93.5 20.7L94.6 22ZM94.6 22L95.7 20.7L96.8 22ZM96.8 22L97.9 20.7L99 22ZM99 22L100.1 20.7L101.2 22ZM101.2 22L102.3 20.7L103.4 22ZM103.4 22L104.5 20.7L105.6 22ZM105.6 22L106.7 20.7L107.8 22ZM107.8 22L108.9 20.7L110 22ZM110 22L111.1 20.7L112.2 22ZM112.2 22L113.3 20.7L114.4 22ZM114.4 22L115.5 20.7L116.6 22ZM116.6 22L117.7 20.7L118.8 22Z"/></g>
+<g class="s-half"><rect class="g-cut" x="0" y="22" width="60" height="6"/><g class="g-stripe"><rect x="0" y="22" width="10" height="6"/><rect x="20" y="22" width="10" height="6"/><rect x="40" y="22" width="10" height="6"/></g><path class="g-cut" d="M0 22L1.1 20.7L2.2 22ZM2.2 22L3.3 20.7L4.4 22ZM4.4 22L5.5 20.7L6.6 22ZM6.6 22L7.7 20.7L8.8 22ZM8.8 22L9.9 20.7L11 22ZM11 22L12.1 20.7L13.2 22ZM13.2 22L14.3 20.7L15.4 22ZM15.4 22L16.5 20.7L17.6 22ZM17.6 22L18.7 20.7L19.8 22ZM19.8 22L20.9 20.7L22 22ZM22 22L23.1 20.7L24.2 22ZM24.2 22L25.3 20.7L26.4 22ZM26.4 22L27.5 20.7L28.6 22ZM28.6 22L29.7 20.7L30.8 22ZM30.8 22L31.9 20.7L33 22ZM33 22L34.1 20.7L35.2 22ZM35.2 22L36.3 20.7L37.4 22ZM37.4 22L38.5 20.7L39.6 22ZM39.6 22L40.7 20.7L41.8 22ZM41.8 22L42.9 20.7L44 22ZM44 22L45.1 20.7L46.2 22ZM46.2 22L47.3 20.7L48.4 22ZM48.4 22L49.5 20.7L50.6 22ZM50.6 22L51.7 20.7L52.8 22ZM52.8 22L53.9 20.7L55 22ZM55 22L56.1 20.7L57.2 22ZM57.2 22L58.3 20.7L59.4 22Z"/><rect class="g-tall" x="60" y="23" width="60" height="5"/><path class="g-tall" d="M60 25Q60.04 15 59.9 5Q61.44 15 62.6 25ZM63.2 25Q64.52 18.5 66.3 12Q65.92 18.5 65.8 25ZM66.4 25Q66.68 13.5 66.9 2Q68.08 13.5 69 25ZM69.6 25Q71.08 20.5 73.1 16Q72.48 20.5 72.2 25ZM72.8 25Q72.68 16.5 72.3 8Q74.08 16.5 75.4 25ZM76 25Q77.08 19.5 78.5 14Q78.48 19.5 78.6 25ZM79.2 25Q79.64 14.5 80.1 4Q81.04 14.5 81.8 25ZM82.4 25Q84.04 17.5 86.3 10Q85.44 17.5 85 25ZM85.6 25Q85.72 21.5 85.7 18Q87.12 21.5 88.2 25ZM88.8 25Q90.04 15.5 91.7 6Q91.44 15.5 91.4 25ZM92 25Q92.04 19 91.9 13Q93.44 19 94.6 25ZM95.2 25Q96.52 14 98.3 3Q97.92 14 97.8 25ZM98.4 25Q98.68 20 98.9 15Q100.08 20 101 25ZM101.6 25Q103.08 17 105.1 9Q104.48 17 104.2 25ZM104.8 25Q104.68 21 104.3 17Q106.08 21 107.4 25ZM108 25Q109.08 16 110.5 7Q110.48 16 110.6 25ZM111.2 25Q111.64 18 112.1 11Q113.04 18 113.8 25ZM114.4 25Q116.04 14.5 118.3 4Q117.44 14.5 117 25Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 64 41" aria-hidden="true" focusable="false">
+<path class="m-blk" d="M6.4 3 9.6 3 8.4 18 5.2 18Z"/>
+<rect class="m-blk" x="2" y="13.6" width="17" height="13.4" rx="2"/>
+<rect class="m-grey" x="14" y="16.6" width="4" height="2"/>
+<rect class="m-grey" x="14" y="20" width="4" height="2"/>
+<rect class="m-grey" x="14" y="23.4" width="4" height="2"/>
+<path class="m-red" d="M19 14.6h16v12.4H19z"/>
+<path class="m-red" d="M17 25h34v6.2H17z"/>
+<path class="m-red" d="M35 27h27v9H35z"/>
+<path class="m-red" d="M47.4 21.6h4v5.4h-4z"/>
+<rect class="m-blk" x="22" y="5.2" width="4.2" height="12.4" rx="1.4"/>
+<rect class="m-blk" x="24" y="14.8" width="11.4" height="3.6" rx="1.4"/>
+<path class="m-tan" d="M31.8 17.4h6.4l10.2 4.8-2.6 4.8-14-5.6z"/>
+<path class="m-tan" d="M45.6 25.4h4.6l1.6 6.4-6.8 1z"/>
+<path class="m-shirt" d="M31.4 8.4h8.4l2.6 10.8H30.6z"/>
+<path class="m-shirt" d="M38.4 10.8 46.8 16.8 44.6 20.2 36.2 14.2z"/>
+<path class="m-skin" d="M45 16h4.8v3.8H45z"/>
+<circle class="m-skin" cx="36" cy="6" r="4.5"/>
+<path class="m-cap" d="M31.3 5.2a4.7 4.7 0 0 1 9.4 0z"/>
+<path class="m-cap" d="M40 4h5.8v2.3H40z"/>
+<path class="m-blk" d="M46.2 11h1.9v6.2h-1.9z"/>
+<circle class="m-blk" cx="16" cy="32" r="8.8"/>
+<circle class="m-grey" cx="16" cy="32" r="3.5"/>
+<circle class="m-blk" cx="57" cy="36.8" r="4.2"/>
+<circle class="m-grey" cx="57" cy="36.8" r="1.6"/>
+<g class="m-clip">
+<path d="M38 36.4 42 39.8 37 38.8Z"/><path d="M44.6 36.8 49.2 40 43.8 39.2Z"/>
+<path d="M50.6 36.2 55 39.4 49.8 38.6Z"/>
+</g>
+</svg></div>
+</div>
+<div class="jnum">6</div>
+<div class="jlbl">Agreement</div>
+<span class="sr-only">Step 6 of 6</span></div>
+</div></div></div>
+
+<main class="stack">
+
+<section class="slide">
+<!-- PLACEHOLDER. Swap this block for the .video-embed iframe once the
+     U.S. Lawns welcome video is published. -->
+<div class="video-slot"><span class="play">▶</span><span class="t">Video slot · U.S. Lawns welcome — awaiting final cut</span></div>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<p>To learn about the EverSmith Mutual Evaluation Process, please see the next step entitled <strong>Mutual Evaluation Process End-to-End</strong>.</p>
+</section>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>U.S. Lawns · An EverSmith Brands Company</span></footer>
+</body></html>
