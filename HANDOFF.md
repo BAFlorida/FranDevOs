@@ -1,20 +1,23 @@
 # MEG sales rooms - handoff
 
 Everything needed to pick this up in a new chat. The code, pages, specs and
-brand assets are all committed on branch `claude/get-to-work-853b92`; this file
-carries the decisions and open questions that otherwise only existed in chat.
+brand assets are all committed on branch `claude/meg-sales-rooms-c0l3n2`; this
+file carries the decisions and open questions that otherwise only existed in
+chat.
 
 ---
 
 ## What exists
 
-Three brands, same pipeline, 24 pages each.
+Four brands, same pipeline, 24 pages each, all on the **reconciled copy
+baseline** (see below).
 
 | Folder | Brand | State |
 |---|---|---|
-| `meg-sales-room/` | 1-Tom-Plumber | 19 pages mine, 5 rebuilt by John with newer copy |
-| `kg-sales-room/` | Kitchen Guard | All 24 mine. Brand book audited, deviations approved |
-| `seals-sales-room/` | The Seals | All 24 mine. No brand book supplied |
+| `meg-sales-room/` | 1-Tom-Plumber | Source reconciled 2026-08-19 to the live CMS export; all 24 match the CMS text-for-text |
+| `kg-sales-room/` | Kitchen Guard | All 24 regenerated on the new baseline. Brand book audited, deviations approved |
+| `seals-sales-room/` | The Seals | All 24 regenerated on the new baseline. No brand book supplied |
+| `usl-sales-room/` | U.S. Lawns | New 2026-08-19, all 24 built from the supplied styled template. No copy source supplied - facts flagged |
 
 Each folder has the same shape:
 
@@ -23,33 +26,36 @@ spec/page-template.html   the brand's design. Replace it and rebuild - drop-in
 spec/structure.json       the 24-page map, gates, milestones
 content/pages/*.md        the copy, split by "## PAGE: <path>" headers
 build/                    the generator
-dist/                     the 24 built pages + INDEX.md
+dist/                     the 24 built pages + INDEX.md (tracked for 1-Tom only)
+<brand>-meg-pages.zip     the packaged pages (KG / Seals / USL)
+preview.html              single-file 24-page preview
+copy-sheet.html           per-section copy for CMS paste
 ```
 
-## How it works
+## The reconciled baseline (2026-08-19)
 
-**Copy comes from markdown, design comes from the template, and neither is
-retyped.** `parse.py` renders `content/pages/*.md`; `shell.py` extracts the CSS,
-fonts and SVG artwork out of `spec/page-template.html` at build time.
+The client supplied `1TPTemplateHTMLExport.zip`, the live CMS state of the
+1-Tom room. It was back-ported into `meg-sales-room/content/` and is now the
+source all brands adapt from:
 
-To change copy: edit the markdown, rebuild.
-To change design: replace `spec/page-template.html`, rebuild.
+- **B-Verify** (financial + background verification) replaces the Experian
+  self-pull and the background-check section on Qualification Summary. 1-Tom
+  carries the live links (DocuSign PowerForm, Culture Index survey,
+  `bverify.boefly.com/eversmith`); the other brands render the same buttons
+  unwired (`href="#"` + `data-asset`) until per-brand URLs are supplied.
+- **Index pages carry no sub-step list and no closing card** - the platform
+  provides section navigation; the pointer lives in the body copy.
+- **Welcome** is one video: 1-Tom's exists (`fcaSfWLHMh8`, captioned
+  "Welcome"); KG / Seals / USL show a pending "brand welcome - awaiting final
+  cut" slot, exactly as the supplied brand templates do.
+- John's FDD trims (no state-rules sentence, no Item 20 note, PH-07 dropped
+  on 2.2) and his Brand Overview wording ("Above, you will find...").
+- Rebuilt 1-Tom dist matches the CMS export text-for-text on all 24 pages
+  except the stray `---` paragraphs **the CMS itself still needs to fix** on
+  12 pages (listed below).
 
-```bash
-python3 <brand>/build/build.py          # build 24 pages + INDEX.md, run all checks
-python3 <brand>/build/adapt_copy.py     # regenerate KG/Seals copy from the 1-Tom source
-python3 <brand>/build/subset_fonts.py   # re-subset fonts after copy changes
-python3 <brand>/build/viewer.py         # preview.html
-python3 <brand>/build/copysheet.py      # copy-sheet.html for CMS paste
-python3 meg-sales-room/build/split.py   # 1-Tom only: package the 19 excluding John's 5
-```
-
-`build.py` fails the build on: a missing or unexpected page, missing chrome, a
-journey track marking the wrong stage, a gate without a form control, an
-unlabelled input, an uncaptioned table, an unknown video id, a `watch` URL, an
-unrendered source marker, stray markdown, a `.asset` where `.btn` belongs, a
-`.btn` without `data-asset`, the wrong number of embedded font faces, or any
-outbound request besides a YouTube embed.
+To change copy for all brands: edit `meg-sales-room/content/`, run each
+brand's `build/adapt_copy.py`, rebuild, re-subset fonts.
 
 ## Live artifacts
 
@@ -61,81 +67,51 @@ outbound request besides a YouTube embed.
 | Kitchen Guard copy sheet | https://claude.ai/code/artifact/abd77079-9ec5-40cb-8af4-d7fe144e7d1d |
 | The Seals preview | https://claude.ai/code/artifact/bf7fba98-6678-4fe2-b49f-a30dc062bbe4 |
 | The Seals copy sheet | https://claude.ai/code/artifact/eb2b9c93-f48a-479f-a77e-93effa419eb6 |
+| U.S. Lawns preview | https://claude.ai/code/artifact/44f0cc20-611c-49c8-ac35-9c0654a825ee |
+| U.S. Lawns copy sheet | https://claude.ai/code/artifact/0b40bc31-1ff2-419b-8511-1ef524d7a53e |
 
-Republishing from a new chat needs the URL passed explicitly, or it mints a new
-artifact instead of updating these.
+Republishing from a new chat needs the URL passed explicitly, or it mints a
+new artifact instead of updating these.
 
 ---
 
+## CMS fixes still owed (1-Tom room)
+
+- **A literal `---` paragraph** shows above the closing line on 12 pages,
+  pasted from a pre-fix build: Validation 1-3, Seeking Approval 1-2, all four
+  Meet The Team Day sections, Agreement Stage 1-3. Delete the paragraph or
+  re-paste the section from the current copy sheet.
+- **John's five pages link Google Fonts** rather than embedding, so they show
+  fallback type wherever that request is blocked. Re-pasting them from the
+  current copy sheet fixes it - the content is now identical either way.
+
 ## Open questions
 
-### 1-Tom-Plumber
-- **John owns 5 pages** with newer copy: `01-welcome/index`, `01-welcome/01-mep-end-to-end`,
-  `02-brand-overview/index`, `.../01-qualification-summary`, `.../02-fdd`. Do not
-  ship mine for those. `split.py` packages the other 19.
-- His Qualification Summary replaced the Experian self-pull with **B-Verify**.
-  Mine still has Experian.
-- Should the four remaining bucket index pages keep their **sub-step lists**?
-  John's two index pages have none.
-- His five pages **link Google Fonts** rather than embedding, so they will show
-  the fallback wherever that request is blocked. `build/fonts.css` fixes it.
-
 ### Kitchen Guard
-- Brand book deviations are **approved**: Anton as a display face, the Poppins
-  weight set, the off-palette flame `#C02B0A`, and the brown metal palette in
-  the stove illustration.
-- Every financial figure is **deliberately unused**. The Brand Overview script
-  states its numbers come from "2026-04 Kitchen Guard FDD - draft 1" and must be
-  reconciled to the final issued FDD. Territory count, regional account fee and
+- Every financial figure remains **deliberately unused** until the final
+  issued FDD (the Brand Overview script sources its numbers to "2026-04
+  Kitchen Guard FDD - draft 1"). Territory count, regional account fee and
   square footage are flagged, not stated.
-- Brand Overview video: script V3 drafted, not recorded.
-- Does Kitchen Guard use **B-Verify** like John's 1-Tom rebuild?
+- Brand Overview video: script V3 drafted, not recorded. Welcome video not
+  recorded.
+- B-Verify link left unwired - supply the Kitchen Guard destination (or
+  confirm the shared eversmith URL applies).
 
 ### The Seals
 - **No brand book supplied.** Palette and type are used as the draft authored
   them, unaudited.
-- Territory design, premises requirement, brand values, founder, leadership and
-  training program are all flagged, not written.
+- Territory design, premises requirement, brand values, founder, leadership
+  and training program are all flagged, not written.
 - **The address gate must not go live** until the requirement is confirmed to
-  apply to this brand. It is carried over from shared MEG language.
-- Technology page names ServiceTitan and CareerPlug, carried over on the basis
-  that technology is shared. Confirm for this brand.
+  apply to this brand.
+- B-Verify link, Qualification Summary form and Culture Index survey URLs
+  unwired.
 
----
-
-## Decisions worth not relitigating
-
-**The MEG copy is EverSmith's, brand-swapped per brand.** Confirmed by the KG
-draft's Welcome copy being word-for-word 1-Tom's. Process and platform videos
-are shared across brands; only Brand Overview and Brand Specific Resources are
-brand-owned.
-
-**Fonts are embedded, not linked.** A linked webfont dies wherever the outbound
-request is blocked, and Anton at weight 400 falls back to something thin that
-reads as greyed-out. `subset_fonts.py` subsets to the characters in use and
-inlines woff2 data URIs. Pages then make no outbound request except video.
-
-**Preview pages render in iframes.** An earlier viewer re-scoped each page's CSS
-into the host document, and the host's colours inherited into anything the page
-CSS did not set, washing the content to near-white. An iframe is a real document
-boundary.
-
-**Actionable links are `.btn`, never `.asset`.** The template says so and John's
-pages do it. `data-asset` is kept for wiring.
-
-**Never state a figure that has not been confirmed.** The 1-Tom "confirmed
-facts" table turned out stale - unit counts, investment range, royalty - after
-it had been written into four pages as fact. Everything unverified renders as a
-visible amber flag instead.
-
-## Known unknowns about the CMS
-
-Confirmed working: the pages render correctly in the CMS preview and styling
-survives the paste.
-
-Not yet tested: whether the CMS **strips video iframes** on save. If it does,
-all 18 videos vanish silently. Worth checking one video page before bulk upload.
-
-Kitchen Guard pages are ~155 KB each - the heaviest, because its logo is a 52 KB
-PNG. 1-Tom is ~95 KB, The Seals ~120 KB. If a field-size limit bites, the logo
-can be optimised losslessly and the fonts can be split out.
+### U.S. Lawns
+- Template supplied 2026-08-19 documents the Brand Guidelines v1.1 (June
+  2025) palette; **no copy source was supplied**, so territory design,
+  premises, the address requirement (same must-not-go-live gate caution as
+  The Seals), values, founder, leadership and training are all flagged.
+- Welcome and Brand Overview videos pending. All per-brand URLs unwired.
+- Fonts: Antonio + Inter + PT Serif, embedded as subsets (the supplied
+  template linked Google Fonts; the build replaces that).
