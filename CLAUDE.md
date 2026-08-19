@@ -34,7 +34,11 @@ permissions, and Super Admin impersonation.
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks + Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only; see gotcha below — this hangs)
 - Seed: `NODE_ENV=development pnpm --filter @workspace/api-server exec tsx src/seed.ts`
+- `pnpm --filter @workspace/territory-prospector run dev` — Territory Prospector (standalone Google Maps prospecting tool; see its README)
 - **Required env:** `DATABASE_URL` (Postgres), plus `PORT` and `BASE_PATH` for the web app.
+  Territory Prospector needs `VITE_GOOGLE_MAPS_API_KEY` (browser key, Maps JS + Places API New);
+  the api-server's optional `/crm/territory/search` proxy needs `GOOGLE_MAPS_API_KEY` (server key)
+  and returns 503 without it.
 
 ## Stack
 
@@ -55,13 +59,18 @@ permissions, and Super Admin impersonation.
 - **Auth:** `artifacts/api-server/src/lib/` — `password.ts` (scrypt hash/verify), `permissions.ts` (`buildAppUser`, `requireAuth` w/ impersonation), `superAdminBootstrap.ts`. Web client hook: `lib/replit-auth-web/src/use-auth.ts`.
 - **CRM service-adapter layer:** `artifacts/api-server/src/integrations/` — `salesforceAdapter.ts`, `hubspotAdapter.ts` (implement `CrmAdapter`), `canonicalStore.ts`, `reportingService.ts`, `index.ts` (registry).
 - **Web app:** `artifacts/franchise-dev-os/` — pages in `src/pages/`, components in `src/components/`.
+- **Territory prospecting:** `artifacts/territory-prospector/` — standalone Google Maps prospecting tool
+  (Places text search in the browser, lead list in localStorage, CSV export; see its README). Optional
+  server seam for a future shared lead list: `crm_territory_leads` table (`lib/db/src/schema/crm.ts`,
+  hand-apply DDL in `lib/db/sql/`), `integrations/googlePlaces.ts` (the app's first REAL external
+  call — Places API New, server-side `GOOGLE_MAPS_API_KEY`), routes in `routes/territory.ts`.
 - **Future-sync stubs (no impl):** `artifacts/api-server/src/workers/` and `artifacts/api-server/src/integrations/auth/`.
 
 ## Architecture decisions
 
 - CRM data is modeled as **canonical Postgres tables** with provenance columns (`sourceSystem`, `sourceRecordId`, `rawPayload`, `externalLastModifiedAt`, `syncedAt`, `connectionId`) so Salesforce and HubSpot rows share one shape.
 - Opportunity stages use a fixed canonical vocabulary (`CRM_STAGE_VOCABULARY` in `crm.ts`) in `stageCanonical`, with the source label preserved in `stageRaw`.
-- Adapters today return mock data by reading the canonical tables. Real external-call seams are marked `// TODO(api): ...`. **No external CRM calls or external CRM auth exist yet.**
+- Adapters today return mock data by reading the canonical tables. Real external-call seams are marked `// TODO(api): ...`. **No external CRM calls or external CRM auth exist yet.** (The only real external call in the codebase is Google Places in `integrations/googlePlaces.ts` — a prospecting source, deliberately NOT a `CrmAdapter`.)
 - Reporting (`/reports/run`) aggregates over canonical tables **internally only** — never queries an external CRM.
 - Routes validate inputs with generated Zod schemas; responses return raw rows (dates serialize to ISO strings).
 - **Auth is in-app email/password only** — no OIDC, no self-service signup, no forgot-password email. Passwords are scrypt-hashed. New users join via one-time invite links (`/invite/<token>`). Admins reset passwords; users change their own.
