@@ -31,26 +31,32 @@ window.dataLayer = window.dataLayer || [];
    Every color, font, and spacing value on this page resolves to a custom
    property in this one block. When Shane's brand export lands, swapping the
    brand is an edit to this block only.
-   Placeholder palette approximates 1TP truck livery (red / near-black /
-   white) in a utilitarian, jobsite-signage register. Not official values.
+   Placeholder palette follows the live 1TP brand — hot pink / near-black /
+   white (the pink plungers) — in a utilitarian, jobsite-signage register.
+   The pink is tuned for WCAG AA with white text; swap in official values
+   from the brand book when it lands. Not official values yet.
    ========================================================================== */
 :root {
   /* Type */
   --font-display: "Arial Black", "Arial Bold", Arial, system-ui, sans-serif;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Color */
-  --color-ink: #181a1b;            /* near-black: dark surfaces, text, rules */
-  --color-paper: #f3f1ea;          /* page background */
+  /* Color — pink-first, matching the live 1TP brand */
+  --color-ink: #181a1b;            /* near-black: type, card borders, footer */
+  --color-paper: #f8f7f5;          /* page background — site is white-dominant */
   --color-surface: #ffffff;        /* cards, inputs */
-  --color-accent: #c8281c;         /* brand red: CTAs, markers, selected states */
+  --color-accent: #da0079;         /* 1TP hot pink. Tuned so white text passes
+                                      WCAG AA on it (4.9:1). If the brand book's
+                                      pink is lighter than #e0007f, keep that for
+                                      graphics but re-check white-on-pink text. */
   --color-accent-contrast: #ffffff;/* text on accent */
-  --color-accent-on-dark: #ff6a5c; /* small red text/fills that must pass contrast on ink */
-  --color-line: #181a1b;           /* borders and rules on light surfaces */
-  --color-line-on-dark: #55585a;   /* quiet borders on dark surfaces */
+  --color-line: #181a1b;           /* strong borders on light surfaces */
+  --color-line-soft: #dcd9d4;      /* quiet rules: step dividers, bar tracks */
+  --color-line-mid: #96928c;       /* control borders (≥3:1 on white) */
   --color-muted: #565a5e;          /* secondary text on light surfaces */
-  --color-muted-on-dark: #b8bcbe;  /* secondary text on dark surfaces */
-  --color-focus: #2f7df6;          /* keyboard focus ring, all surfaces */
+  --color-muted-on-dark: #b8bcbe;  /* secondary text on the ink footer */
+  --color-focus: #181a1b;          /* keyboard focus ring on light surfaces */
+  --color-focus-on-accent: #ffffff;/* focus ring on pink/ink surfaces */
 
   /* Space */
   --s1: 4px;
@@ -106,6 +112,14 @@ a { color: inherit; }
 :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
+}
+.hero :focus-visible,
+.sec-brand :focus-visible,
+footer :focus-visible {
+  outline-color: var(--color-focus-on-accent);
+}
+.assess-panel :focus-visible {
+  outline-color: var(--color-focus);
 }
 
 .container {
@@ -164,8 +178,15 @@ main .btn:active {
   transform: translate(2px, 2px);
   box-shadow: 3px 3px 0 0 var(--color-ink);
 }
-.sec-dark .btn { box-shadow: none; border-color: var(--color-accent); }
-.sec-dark .btn:active { transform: none; box-shadow: none; }
+.hero .btn {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  box-shadow: var(--btn-shadow-size) var(--btn-shadow-size) 0 0 var(--color-ink);
+}
+.hero .btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+}
 
 .btn-ghost {
   background: transparent;
@@ -186,8 +207,8 @@ main .btn:active {
    Hero
    ========================================================================== */
 .hero {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
   padding-block: clamp(56px, 10vw, 110px) clamp(48px, 8vw, 96px);
 }
 .eyebrow {
@@ -198,7 +219,7 @@ main .btn:active {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-accent-on-dark);
+  color: var(--color-accent-contrast);
   margin-bottom: var(--s5);
 }
 .eyebrow::before {
@@ -206,7 +227,7 @@ main .btn:active {
   flex: none;
   width: 10px;
   height: 10px;
-  background: var(--color-accent);
+  background: var(--color-accent-contrast);
 }
 .hero h1 {
   font-size: clamp(1.8rem, 3.4vw + 1.05rem, 3.75rem);
@@ -216,7 +237,7 @@ main .btn:active {
 .hero .sub {
   font-size: clamp(1.05rem, 0.4vw + 1rem, 1.2rem);
   max-width: 56ch;
-  color: var(--color-muted-on-dark);
+  color: var(--color-accent-contrast);
   margin-bottom: var(--s6);
 }
 .hero-actions {
@@ -226,7 +247,7 @@ main .btn:active {
   gap: var(--s5);
 }
 .hero-alt {
-  color: var(--color-paper);
+  color: var(--color-accent-contrast);
   text-underline-offset: 3px;
 }
 
@@ -247,7 +268,7 @@ main .btn:active {
    ========================================================================== */
 .sec {
   padding-block: clamp(48px, 8vw, 88px);
-  border-top: var(--rule) solid var(--color-line);
+  border-top: var(--rule) solid var(--color-accent);
 }
 .sec-tag {
   display: flex;
@@ -280,13 +301,14 @@ main .btn:active {
 .prose { max-width: var(--measure); }
 .prose strong { font-weight: 700; }
 
-.sec-dark {
-  background: var(--color-ink);
-  color: var(--color-paper);
+.sec-brand {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
   border-top: 0;
 }
-.sec-dark .sec-tag { color: var(--color-muted-on-dark); }
-.sec-dark .sec-lead { color: var(--color-muted-on-dark); }
+.sec-brand .sec-tag { color: var(--color-accent-contrast); }
+.sec-brand .sec-tag::before { background: var(--color-ink); }
+.sec-brand .sec-lead { color: var(--color-accent-contrast); }
 
 /* ==========================================================================
    Fit / not-fit columns — deliberately equal visual weight
@@ -345,7 +367,7 @@ main .btn:active {
   grid-template-columns: auto 1fr;
   gap: var(--s4);
   padding-block: var(--s5);
-  border-top: var(--bw) solid var(--color-line);
+  border-top: var(--bw) solid var(--color-line-soft);
 }
 .step-num {
   font-family: var(--font-display);
@@ -355,14 +377,14 @@ main .btn:active {
   height: 46px;
   display: grid;
   place-items: center;
-  border: var(--bw) solid var(--color-line);
-  background: var(--color-surface);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 .step h3 { font-size: 1.1rem; margin-bottom: var(--s2); }
 .step p { margin: 0; max-width: var(--measure); }
 .step-cta {
   padding-block: var(--s5);
-  border-top: var(--bw) solid var(--color-line);
+  border-top: var(--bw) solid var(--color-line-soft);
 }
 
 /* ==========================================================================
@@ -409,9 +431,9 @@ main .btn:active {
   .stats { grid-template-columns: repeat(3, 1fr); }
 }
 .stat { padding: var(--s5); }
-.stat + .stat { border-top: var(--bw) solid var(--color-line); }
+.stat + .stat { border-top: var(--bw) solid var(--color-line-soft); }
 @media (min-width: 760px) {
-  .stat + .stat { border-top: 0; border-left: var(--bw) solid var(--color-line); }
+  .stat + .stat { border-top: 0; border-left: var(--bw) solid var(--color-line-soft); }
 }
 .stat .label {
   display: block;
@@ -428,6 +450,7 @@ main .btn:active {
   font-weight: 900;
   font-size: clamp(1.3rem, 1.2vw + 1rem, 1.7rem);
   line-height: 1.1;
+  color: var(--color-accent);
 }
 .stat .qual {
   display: block;
@@ -445,7 +468,10 @@ main .btn:active {
    Assessment
    ========================================================================== */
 .assess-panel {
-  border: var(--bw) solid var(--color-line-on-dark);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: var(--bw) solid var(--color-ink);
+  box-shadow: 6px 6px 0 0 var(--color-ink);
   padding: clamp(20px, 4vw, 36px);
   max-width: 680px;
 }
@@ -463,7 +489,7 @@ main .btn:active {
   padding: var(--s1) 0;
   font: inherit;
   font-weight: 700;
-  color: var(--color-muted-on-dark);
+  color: var(--color-muted);
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
@@ -474,17 +500,17 @@ main .btn:active {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-muted-on-dark);
+  color: var(--color-muted);
 }
 .q-bar {
   height: 6px;
-  background: var(--color-line-on-dark);
+  background: var(--color-line-soft);
   margin-bottom: var(--s5);
 }
 .q-bar span {
   display: block;
   height: 100%;
-  background: var(--color-accent-on-dark);
+  background: var(--color-accent);
 }
 .q-title {
   font-size: clamp(1.25rem, 1.4vw + 1rem, 1.7rem);
@@ -499,16 +525,15 @@ main .btn:active {
   text-align: left;
   font: inherit;
   font-size: 1.05rem;
-  color: var(--color-paper);
-  background: transparent;
-  border: var(--bw) solid var(--color-line-on-dark);
-  border-color: color-mix(in srgb, var(--color-paper) 36%, transparent);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: var(--bw) solid var(--color-line-mid);
   border-radius: var(--radius);
   padding: var(--s4);
   cursor: pointer;
   min-height: 52px;
 }
-.opt:hover { border-color: var(--color-paper); }
+.opt:hover { border-color: var(--color-accent); }
 .opt[aria-pressed="true"] {
   background: var(--color-accent);
   border-color: var(--color-accent);
@@ -529,8 +554,8 @@ main .btn:active {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-accent-on-dark);
-  border: var(--bw) solid var(--color-accent-on-dark);
+  color: var(--color-accent);
+  border: var(--bw) solid var(--color-accent);
   padding: var(--s1) var(--s2);
   margin-bottom: var(--s4);
 }
@@ -549,10 +574,10 @@ main .btn:active {
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-accent-on-dark);
+  color: var(--color-accent);
   font-family: var(--font-display);
 }
-.result-close { color: var(--color-muted-on-dark); }
+.result-close { color: var(--color-muted); }
 .result-actions { margin-top: var(--s5); }
 
 /* ==========================================================================
@@ -583,30 +608,30 @@ main .btn:active {
   font-size: 1rem; /* 16px floor — prevents iOS zoom-on-focus */
   color: var(--color-ink);
   background: var(--color-surface);
-  border: var(--bw) solid var(--color-surface);
+  border: var(--bw) solid var(--color-line-mid);
   border-radius: var(--radius);
   padding: var(--s3) var(--s4);
   min-height: 48px;
 }
 .f-field input:user-invalid,
 .f-field select:user-invalid {
-  border-color: var(--color-accent-on-dark);
+  border-color: var(--color-accent);
 }
 .lead-note {
   font-size: 0.9rem;
-  color: var(--color-muted-on-dark);
+  color: var(--color-muted);
   margin: var(--s4) 0 0;
   max-width: 48ch;
 }
 .lead-err {
   font-weight: 700;
-  color: var(--color-accent-on-dark);
+  color: var(--color-accent);
   margin-top: var(--s4);
 }
 .noscript-note {
   margin-top: var(--s5);
   font-weight: 700;
-  color: var(--color-accent-on-dark);
+  color: var(--color-accent-contrast);
 }
 
 /* ==========================================================================
@@ -775,7 +800,7 @@ footer p { max-width: var(--measure); margin-bottom: var(--s2); }
   </section>
 
   <!-- 05 — The fit assessment -->
-  <section class="sec sec-dark" id="assessment" aria-labelledby="assess-title">
+  <section class="sec sec-brand" id="assessment" aria-labelledby="assess-title">
     <div class="container">
       <p class="sec-tag">05 / The fit assessment</p>
       <h2 id="assess-title">Five questions. No contact fields. A straight answer.</h2>

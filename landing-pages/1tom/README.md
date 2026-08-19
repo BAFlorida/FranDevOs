@@ -16,17 +16,23 @@ block at the top of the `<style>` element** (marked `1-TOM-PLUMBER BRAND TOKENS`
 Swapping the brand is an edit to that block only — nothing else in the stylesheet holds a
 raw color, font name, or spacing value.
 
-The placeholder palette approximates 1TP truck livery (red / near-black / off-white) in a
-utilitarian jobsite register. **These are not official values** — the brand book attachment
-never reached the build session. Notable tokens:
+The palette is pink-first, matching the live 1TP brand (the pink plungers/trucks; pink is
+core to the brand's identity and its support of women's causes). The exact brand hex could
+not be pulled in the build environment — 1tomplumber.com is blocked by the session's
+network egress policy and the brand book attachment never arrived — so the pink is
+`#da0079`: a hot pink deliberately tuned so **white text on it passes WCAG AA at any size
+(4.9:1)**. Swap in the official value when the brand book lands; if the official pink is
+lighter than `#e0007f`, keep it for graphic surfaces but re-check every white-on-pink and
+pink-on-white text placement (brighter hot pinks like `#ec008c` fail AA for normal text).
+Notable tokens:
 
 | Token | Role |
 |---|---|
 | `--font-display` / `--font-body` | Display (heavy industrial) and body stacks. System fonts only — external font requests are not allowed on this page. If the brand font arrives as a file, embed it via `@font-face` with a `data:` URI or same-origin URL. |
-| `--color-ink` / `--color-paper` / `--color-surface` | Near-black, page background, cards/inputs |
-| `--color-accent` / `--color-accent-contrast` | Brand red; text color placed on it |
-| `--color-accent-on-dark` | Lightened accent for small text/fills on dark panels — keep it ≥4.5:1 against `--color-ink` |
-| `--color-focus` | Keyboard focus ring, all surfaces |
+| `--color-ink` / `--color-paper` / `--color-surface` | Near-black (type, card borders, footer), page background, cards/inputs |
+| `--color-accent` / `--color-accent-contrast` | Brand pink (hero, assessment section, CTAs, markers, stat values); text color placed on it |
+| `--color-line` / `--color-line-soft` / `--color-line-mid` | Strong card borders; quiet dividers/tracks; control borders (keep ≥3:1 on white) |
+| `--color-focus` / `--color-focus-on-accent` | Keyboard focus ring on light surfaces; ring on pink/ink surfaces |
 | `--s1`–`--s8`, `--bw`, `--rule`, `--radius`, `--container`, `--measure` | Spacing scale and structure |
 
 ## What to swap when the brand template lands
