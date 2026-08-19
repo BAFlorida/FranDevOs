@@ -5,6 +5,10 @@ Do not paraphrase. Do not summarize. Do not substitute your own phrasing.
 
 Brand swaps applied: The Grounds Guys → Kitchen Guard · Neighborly → EverSmith Brands
 
+Adapted from the 1-Tom source as reconciled 2026-08-19 to the live CMS baseline:
+B-Verify financial and background verification, no sub-step list or closing
+pointer card on index pages, and the pointer as prose in the body copy.
+
 ---
 
 ## PAGE: 01-welcome/index.html
@@ -15,18 +19,13 @@ Brand swaps applied: The Grounds Guys → Kitchen Guard · Neighborly → EverSm
 
 ### BODY
 
+[VIDEO SLOT — PENDING: Kitchen Guard welcome — awaiting final cut]
+
 Thank you for taking the time to speak with one of our world class Franchise Developers.
 
 This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.
 
 The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.
-
-[VIDEO: Mutual Evaluation Room Explanation]
-
-[VIDEO: EverSmith What to Expect on the First Call]
-
-### SUBSTEP LIST
-1. Mutual Evaluation Process End-to-End
 
 ### NEXT
 To learn about the EverSmith Mutual Evaluation Process, please see the next step entitled **Mutual Evaluation Process End-to-End**.
@@ -59,9 +58,6 @@ The Mutual Evaluation Process runs in six stages.
 
 This is a mutual evaluation. We are deciding about each other. At every stage, either side can say this is not the right fit, and that is a healthy outcome.
 
-### NEXT
-Continue to Stage 2, Brand Overview.
-
 ---
 
 ## PAGE: 02-brand-overview/index.html
@@ -72,75 +68,79 @@ Continue to Stage 2, Brand Overview.
 
 ### BODY
 
+[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview — script V3 drafted, not recorded]
+
 **LET'S GET STARTED!**
 
 Thank you for taking the time to speak with one of our world class Franchise Developers. On your last call, you spoke through why business ownership may make sense for this time in your life. You gave us insight into your background, your timing, your family, and so much more. Today, we want to provide the same depth of information for the brand you are considering.
 
-Below, you will find a video covering your brand at a high level. We have discovered that this helps our candidates digest the information in bite sized chunks. Your only homework is to watch the video entitled, "Brand Overview."
+Above, you will find a video covering your brand at a high level. We have discovered that this helps our candidates digest the information in bite sized chunks. Your only homework is to watch the video entitled, "Brand Overview."
 
-Your Franchise Developer has set a meeting with you to debrief the video below. Please jot down any questions you may have from the video as that will be a point of discussion for your next call. Below the main video, you will also find a series of additional resources that dive more deeply into each topic discussed in the overview. If you would like, feel free to review those resources as well, although they are not required to continue moving forward in the process.
-
-[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview — script V3 drafted, not recorded]
-
-### SUBSTEP LIST
-1. Qualification Summary / Culture Index
-2. Franchise Disclosure Document
-3. Additional Brand Specific Resources
-
-### NEXT
-Watch the Brand Overview, then complete your Qualification Summary.
+Your Franchise Developer has set a meeting with you to debrief the video. Please jot down any questions you may have from the video as that will be a point of discussion for your next call. You will also find a series of additional resources that dive more deeply into each topic discussed in the overview. If you would like, feel free to review those resources as well, although they are not required to continue moving forward in the process.
 
 ---
 
 ## PAGE: 02-brand-overview/01-qualification-summary.html
 
 **Eyebrow:** Stage 2 · Step 1 of 3
-**H1:** Qualification Summary / Culture Index
-**Lede:** The next step in our process.
+**H1:** Qualification Summary
+**Lede:** Culture Index · The next step in our process.
 
 ### BODY
+
+[VIDEO: EverSmith Qualification Summary Overview]
 
 Thank you for taking the time to delve deeper into the brand that interests you! Watching the brand overview video and related links undoubtedly led to thought-provoking questions for your Franchise Developer.
 
 As your Franchise Developer may have informed you, the next step in our process is to complete the Qualification Summary Form. Once you finish the form and submit, a copy is sent to your Franchise Developer. This step enables us to arrange calls with existing owners on your behalf.
 
-[VIDEO: EverSmith Qualification Summary Overview]
-
 [FORM: Qualification Summary Form]
 
 [FORM: Culture Index Survey]
 
-### H2: Your Credit Report
+### H2: B-Verify: Financial & Background Verification
 
-Additionally, we do not believe in making unnecessary inquiries on the credit reports of potential candidates. If you want us to run your credit report, request your Franchise Developer to conduct the report on your behalf. However, we recommend obtaining your own Experian Credit Report (with score) and uploading it.
+### H3: Why we use B-Verify
 
-The report you are generating is the only report the SBA, the Bank and Kitchen Guard will accept.
+As we move further through the mutual evaluation process, we want to ensure we're making informed decisions together. B-Verify provides an independent review of your financial qualifications and background so both you and our team can move forward with confidence.
 
-**STEPS:**
-1. Go to Experian.com
-2. Create an account. On "What is your main reason you are checking your credit?" choose "Checking my report or score for accuracy." Complete identity verification and authentication questions.
-3. Navigate to the "Credit Reports" tab.
-4. Find "Print your Report" about halfway down the page.
-5. Right-click and select Print.
-6. Change the destination to Save as PDF, then Print. Save it to your desktop.
-7. Email the saved copy to your Franchise Developer.
+This step helps us:
 
-This is a soft pull. It does not affect your score.
+**LIST:**
+- Verify that your financial resources align with the investment requirements.
+- Confirm the information provided throughout the application process.
+- Complete a standard background screening.
+- Identify any items that may need additional discussion before moving forward.
 
-### H2: Background Check
+### H3: What to Expect
 
-Once your Qualification Summary is complete, your Franchise Developer's assistant will email our screening company. You will receive a request to authorize the check and provide brief biographical information. Please complete it promptly so we can keep your timeline on track.
+The process is simple and secure:
 
-[PLACEHOLDER: background check vendor]
+**LIST:**
+- Complete a short online questionnaire.
+- Securely connect or provide financial information for verification.
+- Authorize a standard background check.
+- B-Verify prepares a confidential report for our franchise development team.
+
+Most candidates complete the process in less than 30 minutes.
+
+### H3: Your Privacy
+
+Your information is handled securely by B-Verify and is used solely for evaluating franchise ownership qualifications. We understand this is sensitive information and treat it with the highest level of confidentiality.
+
+### H3: What Happens Next?
+
+A successful B-Verify review doesn't guarantee approval, just as a concern doesn't automatically end the process. If questions arise, we'll discuss them openly and determine together whether there's a path forward.
+
+Our goal isn't simply to approve candidates—it's to ensure we're building partnerships that have the greatest opportunity for long-term success.
+
+[LINK: Start Your B-Verify Review | b-verify]
 
 ### H2: Book Your Next Meeting
 
 Book the next meeting with your Franchise Developer to review the Qualification Summary together.
 
 [SCHEDULER: Schedule Qualification Summary Review]
-
-### NEXT
-Submit your Qualification Summary and credit report, then continue to the Franchise Disclosure Document.
 
 ---
 
@@ -156,7 +156,7 @@ Submit your Qualification Summary and credit report, then continue to the Franch
 
 The goal of the FDD is to provide buyers with information to make a buying decision. Federal law, The FTC Rule, requires franchisors to file an FDD annually and provide it to every potential franchise buyer.
 
-FDDs must be provided upon request at least 14 days before signing a franchise agreement. State rules vary and some require longer. The FDD is updated annually, or sooner on any material change.
+FDDs must be provided upon request at least 14 days before signing a franchise agreement. The FDD is updated annually, or sooner on any material change.
 
 The FDD includes 23 Items, the franchise agreement, and various exhibits. Request the Kitchen Guard FDD from your Franchise Developer and review it together.
 
@@ -191,15 +191,6 @@ The FDD includes 23 Items, the franchise agreement, and various exhibits. Reques
 ### H3: A note on Item 19
 
 Item 19 is where a franchisor may, but is not required to, disclose financial performance information. If a franchisor makes an Item 19 representation, there is no assurance your business will achieve the same results.
-
-[PLACEHOLDER: confirm current KG Item 19 status against the most recent FDD]
-
-### H3: A note on Item 20
-
-Item 20 gives you a three-year outline of locations. Openings, closures, transfers, terminations. Read it. It is the clearest available signal of system size and growth direction.
-
-### NEXT
-Review your FDD, then continue to Additional Brand Specific Resources.
 
 ---
 

@@ -142,13 +142,21 @@ def video_slot(label):
             f'<span class="t">Video slot · {label}</span></div>')
 
 
+# Real destinations, once known, go here keyed by asset ref; an absent ref
+# renders href="#" and is wired in the CMS. Nothing is invented.
+ASSET_URLS = {}
+
+
 def asset(kind, label, ref):
-    return (f'<a class="btn" href="#" data-asset="{ref}" target="_blank" '
+    href = ASSET_URLS.get(ref, "#")
+    return (f'<a class="btn" href="{href}" data-asset="{ref}" target="_blank" '
             f'rel="noopener">{label} <span aria-hidden="true">&#8599;</span></a>')
 
 
 def btnrow(buttons):
-    return '<div class="btnrow">' + "".join(buttons) + "</div>"
+    # John's pages wrap every button run - singles included - so the mobile
+    # stacking rules apply uniformly.
+    return '<div class="btnrow">\n' + "\n".join(buttons) + "\n</div>"
 
 
 def flag(text, ref=None):
@@ -183,10 +191,12 @@ def gate_select(gate_id, statement, options, heading="Required — self assessme
 </div>"""
 
 
-def table(caption, headers, rows):
+def table(caption, headers, rows, caption_hidden=False):
     head = "".join(f"<th>{h}</th>" for h in headers)
     body = "\n".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
-    return (f'<div class="t-scroll"><table>\n<caption>{caption}</caption>\n'
+    cap = (f'<caption class="sr-only">{caption}</caption>' if caption_hidden
+           else f"<caption>{caption}</caption>")
+    return (f'<div class="t-scroll"><table>\n{cap}\n'
             f"<thead><tr>{head}</tr></thead>\n<tbody>\n{body}\n</tbody>\n</table></div>")
 
 

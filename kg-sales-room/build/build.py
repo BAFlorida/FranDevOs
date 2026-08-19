@@ -119,14 +119,17 @@ def check(pages):
         if html.count("@font-face") != FACE_COUNT:
             fails.append(f"{path}: expected {FACE_COUNT} embedded @font-face rules, "
                          f"found {html.count('@font-face')}")
+        wired = {re.search(r'href="(https?://[^"]+)"', a).group(1)
+                 for a in re.findall(r'<a class="btn"[^>]*data-asset=[^>]*>', html)
+                 if re.search(r'href="(https?://[^"]+)"', a)}
         outbound = {u for u in re.findall(r'(?:href|src)="(https?://[^"]+)"', html)
-                    if "youtube.com/embed/" not in u}
+                    if "youtube.com/embed/" not in u and u not in wired}
         if outbound:
             fails.append(f"{path}: outbound request(s) besides video: {sorted(outbound)}")
 
         # Tables scroll and are captioned.
         for tbl in re.findall(r"<table>(.*?)</table>", html, re.S):
-            if "<caption>" not in tbl:
+            if "<caption" not in tbl:
                 fails.append(f"{path}: a table has no <caption>")
         if "<table>" in html and 't-scroll' not in html:
             fails.append(f"{path}: a table is not in a scroll container")
@@ -170,15 +173,13 @@ def check(pages):
         if mark and re.search(r"filter:|drop-shadow|rotate\(", mark.group(0)):
             fails.append(f"{path}: brandmark carries a forbidden effect")
 
-    # Every bucket index links all of its sub-steps.
+    # Index pages carry no sub-step list: the platform supplies section
+    # navigation, and John's rebuilt pages set the convention. Guard against
+    # the old block reappearing.
     for path in pages:
-        if not path.endswith("/index.html"):
-            continue
-        bucket = path.split("/")[0]
-        for sub in (p.split("/")[1] for p in pages
-                    if p.startswith(bucket + "/") and not p.endswith("index.html")):
-            if f'href="{sub}"' not in pages[path]:
-                fails.append(f"{path}: does not link {sub}")
+        if path.endswith("/index.html") and "Steps in This Stage" in pages[path]:
+            fails.append(f"{path}: carries a sub-step list; the platform "
+                         "provides section navigation")
 
     return fails
 
