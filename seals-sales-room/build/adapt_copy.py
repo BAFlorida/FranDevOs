@@ -21,20 +21,26 @@ DST = pathlib.Path("/home/user/FranDevOs/seals-sales-room/content/pages")
 DST.mkdir(parents=True, exist_ok=True)
 
 SWAPS = [
+    # Provenance note: the 1-Tom wording names its own CMS export; replace it
+    # before the 1TP token swap below can mangle the filename.
+    ("Reconciled 2026-08-19 to the live CMS export (1TPTemplateHTMLExport): John's rebuilt\n"
+     "Welcome, Brand Overview, Qualification Summary (B-Verify replaces the Experian\n"
+     "self-pull and the background-check section) and FDD pages are now the source here.\n"
+     "Index pages carry no sub-step list and no closing pointer card — the platform\n"
+     "supplies section navigation, and the pointer lives in the body copy where John\n"
+     "put one.",
+     "Adapted from the 1-Tom source as reconciled 2026-08-19 to the live CMS baseline:\n"
+     "B-Verify financial and background verification, no sub-step list or closing\n"
+     "pointer card on index pages, and the pointer as prose in the body copy."),
     ("1-Tom-Plumber", "The Seals"),
     ("1TP", "Seals"),
-    ("Original MEG language, brand-swapped to The Seals.",
-     "Original MEG language, brand-swapped to The Seals."),
-    ("**H1:** Welcome to Your Mutual Evaluation Guide", "**H1:** Welcome"),
-    ("**Lede:** Meet the brand and the on-demand plumbing opportunity.",
-     "**Lede:** Your guide through the Mutual Evaluation Process."),
-    ("Watch the videos above, then continue to the Mutual Evaluation Process End-to-End.",
-     "To learn about the EverSmith Mutual Evaluation Process, please see the next step "
-     "entitled **Mutual Evaluation Process End-to-End**."),
-    # These two are process and technology videos, used across all brands, so
-    # they carry over. Only the caption is renamed off the 1-Tom title.
-    ("[VIDEO: 1-Tom Mutual Evaluation Room Explanation]",
-     "[VIDEO: Mutual Evaluation Room Explanation]"),
+    # The welcome video is brand-specific; 1-Tom's exists, The Seals' is not
+    # yet recorded. The brand template carries this exact slot label, with the
+    # brand name set the way the chrome sets it.
+    ("[VIDEO: Welcome]",
+     "[VIDEO SLOT — PENDING: THE SEALS welcome — awaiting final cut]"),
+    # A cross-brand technology video; only the caption is renamed off the
+    # 1-Tom title.
     ("[VIDEO: 1-Tom Service Titan Overview]",
      "[VIDEO: ServiceTitan Overview]"),
     ("[VIDEO SLOT — PENDING: The Seals Brand Overview]",

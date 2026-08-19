@@ -20,13 +20,6 @@ That flips now. In this stage, they present YOU to the BRAND.
 
 Two things happen here. You meet with an executive. If approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.
 
-### SUBSTEP LIST
-1. Executive Approval Call
-2. Development Action Plan / Contingencies
-
-### NEXT
-Start with the Executive Approval Call.
-
 ---
 
 ## PAGE: 04-seeking-approval/01-executive-approval-call.html
@@ -161,15 +154,6 @@ You will leave the virtual world behind, come see us in person, meet the leaders
 
 For most candidates, this is when the decision starts to feel real.
 
-### SUBSTEP LIST
-1. What / Who to Expect at Meet The Team Day
-2. Pre Meet The Team Day Questionnaire
-3. Meet The Team Day
-4. Post Meet The Team Day Assessment
-
-### NEXT
-Start with What and Who to Expect.
-
 ---
 
 ## PAGE: 05-meet-the-team-day/01-what-who-to-expect.html
@@ -292,14 +276,6 @@ Continue to Stage 6, Agreement Stage.
 
 Three things happen in this stage. The Executive Committee makes its decision. You execute your Franchise Agreement. And we welcome you into the system.
 
-### SUBSTEP LIST
-1. Executive Board Approval
-2. Executing Your Franchise Agreement
-3. Brand Welcome Call
-4. Thank You For Putting Your Trust In Us
-
-### NEXT
-Start with Executive Board Approval.
 
 ---
 
