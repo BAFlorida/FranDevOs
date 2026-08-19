@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the 24 MEG sales room pages into dist/.
 
-Run from anywhere:  python3 meg-sales-room/build/build.py
+Run from anywhere:  python3 kg-sales-room/build/build.py
 
 Copy comes from content/pages/*.md and is rendered by parse.py, so the pages
 cannot drift from the source. Design comes from spec/page-template.html and
@@ -208,7 +208,7 @@ def write_index(pages):
     tot = lambda k: sum(s[k] for s in st.values())
 
     L = ["# MEG Sales Room - Page Index\n"]
-    L.append("24 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.\n")
+    L.append("24 self-contained HTML pages for the Kitchen Guard Mutual Evaluation Guide.\n")
     L.append("Each page inlines its own CSS and carries the full production chrome: topbar, "
              "hero, six-node journey track, spine-and-slides stack, and footer. No external "
              "stylesheet, no JS, no build step needed to render.\n")
