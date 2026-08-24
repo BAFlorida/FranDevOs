@@ -9,8 +9,9 @@ chat.
 
 ## What exists
 
-Four brands, same pipeline, 24 pages each, all on the **reconciled copy
-baseline** (see below).
+Four brands, same pipeline, **23 pages each** since John's Aug 4 punch list
+was applied on 2026-08-24 (see `meg-shared/PUNCH-LIST.md` for the full
+item-by-item status). All on the **reconciled copy baseline** (see below).
 
 | Folder | Brand | State |
 |---|---|---|
@@ -82,19 +83,39 @@ rows that clear the CMS `---` bug, and John's five, are chip-labelled.
 
 ---
 
-## CMS fixes still owed (1-Tom room)
+## The Aug 4 punch list (applied 2026-08-24)
 
-- **The Brand Overview video is now live in our build** (`Q0EAo3Ix3gI`,
-  supplied 2026-08-24, captioned "Watch · Brand Overview" as the page copy
-  promises) but the CMS still shows the pending slot - re-paste
-  `02-brand-overview/index.html` from the copy sheet to take it live.
-- **A literal `---` paragraph** shows above the closing line on 12 pages,
-  pasted from a pre-fix build: Validation 1-3, Seeking Approval 1-2, all four
-  Meet The Team Day sections, Agreement Stage 1-3. Delete the paragraph or
-  re-paste the section from the current copy sheet.
-- **John's five pages link Google Fonts** rather than embedding, so they show
-  fallback type wherever that request is blocked. Re-pasting them from the
-  current copy sheet fixes it - the content is now identical either way.
+`meg-shared/PUNCH-LIST.md` tracks John's standup punch list item by item.
+Template-side items are applied across all four brands: the Validation and
+Seeking Approval overview pages are deleted (video and framing moved into
+Owner Calls / Executive Approval Call), a locked **Franchise Disclosure
+Document Review** page with the Item 23 receipt gate sits after the FDD
+explainer, the FDD page carries a request button, Owner Calls leads with the
+per-candidate Teams link and add-to-calendar buttons, Funding carries the two
+vendor video slots, Technology is retitled and reordered ("How Technology and
+Sourcing Works", EverSmith Strategic Partnerships named, QuickBooks Online in
+the stack, pricing from Item 7, wrong fee acknowledgment removed), and the
+Executive Approval page is merged, de-AI'd, and hosted by John Dobelbower
+plus the brand leader.
+
+Platform-side items (Q&A builder box, workbook, hideable cards, completion
+gating, request-button wiring, Base44 DAP view, section locks) are Shane's.
+The franchise proposal builder is blocked on the Neighborly Excel that never
+arrived.
+
+## CMS actions owed (1-Tom room)
+
+The CMS predates the punch-list restructure, so the whole 1-Tom room should
+be re-pasted from the copy sheet, plus two portal-side edits:
+
+- **Delete** the Validation and Seeking Approval overview pages in the portal
+  (candidates go straight to Owner Calls / Executive Approval Call).
+- **Add** the Franchise Disclosure Document Review section after the FDD
+  explainer and configure it as locked-until-the-FDD-is-sent.
+- Re-pasting everything also clears the older debts: the stray `---`
+  paragraphs on 12 pages, the Google-Fonts dependency on John's five, the
+  pending Brand Overview slot (video `Q0EAo3Ix3gI` is embedded now), and the
+  funding-page rendering gap (not present in the current build).
 
 ## Open questions
 

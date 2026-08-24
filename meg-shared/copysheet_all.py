@@ -222,7 +222,7 @@ textarea{display:block;width:100%;height:300px;border:0;border-top:1px solid var
 <main>
   <div class="bar">
     <button class="copy" type="button" id="expand">Expand all</button>
-    <span class="count" id="status">24 pages per brand · 96 total</span>
+    <span class="count" id="status">__COUNT__</span>
   </div>
 __PANELS__
 </main>
@@ -284,6 +284,8 @@ document.getElementById('expand').addEventListener('click', () => {
 """
 
 PAGE = (PAGE
+        .replace("__COUNT__",
+                 f"{len(ORDER)} pages per brand · {len(BRANDS) * len(ORDER)} total")
         .replace("__ACC_LIGHT__", "\n".join(accents_light))
         .replace("__ACC_DARK_MEDIA__",
                  "\n  ".join(a.replace("body[", ':root:not([data-theme="light"]) body[')

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the 24 MEG sales room pages into dist/.
+"""Generate the MEG sales room pages into dist/.
 
 Run from anywhere:  python3 seals-sales-room/build/build.py
 
@@ -31,11 +31,11 @@ FACE_COUNT = (open(_fc, encoding="utf-8").read().count("@font-face")
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
     "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
-    "02-brand-overview/02-fdd.html", "02-brand-overview/03-additional-resources.html",
-    "03-validation/index.html", "03-validation/01-owner-calls.html",
+    "02-brand-overview/02-fdd.html", "02-brand-overview/03-fdd-review.html",
+    "02-brand-overview/04-additional-resources.html",
+    "03-validation/01-owner-calls.html",
     "03-validation/02-funding.html", "03-validation/03-territory.html",
     "03-validation/04-technology.html",
-    "04-seeking-approval/index.html",
     "04-seeking-approval/01-executive-approval-call.html",
     "04-seeking-approval/02-dap-contingencies.html",
     "05-meet-the-team-day/index.html",
@@ -208,7 +208,7 @@ def write_index(pages):
     tot = lambda k: sum(s[k] for s in st.values())
 
     L = ["# MEG Sales Room - Page Index\n"]
-    L.append("24 self-contained HTML pages for The Seals Mutual Evaluation Guide.\n")
+    L.append(f"{len(ORDER)} self-contained HTML pages for The Seals Mutual Evaluation Guide.\n")
     L.append("Each page inlines its own CSS and carries the full production chrome: topbar, "
              "hero, six-node journey track, spine-and-slides stack, and footer. No external "
              "stylesheet, no JS, no build step needed to render.\n")
@@ -219,7 +219,7 @@ def write_index(pages):
              "values are used exactly as given; none were substituted or invented.\n")
     L.append("Rebuild: `python3 meg-sales-room/build/build.py`\n")
 
-    L.append("\n## All 24 pages\n")
+    L.append(f"\n## All {len(ORDER)} pages\n")
     L.append("| # | Page | Path | Slides | Gates | Flags | Video | Assets |")
     L.append("|---|---|---|---|---|---|---|---|")
     for i, path in enumerate(ORDER, 1):

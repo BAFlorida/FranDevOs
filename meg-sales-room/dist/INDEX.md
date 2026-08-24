@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-24 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+23 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 24 pages
+## All 23 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -19,39 +19,38 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 1 | - | - | 1 embed | - |
 | 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 embed | - |
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
-| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 2 | - | - | 1 embed | - |
-| 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 3 | - | - | 2 embeds, 2 pending | - |
-| 7 | Validation | `03-validation/index.html` | 1 | - | - | 1 embed | - |
-| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | 1 | - | 1 |
-| 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 1 pending | 1 |
+| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | 1 |
+| 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 2 | 1 checkbox | - | - | 1 |
+| 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 3 | - | - | 2 embeds, 2 pending | - |
+| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 3 | 1 checkbox | - | 1 embed, 1 pending | 2 |
+| 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
 | 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | 1 | 1 pending | - |
-| 11 | Understanding Your Brand's Technology | `03-validation/04-technology.html` | 4 | 1 checkbox | - | 2 embeds | - |
-| 12 | Seeking Approval | `04-seeking-approval/index.html` | 1 | - | - | 1 pending | - |
-| 13 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | 1 | 1 pending | - |
-| 14 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 6 | - | - | 1 pending | 1 |
-| 15 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
-| 16 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | 1 | 1 embed | 1 |
-| 17 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | 1 | 1 embed, 1 pending | 2 |
-| 18 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | 1 | 1 pending | 1 |
-| 19 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
-| 20 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
-| 21 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
-| 22 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 1 embed | 1 |
-| 23 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | 1 | 1 embed | 1 |
-| 24 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 3 | - | 1 | - | 1 |
+| 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | 1 | 2 embeds, 1 pending | - |
+| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | 1 | 1 pending | - |
+| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 5 | - | - | - | 1 |
+| 14 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
+| 15 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | 1 | 1 embed | 1 |
+| 16 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | 1 | 1 embed, 1 pending | 2 |
+| 17 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | 1 | 1 pending | 1 |
+| 18 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
+| 19 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
+| 20 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
+| 21 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 1 embed | 1 |
+| 22 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | 1 | 1 embed | 1 |
+| 23 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 3 | - | 1 | - | 1 |
 
-**Totals:** 62 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 18 video embeds, 9 pending video slots, 15 asset slots.
+**Totals:** 63 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 18 video embeds, 10 pending video slots, 18 asset slots.
 
 
 ## Compliance gates
 
 | Page | Gate | Type |
 |---|---|---|
+| `02-brand-overview/03-fdd-review.html` | `fdd-receipt` | acknowledgment |
 | `03-validation/01-owner-calls.html` | `item19` | acknowledgment |
 | `03-validation/02-funding.html` | `household-expenses` | select |
 | `03-validation/02-funding.html` | `outside-coverage` | select |
 | `03-validation/03-territory.html` | `address` | acknowledgment |
-| `03-validation/04-technology.html` | `tech-fee-timing` | acknowledgment |
 
 ## Summary and milestone deltas
 
@@ -80,16 +79,14 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 |---|---|
 | `PH-01` | `04-seeking-approval/01-executive-approval-call.html` |
 | `PH-02` | `03-validation/04-technology.html` |
-| `PH-04` | `03-validation/04-technology.html` |
+| `PH-03` | `03-validation/04-technology.html` |
 | `PH-06` | `06-agreement-stage/04-thank-you.html` |
-| `PH-11` | `02-brand-overview/03-additional-resources.html` |
-| `PH-14` | `04-seeking-approval/01-executive-approval-call.html` |
+| `PH-11` | `02-brand-overview/04-additional-resources.html` |
 | `PH-15` | `05-meet-the-team-day/01-what-who-to-expect.html` |
 | `PH-17` | `06-agreement-stage/02-executing-your-agreement.html` |
 | `PH-18` | `06-agreement-stage/03-brand-welcome-call.html` |
-| `PH-19` | `02-brand-overview/03-additional-resources.html` |
-| `PH-20` | `02-brand-overview/03-additional-resources.html` |
-| `PH-21` | `03-validation/01-owner-calls.html` |
+| `PH-19` | `02-brand-overview/04-additional-resources.html` |
+| `PH-20` | `02-brand-overview/04-additional-resources.html` |
 | `PH-22` | `03-validation/03-territory.html` |
 | `PH-24` | `05-meet-the-team-day/03-meet-the-team-day.html` |
 
@@ -102,9 +99,9 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `02-brand-overview/index.html` | Brand Overview — 1-Tom-Plumber Mutual Evaluation Guide | `Q0EAo3Ix3gI` |
 | `02-brand-overview/01-qualification-summary.html` | EverSmith Qualification Summary Overview | `GWB3gkycrKw` |
 | `02-brand-overview/02-fdd.html` | EverSmith Franchise Disclosure Document Overview | `udCsGBIY1Rs` |
-| `02-brand-overview/03-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
-| `02-brand-overview/03-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
-| `03-validation/index.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
+| `02-brand-overview/04-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
+| `02-brand-overview/04-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
+| `03-validation/01-owner-calls.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
 | `03-validation/02-funding.html` | EverSmith Funding Overview | `0Z9bjsRKN5c` |
 | `03-validation/02-funding.html` | EverSmith Self Funding Overview | `oSIvxdHtO-o` |
 | `03-validation/02-funding.html` | EverSmith Home Equity Funding | `TFpdCqMtxQQ` |
@@ -120,13 +117,14 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 
 | Page | Awaiting |
 |---|---|
-| `02-brand-overview/03-additional-resources.html` | General Franchising Concepts series |
-| `02-brand-overview/03-additional-resources.html` | executive perspective on business ownership readiness |
-| `03-validation/02-funding.html` | ROBS Explained |
+| `02-brand-overview/04-additional-resources.html` | General Franchising Concepts series |
+| `02-brand-overview/04-additional-resources.html` | executive perspective on business ownership readiness |
+| `03-validation/01-owner-calls.html` | Owner testimonial videos |
+| `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
+| `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
 | `03-validation/03-territory.html` | Territory Design and DBA |
-| `04-seeking-approval/index.html` | Seeking Approval Overview |
-| `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Call prep |
-| `04-seeking-approval/02-dap-contingencies.html` | Development Action Plan and Document Acknowledgment |
+| `03-validation/04-technology.html` | QuickBooks Online overview |
+| `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements |
 | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | Design Your Life |
 | `05-meet-the-team-day/03-meet-the-team-day.html` | MTTD logistics |
 

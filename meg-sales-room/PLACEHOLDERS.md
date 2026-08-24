@@ -11,9 +11,9 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 | Ref | Unknown | Pages | Note |
 |---|---|---|---|
 | `PH-01` | Funnel selectivity figures | 1.1, 4.1, 4.2 | Source used "4 of every 100", "fewer than 5%", "2 out of 3 awarded". Pull 1TP's actuals. The number *is* the credibility of the claim — a wrong one is worse than none |
-| `PH-02` | Technology vendor stack | 3.4 | Six platforms: CRM/FSM, financial analysis, ATS, reviews/NPS, productivity, resource library |
-| `PH-03` | Technology pricing | 3.4 | One-time setup, monthly fee, CRM per-seat tiers for admin and field tech |
-| `PH-04` | Technology sourcing entity | 3.4 | The party that negotiates vendor pricing and collects payment |
+| `PH-02` | Technology vendor stack | 3.4 | **Partially resolved (Aug 4 punch list):** ServiceTitan, CareerPlug, QuickBooks Online (required). Still open: reviews/NPS, productivity, resource library |
+| `PH-03` | Technology pricing | 3.4 | **Reworked (Aug 4 punch list):** pricing now points at Item 7; 1-Tom has no setup fee; fees $1,000-$8,000/mo direct to vendors. Acknowledgment copy blocked on a 1-Tom working session |
+| `PH-04` | ~~Technology sourcing entity~~ | 3.4 | **Resolved:** EverSmith Strategic Partnerships (deliberately unlinked on the page). It does NOT collect payment — fees go direct to vendors |
 | `PH-05` | Onboarding program name | 6.4 | Do **not** default to "Sure Start" — that is the source brand's program name, and PIRTEK uses it too |
 | `PH-06` | Referral program name and all figures | 6.4 | Source: $5,000 per placement, $1,350 quarterly drawing, Reunion travel, $5,000 live drawing, Apr 1–Mar 31 award year. Replace entirely or cut the section |
 | `PH-07` | Item 19 status | ~~2.2~~, 3.1 | **Resolved on 2.2** — John's rebuilt FDD page drops the flag and keeps the neutral Item 19 note. 3.1's gate still carries the full explanation |
@@ -37,7 +37,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 | Ref | Unknown | Pages |
 |---|---|---|
 | `PH-13` | President of 1-Tom-Plumber — name | 2.3 |
-| `PH-14` | Executive Approval Call — title of who runs it | 4.1 |
+| `PH-14` | ~~Executive Approval Call — title of who runs it~~ | 4.1 — **Resolved (Aug 4):** John Dobelbower plus the brand leader host the call |
 | `PH-15` | Operations Team org chart | 5.1 — names, titles, and what each person owns in the owner's business after opening |
 | `PH-16` | Onboarding coordinator title | 6.4 |
 | `PH-17` | Countersignature routing chain | 6.2 — source routed through brand President, then a second entity president |
@@ -51,7 +51,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 |---|---|---|
 | `PH-19` | Culture framework | 2.3 — source brand had a named one |
 | `PH-20` | Podcast and press feature list | 2.3 |
-| `PH-21` | Owner Q&A call cadence | 3.1 — day, time, timezone, platform, dial-in |
+| `PH-21` | ~~Owner Q&A call cadence~~ | 3.1 — **Superseded (Aug 4):** per-candidate Teams link + add-to-calendar buttons replace the posted cadence |
 | `PH-22` | Territory design criteria | 3.3 — see note below |
 | `PH-23` | "Stop Chasing Two Rabbits" equivalent | 2.3 — needs a 1TP or EverSmith executive to record |
 | `PH-24` | MTTD agenda and logistics | 5.3 |

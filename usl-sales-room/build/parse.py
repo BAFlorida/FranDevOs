@@ -63,7 +63,7 @@ PH_REFS = [
     ("resource library", "PH-02"), ("sourcing entity", "PH-04"),
     ("referral program", "PH-06"), ("Item 19", "PH-07"),
     ("background check", "PH-09"), ("behavioral assessment", "PH-10"),
-    ("procurement", "PH-11"), ("President of U.S. Lawns", "PH-13"),
+    ("technology fee acknowledgment", "PH-03"), ("procurement", "PH-11"), ("President of U.S. Lawns", "PH-13"),
     ("name], President", "PH-13"), ("executive title", "PH-14"),
     ("org chart", "PH-15"), ("countersignature", "PH-17"),
     ("Brand Welcome Call detail", "PH-18"), ("culture framework", "PH-19"),
@@ -73,6 +73,7 @@ PH_REFS = [
 
 GATE_IDS = [
     ("Franchise Developer can only speak", "item19"),
+    ("signed the Item 23 receipt", "fdd-receipt"),
     ("unique physical address", "address"),
     ("one-time technology fee", "tech-fee-timing"),
     ("Personal Monthly Household Responsibilities", "household-expenses"),

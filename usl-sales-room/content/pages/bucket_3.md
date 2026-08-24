@@ -4,24 +4,6 @@ Original MEG language, brand-swapped to U.S. Lawns. Render this copy as written.
 
 ---
 
-## PAGE: 03-validation/index.html
-
-**Eyebrow:** Stage 3 of 6
-**H1:** Validation
-**Lede:** Talk directly to current U.S. Lawns franchise owners.
-
-### BODY
-
-[VIDEO: EverSmith Validation Overview]
-
-One of the most exciting steps in the Mutual Evaluation Process is connecting with owners.
-
-This stage covers four things. Who you talk to and what to ask them. How you will fund the business. The territory you will own. And the technology you will run it on.
-
-What our owners tell you carries more weight than anything we have said. That is by design.
-
----
-
 ## PAGE: 03-validation/01-owner-calls.html
 
 **Eyebrow:** Stage 3 · Step 1 of 4
@@ -30,9 +12,19 @@ What our owners tell you carries more weight than anything we have said. That is
 
 ### BODY
 
-With your Qualification Summary and Credit Report submitted, introductions are made. We host conference calls with owners and prospective candidates.
+[VIDEO: EverSmith Validation Overview]
 
-[PLACEHOLDER: owner call cadence — day, time, timezone, platform, dial-in]
+With your Qualification Summary submitted, introductions are made. We host conference calls with owners and prospective candidates.
+
+What our owners tell you carries more weight than anything we have said. That is by design. Owner calls and funding run in tandem — work them both with your Franchise Developer rather than waiting on one to finish the other.
+
+### H2: Your Call Link
+
+Owner calls run on Microsoft Teams. The button below is your meeting link — it is the one thing you need from this page at call time, so keep it handy and open it straight from your phone.
+
+[LINK: Join Your Owner Call — Microsoft Teams | owner-call-teams]
+
+[LINK: Add to Calendar | owner-call-calendar]
 
 ### GATE — acknowledgment, required, blocking
 
@@ -44,14 +36,11 @@ With your Qualification Summary and Credit Report submitted, introductions are m
 
 *Render above the fold. This gate must block advancement.*
 
-### H2: Questions to Ask a Franchise Owner
+### H2: Hear From Our Owners
 
-Use the guide below to structure and capture your calls. Take notes during each conversation. Your Franchise Developer will debrief them with you.
+[VIDEO SLOT — PENDING: Owner testimonial videos]
 
-[DOWNLOAD: Questions to Ask a Franchise Owner]
-
-### NEXT
-Complete your owner calls, then continue to Funding.
+Take notes during each conversation. Your Franchise Developer will debrief them with you.
 
 ---
 
@@ -108,6 +97,8 @@ Every funding partner requires a Personal Financial Statement.
 
 Your spouse must sign the PFS even if they are not on the loan.
 
+[VIDEO SLOT — PENDING: SBA lending partner overview — vendor slot (First Financial / FranFund)]
+
 ### H2: ROBS Funding
 
 ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to capitalize your business without early withdrawal penalties. It can move as fast as 10 days.
@@ -118,7 +109,7 @@ ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to cap
 3. Transfer your existing retirement funds into the new plan.
 4. The plan purchases stock in the new C Corporation, capitalizing the business.
 
-[VIDEO SLOT — PENDING: ROBS Explained]
+[VIDEO SLOT — PENDING: ROBS provider overview — vendor slot (Benetrends / Tenet)]
 
 ### H2: Self-Funding
 
@@ -183,18 +174,12 @@ Continue to Understanding Your Brand's Technology.
 ## PAGE: 03-validation/04-technology.html
 
 **Eyebrow:** Stage 3 · Step 4 of 4
-**H1:** Understanding Your Brand's Technology
+**H1:** How Technology and Sourcing Works
 **Lede:** The platforms you will run the business on, and what they cost.
 
 ### BODY
 
-[VIDEO: ServiceTitan Overview]
-
-### H2: How Technology Sourcing Works
-
-[PLACEHOLDER: sourcing entity] sources our software platforms and negotiates vendor pricing using the scale of the full portfolio. They hold vendors accountable and provide support when something breaks.
-
-Every brand's package is different. There is a one-time setup fee plus a monthly payment. [PLACEHOLDER: sourcing entity] collects from you and pays the vendors.
+EverSmith Strategic Partnerships sources our software platforms, as you learned in Additional Brand Specific Resources.
 
 ### H2: Your Package
 
@@ -202,34 +187,24 @@ Every brand's package is different. There is a one-time setup fee plus a monthly
 | Platform | Function |
 | ServiceTitan | Customer and technician management, dispatch, scheduling |
 | CareerPlug | Recruiting and applicant tracking |
-| [PLACEHOLDER: financial analysis] | Financial reporting, used with your Franchise Business Coach |
+| QuickBooks Online | Accounting and financial reporting, used with your Franchise Business Coach. A required system |
 | [PLACEHOLDER: reviews / NPS] | Review generation and Net Promoter Score |
 | [PLACEHOLDER: productivity] | Email and productivity licenses |
 | [PLACEHOLDER: resource library] | Franchise resource library and documentation |
 
+### H2: Your Platforms, Explained
+
+[VIDEO: ServiceTitan Overview]
+
 [VIDEO: EverSmith Career Plug]
+
+[VIDEO SLOT — PENDING: QuickBooks Online overview]
 
 ### H2: Pricing
 
-**TABLE:**
-| Line Item | Cost |
-| One-time setup fee | [PLACEHOLDER] |
-| Monthly technology fee | [PLACEHOLDER] |
-| ServiceTitan — first admin user and field technician | [PLACEHOLDER] |
-| Each additional admin user | [PLACEHOLDER] |
-| Each additional field technician | [PLACEHOLDER] |
+Your technology pricing comes directly from Item 7 of the Franchise Disclosure Document — review the numbers there with your Franchise Developer. [PLACEHOLDER: confirm against Item 7 whether U.S. Lawns has a one-time setup fee and how technology fees are billed.]
 
-Pricing subject to change.
-
-### GATE — acknowledgment, required
-
-**Label:** Required acknowledgment
-
-**Statement:** I understand that the one-time technology fee and my first monthly payment will draft within a few weeks of being awarded, and that this may occur before my SBA or ROBS funding has completed.
-
-**Checkbox label:** I understand
-
-*This gate exists because the timing surprises people. Surfacing it here prevents a hard conversation later.*
+[PLACEHOLDER: technology fee acknowledgment — the shared acknowledgment was wrong (EverSmith does not collect these fees; the 1-Tom fee range does not transfer). Confirm how U.S. Lawns technology fees are billed and rewrite the acknowledgment.]
 
 ### NEXT
 Continue to Stage 4, Seeking Approval.

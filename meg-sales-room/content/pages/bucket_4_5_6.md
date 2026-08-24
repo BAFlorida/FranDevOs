@@ -4,24 +4,6 @@ Original MEG language, brand-swapped to 1-Tom-Plumber. Render this copy as writt
 
 ---
 
-## PAGE: 04-seeking-approval/index.html
-
-**Eyebrow:** Stage 4 of 6
-**H1:** Seeking Approval
-**Lede:** Present your case to executive leadership and build your timeline.
-
-### BODY
-
-[VIDEO SLOT — PENDING: Seeking Approval Overview]
-
-Up to this point, your Franchise Developer has been presenting the BRAND to YOU.
-
-That flips now. In this stage, they present YOU to the BRAND.
-
-Two things happen here. You meet with an executive. If approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.
-
----
-
 ## PAGE: 04-seeking-approval/01-executive-approval-call.html
 
 **Eyebrow:** Stage 4 · Step 1 of 2
@@ -30,31 +12,35 @@ Two things happen here. You meet with an executive. If approved, your Franchise 
 
 ### BODY
 
-[VIDEO SLOT — PENDING: Executive Approval Call prep]
+Up to this point, your Franchise Developer has been presenting the BRAND to YOU.
+
+That flips now. In this stage, they present YOU to the BRAND. Two things happen here: you meet with brand leadership, and if approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.
+
+[VIDEO SLOT — PENDING: Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements]
 
 ### H2: What This Milestone Means
 
 Reaching this stage means you are being considered for an invitation to Meet The Team Day, our brand orientation event at headquarters.
 
-[PLACEHOLDER: 1TP selectivity figures. The original read "fewer than 5% of candidates introduced to a Franchise Developer are eventually invited to Meet The Team Day" and "statistically, only 2 out of 3 candidates who attend are awarded a franchise." Pull 1TP's actuals before publishing.]
+[PLACEHOLDER: 1TP selectivity figures. John wants the placeholder stats replaced with real numbers. The original read "fewer than 5% of candidates introduced to a Franchise Developer are eventually invited to Meet The Team Day" and "statistically, only 2 out of 3 candidates who attend are awarded a franchise." Pull 1TP's actuals before publishing.]
 
 ### H2: Who You Will Meet
 
-Our [PLACEHOLDER: executive title] will meet with you, and with your spouse or partner if they are part of this decision.
+John Dobelbower and the 1-Tom-Plumber brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
 
-This is not a grueling interview. It is informal. The purpose is for our executive to understand your interest in their brand, and to validate that your Franchise Developer has guided you thoroughly through the process.
+This is not a grueling interview. It is informal. The purpose is for brand leadership to understand your interest in the brand, and to validate that your Franchise Developer has guided you thoroughly through the process.
 
-By this point, our executive often already knows a great deal about you. Your Franchise Developer has been advocating for you internally the whole way. It is not unusual for the invitation to Meet The Team Day to be extended on this first call.
+By this point, they often already know a great deal about you. Your Franchise Developer has been advocating for you internally the whole way. It is not unusual for the invitation to Meet The Team Day to be extended on this first call.
 
-### H2: The Frame
+### H2: Where This Call Fits
 
-**Meet The Team Day is more of a validation of a decision you have already made in your mind.**
+By the time you attend Meet The Team Day, you should already be confident in your decision. This call is where we confirm you are there.
 
-That is the honest framing. If you arrive at Meet The Team Day still deciding whether you want this, something earlier in the process did not work. This call is where we confirm you are past that point.
+If you are still undecided, say so — that is useful information, and it means something earlier in the process deserves another pass before you travel.
 
 ### H2: What Happens If You Are Approved
 
-If our executive approves you for Meet The Team Day, they will ask your Franchise Developer to do two things.
+If brand leadership approves you for Meet The Team Day, they will ask your Franchise Developer to do two things.
 
 1. Build your timeline. A specific plan from orientation through training to your Grand Opening.
 2. Draft your sample set of agreements. Populated with your specific territory, demographics, and the nuances of your situation.
@@ -65,7 +51,9 @@ Both arrive in the next step.
 
 Be ready to speak to why business ownership and why now. What you heard from owners during Validation, in your own words. Your funding path and where it stands. The territory you want and why. Your timeline to open.
 
-Bring the questions you have not been able to get answered elsewhere. Our executive has visibility your Franchise Developer does not.
+Dress for success — treat this like the business meeting it is. If you are joining by video, check your camera and lighting ahead of time so you are clearly visible.
+
+Bring the questions you have not been able to get answered elsewhere. Brand leadership has visibility your Franchise Developer does not.
 
 ### NEXT
 Attend your Executive Approval Call, then continue to your Development Action Plan.
@@ -80,13 +68,13 @@ Attend your Executive Approval Call, then continue to your Development Action Pl
 
 ### BODY
 
-[VIDEO SLOT — PENDING: Development Action Plan and Document Acknowledgment]
-
 ### H2: Your Development Action Plan
 
 The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.
 
 It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and your funding path. An SBA timeline moves differently than a ROBS timeline, which moves differently than cash.
+
+**Your Franchise Developer builds your timeline after your Executive Approval Call, then walks you through it.** This section fills in once your timeline is uploaded — it is not something you fill out yourself.
 
 [DOWNLOAD: Your Development Action Plan]
 
@@ -99,8 +87,8 @@ You saw these agreements listed in FDD Item 22. Now you will see them filled in 
 **TABLE:**
 | # | Item | Notes |
 | 1 | Qualification Summary | Updated from Stage 2 if anything has changed |
-| 2 | Credit Report | Your Experian self-pull |
-| 3 | FDD Receipt | The executed receipt page from Item 23 |
+| 2 | B-Verify Report | From your B-Verify review in Stage 2 |
+| 3 | FDD Receipt | The executed Item 23 receipt, collected in the Franchise Disclosure Document Review section |
 | 4 | Territory Map | Marketing runs the DBA smell test on it |
 | 5 | Franchise Proposal | Fee investment derived from the map. Equity injection based on your funding path |
 | 6 | SBA Pre-Approval Letter | If you are funding through SBA |

@@ -29,6 +29,11 @@ SWAPS = [
      "Adapted from the 1-Tom source as reconciled 2026-08-19 to the live CMS baseline:\n"
      "B-Verify financial and background verification, no sub-step list or closing\n"
      "pointer card on index pages, and the pointer as prose in the body copy."),
+    # Technology pricing facts are 1-Tom's; they do not transfer.
+    ('1-Tom-Plumber has no one-time setup fee. Technology fees are paid directly to the vendors.',
+     '[PLACEHOLDER: confirm against Item 7 whether U.S. Lawns has a one-time setup fee and how technology fees are billed.]'),
+    ("[PLACEHOLDER: technology fee acknowledgment — the previous acknowledgment was wrong: EverSmith does not collect these fees. 1-Tom-Plumber's technology fees run $1,000 to $8,000 per month paid direct to the vendors, and the arrangement needs a working session with 1-Tom-Plumber before candidate-facing acknowledgment copy can be written.]",
+     '[PLACEHOLDER: technology fee acknowledgment — the shared acknowledgment was wrong (EverSmith does not collect these fees; the 1-Tom fee range does not transfer). Confirm how U.S. Lawns technology fees are billed and rewrite the acknowledgment.]'),
     ("1-Tom-Plumber", "U.S. Lawns"),
     ("1TP", "USL"),
     # The welcome video is brand-specific; 1-Tom's exists, U.S. Lawns' is not
@@ -126,7 +131,7 @@ Continue to Stage 3, Validation.
 
 OVERRIDES = {
     "03-validation/03-territory.html": TERRITORY,
-    "02-brand-overview/03-additional-resources.html": RESOURCES,
+    "02-brand-overview/04-additional-resources.html": RESOURCES,
 }
 
 changed = {}

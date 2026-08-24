@@ -40,7 +40,7 @@ readme += ["", "Everything here matches John's conventions: .btn links with data
            'fix: the stray "---" paragraph pasted before each closing line.', ""]
 open(os.path.join(out, "README.md"), "w").write("\n".join(readme))
 
-zpath = os.path.join(ROOT, "1tp-meg-remaining-19-pages.zip")
+zpath = os.path.join(ROOT, "1tp-meg-remaining-pages.zip")
 if os.path.exists(zpath): os.remove(zpath)
 subprocess.run(["zip", "-q", "-r", zpath, "."], cwd=out, check=True)
 print(f"  {len(MINE)} pages -> dist-remaining/ and {os.path.basename(zpath)}")
