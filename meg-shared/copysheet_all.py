@@ -44,6 +44,10 @@ JOHNS = {
     "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
     "02-brand-overview/02-fdd.html",
 }
+# 1-Tom pages that are now ahead of the CMS - re-pasting takes the change live.
+CMS_AHEAD = {
+    "02-brand-overview/index.html": "adds the Brand Overview video · re-paste to take it live",
+}
 CMS_DASH_FIX = {
     "03-validation/01-owner-calls.html", "03-validation/02-funding.html",
     "03-validation/03-territory.html",
@@ -96,7 +100,9 @@ for bid, folder, name, acc, acc_dark in BRANDS:
         kind = "Bucket index" if rel.endswith("index.html") else "Sub-step"
         kb = f"{len(src.encode('utf-8')) / 1024:.0f} KB"
         chips = ""
-        if bid == "meg" and rel in JOHNS:
+        if bid == "meg" and rel in CMS_AHEAD:
+            chips += f'<span class="chip chip-fix">{html.escape(CMS_AHEAD[rel])}</span>'
+        elif bid == "meg" and rel in JOHNS:
             chips += '<span class="chip">matches John\'s live copy · paste embeds fonts</span>'
         if bid == "meg" and rel in CMS_DASH_FIX:
             chips += '<span class="chip chip-fix">re-paste clears the CMS "---"</span>'

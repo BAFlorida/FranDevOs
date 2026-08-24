@@ -35,6 +35,9 @@ VIDEOS = {
     # John's rebuilt Welcome page carries the room-explanation video captioned
     # simply "Welcome"; the id is the same recording.
     "Welcome": "fcaSfWLHMh8",
+    # The page copy promises "the video entitled, 'Brand Overview'" - the
+    # caption matches that promise. Supplied 2026-08-24.
+    "Brand Overview": "Q0EAo3Ix3gI",
     "1-Tom Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
@@ -58,6 +61,7 @@ VIDEOS = {
 # Iframe title attributes that differ from the caption name, per John's pages.
 VIDEO_TITLES = {
     "Welcome": "Welcome — 1-Tom-Plumber Mutual Evaluation Guide",
+    "Brand Overview": "Brand Overview — 1-Tom-Plumber Mutual Evaluation Guide",
 }
 
 # Maps a placeholder's text to its PLACEHOLDERS.md reference.

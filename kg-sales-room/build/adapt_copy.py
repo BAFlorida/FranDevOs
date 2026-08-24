@@ -42,7 +42,9 @@ SWAPS = [
     # 1-Tom title.
     ("[VIDEO: 1-Tom Service Titan Overview]",
      "[VIDEO: ServiceTitan Overview]"),
-    ("[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview]",
+    # 1-Tom's Brand Overview video is live (2026-08-24); Kitchen Guard's is
+    # still a drafted script, so the embed becomes a pending slot here.
+    ("[VIDEO: Brand Overview]",
      "[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview — script V3 drafted, not recorded]"),
 ]
 

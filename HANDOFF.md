@@ -84,6 +84,10 @@ rows that clear the CMS `---` bug, and John's five, are chip-labelled.
 
 ## CMS fixes still owed (1-Tom room)
 
+- **The Brand Overview video is now live in our build** (`Q0EAo3Ix3gI`,
+  supplied 2026-08-24, captioned "Watch · Brand Overview" as the page copy
+  promises) but the CMS still shows the pending slot - re-paste
+  `02-brand-overview/index.html` from the copy sheet to take it live.
 - **A literal `---` paragraph** shows above the closing line on 12 pages,
   pasted from a pre-fix build: Validation 1-3, Seeking Approval 1-2, all four
   Meet The Team Day sections, Agreement Stage 1-3. Delete the paragraph or

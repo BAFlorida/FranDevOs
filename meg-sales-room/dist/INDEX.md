@@ -17,7 +17,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 |---|---|---|---|---|---|---|---|
 | 1 | Welcome | `01-welcome/index.html` | 1 | - | - | 1 embed | - |
 | 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 1 | - | - | 1 embed | - |
-| 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 pending | - |
+| 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 embed | - |
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
 | 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 2 | - | - | 1 embed | - |
 | 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 3 | - | - | 2 embeds, 2 pending | - |
@@ -40,7 +40,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 23 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | 1 | 1 embed | 1 |
 | 24 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 3 | - | 1 | - | 1 |
 
-**Totals:** 62 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 17 video embeds, 10 pending video slots, 15 asset slots.
+**Totals:** 62 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 18 video embeds, 9 pending video slots, 15 asset slots.
 
 
 ## Compliance gates
@@ -99,6 +99,7 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 |---|---|---|
 | `01-welcome/index.html` | Welcome — 1-Tom-Plumber Mutual Evaluation Guide | `fcaSfWLHMh8` |
 | `01-welcome/01-mep-end-to-end.html` | EverSmith Mutual Evaluation Process End to End | `KvjiPmr-JAw` |
+| `02-brand-overview/index.html` | Brand Overview — 1-Tom-Plumber Mutual Evaluation Guide | `Q0EAo3Ix3gI` |
 | `02-brand-overview/01-qualification-summary.html` | EverSmith Qualification Summary Overview | `GWB3gkycrKw` |
 | `02-brand-overview/02-fdd.html` | EverSmith Franchise Disclosure Document Overview | `udCsGBIY1Rs` |
 | `02-brand-overview/03-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
@@ -119,7 +120,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 
 | Page | Awaiting |
 |---|---|
-| `02-brand-overview/index.html` | 1-Tom-Plumber Brand Overview |
 | `02-brand-overview/03-additional-resources.html` | General Franchising Concepts series |
 | `02-brand-overview/03-additional-resources.html` | executive perspective on business ownership readiness |
 | `03-validation/02-funding.html` | ROBS Explained |

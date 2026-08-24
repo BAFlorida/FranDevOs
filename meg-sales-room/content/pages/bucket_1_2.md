@@ -71,7 +71,7 @@ This is a mutual evaluation. We are deciding about each other. At every stage, e
 
 ### BODY
 
-[VIDEO SLOT — PENDING: 1-Tom-Plumber Brand Overview]
+[VIDEO: Brand Overview]
 
 **LET'S GET STARTED!**
 
