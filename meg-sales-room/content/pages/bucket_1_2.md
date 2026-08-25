@@ -257,11 +257,11 @@ Click each item below to go deeper on the parts of the business that matter most
 
 ### H2: Inside 1-Tom-Plumber
 
-Three ways to go deeper on the brand itself: the vendor discounts that come with the system, a look inside headquarters, and a long-form conversation with EverSmith Brands CEO Justin Ghadery on whether this franchise is worth it.
-
-[VIDEO: 1-Tom Vendor Discounts]
+Three ways to go deeper on the brand itself: a look inside headquarters, the vendor discounts that come with the system, and a long-form conversation with EverSmith Brands CEO Justin Ghadery on whether this franchise is worth it.
 
 [VIDEO: Exclusive Behind the Scenes at 1-Tom-Plumber HQ]
+
+[VIDEO: 1-Tom Vendor Discounts]
 
 [VIDEO: Is It Worth It in 2026? — EverSmith Brands CEO Justin Ghadery]
 

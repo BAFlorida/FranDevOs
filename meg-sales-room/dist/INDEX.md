@@ -87,8 +87,8 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `02-brand-overview/02-fdd.html` | EverSmith Franchise Disclosure Document Overview | `udCsGBIY1Rs` |
 | `02-brand-overview/04-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
 | `02-brand-overview/04-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
-| `02-brand-overview/04-additional-resources.html` | 1-Tom Vendor Discounts | `pgp80YAD5Xc` |
 | `02-brand-overview/04-additional-resources.html` | Exclusive Behind the Scenes at 1-Tom-Plumber HQ | `ot_QVMHzBMU` |
+| `02-brand-overview/04-additional-resources.html` | 1-Tom Vendor Discounts | `pgp80YAD5Xc` |
 | `02-brand-overview/04-additional-resources.html` | 1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands CEO Justin Ghadery | `wKzLSE13k7w` |
 | `03-validation/01-owner-calls.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
 | `03-validation/02-funding.html` | EverSmith Funding Overview | `0Z9bjsRKN5c` |
