@@ -16,7 +16,7 @@ Up to this point, your Franchise Developer has been presenting the BRAND to YOU.
 
 That flips now. In this stage, they present YOU to the BRAND. Two things happen here: you meet with brand leadership, and if approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.
 
-[VIDEO SLOT — PENDING: Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements]
+[VIDEO: Executive Approval Overview]
 
 ### H2: What This Milestone Means
 
@@ -109,20 +109,6 @@ You have not been presented to the Executive Committee. You have not been awarde
 
 Please acknowledge promptly. The hold clock does not start until you do.
 
-### H2: DocuSign Walkthrough
-
-**STEPS:**
-1. Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.
-2. You receive a second email from DocuSign, "Step One: Begin Signing Process."
-3. Log in with the credentials from the first email.
-4. Accept the Terms.
-5. Sign your name exactly as it appears on the document.
-6. Complete the signing process.
-
-If anything does not work, contact your Franchise Developer. Do not create a second account.
-
-### NEXT
-Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.
 
 ---
 

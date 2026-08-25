@@ -26,8 +26,8 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
 | 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
 | 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
-| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | - | 1 pending | - |
-| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 5 | - | - | - | 1 |
+| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | - | 1 embed | - |
+| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 4 | - | - | - | 1 |
 | 14 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
 | 15 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
 | 16 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | - | 1 embed, 1 pending | 2 |
@@ -39,7 +39,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 22 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | 1 |
 | 23 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
 
-**Totals:** 61 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 22 video embeds, 7 pending video slots, 18 asset slots.
+**Totals:** 60 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 6 pending video slots, 18 asset slots.
 
 
 ## Compliance gates
@@ -99,6 +99,7 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `03-validation/03-territory.html` | Territory Design and DBA — 1-Tom-Plumber Mutual Evaluation Guide | `HI9J76Spg20` |
 | `03-validation/04-technology.html` | 1-Tom Service Titan Overview | `kXK6u3O8hCU` |
 | `03-validation/04-technology.html` | EverSmith Career Plug | `3aL_T7_3Ojo` |
+| `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Overview — 1-Tom-Plumber Mutual Evaluation Guide | `CJJgOxVUhVg` |
 | `05-meet-the-team-day/01-what-who-to-expect.html` | EverSmith Meet The Team Day | `LBU9FTGv0NE` |
 | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | EverSmith Pre-MTTD | `3wI0n4g9eOQ` |
 | `06-agreement-stage/01-executive-board-approval.html` | EverSmith Executive Board Approval | `qDuHvclW0kk` |
@@ -113,7 +114,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
 | `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
 | `03-validation/04-technology.html` | QuickBooks Online overview |
-| `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements |
 | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | Design Your Life |
 | `05-meet-the-team-day/03-meet-the-team-day.html` | MTTD logistics |
 

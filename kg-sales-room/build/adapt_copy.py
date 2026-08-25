@@ -49,6 +49,8 @@ SWAPS = [
      "[VIDEO: ServiceTitan Overview]"),
     # 1-Tom's Brand Overview video is live (2026-08-24); Kitchen Guard's is
     # still a drafted script, so the embed becomes a pending slot here.
+    ("[VIDEO: Executive Approval Overview]",
+     "[VIDEO SLOT — PENDING: Kitchen Guard Executive Approval Overview — covers the call and the DAP]"),
     ("[VIDEO: Brand Overview]",
      "[VIDEO SLOT — PENDING: Kitchen Guard Brand Overview — script V3 drafted, not recorded]"),
 ]

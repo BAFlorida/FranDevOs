@@ -50,6 +50,8 @@ SWAPS = [
      "[VIDEO: ServiceTitan Overview]"),
     # 1-Tom's Brand Overview video is live (2026-08-24); The Seals' is not
     # recorded, so the embed becomes a pending slot here.
+    ("[VIDEO: Executive Approval Overview]",
+     "[VIDEO SLOT — PENDING: The Seals Executive Approval Overview — covers the call and the DAP]"),
     ("[VIDEO: Brand Overview]",
      "[VIDEO SLOT — PENDING: The Seals Brand Overview]"),
 ]
