@@ -49,11 +49,12 @@ Franchising + Is Business Ownership sections · every placeholder flag
 
 ### Still pending for 1-Tom
 - Videos: owner testimonials (IDs from John's folder), SBA + ROBS vendor
-  slots, QuickBooks Online, MTTD logistics; one validation video is cut off
-  (Ryan to identify).
+  slots, MTTD logistics; one validation video is cut off (Ryan to identify).
+  QuickBooks Online went live 2026-08-25 (`uaUmFB9tv-w`).
 - Wiring (`href="#"` + data-asset): Teams owner-call link + add-to-calendar,
-  the qualification-review scheduler, SBA PFS PDF, MTTD handout, pre/post
-  MTTD forms, behavioral assessment, Reasons form.
+  the qualification-review scheduler, MTTD handout, pre/post MTTD forms,
+  behavioral assessment, Reasons form. SBA PFS wired 2026-08-25 to the
+  legacy.sba.gov Form 413 page.
 - Facts (see PLACEHOLDERS.md): selectivity stats, remaining tech stack,
   tech-fee acknowledgment (working session), President's name, culture
   framework, podcast list, territory criteria text, MTTD agenda, org chart,

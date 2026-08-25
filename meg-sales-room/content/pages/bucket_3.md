@@ -196,7 +196,7 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 
 [VIDEO: EverSmith Career Plug]
 
-[VIDEO SLOT — PENDING: QuickBooks Online overview]
+[VIDEO: QuickBooks Online Overview]
 
 ### H2: Pricing
 

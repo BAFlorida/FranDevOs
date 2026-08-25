@@ -172,6 +172,8 @@ ASSET_URLS = {
     "form:culture-index-survey":
         "https://surveys.cultureindex.com/s/unupYpLkij/114568",
     "link:b-verify": "https://bverify.boefly.com/eversmith",
+    "download:sba-personal-financial-statement-fillable-pdf":
+        "https://legacy.sba.gov/document/sba-form-413-personal-financial-statement",
 }
 
 

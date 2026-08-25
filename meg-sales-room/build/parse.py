@@ -57,6 +57,8 @@ VIDEOS = {
     "EverSmith Home Equity Funding": "TFpdCqMtxQQ",
     "1-Tom Service Titan Overview": "kXK6u3O8hCU",
     "EverSmith Career Plug": "3aL_T7_3Ojo",
+    # Supplied 2026-08-25.
+    "QuickBooks Online Overview": "uaUmFB9tv-w",
     "EverSmith Meet The Team Day": "LBU9FTGv0NE",
     "EverSmith Pre-MTTD": "3wI0n4g9eOQ",
     "EverSmith Executive Board Approval": "qDuHvclW0kk",
