@@ -215,7 +215,7 @@ Three things happen in this stage. The Executive Committee makes its decision. Y
 
 ## PAGE: 06-agreement-stage/01-executive-board-approval.html
 
-**Eyebrow:** Stage 6 · Step 1 of 4
+**Eyebrow:** Stage 6 · Step 1 of 3
 **H1:** Executive Board Approval
 **Lede:** How the decision actually gets made.
 
@@ -272,7 +272,7 @@ On approval, continue to Executing Your Franchise Agreement.
 
 ## PAGE: 06-agreement-stage/02-executing-your-agreement.html
 
-**Eyebrow:** Stage 6 · Step 2 of 4
+**Eyebrow:** Stage 6 · Step 2 of 3
 **H1:** Executing Your Franchise Agreement
 **Lede:** You are truly in elite air.
 
@@ -295,7 +295,7 @@ Once executed, schedule your Brand Welcome Call.
 
 ## PAGE: 06-agreement-stage/03-brand-welcome-call.html
 
-**Eyebrow:** Stage 6 · Step 3 of 4
+**Eyebrow:** Stage 6 · Step 3 of 3
 **H1:** Brand Welcome Call
 **Lede:** Your handoff into Sure Start.
 
@@ -304,25 +304,6 @@ Once executed, schedule your Brand Welcome Call.
 [VIDEO: EverSmith Welcome Call]
 
 Your Franchise Developer schedules this call on your behalf and will tell you who joins and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
-
-### NEXT
-Continue to your Sure Start introduction.
-
----
-
-## PAGE: 06-agreement-stage/04-thank-you.html
-
-**Eyebrow:** Stage 6 · Step 4 of 4
-**H1:** Thank You For Putting Your Trust In Us
-**Lede:** Welcome to 1-Tom-Plumber.
-
-### BODY
-
-### H2: Sure Start
-
-Schedule your formal training introduction with our Sure Start Coordinator using the link below.
-
-[SCHEDULER: Schedule Sure Start Introduction]
 
 Your relationship with your Franchise Developer does not end here. They remain your biggest cheerleader. Your Sure Start Coordinator takes over the work of making sure your business is set up for the highest possible chance of success.
 

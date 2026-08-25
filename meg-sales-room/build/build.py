@@ -37,7 +37,7 @@ ORDER = [
     "05-meet-the-team-day/04-post-mttd-assessment.html",
     "06-agreement-stage/index.html", "06-agreement-stage/01-executive-board-approval.html",
     "06-agreement-stage/02-executing-your-agreement.html",
-    "06-agreement-stage/03-brand-welcome-call.html", "06-agreement-stage/04-thank-you.html",
+    "06-agreement-stage/03-brand-welcome-call.html",
 ]
 
 

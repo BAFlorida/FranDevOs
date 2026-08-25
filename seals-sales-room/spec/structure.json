@@ -1,7 +1,7 @@
 {
   "project": "1-Tom-Plumber MEG Sales Room",
   "revision": "2.0",
-  "page_count": 22,
+  "page_count": 21,
   "output_dir": "dist",
   "milestone_note": "Milestones are EXIT gates - completing the bucket produces the milestone. The milestones currently in the sales room are shifted one bucket forward starting at bucket 3. The 'proposed' values below correct that. 'current' shows what is in the tool today. Confirm before publishing.",
   "buckets": [
@@ -392,21 +392,8 @@
               "label": "Schedule Brand Welcome Call"
             }
           ],
-          "notes": "NO SOURCE CONTENT. This page does not exist in the source portal - it is a 1TP addition. Build as a structured stub: who is on the call, what gets covered, what the owner should bring, how it hands off to onboarding."
-        },
-        {
-          "n": 4,
-          "id": "04-thank-you",
-          "title": "Thank You For Putting Your Trust In Us",
-          "source": "stage_6_agreement.md :: Lesson 3 of 3 + Lesson 2 of 3",
-          "gates": [],
-          "assets": [
-            {
-              "type": "scheduler",
-              "label": "Schedule Onboarding Introduction"
-            }
-          ],
-          "notes": "Merge the closing thank-you with the onboarding-program introduction and the referral program. Onboarding program name and all referral figures are placeholders. Keep 'when we slow down on the front end, we can really speed up on the back end.'"
+          "notes": "NO SOURCE CONTENT. This page does not exist in the source portal - it is a 1TP addition. Build as a structured stub: who is on the call, what gets covered, what the owner should bring, how it hands off to onboarding.",
+          "note": "Thank You merged in 2026-08-25; the separate Sure Start intro call was removed as duplicate of this call."
         }
       ]
     }

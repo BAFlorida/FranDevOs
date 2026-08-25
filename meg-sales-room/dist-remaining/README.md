@@ -1,6 +1,6 @@
 # Remaining MEG pages
 
-17 pages. The 5 John has already rebuilt are deliberately
+16 pages. The 5 John has already rebuilt are deliberately
 excluded so his newer copy is not overwritten:
 
   - 01-welcome/01-mep-end-to-end.html

@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-22 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+21 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 22 pages
+## All 21 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -35,10 +35,9 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 18 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
 | 19 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
 | 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
-| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | - |
-| 22 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
+| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 56 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 15 asset slots.
+**Totals:** 55 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 14 asset slots.
 
 
 ## Compliance gates
