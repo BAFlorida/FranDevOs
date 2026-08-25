@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-21 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+20 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 21 pages
+## All 20 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -20,31 +20,29 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 embed | - |
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
 | 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 4 | - | - | 1 embed | - |
-| 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 1 | 1 checkbox | - | - | 1 |
-| 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 2 | - | - | 5 embeds | - |
-| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
-| 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
-| 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
-| 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
-| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
-| 13 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
-| 14 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
-| 15 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 1 | - | - | 1 embed | 2 |
-| 16 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
-| 17 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
-| 18 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
-| 19 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
-| 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
-| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
+| 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 2 | - | - | 5 embeds | - |
+| 7 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
+| 8 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
+| 9 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
+| 10 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
+| 11 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
+| 12 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
+| 13 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
+| 14 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 1 | - | - | 1 embed | 2 |
+| 15 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
+| 16 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
+| 17 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
+| 18 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
+| 19 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
+| 20 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 54 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 13 asset slots.
+**Totals:** 53 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 12 asset slots.
 
 
 ## Compliance gates
 
 | Page | Gate | Type |
 |---|---|---|
-| `02-brand-overview/03-fdd-review.html` | `fdd-receipt` | acknowledgment |
 | `03-validation/01-owner-calls.html` | `item19` | acknowledgment |
 | `03-validation/02-funding.html` | `household-expenses` | select |
 | `03-validation/02-funding.html` | `outside-coverage` | select |
@@ -85,11 +83,11 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `02-brand-overview/index.html` | Brand Overview — 1-Tom-Plumber Mutual Evaluation Guide | `Q0EAo3Ix3gI` |
 | `02-brand-overview/01-qualification-summary.html` | EverSmith Qualification Summary Overview | `GWB3gkycrKw` |
 | `02-brand-overview/02-fdd.html` | EverSmith Franchise Disclosure Document Overview | `udCsGBIY1Rs` |
-| `02-brand-overview/04-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
-| `02-brand-overview/04-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
-| `02-brand-overview/04-additional-resources.html` | Exclusive Behind the Scenes at 1-Tom-Plumber HQ | `ot_QVMHzBMU` |
-| `02-brand-overview/04-additional-resources.html` | 1-Tom Vendor Discounts | `pgp80YAD5Xc` |
-| `02-brand-overview/04-additional-resources.html` | 1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands CEO Justin Ghadery | `wKzLSE13k7w` |
+| `02-brand-overview/03-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
+| `02-brand-overview/03-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
+| `02-brand-overview/03-additional-resources.html` | Exclusive Behind the Scenes at 1-Tom-Plumber HQ | `ot_QVMHzBMU` |
+| `02-brand-overview/03-additional-resources.html` | 1-Tom Vendor Discounts | `pgp80YAD5Xc` |
+| `02-brand-overview/03-additional-resources.html` | 1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands CEO Justin Ghadery | `wKzLSE13k7w` |
 | `03-validation/01-owner-calls.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
 | `03-validation/02-funding.html` | EverSmith Funding Overview | `0Z9bjsRKN5c` |
 | `03-validation/02-funding.html` | EverSmith Self Funding Overview | `oSIvxdHtO-o` |

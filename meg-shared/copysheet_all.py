@@ -69,12 +69,18 @@ stores, tabs, panels, accents_light, accents_dark = [], [], [], [], []
 
 for bid, folder, name, acc, acc_dark in BRANDS:
     dist = os.path.join(ROOT, folder, "dist")
+    # A brand's dist can lag the shared ORDER while only 1-Tom is being
+    # iterated; list what that brand actually has, in ORDER order.
+    avail = [rel for rel in ORDER if os.path.exists(os.path.join(dist, rel))]
+    missing = [rel for rel in ORDER if rel not in avail]
+    if missing:
+        print(f"  note: {folder} dist lags ORDER by {len(missing)} page(s); listing what it has")
     pages = {rel: open(os.path.join(dist, rel), encoding="utf-8").read()
-             for rel in ORDER}
+             for rel in avail}
 
     head = None
     rows = []
-    for i, rel in enumerate(ORDER, 1):
+    for i, rel in enumerate(avail, 1):
         src = pages[rel]
         if "</script" in src.lower() or MARK in src:
             raise SystemExit(f"{folder}/{rel}: cannot be embedded raw")

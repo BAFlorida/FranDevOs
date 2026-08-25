@@ -24,8 +24,7 @@ from shell import FONTS_EMBEDDED, LOGO_MISSING  # noqa: E402
 ORDER = [
     "01-welcome/index.html", "01-welcome/01-mep-end-to-end.html",
     "02-brand-overview/index.html", "02-brand-overview/01-qualification-summary.html",
-    "02-brand-overview/02-fdd.html", "02-brand-overview/03-fdd-review.html",
-    "02-brand-overview/04-additional-resources.html",
+    "02-brand-overview/02-fdd.html", "02-brand-overview/03-additional-resources.html",
     "03-validation/01-owner-calls.html",
     "03-validation/02-funding.html", "03-validation/03-territory.html",
     "03-validation/04-technology.html",

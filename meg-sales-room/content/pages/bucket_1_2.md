@@ -85,7 +85,7 @@ Your Franchise Developer has set a meeting with you to debrief the video. Please
 
 ## PAGE: 02-brand-overview/01-qualification-summary.html
 
-**Eyebrow:** Stage 2 · Step 1 of 4
+**Eyebrow:** Stage 2 · Step 1 of 3
 **H1:** Qualification Summary
 **Lede:** Culture Index · The next step in our process.
 
@@ -149,7 +149,7 @@ Book the next meeting with your Franchise Developer to review the Qualification 
 
 ## PAGE: 02-brand-overview/02-fdd.html
 
-**Eyebrow:** Stage 2 · Step 2 of 4
+**Eyebrow:** Stage 2 · Step 2 of 3
 **H1:** Franchise Disclosure Document
 **Lede:** The document that governs everything.
 
@@ -167,7 +167,7 @@ The FDD includes 23 Items, the franchise agreement, and various exhibits.
 
 On one of your next calls, your Franchise Developer is going to send the FDD. They will also review it with you at a high level and answer any additional questions that you might have.
 
-It arrives through DocuSign, and the **Franchise Disclosure Document Review** section that follows unlocks once it is sent.
+It arrives through DocuSign.
 
 ### H2: The Receipt and the Clock
 
@@ -209,36 +209,9 @@ Item 19 is where a franchisor may, but is not required to, disclose financial pe
 
 ---
 
-## PAGE: 02-brand-overview/03-fdd-review.html
+## PAGE: 02-brand-overview/03-additional-resources.html
 
-**Eyebrow:** Stage 2 · Step 3 of 4
-**H1:** Franchise Disclosure Document Review
-**Lede:** Your copy of the document, and your acknowledgment of receipt.
-
-### BODY
-
-**This section unlocks once your Franchise Developer sends your FDD.**
-
-Your FDD arrives through DocuSign, assigned by your Franchise Developer, and you sign the Item 23 receipt there — signing happens in DocuSign, not in this portal. This is where you come back to the document afterward, as many times as you need it.
-
-[LINK: Re-open Your FDD in DocuSign | fdd-reaccess]
-
-### GATE — acknowledgment, required
-
-**Label:** Required acknowledgment
-
-**Statement:** I have received the 1-Tom-Plumber Franchise Disclosure Document and signed the Item 23 receipt through DocuSign.
-
-**Checkbox label:** I acknowledge
-
-### NEXT
-Continue to Additional Brand Specific Resources.
-
----
-
-## PAGE: 02-brand-overview/04-additional-resources.html
-
-**Eyebrow:** Stage 2 · Step 4 of 4
+**Eyebrow:** Stage 2 · Step 3 of 3
 **H1:** Additional Brand Specific Resources
 **Lede:** Optional depth. None of this is required to advance.
 

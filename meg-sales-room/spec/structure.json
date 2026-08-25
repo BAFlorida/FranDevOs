@@ -1,7 +1,7 @@
 {
   "project": "1-Tom-Plumber MEG Sales Room",
   "revision": "2.0",
-  "page_count": 21,
+  "page_count": 20,
   "output_dir": "dist",
   "milestone_note": "Milestones are EXIT gates - completing the bucket produces the milestone. The milestones currently in the sales room are shifted one bucket forward starting at bucket 3. The 'proposed' values below correct that. 'current' shows what is in the tool today. Confirm before publishing.",
   "buckets": [
@@ -79,19 +79,8 @@
           "notes": "Full 23-item table. The 14-day rule stated as protection. Item 19 and Item 20 each get their own callout."
         },
         {
-          "id": "03-fdd-review",
-          "title": "Franchise Disclosure Document Review",
-          "note": "Locked until the FDD is sent (Aug 4 punch list). Receipt collected here; candidate re-accesses the document here.",
-          "gates": [
-            {
-              "id": "fdd-receipt",
-              "type": "acknowledgment"
-            }
-          ]
-        },
-        {
           "n": 3,
-          "id": "04-additional-resources",
+          "id": "03-additional-resources",
           "title": "Additional Brand Specific Resources",
           "source": "stage_1_design.md :: Lesson 4 of 5 + Lesson 5 of 5",
           "gates": [],

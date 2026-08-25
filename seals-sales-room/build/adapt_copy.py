@@ -118,7 +118,7 @@ Continue to Stage 3, Validation.
 
 OVERRIDES = {
     "03-validation/03-territory.html": TERRITORY,
-    "02-brand-overview/04-additional-resources.html": RESOURCES,
+    "02-brand-overview/03-additional-resources.html": RESOURCES,
 }
 
 changed = {}
