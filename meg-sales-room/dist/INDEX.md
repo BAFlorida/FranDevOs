@@ -35,10 +35,10 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 18 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
 | 19 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
 | 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
-| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | 1 |
+| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | - |
 | 22 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
 
-**Totals:** 56 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 16 asset slots.
+**Totals:** 56 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 15 asset slots.
 
 
 ## Compliance gates

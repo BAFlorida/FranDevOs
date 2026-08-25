@@ -303,9 +303,7 @@ Once executed, schedule your Brand Welcome Call.
 
 [VIDEO: EverSmith Welcome Call]
 
-Your Franchise Developer will tell you who joins the call and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
-
-[SCHEDULER: Schedule Brand Welcome Call]
+Your Franchise Developer schedules this call on your behalf and will tell you who joins and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
 
 ### NEXT
 Continue to your Sure Start introduction.
