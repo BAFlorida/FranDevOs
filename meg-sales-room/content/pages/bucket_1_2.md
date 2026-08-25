@@ -169,6 +169,12 @@ On one of your next calls, your Franchise Developer is going to send the FDD. Th
 
 It arrives through DocuSign, and the **Franchise Disclosure Document Review** section that follows unlocks once it is sent.
 
+### H2: The Receipt and the Clock
+
+Signing the receipt is not a commitment of any kind. It confirms the date you received the document, and it starts the FTC-mandated review period: the FDD must be in your hands at least 14 days before any franchise agreement can be signed.
+
+Read the document. Bring your questions to your Franchise Developer — reviewing it together is part of the process, not an imposition on it.
+
 ### H2: The 23 Items
 
 **TABLE:**
@@ -216,12 +222,6 @@ Item 19 is where a franchisor may, but is not required to, disclose financial pe
 Your FDD arrives through DocuSign, assigned by your Franchise Developer, and you sign the Item 23 receipt there — signing happens in DocuSign, not in this portal. This is where you come back to the document afterward, as many times as you need it.
 
 [LINK: Re-open Your FDD in DocuSign | fdd-reaccess]
-
-### H2: The Receipt and the Clock
-
-Signing the receipt is not a commitment of any kind. It confirms the date you received the document, and it starts the FTC-mandated review period: the FDD must be in your hands at least 14 days before any franchise agreement can be signed.
-
-Read the document. Bring your questions to your Franchise Developer — reviewing it together is part of the process, not an imposition on it.
 
 ### GATE — acknowledgment, required
 

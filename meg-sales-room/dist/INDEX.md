@@ -19,8 +19,8 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 1 | - | - | 1 embed | - |
 | 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 embed | - |
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
-| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | - |
-| 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 2 | 1 checkbox | - | - | 1 |
+| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 4 | - | - | 1 embed | - |
+| 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 1 | 1 checkbox | - | - | 1 |
 | 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 2 | - | - | 5 embeds | - |
 | 8 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
 | 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
