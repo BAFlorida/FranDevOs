@@ -69,7 +69,7 @@ brand's `build/adapt_copy.py`, rebuild, re-subset fonts.
 | Kitchen Guard copy sheet | https://claude.ai/code/artifact/abd77079-9ec5-40cb-8af4-d7fe144e7d1d |
 | The Seals preview | https://claude.ai/code/artifact/bf7fba98-6678-4fe2-b49f-a30dc062bbe4 |
 | The Seals copy sheet | https://claude.ai/code/artifact/eb2b9c93-f48a-479f-a77e-93effa419eb6 |
-| U.S. Lawns preview | https://claude.ai/code/artifact/44f0cc20-611c-49c8-ac35-9c0654a825ee |
+| U.S. Lawns preview | https://claude.ai/code/artifact/da3ae4e1-6b74-41a7-a767-c1fe6f7f6e7f |
 | U.S. Lawns copy sheet | https://claude.ai/code/artifact/0b40bc31-1ff2-419b-8511-1ef524d7a53e |
 
 Republishing from a new chat needs the URL passed explicitly, or it mints a

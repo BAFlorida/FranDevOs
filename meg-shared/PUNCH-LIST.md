@@ -67,9 +67,15 @@ re-request it from John.
 ## Content inventory notes
 
 - Cut-off validation video: Ryan to watch through and identify which.
-- Territory videos: per-brand, John getting brands to record; criteria drop
-  into the existing placeholder.
-- Basics of Franchising + four box: not recorded; hidden-not-rushed per John.
+- Territory videos: per-brand. **1-Tom's is live** (`HI9J76Spg20`, supplied
+  2026-08-25, embedded on the Territory page). Other brands still pending;
+  criteria drop into the existing placeholder.
+- Basics of Franchising + "Is Business Ownership Really Right for Me":
+  **sections removed from Additional Resources on all brands (2026-08-25)**
+  rather than shipping unbuilt slots. The four box remains unrecorded.
+- Additional Resources (1-Tom) gained three live videos on 2026-08-25:
+  Vendor Discounts (`pgp80YAD5Xc`), Behind the Scenes at HQ (`ot_QVMHzBMU`),
+  and the Justin Ghadery "Is It Worth It in 2026?" interview (`wKzLSE13k7w`).
 - National accounts + strategic partnerships EverSmith videos: needed.
 - Vendor walkthrough Loom rather than outbound links; anything that must link
   out opens a new window (all our `.btn` links already do).

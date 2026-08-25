@@ -21,10 +21,10 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
 | 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | 1 |
 | 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 2 | 1 checkbox | - | - | 1 |
-| 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 3 | - | - | 2 embeds, 2 pending | - |
+| 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 2 | - | - | 5 embeds | - |
 | 8 | Owner Calls | `03-validation/01-owner-calls.html` | 3 | 1 checkbox | - | 1 embed, 1 pending | 2 |
 | 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
-| 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | 1 | 1 pending | - |
+| 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | 1 | 1 embed | - |
 | 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | 1 | 2 embeds, 1 pending | - |
 | 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | 1 | 1 pending | - |
 | 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 5 | - | - | - | 1 |
@@ -39,7 +39,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 22 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | 1 | 1 embed | 1 |
 | 23 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 3 | - | 1 | - | 1 |
 
-**Totals:** 63 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 18 video embeds, 10 pending video slots, 18 asset slots.
+**Totals:** 62 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 8 placeholder flags, 22 video embeds, 7 pending video slots, 18 asset slots.
 
 
 ## Compliance gates
@@ -81,7 +81,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `PH-02` | `03-validation/04-technology.html` |
 | `PH-03` | `03-validation/04-technology.html` |
 | `PH-06` | `06-agreement-stage/04-thank-you.html` |
-| `PH-11` | `02-brand-overview/04-additional-resources.html` |
 | `PH-15` | `05-meet-the-team-day/01-what-who-to-expect.html` |
 | `PH-17` | `06-agreement-stage/02-executing-your-agreement.html` |
 | `PH-18` | `06-agreement-stage/03-brand-welcome-call.html` |
@@ -101,10 +100,14 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `02-brand-overview/02-fdd.html` | EverSmith Franchise Disclosure Document Overview | `udCsGBIY1Rs` |
 | `02-brand-overview/04-additional-resources.html` | EverSmith EverConnect | `2gaiZ4BcF8Y` |
 | `02-brand-overview/04-additional-resources.html` | EverSmith Brands CSS | `x32yLyjEPDk` |
+| `02-brand-overview/04-additional-resources.html` | 1-Tom Vendor Discounts | `pgp80YAD5Xc` |
+| `02-brand-overview/04-additional-resources.html` | Exclusive Behind the Scenes at 1-Tom-Plumber HQ | `ot_QVMHzBMU` |
+| `02-brand-overview/04-additional-resources.html` | 1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands CEO Justin Ghadery | `wKzLSE13k7w` |
 | `03-validation/01-owner-calls.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
 | `03-validation/02-funding.html` | EverSmith Funding Overview | `0Z9bjsRKN5c` |
 | `03-validation/02-funding.html` | EverSmith Self Funding Overview | `oSIvxdHtO-o` |
 | `03-validation/02-funding.html` | EverSmith Home Equity Funding | `TFpdCqMtxQQ` |
+| `03-validation/03-territory.html` | Territory Design and DBA — 1-Tom-Plumber Mutual Evaluation Guide | `HI9J76Spg20` |
 | `03-validation/04-technology.html` | 1-Tom Service Titan Overview | `kXK6u3O8hCU` |
 | `03-validation/04-technology.html` | EverSmith Career Plug | `3aL_T7_3Ojo` |
 | `05-meet-the-team-day/01-what-who-to-expect.html` | EverSmith Meet The Team Day | `LBU9FTGv0NE` |
@@ -117,12 +120,9 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 
 | Page | Awaiting |
 |---|---|
-| `02-brand-overview/04-additional-resources.html` | General Franchising Concepts series |
-| `02-brand-overview/04-additional-resources.html` | executive perspective on business ownership readiness |
 | `03-validation/01-owner-calls.html` | Owner testimonial videos |
 | `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
 | `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
-| `03-validation/03-territory.html` | Territory Design and DBA |
 | `03-validation/04-technology.html` | QuickBooks Online overview |
 | `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements |
 | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | Design Your Life |

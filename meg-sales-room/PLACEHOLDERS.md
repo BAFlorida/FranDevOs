@@ -27,7 +27,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 | `PH-08` | E-signature platform | 4.2, 6.2 |
 | `PH-09` | ~~Background check vendor~~ | 2.1 — **Resolved**: B-Verify (bverify.boefly.com/eversmith) handles financial and background verification on John's rebuilt 2.1 |
 | `PH-10` | Behavioral assessment tool | 2.1, 5.2 — source used DISC; PIRTEK used Culture Index; the sales room says "Culture Index" on 2.1. Confirm one and use it on both pages |
-| `PH-11` | Procurement / buying group | 2.3 |
+| `PH-11` | ~~Procurement / buying group~~ | 2.4 — **Covered (Aug 25):** the 1-Tom Vendor Discounts video carries this on Additional Resources. Other brands still flag it |
 | `PH-12` | Call center / dispatch support | 2.3 |
 
 ---

@@ -258,23 +258,5 @@ Click each item below to go deeper on the parts of the business that matter most
 - [PLACEHOLDER: procurement / Strategic Partnerships detail]
 - [PLACEHOLDER: podcast and press features]
 
-### H2: The Basics of Franchising
-
-We take a holistic view of franchising. Not every concept suits every owner, and not every candidate is awarded a franchise. Those two facts are related.
-
-The videos below cover general franchise industry concepts. How franchising works, what a franchisor actually does, what obligations run both directions, and how to evaluate any brand you are considering. They are brand-agnostic on purpose. Watch them with Kitchen Guard in mind, and with whatever other brands you are exploring in mind too.
-
-[VIDEO SLOT — PENDING: General Franchising Concepts series]
-
-### H2: Is Business Ownership Really Right for Me?
-
-Let's pause.
-
-You have learned the brand. Before you go further, we want you to step back and ask a harder question. Not whether Kitchen Guard is a good business, but whether business ownership is right for you and your family at this point in your life.
-
-There is no wrong answer here. Some of the best conversations we have are the ones where a candidate decides the timing is not right. We would rather have that conversation now than two years into an agreement.
-
-[VIDEO SLOT — PENDING: executive perspective on business ownership readiness]
-
 ### NEXT
 Continue to Stage 3, Validation.

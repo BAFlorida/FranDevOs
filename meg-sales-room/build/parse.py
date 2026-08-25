@@ -39,6 +39,11 @@ VIDEOS = {
     # caption matches that promise. Supplied 2026-08-24.
     "Brand Overview": "Q0EAo3Ix3gI",
     "1-Tom Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
+    # Brand-specific resources, supplied 2026-08-25.
+    "Territory Design and DBA": "HI9J76Spg20",
+    "1-Tom Vendor Discounts": "pgp80YAD5Xc",
+    "Exclusive Behind the Scenes at 1-Tom-Plumber HQ": "ot_QVMHzBMU",
+    "Is It Worth It in 2026? — EverSmith Brands CEO Justin Ghadery": "wKzLSE13k7w",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
     "EverSmith Qualification Summary Overview": "GWB3gkycrKw",
@@ -62,6 +67,11 @@ VIDEOS = {
 VIDEO_TITLES = {
     "Welcome": "Welcome — 1-Tom-Plumber Mutual Evaluation Guide",
     "Brand Overview": "Brand Overview — 1-Tom-Plumber Mutual Evaluation Guide",
+    "Is It Worth It in 2026? — EverSmith Brands CEO Justin Ghadery":
+        "1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands "
+        "CEO Justin Ghadery",
+    "Territory Design and DBA":
+        "Territory Design and DBA — 1-Tom-Plumber Mutual Evaluation Guide",
 }
 
 # Maps a placeholder's text to its PLACEHOLDERS.md reference.

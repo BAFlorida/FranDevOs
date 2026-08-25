@@ -40,7 +40,7 @@ for bucket_id, (num, label) in sorted(BUCKETS.items(), key=lambda kv: kv[1][0]):
                    f'{meta[rel]}</button>')
     nav.append("</div>")
 
-HTML = f"""<title>{BRAND} MEG Sales Room - 24 Page Preview</title>
+HTML = f"""<title>{BRAND} MEG Sales Room Preview</title>
 <script>
 (function(){{
   if (!document.querySelector('meta[name="viewport"]')) {{
@@ -107,7 +107,7 @@ body{{font-family:var(--ui);background:var(--shell);color:var(--txt);
   <div class="brand">
     <div class="brand__k">Preview build</div>
     <div class="brand__t">{BRAND} Mutual Evaluation Guide</div>
-    <div class="brand__s">24 pages · 5 compliance gates</div>
+    <div class="brand__s">{len(pages)} pages · 5 compliance gates</div>
   </div>
   {''.join(nav)}
 </nav>
@@ -140,7 +140,7 @@ function show(rel, push) {{
                            : b.removeAttribute('aria-current'));
   const i = ORDER.indexOf(rel);
   document.getElementById('crumb').innerHTML =
-    'Page ' + (i + 1) + ' of 24 &nbsp;·&nbsp; <b>' + META[rel] + '</b>';
+    'Page ' + (i + 1) + ' of ' + ORDER.length + ' &nbsp;·&nbsp; <b>' + META[rel] + '</b>';
   document.getElementById('prev').disabled = i === 0;
   document.getElementById('next').disabled = i === ORDER.length - 1;
   side.classList.remove('open');

@@ -136,7 +136,7 @@ Confirm your funding path with your Franchise Developer, then continue to Territ
 
 ### BODY
 
-[VIDEO SLOT — PENDING: Territory Design and DBA]
+[VIDEO: Territory Design and DBA]
 
 ### H2: Territory Design
 
