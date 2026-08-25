@@ -163,13 +163,11 @@ FDDs must be provided upon request at least 14 days before signing a franchise a
 
 The FDD includes 23 Items, the franchise agreement, and various exhibits.
 
-### H2: Request Your FDD
+### H2: Receiving Your FDD
 
-When you are ready, request the document here. Your Franchise Developer is notified the moment you do.
+On one of your next calls, your Franchise Developer is going to send the FDD. They will also review it with you at a high level and answer any additional questions that you might have.
 
-[LINK: Request the 1-Tom-Plumber FDD | fdd-request]
-
-Once you request it, your Franchise Developer will walk you through the FDD on your next call and provide the document there. It arrives through DocuSign, and the **Franchise Disclosure Document Review** section that follows unlocks once it is sent.
+It arrives through DocuSign, and the **Franchise Disclosure Document Review** section that follows unlocks once it is sent.
 
 ### H2: The 23 Items
 

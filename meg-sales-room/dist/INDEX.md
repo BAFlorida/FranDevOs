@@ -19,7 +19,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 2 | Mutual Evaluation Process End-to-End | `01-welcome/01-mep-end-to-end.html` | 1 | - | - | 1 embed | - |
 | 3 | Brand Overview | `02-brand-overview/index.html` | 1 | - | - | 1 embed | - |
 | 4 | Qualification Summary | `02-brand-overview/01-qualification-summary.html` | 3 | - | - | 1 embed | 4 |
-| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | 1 |
+| 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | - |
 | 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 2 | 1 checkbox | - | - | 1 |
 | 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 2 | - | - | 5 embeds | - |
 | 8 | Owner Calls | `03-validation/01-owner-calls.html` | 3 | 1 checkbox | - | 1 embed, 1 pending | 2 |
@@ -37,7 +37,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
 | 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 55 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 14 asset slots.
+**Totals:** 55 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 13 asset slots.
 
 
 ## Compliance gates
