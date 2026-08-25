@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-20 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+18 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 20 pages
+## All 18 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -28,15 +28,13 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 11 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
 | 12 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
 | 13 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
-| 14 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 1 | - | - | 1 embed | 2 |
-| 15 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
-| 16 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
-| 17 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
-| 18 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
-| 19 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
-| 20 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
+| 14 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
+| 15 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
+| 16 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
+| 17 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
+| 18 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 54 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 24 video embeds, 4 pending video slots, 12 asset slots.
+**Totals:** 52 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 9 asset slots.
 
 
 ## Compliance gates
@@ -98,7 +96,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `03-validation/04-technology.html` | QuickBooks Online Overview | `uaUmFB9tv-w` |
 | `04-seeking-approval/01-executive-approval-call.html` | Executive Approval Overview — 1-Tom-Plumber Mutual Evaluation Guide | `CJJgOxVUhVg` |
 | `05-meet-the-team-day/01-what-who-to-expect.html` | EverSmith Meet The Team Day | `LBU9FTGv0NE` |
-| `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | EverSmith Pre-MTTD | `3wI0n4g9eOQ` |
 | `06-agreement-stage/01-executive-board-approval.html` | EverSmith Executive Board Approval | `qDuHvclW0kk` |
 | `06-agreement-stage/02-executing-your-agreement.html` | EverSmith Agreement Execution | `lcOn6qL1uoo` |
 | `06-agreement-stage/03-brand-welcome-call.html` | EverSmith Welcome Call | `1NynLBubPv0` |

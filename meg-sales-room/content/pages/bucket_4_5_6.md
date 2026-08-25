@@ -104,7 +104,7 @@ For most candidates, this is when the decision starts to feel real.
 
 ## PAGE: 05-meet-the-team-day/01-what-who-to-expect.html
 
-**Eyebrow:** Stage 5 · Step 1 of 4
+**Eyebrow:** Stage 5 · Step 1 of 2
 **H1:** What / Who to Expect at Meet The Team Day
 **Lede:** Who you will meet and what to bring.
 
@@ -129,34 +129,13 @@ You will also see a form titled "Reasons to Become or Not Become a Franchise Own
 **Do not complete it in advance.** Our last speaker of the day will prompt you to fill it out near the end of the event, either by QR code or by button. It is designed to be completed at that moment, with everything you learned that day fresh.
 
 ### NEXT
-Complete your pre-event questionnaires before you travel.
-
----
-
-## PAGE: 05-meet-the-team-day/02-pre-mttd-questionnaire.html
-
-**Eyebrow:** Stage 5 · Step 2 of 4
-**H1:** Pre Meet The Team Day Questionnaire
-**Lede:** Two items to complete before you travel.
-
-### BODY
-
-[VIDEO: EverSmith Pre-MTTD]
-
-Two items must be completed before you attend.
-
-[FORM: Pre-MTTD Questionnaire]
-
-[FORM: Behavioral Assessment]
-
-### NEXT
-Complete both questionnaires, then travel to Meet The Team Day.
+Continue to Meet The Team Day.
 
 ---
 
 ## PAGE: 05-meet-the-team-day/03-meet-the-team-day.html
 
-**Eyebrow:** Stage 5 · Step 3 of 4
+**Eyebrow:** Stage 5 · Step 2 of 2
 **H1:** Meet The Team Day
 **Lede:** The event itself.
 
@@ -173,27 +152,6 @@ Our last speaker of the day will prompt you to complete this form near the end o
 **Do not complete it in advance.**
 
 [FORM: Reasons to Become or Not Become a Franchise Owner]
-
-### NEXT
-After the event, complete your Post Meet The Team Day Assessment.
-
----
-
-## PAGE: 05-meet-the-team-day/04-post-mttd-assessment.html
-
-**Eyebrow:** Stage 5 · Step 4 of 4
-**H1:** Post Meet The Team Day Assessment
-**Lede:** Complete while the event is still fresh.
-
-### BODY
-
-Thank you for making the trip.
-
-Please complete the assessment below while the event is still fresh. It captures what you saw, what landed, what did not, and where you stand.
-
-[FORM: Post-Meet The Team Day Franchise Assessment and Evaluation Form]
-
-Your Franchise Developer reviews your responses before your debrief call.
 
 ### NEXT
 Continue to Stage 6, Agreement Stage.

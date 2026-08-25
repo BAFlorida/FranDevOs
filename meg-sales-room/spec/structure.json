@@ -279,28 +279,6 @@
         },
         {
           "n": 2,
-          "id": "02-pre-mttd-questionnaire",
-          "title": "Pre Meet The Team Day Questionnaire",
-          "source": "stage_4_booked_mttd.md :: Lesson 3 of 3 (pre-work portion) + Lesson 2 of 3",
-          "gates": [],
-          "assets": [
-            {
-              "type": "form",
-              "label": "Pre-MTTD Questionnaire"
-            },
-            {
-              "type": "form",
-              "label": "Behavioral Assessment - see PLACEHOLDERS"
-            },
-            {
-              "type": "video",
-              "label": "Design Your Life"
-            }
-          ],
-          "notes": "Both forms must be completed before travel. Fold the orphaned 'Design Your Life' extra-credit lesson in here as pre-travel prep."
-        },
-        {
-          "n": 3,
           "id": "03-meet-the-team-day",
           "title": "Meet The Team Day",
           "source": "NONE - new page",
@@ -312,22 +290,9 @@
             }
           ],
           "notes": "NO SOURCE CONTENT. Build as a structured stub: day-by-day agenda, travel logistics, what to bring, what is covered. The 'Reasons to Become or Not Become a Franchise Owner' form must carry a do-not-complete-in-advance instruction - it is filled in at the end of the day when the last speaker prompts it."
-        },
-        {
-          "n": 4,
-          "id": "04-post-mttd-assessment",
-          "title": "Post Meet The Team Day Assessment",
-          "source": "stage_5_mttd_completed.md :: Lesson 1 of 2",
-          "gates": [],
-          "assets": [
-            {
-              "type": "form",
-              "label": "Post-Meet The Team Day Franchise Assessment and Evaluation Form"
-            }
-          ],
-          "notes": "Short page. Complete while the event is fresh. FD reviews responses before the debrief call."
         }
-      ]
+      ],
+      "removed_pages": "Pre-MTTD Questionnaire and Post-MTTD Assessment pages removed 2026-08-25 per Ryan - the Behavioral Assessment and both pre/post questionnaires are out of the room entirely."
     },
     {
       "n": 6,

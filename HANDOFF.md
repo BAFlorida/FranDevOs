@@ -10,7 +10,7 @@ brands alone until asked.
 
 ---
 
-## 1-Tom-Plumber - the live room (20 pages, zero placeholder flags)
+## 1-Tom-Plumber - the live room (18 pages, zero placeholder flags)
 
 Built from `meg-sales-room/`; dist is tracked in git. Structure after the
 2026-08-25 trim session with Ryan:
@@ -23,8 +23,7 @@ Built from `meg-sales-room/`; dist is tracked in git. Structure after the
   Technology and Sourcing Works
 - **4 Seeking Approval:** ONE long page - Executive Approval Call (video
   live) + Development Action Plan + sample agreements + developer checklist
-- **5 Meet The Team Day:** index · What/Who to Expect · Pre-MTTD
-  Questionnaire · Meet The Team Day · Post-MTTD Assessment
+- **5 Meet The Team Day:** index · What/Who to Expect · Meet The Team Day
 - **6 Agreement Stage:** index · Executive Board Approval · Executing Your
   Franchise Agreement · Brand Welcome Call (ends the room with the Thank You
   send-off)
@@ -45,7 +44,10 @@ Seven Things to Know + the ACH Form section · Brand Welcome Call scheduler
 (developer schedules it) · Sure Start intro scheduler · Hear From Our
 Owners testimonial slot (bring back when video IDs arrive) · Basics of
 Franchising + Is Business Ownership sections · every placeholder flag
-(tracked in PLACEHOLDERS.md only - pages render none).
+(tracked in PLACEHOLDERS.md only - pages render none) · the Pre-MTTD
+Questionnaire and Post-MTTD Assessment pages plus the Behavioral Assessment
+(cut later on 2026-08-25; stage 5 is now 3 pages; EverSmith Pre-MTTD video
+`3wI0n4g9eOQ` stays registered in parse.py but unused).
 
 ### Still pending for 1-Tom
 - Videos: owner testimonials (IDs from John's folder), SBA + ROBS vendor
@@ -53,9 +55,9 @@ Franchising + Is Business Ownership sections · every placeholder flag
   for the video); one validation video is cut off (Ryan to identify).
   QuickBooks Online went live 2026-08-25 (`uaUmFB9tv-w`).
 - Wiring (`href="#"` + data-asset): Teams owner-call link + add-to-calendar,
-  the qualification-review scheduler, MTTD handout, pre/post MTTD forms,
-  behavioral assessment, Reasons form. SBA PFS wired 2026-08-25 to the
-  legacy.sba.gov Form 413 page.
+  the qualification-review scheduler, MTTD handout, Reasons form. SBA PFS
+  wired 2026-08-25 to the legacy.sba.gov Form 413 page. (Pre/post MTTD forms
+  and behavioral assessment left the room with their pages.)
 - Facts (see PLACEHOLDERS.md): selectivity stats, remaining tech stack,
   tech-fee acknowledgment (working session), President's name, culture
   framework, podcast list, territory criteria text, MTTD agenda, org chart,
@@ -83,7 +85,7 @@ flags are intentional - those rooms are not candidate-facing.
 ## Rebuild (1-Tom)
 
 ```bash
-python3 meg-sales-room/build/build.py          # 20 pages + INDEX, all checks
+python3 meg-sales-room/build/build.py          # 18 pages + INDEX, all checks
 python3 meg-sales-room/build/subset_fonts.py   # after copy changes, then rebuild
 python3 meg-sales-room/build/viewer.py         # preview.html
 python3 meg-sales-room/build/copysheet.py      # copy-sheet.html

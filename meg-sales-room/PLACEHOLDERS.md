@@ -8,8 +8,8 @@ item was either cut from the page or bridged with safe generic copy, and this
 ledger is now the only tracker. Still open and owed real content: PH-01
 (selectivity stats), PH-02 (reviews/NPS, productivity, resource-library
 platforms), PH-03 (fee acknowledgment - working session), PH-06 (referral
-program - section cut until one exists), PH-10 (confirm behavioral assessment
-tool), PH-13 (President's name), PH-15 (ops org chart), PH-17 (countersignature
+program - section cut until one exists),
+PH-13 (President's name), PH-15 (ops org chart), PH-17 (countersignature
 chain confirm), PH-18 (welcome-call detail), PH-19 (culture framework), PH-20
 (podcast/press), PH-22 (territory criteria text), PH-24 (MTTD agenda), PH-25
 (HQ location). Other brands keep their brand-specific flags on-page - those
@@ -39,7 +39,7 @@ Most of these are competitor infrastructure that does not transfer. Carrying the
 |---|---|---|
 | `PH-08` | E-signature platform | 4.2, 6.2 |
 | `PH-09` | ~~Background check vendor~~ | 2.1 — **Resolved**: B-Verify (bverify.boefly.com/eversmith) handles financial and background verification on John's rebuilt 2.1 |
-| `PH-10` | Behavioral assessment tool | 2.1, 5.2 — source used DISC; PIRTEK used Culture Index; the sales room says "Culture Index" on 2.1. Confirm one and use it on both pages |
+| `PH-10` | Behavioral assessment tool | **Closed 2026-08-25:** Ryan removed the Behavioral Assessment and the pre/post MTTD questionnaire pages from the room entirely. Culture Index remains on 2.1 only |
 | `PH-11` | ~~Procurement / buying group~~ | 2.4 — **Covered (Aug 25):** the 1-Tom Vendor Discounts video carries this on Additional Resources. Other brands still flag it |
 | `PH-12` | Call center / dispatch support | 2.3 |
 
