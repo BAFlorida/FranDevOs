@@ -288,23 +288,6 @@ DocuSign sends you a link to Step 2 of execution. Your password is the same one 
 
 Alongside it, you will receive an ACH form for your franchise fee, or for your equity injection if you are funding through SBA.
 
-### H2: Seven Things to Know
-
-**STEPS:**
-1. Phone company name and address. This field may be left blank. Sign anyway.
-2. Bank account information. You will need bank name, the name and address on the account, routing number, and account number. A personal checking account works as a placeholder and can be updated later. The account number must be real. A placeholder number kicks the agreements back and costs you days.
-3. Signature. Sign your full name exactly as it reads on the agreement.
-4. Schedule D. There are only three acceptable answers. Leave it blank. A clear confirmation that the statement is accurate. Or a statement that it is false, which pauses closing until we clarify it with you. You cannot answer "N/A." You cannot answer a bare "yes" or "no." Those will bounce.
-5. Schedule D skip. After you select "I agree" in the dropdown, hit skip on the comment section and move on.
-6. Signature verification. Your Franchise Developer coordinates with Legal to verify all signatures, including your spouse's if applicable.
-7. Countersignature. Once your signatures are verified, ours are added. You receive a fully executed copy when it is complete.
-
-### H2: The ACH Form
-
-[DOWNLOAD: ACH Form — Franchise Fee / Equity Injection]
-
-Complete it and email it to your Franchise Developer. **Double-check your account numbers.** This is the single most common source of delay at this stage.
-
 ### NEXT
 Once executed, schedule your Brand Welcome Call.
 
