@@ -74,7 +74,6 @@ It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and 
 
 **Your Franchise Developer builds your timeline after your Executive Approval Call, then walks you through it.** This section fills in once your timeline is uploaded — it is not something you fill out yourself.
 
-[DOWNLOAD: Your Development Action Plan]
 
 ### H2: Your Sample Set of Agreements
 
@@ -96,18 +95,6 @@ You saw these agreements listed in FDD Item 22. Now you will see them filled in 
 | 10 | Address Confirmation | Your in-territory address, or your plan to secure one |
 
 Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&L for conversions of an existing business.
-
-### WARNING BLOCK — Read this carefully
-
-Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.
-
-The DocuSign email you receive will say **"Begin Signing Process."** That wording is the platform's, not ours.
-
-**This is only an acknowledgment of receipt. It is not execution.**
-
-You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.
-
-Please acknowledge promptly. The hold clock does not start until you do.
 
 
 ---

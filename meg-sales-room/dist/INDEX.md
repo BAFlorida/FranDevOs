@@ -27,7 +27,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
 | 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
 | 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | - | 1 embed | - |
-| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 4 | - | - | - | 1 |
+| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 3 | - | - | - | - |
 | 14 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
 | 15 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
 | 16 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | - | 1 embed, 1 pending | 2 |
@@ -39,7 +39,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 22 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | 1 |
 | 23 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
 
-**Totals:** 60 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 6 pending video slots, 18 asset slots.
+**Totals:** 59 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 6 pending video slots, 17 asset slots.
 
 
 ## Compliance gates
