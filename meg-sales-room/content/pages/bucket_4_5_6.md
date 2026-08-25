@@ -24,7 +24,7 @@ Reaching this stage means you are being considered for an invitation to Meet The
 
 ### H2: Who You Will Meet
 
-John Dobelbower and the 1-Tom-Plumber brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
+One of our Franchise Development Leaders and the 1-Tom-Plumber brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
 
 This is not a grueling interview. It is informal. The purpose is for brand leadership to understand your interest in the brand, and to validate that your Franchise Developer has guided you thoroughly through the process.
 
