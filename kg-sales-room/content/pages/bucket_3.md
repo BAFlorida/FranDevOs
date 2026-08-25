@@ -36,11 +36,6 @@ Owner calls run on Microsoft Teams. The button below is your meeting link — it
 
 *Render above the fold. This gate must block advancement.*
 
-### H2: Hear From Our Owners
-
-[VIDEO SLOT — PENDING: Owner testimonial videos]
-
-Take notes during each conversation. Your Franchise Developer will debrief them with you.
 
 ---
 
@@ -199,6 +194,10 @@ Continue to Understanding Your Brand's Technology.
 
 EverSmith Strategic Partnerships sources our software platforms, as you learned in Additional Brand Specific Resources.
 
+### H2: Strategic Partnerships Across the Portfolio
+
+We are constantly adding strategic partnerships across the EverSmith portfolio. The point is simple: leverage our scale across the entire portfolio to save our franchisees money with any and all vendors their business needs — insurance, marketing, 401(k), uniforms, compliance, payroll, bookkeeping, and everything in between.
+
 ### H2: Your Package
 
 **TABLE:**
@@ -206,6 +205,7 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 | ServiceTitan | Customer and technician management, dispatch, scheduling |
 | CareerPlug | Recruiting and applicant tracking |
 | QuickBooks Online | Accounting and financial reporting, used with your Franchise Business Coach. A required system |
+| FranConnect | Franchise management — onboarding, training, and communication with the brand team |
 
 ### H2: Your Platforms, Explained
 
@@ -213,7 +213,9 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 
 [VIDEO: EverSmith Career Plug]
 
-[VIDEO SLOT — PENDING: QuickBooks Online overview]
+[VIDEO: QuickBooks Online Overview]
+
+[VIDEO SLOT — PENDING: FranConnect overview]
 
 ### H2: Pricing
 

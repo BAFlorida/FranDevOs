@@ -35,6 +35,7 @@ VIDEOS = {
     # EverSmith process videos are brand-neutral and carry across brands.
     "Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
     "ServiceTitan Overview": "kXK6u3O8hCU",
+    "QuickBooks Online Overview": "uaUmFB9tv-w",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
     "EverSmith Qualification Summary Overview": "GWB3gkycrKw",

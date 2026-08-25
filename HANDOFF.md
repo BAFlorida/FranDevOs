@@ -88,14 +88,18 @@ Thank You sections (merged/removed), and do NOT create an FDD Review
 section. Re-pasting also clears the old stray `---` paragraphs and John's
 Google-Fonts dependency.
 
-## The other three brands (parked)
+## The other three brands (caught up to the 1-Tom MVP 2026-08-25)
 
-KG / Seals / U.S. Lawns are at the punch-list-era build. Their pipelines
-(adapt_copy.py, build.py, structure.json) are kept current with the shared
-source, so **one run each of adapt_copy.py + build.py + subset_fonts.py**
-catches them up whenever work resumes; their dist trees lag the shared
-ORDER until then (the all-brands sheet tolerates this). Their brand-specific
-flags are intentional - those rooms are not candidate-facing.
+KG / Seals / U.S. Lawns were re-run through their pipelines after MVP
+sign-off: 17 pages each, matching the 1-Tom structure. Brand-specific
+content is placeholdered (welcome / brand overview / exec-approval videos
+pending; 4 territory-fact flags each - intentional); the EverSmith process
+videos, ServiceTitan and QuickBooks (`uaUmFB9tv-w`) carry across; the SBA
+Form 413 link is wired. Their build.py ORDER, parse.py VIDEOS and shell.py
+ASSET_URLS were synced with the 1-Tom trims (MTTD questionnaires out, Brand
+Welcome Call merged). Brand dist/ trees are gitignored - rebuild locally
+with adapt_copy.py + build.py. Note: subset_fonts.py needs
+`pip install fonttools brotli` in a fresh container.
 
 ## Rebuild (1-Tom)
 

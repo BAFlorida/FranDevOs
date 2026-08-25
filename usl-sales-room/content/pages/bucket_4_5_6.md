@@ -6,7 +6,7 @@ Original MEG language, brand-swapped to U.S. Lawns. Render this copy as written.
 
 ## PAGE: 04-seeking-approval/01-executive-approval-call.html
 
-**Eyebrow:** Stage 4 · Step 1 of 2
+**Eyebrow:** Stage 4 · Step 1 of 1
 **H1:** Executive Approval Call
 **Lede:** Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.
 
@@ -16,7 +16,7 @@ Up to this point, your Franchise Developer has been presenting the BRAND to YOU.
 
 That flips now. In this stage, they present YOU to the BRAND. Two things happen here: you meet with brand leadership, and if approved, your Franchise Developer builds your Development Action Plan and drafts your sample agreements.
 
-[VIDEO SLOT — PENDING: Executive Approval Overview — one video; also covers the Development Action Plan and contingent agreements]
+[VIDEO SLOT — PENDING: U.S. Lawns Executive Approval Overview — covers the call and the DAP]
 
 ### H2: What This Milestone Means
 
@@ -24,7 +24,7 @@ Reaching this stage means you are being considered for an invitation to Meet The
 
 ### H2: Who You Will Meet
 
-John Dobelbower and the U.S. Lawns brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
+One of our Franchise Development Leaders and the U.S. Lawns brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
 
 This is not a grueling interview. It is informal. The purpose is for brand leadership to understand your interest in the brand, and to validate that your Franchise Developer has guided you thoroughly through the process.
 
@@ -43,7 +43,7 @@ If brand leadership approves you for Meet The Team Day, they will ask your Franc
 1. Build your timeline. A specific plan from orientation through training to your Grand Opening.
 2. Draft your sample set of agreements. Populated with your specific territory, demographics, and the nuances of your situation.
 
-Both arrive in the next step.
+Both are covered below.
 
 ### H2: How to Prepare
 
@@ -53,19 +53,6 @@ Dress for success — treat this like the business meeting it is. If you are joi
 
 Bring the questions you have not been able to get answered elsewhere. Brand leadership has visibility your Franchise Developer does not.
 
-### NEXT
-Attend your Executive Approval Call, then continue to your Development Action Plan.
-
----
-
-## PAGE: 04-seeking-approval/02-dap-contingencies.html
-
-**Eyebrow:** Stage 4 · Step 2 of 2
-**H1:** Development Action Plan / Contingencies
-**Lede:** Your timeline, your documents, and your sample agreements.
-
-### BODY
-
 ### H2: Your Development Action Plan
 
 The DAP is a concise, customized timeline. It runs from today, through Meet The Team Day, through award, through training, to your Grand Opening.
@@ -74,7 +61,6 @@ It is fluid. Your Franchise Developer adjusts it to your needs, your goals, and 
 
 **Your Franchise Developer builds your timeline after your Executive Approval Call, then walks you through it.** This section fills in once your timeline is uploaded — it is not something you fill out yourself.
 
-[DOWNLOAD: Your Development Action Plan]
 
 ### H2: Your Sample Set of Agreements
 
@@ -97,32 +83,6 @@ You saw these agreements listed in FDD Item 22. Now you will see them filled in 
 
 Additional items as they apply. DD-214 for VetFran discount eligibility. E2 visa attorney letter if applicable. P&L for conversions of an existing business.
 
-### WARNING BLOCK — Read this carefully
-
-Our Legal team drafts your sample agreements. You then formally acknowledge receipt, which begins the FTC-mandated hold time.
-
-The DocuSign email you receive will say **"Begin Signing Process."** That wording is the platform's, not ours.
-
-**This is only an acknowledgment of receipt. It is not execution.**
-
-You have not been presented to the Executive Committee. You have not been awarded a franchise. You are acknowledging that you received documents for review, which is a legal requirement your Franchise Developer must satisfy.
-
-Please acknowledge promptly. The hold clock does not start until you do.
-
-### H2: DocuSign Walkthrough
-
-**STEPS:**
-1. Our contract administrator emails you a custom login and password. Your Franchise Developer never sees it. If you are awarded, you will reuse this same login for execution.
-2. You receive a second email from DocuSign, "Step One: Begin Signing Process."
-3. Log in with the credentials from the first email.
-4. Accept the Terms.
-5. Sign your name exactly as it appears on the document.
-6. Complete the signing process.
-
-If anything does not work, contact your Franchise Developer. Do not create a second account.
-
-### NEXT
-Acknowledge receipt of your agreements, then continue to Stage 5, Meet The Team Day.
 
 ---
 
@@ -144,7 +104,7 @@ For most candidates, this is when the decision starts to feel real.
 
 ## PAGE: 05-meet-the-team-day/01-what-who-to-expect.html
 
-**Eyebrow:** Stage 5 · Step 1 of 4
+**Eyebrow:** Stage 5 · Step 1 of 2
 **H1:** What / Who to Expect at Meet The Team Day
 **Lede:** Who you will meet and what to bring.
 
@@ -169,46 +129,13 @@ You will also see a form titled "Reasons to Become or Not Become a Franchise Own
 **Do not complete it in advance.** Our last speaker of the day will prompt you to fill it out near the end of the event, either by QR code or by button. It is designed to be completed at that moment, with everything you learned that day fresh.
 
 ### NEXT
-Complete your pre-event questionnaires before you travel.
-
----
-
-## PAGE: 05-meet-the-team-day/02-pre-mttd-questionnaire.html
-
-**Eyebrow:** Stage 5 · Step 2 of 4
-**H1:** Pre Meet The Team Day Questionnaire
-**Lede:** Two items to complete before you travel.
-
-### BODY
-
-[VIDEO: EverSmith Pre-MTTD]
-
-Two items must be completed before you attend.
-
-[FORM: Pre-MTTD Questionnaire]
-
-[FORM: Behavioral Assessment]
-
-### H2: Extra Credit — Design Your Life
-
-Time to start thinking big.
-
-Meet The Team Day includes personal development exercises. They are not filler. They are there because the owners who do best are the ones who know what they are building toward.
-
-Watch the video below before you travel. It will put you in the right frame of mind for the exercises we run on the day.
-
-[VIDEO SLOT — PENDING: Design Your Life]
-
-This is extra credit. It is not required to advance. We recommend it anyway.
-
-### NEXT
-Complete both questionnaires, then travel to Meet The Team Day.
+Continue to Meet The Team Day.
 
 ---
 
 ## PAGE: 05-meet-the-team-day/03-meet-the-team-day.html
 
-**Eyebrow:** Stage 5 · Step 3 of 4
+**Eyebrow:** Stage 5 · Step 2 of 2
 **H1:** Meet The Team Day
 **Lede:** The event itself.
 
@@ -225,27 +152,6 @@ Our last speaker of the day will prompt you to complete this form near the end o
 **Do not complete it in advance.**
 
 [FORM: Reasons to Become or Not Become a Franchise Owner]
-
-### NEXT
-After the event, complete your Post Meet The Team Day Assessment.
-
----
-
-## PAGE: 05-meet-the-team-day/04-post-mttd-assessment.html
-
-**Eyebrow:** Stage 5 · Step 4 of 4
-**H1:** Post Meet The Team Day Assessment
-**Lede:** Complete while the event is still fresh.
-
-### BODY
-
-Thank you for making the trip.
-
-Please complete the assessment below while the event is still fresh. It captures what you saw, what landed, what did not, and where you stand.
-
-[FORM: Post-Meet The Team Day Franchise Assessment and Evaluation Form]
-
-Your Franchise Developer reviews your responses before your debrief call.
 
 ### NEXT
 Continue to Stage 6, Agreement Stage.
@@ -267,7 +173,7 @@ Three things happen in this stage. The Executive Committee makes its decision. Y
 
 ## PAGE: 06-agreement-stage/01-executive-board-approval.html
 
-**Eyebrow:** Stage 6 · Step 1 of 4
+**Eyebrow:** Stage 6 · Step 1 of 2
 **H1:** Executive Board Approval
 **Lede:** How the decision actually gets made.
 
@@ -324,7 +230,7 @@ On approval, continue to Executing Your Franchise Agreement.
 
 ## PAGE: 06-agreement-stage/02-executing-your-agreement.html
 
-**Eyebrow:** Stage 6 · Step 2 of 4
+**Eyebrow:** Stage 6 · Step 2 of 2
 **H1:** Executing Your Franchise Agreement
 **Lede:** You are truly in elite air.
 
@@ -340,60 +246,11 @@ DocuSign sends you a link to Step 2 of execution. Your password is the same one 
 
 Alongside it, you will receive an ACH form for your franchise fee, or for your equity injection if you are funding through SBA.
 
-### H2: Seven Things to Know
-
-**STEPS:**
-1. Phone company name and address. This field may be left blank. Sign anyway.
-2. Bank account information. You will need bank name, the name and address on the account, routing number, and account number. A personal checking account works as a placeholder and can be updated later. The account number must be real. A placeholder number kicks the agreements back and costs you days.
-3. Signature. Sign your full name exactly as it reads on the agreement.
-4. Schedule D. There are only three acceptable answers. Leave it blank. A clear confirmation that the statement is accurate. Or a statement that it is false, which pauses closing until we clarify it with you. You cannot answer "N/A." You cannot answer a bare "yes" or "no." Those will bounce.
-5. Schedule D skip. After you select "I agree" in the dropdown, hit skip on the comment section and move on.
-6. Signature verification. Your Franchise Developer coordinates with Legal to verify all signatures, including your spouse's if applicable.
-7. Countersignature. Once your signatures are verified, ours are added. You receive a fully executed copy when it is complete.
-
-### H2: The ACH Form
-
-[DOWNLOAD: ACH Form — Franchise Fee / Equity Injection]
-
-Complete it and email it to your Franchise Developer. **Double-check your account numbers.** This is the single most common source of delay at this stage.
-
-### NEXT
-Once executed, schedule your Brand Welcome Call.
-
----
-
-## PAGE: 06-agreement-stage/03-brand-welcome-call.html
-
-**Eyebrow:** Stage 6 · Step 3 of 4
-**H1:** Brand Welcome Call
-**Lede:** Your handoff into Sure Start.
-
-### BODY
+### H2: Brand Welcome Call
 
 [VIDEO: EverSmith Welcome Call]
 
-Your Franchise Developer will tell you who joins the call and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
-
-[SCHEDULER: Schedule Brand Welcome Call]
-
-### NEXT
-Continue to your Sure Start introduction.
-
----
-
-## PAGE: 06-agreement-stage/04-thank-you.html
-
-**Eyebrow:** Stage 6 · Step 4 of 4
-**H1:** Thank You For Putting Your Trust In Us
-**Lede:** Welcome to U.S. Lawns.
-
-### BODY
-
-### H2: Sure Start
-
-Schedule your formal training introduction with our Sure Start Coordinator using the link below.
-
-[SCHEDULER: Schedule Sure Start Introduction]
+Once your agreement is executed, your Franchise Developer schedules this call on your behalf and will tell you who joins and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
 
 Your relationship with your Franchise Developer does not end here. They remain your biggest cheerleader. Your Sure Start Coordinator takes over the work of making sure your business is set up for the highest possible chance of success.
 

@@ -144,7 +144,10 @@ def video_slot(label):
 
 # Real destinations, once known, go here keyed by asset ref; an absent ref
 # renders href="#" and is wired in the CMS. Nothing is invented.
-ASSET_URLS = {}
+ASSET_URLS = {
+    "download:sba-personal-financial-statement-fillable-pdf":
+        "https://legacy.sba.gov/document/sba-form-413-personal-financial-statement",
+}
 
 
 def asset(kind, label, ref):
