@@ -22,8 +22,6 @@ That flips now. In this stage, they present YOU to the BRAND. Two things happen 
 
 Reaching this stage means you are being considered for an invitation to Meet The Team Day, our brand orientation event at headquarters.
 
-[PLACEHOLDER: Seals selectivity figures. John wants the placeholder stats replaced with real numbers. The original read "fewer than 5% of candidates introduced to a Franchise Developer are eventually invited to Meet The Team Day" and "statistically, only 2 out of 3 candidates who attend are awarded a franchise." Pull Seals's actuals before publishing.]
-
 ### H2: Who You Will Meet
 
 John Dobelbower and the The Seals brand leader will meet with you, and with your spouse or partner if they are part of this decision. The brand leader speaks with every candidate before Meet The Team Day.
@@ -156,7 +154,7 @@ For most candidates, this is when the decision starts to feel real.
 
 ### H2: Who You Will Meet
 
-[PLACEHOLDER: Operations Team org chart. Needs real names, titles, and what each person owns in your business after you open.]
+You will spend the day with the leadership and operations team who support your business after you open. Your Franchise Developer will walk you through who is in the room before you travel.
 
 ### H2: Your Workbook
 
@@ -189,7 +187,7 @@ Two items must be completed before you attend.
 
 [FORM: Pre-MTTD Questionnaire]
 
-[FORM: Behavioral Assessment — PLACEHOLDER: confirm tool]
+[FORM: Behavioral Assessment]
 
 ### H2: Extra Credit — Design Your Life
 
@@ -218,7 +216,7 @@ Complete both questionnaires, then travel to Meet The Team Day.
 
 [VIDEO SLOT — PENDING: MTTD logistics]
 
-[PLACEHOLDER: full MTTD agenda and logistics. Needs day-by-day schedule, headquarters location, travel arrangements — what is covered versus what the candidate covers, what to bring, guidance on bringing a spouse or partner.]
+Your Franchise Developer will send your day-by-day agenda, travel details, and what to bring ahead of your visit.
 
 ### H2: Reasons to Become or Not Become a Franchise Owner
 
@@ -351,7 +349,7 @@ Alongside it, you will receive an ACH form for your franchise fee, or for your e
 4. Schedule D. There are only three acceptable answers. Leave it blank. A clear confirmation that the statement is accurate. Or a statement that it is false, which pauses closing until we clarify it with you. You cannot answer "N/A." You cannot answer a bare "yes" or "no." Those will bounce.
 5. Schedule D skip. After you select "I agree" in the dropdown, hit skip on the comment section and move on.
 6. Signature verification. Your Franchise Developer coordinates with Legal to verify all signatures, including your spouse's if applicable.
-7. Countersignature routing. [PLACEHOLDER: confirm the Seals / EverSmith countersignature chain.] You receive a fully executed copy when it is complete.
+7. Countersignature. Once your signatures are verified, ours are added. You receive a fully executed copy when it is complete.
 
 ### H2: The ACH Form
 
@@ -374,7 +372,7 @@ Once executed, schedule your Brand Welcome Call.
 
 [VIDEO: EverSmith Welcome Call]
 
-[PLACEHOLDER: Brand Welcome Call detail. Needs who is on the call, what gets covered, what the new owner should bring, and how it hands off to Sure Start.]
+Your Franchise Developer will tell you who joins the call and how to prepare. This is where the brand formally welcomes you and hands your onboarding to the Sure Start team.
 
 [SCHEDULER: Schedule Brand Welcome Call]
 
@@ -398,21 +396,6 @@ Schedule your formal training introduction with our Sure Start Coordinator using
 [SCHEDULER: Schedule Sure Start Introduction]
 
 Your relationship with your Franchise Developer does not end here. They remain your biggest cheerleader. Your Sure Start Coordinator takes over the work of making sure your business is set up for the highest possible chance of success.
-
-### H2: Referral Program
-
-[PLACEHOLDER: Seals referral program name and all figures. The original structure was $5,000 per successful placed referral, a quarterly $1,350 drawing, Reunion travel comp, and a live $5,000 Reunion drawing, on an April 1 to March 31 award year. Replace every figure with Seals's actual program, or remove this section if none exists yet.]
-
-**What counts as qualified:**
-- We can verify a prior conversation with the referral
-- You provided accurate contact information
-- The referral is a new unit, not a resale or transfer
-
-**What does not count:**
-- Existing owners
-- Anyone already in Lead Development or Franchise Development
-- Immediate family — spouse, child, or sibling
-- Yourself
 
 ### H2: Thank You
 

@@ -144,8 +144,6 @@ Different brands prioritize different criteria. Some design around population. S
 
 Your Franchise Developer designs your territory to maximize the potential of the business, not to hit a number on a page.
 
-[PLACEHOLDER: 1TP territory design criteria. Commercial emergency plumbing likely weights commercial building count, property management concentration, permit volume, and drive-time — not households per square mile.]
-
 ### H2: The DBA Smell Test
 
 Your Franchise Developer coordinates with our Local Marketing Specialist before your territory is finalized.
@@ -196,9 +194,6 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 | ServiceTitan | Customer and technician management, dispatch, scheduling |
 | CareerPlug | Recruiting and applicant tracking |
 | QuickBooks Online | Accounting and financial reporting, used with your Franchise Business Coach. A required system |
-| [PLACEHOLDER: reviews / NPS] | Review generation and Net Promoter Score |
-| [PLACEHOLDER: productivity] | Email and productivity licenses |
-| [PLACEHOLDER: resource library] | Franchise resource library and documentation |
 
 ### H2: Your Platforms, Explained
 
@@ -211,8 +206,6 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 ### H2: Pricing
 
 Your technology pricing comes directly from Item 7 of the Franchise Disclosure Document — review the numbers there with your Franchise Developer. 1-Tom-Plumber has no one-time setup fee. Technology fees are paid directly to the vendors.
-
-[PLACEHOLDER: technology fee acknowledgment — the previous acknowledgment was wrong: EverSmith does not collect these fees. 1-Tom-Plumber's technology fees run $1,000 to $8,000 per month paid direct to the vendors, and the arrangement needs a working session with 1-Tom-Plumber before candidate-facing acknowledgment copy can be written.]
 
 ### NEXT
 Continue to Stage 4, Seeking Approval.

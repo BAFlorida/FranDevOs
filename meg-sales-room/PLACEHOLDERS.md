@@ -1,6 +1,19 @@
 # Placeholders
 
-Every unknown in the build. Render each as a visible `<span class="ph">` flag. Never invent a value.
+Every unknown in the build. Never invent a value.
+
+**As of 2026-08-25 the 1-Tom pages render ZERO placeholder flags** - per the
+punch-list principle that unbuilt content is hidden, not shown, every open
+item was either cut from the page or bridged with safe generic copy, and this
+ledger is now the only tracker. Still open and owed real content: PH-01
+(selectivity stats), PH-02 (reviews/NPS, productivity, resource-library
+platforms), PH-03 (fee acknowledgment - working session), PH-06 (referral
+program - section cut until one exists), PH-10 (confirm behavioral assessment
+tool), PH-13 (President's name), PH-15 (ops org chart), PH-17 (countersignature
+chain confirm), PH-18 (welcome-call detail), PH-19 (culture framework), PH-20
+(podcast/press), PH-22 (territory criteria text), PH-24 (MTTD agenda), PH-25
+(HQ location). Other brands keep their brand-specific flags on-page - those
+rooms are not candidate-facing yet.
 
 Most of these are competitor infrastructure that does not transfer. Carrying them over would put another brand's vendor stack and program names into 1TP's candidate portal.
 

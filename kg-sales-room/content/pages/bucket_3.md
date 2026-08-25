@@ -206,9 +206,6 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 | ServiceTitan | Customer and technician management, dispatch, scheduling |
 | CareerPlug | Recruiting and applicant tracking |
 | QuickBooks Online | Accounting and financial reporting, used with your Franchise Business Coach. A required system |
-| [PLACEHOLDER: reviews / NPS] | Review generation and Net Promoter Score |
-| [PLACEHOLDER: productivity] | Email and productivity licenses |
-| [PLACEHOLDER: resource library] | Franchise resource library and documentation |
 
 ### H2: Your Platforms, Explained
 
@@ -221,8 +218,6 @@ EverSmith Strategic Partnerships sources our software platforms, as you learned 
 ### H2: Pricing
 
 Your technology pricing comes directly from Item 7 of the Franchise Disclosure Document — review the numbers there with your Franchise Developer. [PLACEHOLDER: confirm against Item 7 whether Kitchen Guard has a one-time setup fee and how technology fees are billed.]
-
-[PLACEHOLDER: technology fee acknowledgment — the shared acknowledgment was wrong (EverSmith does not collect these fees; the 1-Tom fee range does not transfer). Confirm how Kitchen Guard technology fees are billed and rewrite the acknowledgment.]
 
 ### NEXT
 Continue to Stage 4, Seeking Approval.

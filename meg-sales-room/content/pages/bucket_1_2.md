@@ -253,12 +253,9 @@ Click each item below to go deeper on the parts of the business that matter most
 [VIDEO: EverSmith Brands CSS]
 
 **LIST:**
-- [PLACEHOLDER: 1TP culture framework] — how we define the way we work
-- [PLACEHOLDER: name], President of 1-Tom-Plumber
 - EverSmith Brands — our parent platform and what it means for you
 - Vendor discounts — pricing and purchasing power, covered in the video below
 - The Resale Department — how existing units transfer
-- [PLACEHOLDER: podcast and press features]
 
 ### H2: Inside 1-Tom-Plumber
 
