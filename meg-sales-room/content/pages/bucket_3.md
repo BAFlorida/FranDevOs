@@ -36,11 +36,6 @@ Owner calls run on Microsoft Teams. The button below is your meeting link — it
 
 *Render above the fold. This gate must block advancement.*
 
-### H2: Hear From Our Owners
-
-[VIDEO SLOT — PENDING: Owner testimonial videos]
-
-Take notes during each conversation. Your Franchise Developer will debrief them with you.
 
 ---
 

@@ -22,7 +22,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 3 | - | - | 1 embed | - |
 | 6 | Franchise Disclosure Document Review | `02-brand-overview/03-fdd-review.html` | 2 | 1 checkbox | - | - | 1 |
 | 7 | Additional Brand Specific Resources | `02-brand-overview/04-additional-resources.html` | 2 | - | - | 5 embeds | - |
-| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 3 | 1 checkbox | - | 1 embed, 1 pending | 2 |
+| 8 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
 | 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
 | 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
 | 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
@@ -37,7 +37,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
 | 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 55 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 13 asset slots.
+**Totals:** 54 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 13 asset slots.
 
 
 ## Compliance gates
@@ -108,7 +108,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 
 | Page | Awaiting |
 |---|---|
-| `03-validation/01-owner-calls.html` | Owner testimonial videos |
 | `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
 | `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
 | `03-validation/04-technology.html` | QuickBooks Online overview |
