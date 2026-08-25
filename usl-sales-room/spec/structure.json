@@ -1,7 +1,7 @@
 {
   "project": "U.S. Lawns MEG Sales Room",
   "revision": "2.0",
-  "page_count": 23,
+  "page_count": 22,
   "output_dir": "dist",
   "milestone_note": "Milestones are EXIT gates - completing the bucket produces the milestone. The milestones currently in the sales room are shifted one bucket forward starting at bucket 3. The 'proposed' values below correct that. 'current' shows what is in the tool today. Confirm before publishing.",
   "buckets": [
@@ -247,21 +247,8 @@
           "source": "stage_3_vp_approval.md :: Lesson 1 of 1",
           "gates": [],
           "assets": [],
-          "notes": "Lead with the role flip: 'Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.' Selectivity figures are placeholders. Keep the 'MTTD is more of a validation of a decision you have already made' framing."
-        },
-        {
-          "n": 2,
-          "id": "02-dap-contingencies",
-          "title": "Development Action Plan / Contingencies",
-          "source": "stage_4_booked_mttd.md :: Lesson 1 of 3",
-          "gates": [],
-          "assets": [
-            {
-              "type": "download",
-              "label": "Your Development Action Plan"
-            }
-          ],
-          "notes": "Carries the 10-item document checklist, the sample-agreements explanation, and the e-signature walkthrough. The 'acknowledgment is not execution' warning must be visually prominent - candidates misread this and think they have signed. E-sign vendor is a placeholder."
+          "notes": "Lead with the role flip: 'Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.' Selectivity figures are placeholders. Keep the 'MTTD is more of a validation of a decision you have already made' framing.",
+          "note": "Merged with Development Action Plan / Contingencies 2026-08-25 - one video serves the whole stage, so it is one long page."
         }
       ],
       "overview_page": "removed per Aug 4 punch list - merged into Executive Approval Call"

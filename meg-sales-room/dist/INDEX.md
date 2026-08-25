@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-23 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+22 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 23 pages
+## All 22 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -26,20 +26,19 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 9 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
 | 10 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
 | 11 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 2 embeds, 1 pending | - |
-| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 6 | - | - | 1 embed | - |
-| 13 | Development Action Plan / Contingencies | `04-seeking-approval/02-dap-contingencies.html` | 3 | - | - | - | - |
-| 14 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
-| 15 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
-| 16 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 2 | - | - | 1 embed, 1 pending | 2 |
-| 17 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
-| 18 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
-| 19 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
-| 20 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
-| 21 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 1 embed | 1 |
-| 22 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | 1 |
-| 23 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
+| 12 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
+| 13 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
+| 14 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
+| 15 | Pre Meet The Team Day Questionnaire | `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | 1 | - | - | 1 embed | 2 |
+| 16 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
+| 17 | Post Meet The Team Day Assessment | `05-meet-the-team-day/04-post-mttd-assessment.html` | 1 | - | - | - | 1 |
+| 18 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
+| 19 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
+| 20 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 1 embed | 1 |
+| 21 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 1 | - | - | 1 embed | 1 |
+| 22 | Thank You For Putting Your Trust In Us | `06-agreement-stage/04-thank-you.html` | 2 | - | - | - | 1 |
 
-**Totals:** 59 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 6 pending video slots, 17 asset slots.
+**Totals:** 58 slides, 5 gates (3 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 5 pending video slots, 17 asset slots.
 
 
 ## Compliance gates
@@ -114,7 +113,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
 | `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
 | `03-validation/04-technology.html` | QuickBooks Online overview |
-| `05-meet-the-team-day/02-pre-mttd-questionnaire.html` | Design Your Life |
 | `05-meet-the-team-day/03-meet-the-team-day.html` | MTTD logistics |
 
 ## Verification

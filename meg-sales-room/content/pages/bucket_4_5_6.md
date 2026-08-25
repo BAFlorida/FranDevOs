@@ -6,7 +6,7 @@ Original MEG language, brand-swapped to 1-Tom-Plumber. Render this copy as writt
 
 ## PAGE: 04-seeking-approval/01-executive-approval-call.html
 
-**Eyebrow:** Stage 4 · Step 1 of 2
+**Eyebrow:** Stage 4 · Step 1 of 1
 **H1:** Executive Approval Call
 **Lede:** Rather than presenting the BRAND to YOU, they now will present YOU to the BRAND.
 
@@ -43,7 +43,7 @@ If brand leadership approves you for Meet The Team Day, they will ask your Franc
 1. Build your timeline. A specific plan from orientation through training to your Grand Opening.
 2. Draft your sample set of agreements. Populated with your specific territory, demographics, and the nuances of your situation.
 
-Both arrive in the next step.
+Both are covered below.
 
 ### H2: How to Prepare
 
@@ -52,19 +52,6 @@ Be ready to speak to why business ownership and why now. What you heard from own
 Dress for success — treat this like the business meeting it is. If you are joining by video, check your camera and lighting ahead of time so you are clearly visible.
 
 Bring the questions you have not been able to get answered elsewhere. Brand leadership has visibility your Franchise Developer does not.
-
-### NEXT
-Attend your Executive Approval Call, then continue to your Development Action Plan.
-
----
-
-## PAGE: 04-seeking-approval/02-dap-contingencies.html
-
-**Eyebrow:** Stage 4 · Step 2 of 2
-**H1:** Development Action Plan / Contingencies
-**Lede:** Your timeline, your documents, and your sample agreements.
-
-### BODY
 
 ### H2: Your Development Action Plan
 
@@ -161,18 +148,6 @@ Two items must be completed before you attend.
 [FORM: Pre-MTTD Questionnaire]
 
 [FORM: Behavioral Assessment]
-
-### H2: Extra Credit — Design Your Life
-
-Time to start thinking big.
-
-Meet The Team Day includes personal development exercises. They are not filler. They are there because the owners who do best are the ones who know what they are building toward.
-
-Watch the video below before you travel. It will put you in the right frame of mind for the exercises we run on the day.
-
-[VIDEO SLOT — PENDING: Design Your Life]
-
-This is extra credit. It is not required to advance. We recommend it anyway.
 
 ### NEXT
 Complete both questionnaires, then travel to Meet The Team Day.

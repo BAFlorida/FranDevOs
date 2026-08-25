@@ -30,7 +30,6 @@ ORDER = [
     "03-validation/02-funding.html", "03-validation/03-territory.html",
     "03-validation/04-technology.html",
     "04-seeking-approval/01-executive-approval-call.html",
-    "04-seeking-approval/02-dap-contingencies.html",
     "05-meet-the-team-day/index.html",
     "05-meet-the-team-day/01-what-who-to-expect.html",
     "05-meet-the-team-day/02-pre-mttd-questionnaire.html",
