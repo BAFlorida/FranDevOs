@@ -169,12 +169,6 @@ On one of your next calls, your Franchise Developer is going to send the FDD. Th
 
 It arrives through DocuSign.
 
-### H2: The Receipt and the Clock
-
-Signing the receipt is not a commitment of any kind. It confirms the date you received the document, and it starts the FTC-mandated review period: the FDD must be in your hands at least 14 days before any franchise agreement can be signed.
-
-Read the document. Bring your questions to your Franchise Developer — reviewing it together is part of the process, not an imposition on it.
-
 ### H2: The 23 Items
 
 **TABLE:**
@@ -206,6 +200,12 @@ Read the document. Bring your questions to your Franchise Developer — reviewin
 ### H3: A note on Item 19
 
 Item 19 is where a franchisor may, but is not required to, disclose financial performance information. If a franchisor makes an Item 19 representation, there is no assurance your business will achieve the same results.
+
+### H2: The Receipt and the Clock
+
+Signing the receipt is not a commitment of any kind. It confirms the date you received the document, and it starts the FTC-mandated review period: the FDD must be in your hands at least 14 days before any franchise agreement can be signed.
+
+Read the document. Bring your questions to your Franchise Developer — reviewing it together is part of the process, not an imposition on it.
 
 ---
 
