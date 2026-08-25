@@ -1,6 +1,6 @@
 # MEG Sales Room - Page Index
 
-18 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
+17 self-contained HTML pages for the 1-Tom-Plumber Mutual Evaluation Guide.
 
 Each page inlines its own CSS and carries the full production chrome: topbar, hero, six-node journey track, spine-and-slides stack, and footer. No external stylesheet, no JS, no build step needed to render.
 
@@ -11,7 +11,7 @@ Each page inlines its own CSS and carries the full production chrome: topbar, he
 Rebuild: `python3 meg-sales-room/build/build.py`
 
 
-## All 18 pages
+## All 17 pages
 
 | # | Page | Path | Slides | Gates | Flags | Video | Assets |
 |---|---|---|---|---|---|---|---|
@@ -31,8 +31,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 14 | Meet The Team Day | `05-meet-the-team-day/03-meet-the-team-day.html` | 2 | - | - | 1 pending | 1 |
 | 15 | Agreement Stage | `06-agreement-stage/index.html` | 1 | - | - | - | - |
 | 16 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
-| 17 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
-| 18 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
+| 17 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 2 embeds | - |
 
 **Totals:** 52 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 9 asset slots.
 
@@ -98,7 +97,7 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `05-meet-the-team-day/01-what-who-to-expect.html` | EverSmith Meet The Team Day | `LBU9FTGv0NE` |
 | `06-agreement-stage/01-executive-board-approval.html` | EverSmith Executive Board Approval | `qDuHvclW0kk` |
 | `06-agreement-stage/02-executing-your-agreement.html` | EverSmith Agreement Execution | `lcOn6qL1uoo` |
-| `06-agreement-stage/03-brand-welcome-call.html` | EverSmith Welcome Call | `1NynLBubPv0` |
+| `06-agreement-stage/02-executing-your-agreement.html` | EverSmith Welcome Call | `1NynLBubPv0` |
 
 ### Pending video slots
 

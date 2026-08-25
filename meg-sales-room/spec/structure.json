@@ -332,22 +332,8 @@
               "label": "ACH Form - Franchise Fee / Equity Injection"
             }
           ],
-          "notes": "Seven execution notes. Schedule D's three acceptable answers must be exact - candidates answer 'N/A' and it bounces. Countersignature routing chain is a placeholder."
-        },
-        {
-          "n": 3,
-          "id": "03-brand-welcome-call",
-          "title": "Brand Welcome Call",
-          "source": "NONE - new page",
-          "gates": [],
-          "assets": [
-            {
-              "type": "scheduler",
-              "label": "Schedule Brand Welcome Call"
-            }
-          ],
-          "notes": "NO SOURCE CONTENT. This page does not exist in the source portal - it is a 1TP addition. Build as a structured stub: who is on the call, what gets covered, what the owner should bring, how it hands off to onboarding.",
-          "note": "Thank You merged in 2026-08-25; the separate Sure Start intro call was removed as duplicate of this call."
+          "notes": "Seven execution notes. Schedule D's three acceptable answers must be exact - candidates answer 'N/A' and it bounces. Countersignature routing chain is a placeholder.",
+          "note": "Brand Welcome Call merged in as an H2 section 2026-08-25 per Ryan - it had already absorbed the Thank You send-off, so this page now ends the room. The separate Sure Start intro call was removed earlier as duplicate of this call."
         }
       ]
     }

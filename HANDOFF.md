@@ -10,7 +10,7 @@ brands alone until asked.
 
 ---
 
-## 1-Tom-Plumber - the live room (18 pages, zero placeholder flags)
+## 1-Tom-Plumber - the live room (17 pages, zero placeholder flags)
 
 Built from `meg-sales-room/`; dist is tracked in git. Structure after the
 2026-08-25 trim session with Ryan:
@@ -25,8 +25,8 @@ Built from `meg-sales-room/`; dist is tracked in git. Structure after the
   live) + Development Action Plan + sample agreements + developer checklist
 - **5 Meet The Team Day:** index · What/Who to Expect · Meet The Team Day
 - **6 Agreement Stage:** index · Executive Board Approval · Executing Your
-  Franchise Agreement · Brand Welcome Call (ends the room with the Thank You
-  send-off)
+  Franchise Agreement (Brand Welcome Call merged in 2026-08-25; ends the room
+  with the Thank You send-off)
 
 Videos live: Welcome `fcaSfWLHMh8` · Brand Overview `Q0EAo3Ix3gI` ·
 Validation/funding/tech EverSmith set · Territory `HI9J76Spg20` · Exec
@@ -85,7 +85,7 @@ flags are intentional - those rooms are not candidate-facing.
 ## Rebuild (1-Tom)
 
 ```bash
-python3 meg-sales-room/build/build.py          # 18 pages + INDEX, all checks
+python3 meg-sales-room/build/build.py          # 17 pages + INDEX, all checks
 python3 meg-sales-room/build/subset_fonts.py   # after copy changes, then rebuild
 python3 meg-sales-room/build/viewer.py         # preview.html
 python3 meg-sales-room/build/copysheet.py      # copy-sheet.html
