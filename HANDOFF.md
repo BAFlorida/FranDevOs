@@ -49,7 +49,8 @@ Franchising + Is Business Ownership sections · every placeholder flag
 
 ### Still pending for 1-Tom
 - Videos: owner testimonials (IDs from John's folder), SBA + ROBS vendor
-  slots, MTTD logistics; one validation video is cut off (Ryan to identify).
+  slots, MTTD logistics, FranConnect overview (added 2026-08-25; Ryan hunting
+  for the video); one validation video is cut off (Ryan to identify).
   QuickBooks Online went live 2026-08-25 (`uaUmFB9tv-w`).
 - Wiring (`href="#"` + data-asset): Teams owner-call link + add-to-calendar,
   the qualification-review scheduler, MTTD handout, pre/post MTTD forms,

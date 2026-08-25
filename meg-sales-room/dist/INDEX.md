@@ -24,7 +24,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 7 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
 | 8 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
 | 9 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
-| 10 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 4 | - | - | 3 embeds | - |
+| 10 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 5 | - | - | 3 embeds, 1 pending | - |
 | 11 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
 | 12 | Meet The Team Day | `05-meet-the-team-day/index.html` | 1 | - | - | - | - |
 | 13 | What / Who to Expect at Meet The Team Day | `05-meet-the-team-day/01-what-who-to-expect.html` | 4 | - | - | 1 embed | 1 |
@@ -36,7 +36,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 19 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 2 | - | - | 1 embed | - |
 | 20 | Brand Welcome Call | `06-agreement-stage/03-brand-welcome-call.html` | 2 | - | - | 1 embed | - |
 
-**Totals:** 53 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 24 video embeds, 3 pending video slots, 12 asset slots.
+**Totals:** 54 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 24 video embeds, 4 pending video slots, 12 asset slots.
 
 
 ## Compliance gates
@@ -109,6 +109,7 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 |---|---|
 | `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
 | `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
+| `03-validation/04-technology.html` | FranConnect overview |
 | `05-meet-the-team-day/03-meet-the-team-day.html` | MTTD logistics |
 
 ## Verification
