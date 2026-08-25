@@ -65,6 +65,21 @@ Questionnaire and Post-MTTD Assessment pages plus the Behavioral Assessment
 - Franchise proposal builder: blocked on the Neighborly Excel from John.
 - Platform items (Shane): Q&A box, workbook, hideable cards, completion
   gating bug.
+- Deferred at MVP sign-off (2026-08-25 meeting-notes review; Ryan said hold,
+  waiting on people — do NOT do these unprompted):
+  - Clayton Kendall row for the technology/sourcing table (approved in the
+    meeting, not yet added).
+  - Drop "compliance" from the Strategic Partnerships copy (meeting dropped
+    it — no compliance vendor; Ryan's dictation to the room kept it for now).
+  - Owner-call buttons need real URLs: static Teams link + add-to-calendar
+    .ics (Wednesday commitment; Dial Pad swaps in later).
+  - Pending slot for FM's 3-minute Strategic Partnerships video (section is
+    copy-only).
+  - CSS testimonial video `x32yLyjEPDk` on Additional Resources is the
+    UNEDITED cut with earnings claims — swap when Shane's compliance edit
+    lands.
+  - Exec Approval wording: page says "Franchise Development Leaders",
+    meeting notes said "franchise development executives" — Ryan to pick.
 
 ### CMS actions
 Re-paste the whole 1-Tom room from the copy sheet (the CMS predates most of
