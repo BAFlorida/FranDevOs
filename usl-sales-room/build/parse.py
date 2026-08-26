@@ -36,6 +36,8 @@ VIDEOS = {
     "Mutual Evaluation Room Explanation": "fcaSfWLHMh8",
     "ServiceTitan Overview": "kXK6u3O8hCU",
     "QuickBooks Online Overview": "uaUmFB9tv-w",
+    "SBA 7(a) Loan Explainer": "XyBHEblayCQ",
+    "401(k) Rollover Explainer": "haoMilg_dWA",
     "EverSmith What to Expect on the First Call": "hv1-dv84CS0",
     "EverSmith Mutual Evaluation Process End to End": "KvjiPmr-JAw",
     "EverSmith Qualification Summary Overview": "GWB3gkycrKw",

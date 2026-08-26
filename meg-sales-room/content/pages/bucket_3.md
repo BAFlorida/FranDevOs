@@ -92,7 +92,7 @@ Every funding partner requires a Personal Financial Statement.
 
 Your spouse must sign the PFS even if they are not on the loan.
 
-[VIDEO SLOT — PENDING: SBA lending partner overview — vendor slot (First Financial / FranFund)]
+[VIDEO: SBA 7(a) Loan Explainer]
 
 ### H2: ROBS Funding
 
@@ -104,7 +104,7 @@ ROBS, Rollover as Business Startup, lets you use pre-tax retirement funds to cap
 3. Transfer your existing retirement funds into the new plan.
 4. The plan purchases stock in the new C Corporation, capitalizing the business.
 
-[VIDEO SLOT — PENDING: ROBS provider overview — vendor slot (Benetrends / Tenet)]
+[VIDEO: 401(k) Rollover Explainer]
 
 ### H2: Self-Funding
 

@@ -22,7 +22,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 5 | Franchise Disclosure Document | `02-brand-overview/02-fdd.html` | 4 | - | - | 1 embed | - |
 | 6 | Additional Brand Specific Resources | `02-brand-overview/03-additional-resources.html` | 2 | - | - | 5 embeds | - |
 | 7 | Owner Calls | `03-validation/01-owner-calls.html` | 2 | 1 checkbox | - | 1 embed | 2 |
-| 8 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 3 embeds, 2 pending | 1 |
+| 8 | Funding | `03-validation/02-funding.html` | 5 | 2 select | - | 5 embeds | 1 |
 | 9 | Territory | `03-validation/03-territory.html` | 4 | 1 checkbox | - | 1 embed | - |
 | 10 | How Technology and Sourcing Works | `03-validation/04-technology.html` | 5 | - | - | 3 embeds, 1 pending | - |
 | 11 | Executive Approval Call | `04-seeking-approval/01-executive-approval-call.html` | 9 | - | - | 1 embed | - |
@@ -33,7 +33,7 @@ Rebuild: `python3 meg-sales-room/build/build.py`
 | 16 | Executive Board Approval | `06-agreement-stage/01-executive-board-approval.html` | 3 | - | - | 1 embed | - |
 | 17 | Executing Your Franchise Agreement | `06-agreement-stage/02-executing-your-agreement.html` | 4 | - | - | 2 embeds | - |
 
-**Totals:** 52 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 23 video embeds, 4 pending video slots, 9 asset slots.
+**Totals:** 52 slides, 4 gates (2 checkboxes, 2 selects) on 4 pages, 0 placeholder flags, 25 video embeds, 2 pending video slots, 9 asset slots.
 
 
 ## Compliance gates
@@ -87,6 +87,8 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 | `02-brand-overview/03-additional-resources.html` | 1-Tom-Plumber Franchise: Is It Worth It in 2026? — with EverSmith Brands CEO Justin Ghadery | `wKzLSE13k7w` |
 | `03-validation/01-owner-calls.html` | EverSmith Validation Overview | `sIRDGB7yyGE` |
 | `03-validation/02-funding.html` | EverSmith Funding Overview | `0Z9bjsRKN5c` |
+| `03-validation/02-funding.html` | SBA 7(a) Loan Explainer | `XyBHEblayCQ` |
+| `03-validation/02-funding.html` | 401(k) Rollover Explainer | `haoMilg_dWA` |
 | `03-validation/02-funding.html` | EverSmith Self Funding Overview | `oSIvxdHtO-o` |
 | `03-validation/02-funding.html` | EverSmith Home Equity Funding | `TFpdCqMtxQQ` |
 | `03-validation/03-territory.html` | Territory Design and DBA — 1-Tom-Plumber Mutual Evaluation Guide | `HI9J76Spg20` |
@@ -103,8 +105,6 @@ Each renders as an amber `.flag` block or inline chip in the page. Nothing was s
 
 | Page | Awaiting |
 |---|---|
-| `03-validation/02-funding.html` | SBA lending partner overview — vendor slot (First Financial / FranFund) |
-| `03-validation/02-funding.html` | ROBS provider overview — vendor slot (Benetrends / Tenet) |
 | `03-validation/04-technology.html` | FranConnect overview |
 | `05-meet-the-team-day/03-meet-the-team-day.html` | MTTD logistics |
 

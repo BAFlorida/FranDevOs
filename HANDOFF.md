@@ -50,10 +50,11 @@ Questionnaire and Post-MTTD Assessment pages plus the Behavioral Assessment
 `3wI0n4g9eOQ` stays registered in parse.py but unused).
 
 ### Still pending for 1-Tom
-- Videos: owner testimonials (IDs from John's folder), SBA + ROBS vendor
-  slots, MTTD logistics, FranConnect overview (added 2026-08-25; Ryan hunting
-  for the video); one validation video is cut off (Ryan to identify).
-  QuickBooks Online went live 2026-08-25 (`uaUmFB9tv-w`).
+- Videos: owner testimonials (IDs from John's folder), MTTD logistics,
+  FranConnect overview (added 2026-08-25; Ryan hunting for the video); one
+  validation video is cut off (Ryan to identify). QuickBooks Online went
+  live 2026-08-25 (`uaUmFB9tv-w`). SBA 7(a) (`XyBHEblayCQ`) and 401(k)
+  rollover (`haoMilg_dWA`) explainers went live 2026-08-26, all brands.
 - Wiring (`href="#"` + data-asset): Teams owner-call link + add-to-calendar,
   the qualification-review scheduler, MTTD handout, Reasons form. SBA PFS
   wired 2026-08-25 to the legacy.sba.gov Form 413 page. (Pre/post MTTD forms
