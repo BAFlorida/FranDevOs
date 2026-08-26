@@ -1,0 +1,117 @@
+/* ---- build addition: full MEG component set --------------------------
+   The supplied draft is Stage 1 Welcome only and styles no gate, flag,
+   table, button or video-embed. The shared component CSS is carried from
+   the Seals draft, with its palette vars aliased onto Prism's. Deep blue
+   is the text-safe accent (the bright brand blue misses AA on white). */
+:root{
+  --s-black:var(--p-ink); --s-blue:var(--p-deep);
+  --s-grey-d:var(--ink-2); --s-grey-l:#A7A9AC;
+  --wash:#F2F6F8; --f-head:var(--f);
+}
+.video-embed{margin:0 0 8px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);
+  position:relative;padding-top:56.25%;background:var(--s-black)}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cap{font-family:var(--f-head);font-weight:600;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--s-grey-d);margin:8px 0 18px}
+
+/* ---- card stack ------------------------------------------------------- */
+.stack{max-width:928px;margin:0 auto;padding:36px 24px 24px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin:0 0 28px;padding:34px 38px}
+.slide .eyebrow{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--s-blue);margin-bottom:10px}
+.slide h3{font-family:var(--f-head);font-weight:800;font-size:clamp(26px,3.6vw,34px);line-height:1.08;
+  letter-spacing:-.02em;text-transform:uppercase;margin-bottom:16px}
+.slide h4{font-family:var(--f-head);font-weight:700;font-size:18px;letter-spacing:-.01em;margin:26px 0 8px;color:var(--s-black)}
+.slide p{margin:0 0 14px;color:#33383B}
+/* Direct-child selector: any last block in a card would otherwise stack its
+   own bottom margin on the card's padding. */
+.slide > :last-child{margin-bottom:0}
+.slide strong{font-weight:600;color:var(--s-black)}
+.slide ul,.slide ol{margin:0 0 16px 22px}
+.slide li{margin-bottom:7px;color:#33383B}
+.slide li::marker{color:var(--s-blue)}
+.slide table{border-collapse:collapse;width:100%;margin:6px 0 18px;font-size:15px}
+.slide th{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;color:var(--s-grey-d);border-bottom:2px solid var(--s-black);padding:8px 12px}
+.slide td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top}
+.slide tr td:first-child{white-space:nowrap;font-weight:600}
+.t-scroll{overflow-x:auto}
+.slide caption{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--s-grey-d);text-align:left;padding-bottom:8px}
+
+/* Internal note, built from the palette rather than a borrowed hue. */
+blockquote{background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--s-blue);
+  border-radius:var(--r);padding:14px 18px;margin:0 0 16px;font-size:14px;color:var(--s-black)}
+blockquote p{color:var(--s-black)!important;margin-bottom:8px}
+blockquote::before{content:"INTERNAL \2014 BUILD AUTOMATION";display:block;font-family:var(--f-head);
+  font-weight:700;font-size:10px;letter-spacing:.17em;color:var(--s-blue);margin-bottom:8px}
+
+.video-slot{border:2px dashed var(--s-grey-l);border-radius:var(--r);background:var(--wash);padding:22px;
+  margin:0 0 22px;display:flex;align-items:center;gap:14px;color:var(--s-grey-d)}
+.video-slot .play{width:40px;height:40px;border-radius:50%;background:var(--s-blue);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:none}
+.video-slot .t{font-family:var(--f-head);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.flag{display:block;background:var(--tint);border:1px solid var(--tint-line);border-left:4px solid var(--s-blue);
+  border-radius:var(--r);padding:12px 16px;margin:10px 0 16px;font-size:13.5px;color:var(--s-black)}
+.flag b{font-family:var(--f-head);font-weight:700;font-size:10px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--s-blue);display:block;margin-bottom:6px}
+.flag-in{display:inline;background:var(--tint);border:1px solid var(--tint-line);border-radius:4px;
+  padding:1px 7px;font-weight:600;font-size:13px;color:var(--s-black)}
+
+/* ---- gate: compliance acknowledgment --------------------------------- */
+.gate{border:2px solid var(--s-blue);border-radius:var(--r);background:var(--tint);padding:22px 24px;margin:10px 0 20px}
+.gate .glabel{font-family:var(--f-head);font-weight:700;font-size:10.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--s-blue);margin-bottom:10px}
+.gate .gtext{font-size:16.5px;font-weight:600;color:var(--s-black);margin-bottom:16px;line-height:1.5}
+.gate .gnote{font-size:14.5px;color:var(--s-grey-d);margin-bottom:16px}
+.gate .gcheck{display:flex;align-items:flex-start;gap:11px;border-top:1px solid var(--tint-line);padding-top:14px}
+.gate .gcheck input[type=checkbox]{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--s-blue);cursor:pointer}
+.gate .gcheck label{font-weight:600;cursor:pointer}
+.gate select{font-family:var(--f);font-size:15px;padding:9px 11px;border:1px solid var(--line-2);
+  background:var(--card);width:100%;max-width:340px;border-radius:4px}
+.sr-only{position:absolute;left:-9999px}
+
+/* ---- asset slots ------------------------------------------------------ */
+.asset{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  padding:14px 18px;margin:8px 0 16px;text-decoration:none;color:inherit}
+.asset:hover{border-color:var(--s-blue)}
+.asset .kind{font-family:var(--f-head);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--s-blue);color:#fff;padding:5px 9px;border-radius:3px;flex:none}
+.asset .lbl{font-weight:600}
+
+.quiz{list-style:none;margin:4px 0 18px 0!important}
+.quiz li{border:1px solid var(--line);border-radius:4px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;
+  align-items:baseline;background:var(--card)}
+.quiz li .box{font-family:var(--f-head);font-weight:600;font-size:13px;color:var(--s-grey-d);flex:none}
+.quiz li.correct{border-color:var(--s-blue);background:var(--tint)}
+.quiz li.correct .box{color:var(--s-blue);font-weight:700}
+.quiz li.correct::after{content:"CORRECT";margin-left:auto;font-family:var(--f-head);font-weight:700;
+  font-size:9.5px;letter-spacing:.15em;color:var(--s-blue);align-self:center}
+.ui-chip{display:inline-block;background:var(--s-blue);color:#fff;font-family:var(--f-head);font-weight:700;
+  font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r);margin:2px 6px 2px 0}
+
+/* ---- substep list: bucket index pages only --------------------------- */
+.substeps{list-style:none;margin:4px 0 0 0!important}
+.substeps li{border-bottom:1px solid var(--line)}
+.substeps a{display:flex;align-items:baseline;gap:14px;padding:15px 4px;text-decoration:none;color:var(--s-black)}
+.substeps a:hover .sst{color:var(--s-blue)}
+.ssn{font-family:var(--f-head);font-weight:700;font-size:12px;color:var(--s-blue);flex:none;width:22px}
+.sst{font-weight:600}
+.ssnote{margin-left:auto;font-family:var(--f-head);font-weight:600;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--s-grey-d)}
+
+/* ---- outbound CTA ----------------------------------------------------
+   Blue fill, white label, Gotham stand-in in caps. Red is deliberately NOT
+   used for buttons: white on red is 4.41:1 and a button label is small
+   text. Red stays on the current-step plate, where the numeral is large
+   enough to clear. */
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 2px}
+.btnrow .btn{margin:0}
+.btn{display:inline-flex;align-items:center;gap:9px;margin:8px 0 2px;
+  background:var(--s-blue);color:#fff;text-decoration:none;
+  font-family:var(--f-head);font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 26px;border-radius:var(--r);border:0;transition:background .15s}
+.btn:hover{background:var(--s-black);color:#fff}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+

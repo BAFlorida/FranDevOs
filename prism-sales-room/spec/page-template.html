@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   PORTAL SAFETY - READ BEFORE EDITING THIS STYLESHEET
+   The Workshop portal scans raw text for tag openings and will drop this
+   ENTIRE style block if it finds an angle bracket followed by a letter -
+   including inside a comment like this one. That failure is silent: the
+   page arrives with no CSS at all. Write "defs", "text", "use", "svg" as
+   bare words. The working modules all contain zero angle brackets in CSS.
+   =================================================================== */
+:root{
+  /* ================= PRISM SPECIALTIES PALETTE ======================
+     From the Prism Specialties Brand Guidelines, Color Codes page 23.
+     Every stated value is used as published, nothing sampled.
+       Prism Blue    #00A0DF  RGB 0 160 223    Pantone Blue 299 C
+       Prism Gray    #7C878F  RGB 124 135 143  Pantone Grey 430
+       Prism Steel   10% black
+     Division colours, for reference - none is the master brand colour:
+       Electronics Blue #0056A0
+       Art Red          #981E32
+       Textiles Green   #4DB136
+
+     ---- THE ONE THING TO KNOW ABOUT THIS PALETTE ----
+     PRISM BLUE CANNOT CARRY WHITE TEXT, AND CANNOT BE TEXT ON WHITE.
+       white on Prism Blue ..... 2.96:1  FAILS AA, and fails even the 3:1
+                                         large-text floor
+       Prism Blue on white ..... 2.96:1  FAILS - never use it for type
+       Prism Gray on white ..... 3.67:1  large text only, never body copy
+     That rules out the obvious treatment of a bright blue hero with white
+     copy. The guide supplies the way out itself: it says the palette "is
+     comprised entirely from the color blue by utilizing different tones,
+     shades and tints", "created by adding black, white and a combination
+     of black and white". So the darker blues below are the guide's OWN
+     method applied, not new hues invented for this file.
+       --p-deep   Prism Blue plus black, carries the hero
+       --p-ink    Prism Gray plus black, carries all body copy
+
+     CONTRAST, measured on the surface each colour actually sits on:
+       white     on --p-deep  #005070 ... 8.82:1  AA any size
+       white     on sweep end #0079A8 ... 4.88:1  AA any size
+       --p-ink   on white .............. 12.52:1  AA any size
+       --p-ink   on --p-steel .......... 10.04:1  AA any size
+       --p-deep  on white ............... 8.82:1  AA any size  (links)
+       near-black on Prism Blue ......... 6.39:1  AA any size  (step chip)
+       Prism Blue on black .............. 7.10:1  AA any size  (topbar dot)
+     So Prism Blue appears as a FILL with dark type on it, and as artwork -
+     never as type itself. That is also close to how the guide budgets it:
+     Blue 10-15% of the palette, Gray 20-25%, Steel 60%. */
+  --p-blue:#00A0DF;
+  --p-gray:#7C878F;
+  --p-steel:#E6E6E6;
+  /* shades, by the guide's stated add-black method */
+  --p-deep:#005070;
+  --p-ink:#2B353C;
+  --p-onblue:#0A1216;
+
+  --paper:#FFFFFF; --card:#FFFFFF;
+  /* Hairlines and tints are transparencies of the palette, never new hues. */
+  --line:rgba(43,53,60,.14); --line-2:rgba(43,53,60,.24);
+  --line-dark:rgba(255,255,255,.24);
+  --tint:rgba(0,160,223,.08);
+  --tint-line:rgba(0,160,223,.34);
+  --ink-2:rgba(43,53,60,.70);
+
+  /* ---- TYPE ----------------------------------------------------
+     The guide names FRUTIGER, and its own substitution chain is Frutiger,
+     then Helvetica, then Arial. That chain was written for print and
+     office use, where webfonts are not an option.
+     For the web the closest available match to Frutiger's DESIGN - a
+     humanist sans with a large x-height and open apertures - is Open Sans,
+     which is much nearer to Frutiger than Helvetica is. Helvetica is a
+     grotesque, so falling straight to it loses the humanist character that
+     makes Frutiger recognisable.
+     So the stack asks for Frutiger first, in case it is licensed on the
+     machine, then Open Sans, then the guide's own two substitutes.
+     NEEDS SIGN-OFF: Open Sans is not named in the guide.
+     One thing this brand gets for free that the others did not - the
+     wordmark in the logo IS Frutiger Bold, so the hero type and the
+     logotype are the same family by default. No separate display face is
+     needed and none is used. */
+  --f:'Frutiger','Frutiger LT Pro','Open Sans',Helvetica,Arial,sans-serif;
+  --r:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--p-ink);font-family:var(--f);font-weight:400;
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Prism Blue fails as link colour on white at 2.96:1, so links carry the
+   deep shade instead, at 8.82:1. */
+a{color:var(--p-deep);font-weight:600;text-decoration:none}
+a:hover{color:var(--p-ink);text-decoration:underline}
+
+/* ---- topbar ----------------------------------------------------------- */
+.topbar{background:#000000;color:#fff;padding:11px 24px}
+.topbar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-weight:800;font-size:20px;letter-spacing:.06em;
+  text-transform:uppercase;color:#fff}
+/* Prism Blue clears 7.1:1 on black, so it can be type here. */
+.topbar .meg b{color:var(--p-blue)}
+.topbar .sub{font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.74)}
+.topbar .chip{margin-left:auto;border:1px solid var(--p-blue);color:#fff;font-weight:600;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:3px}
+
+/* ---- hero -------------------------------------------------------------
+   Deep Prism Blue field, white copy at 8.82:1. Bright Prism Blue is NOT
+   usable here - see the palette note - so it appears in the artwork below
+   instead, where it sits under dark type or none at all. */
+.hero{background-color:var(--p-deep);color:#fff;padding:28px 24px 34px;position:relative;overflow:hidden}
+/* Tonal sweep. Starts at exactly the band colour so its leading edge emerges
+   out of the field rather than reading as a drawn line, then LIFTS through
+   the blues. Its lightest stop, #0079A8, still holds white at 4.88:1, and
+   that is exactly what caps how light it is allowed to get - going any
+   nearer to Prism Blue itself would drop the hero copy below AA. The stops
+   are attributes on the gradient rather than custom properties because
+   stop-color is set in the markup. Gradient lives in this svg's own defs,
+   so the element is self-contained. */
+.hero-wave{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wave-fill{fill:url(#pw)}
+/* z-index 1 is enough: the only thing beneath it is the sweep svg, which
+   takes no z-index of its own. It was 2 to clear an animated speck layer that
+   used to sit between them; that layer is gone. */
+.hero-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;
+  flex-wrap:wrap;position:relative;z-index:1}
+.hero-copy{flex:1 1 320px;min-width:0}
+/* ALL-WHITE REVERSED LOGO, straight on the blue with no panel.
+   The guide asks for the full-colour logo "whenever possible", but it also
+   sanctions the reversed version on a colour and requires "high contrast
+   legibility" there. Full colour would put Prism Blue artwork on a blue
+   field, so reversed white is the correct read of that rule, at 8.82:1.
+   Made from Prism_Logo_4C.png, whose ink measured exactly the two brand
+   values - #00A0DF and #7C878F - confirming it as real brand artwork.
+   Source is 6750x3834; the alpha channel was kept and only the ink colour
+   replaced with white, so every edge stays anti-aliased. Held at 720px wide
+   against a 208px display width, so it is sharp on a retina screen.
+   If the colour logo on a white plate is preferred instead, that is a
+   one-line change here plus swapping the artwork back. */
+.logo-plate{flex:none;display:block}
+.brandmark{display:block;width:208px;max-width:100%;height:auto}
+.hero h1{font-weight:800;font-size:clamp(36px,5.6vw,56px);line-height:1.06;
+  letter-spacing:.005em;text-transform:uppercase;color:#fff;overflow-wrap:break-word;text-wrap:balance}
+.hero .subtitle{margin-top:13px;color:rgba(255,255,255,.92);font-weight:600;
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;max-width:56ch;line-height:1.45}
+.ticket{margin-top:18px;display:flex;flex-wrap:wrap;border:1px solid var(--line-dark);border-radius:var(--r);overflow:hidden}
+.ticket div{padding:9px 16px;border-right:1px solid var(--line-dark);min-width:150px;flex:1}
+.ticket div:last-child{border-right:none}
+.ticket .k{font-weight:600;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.ticket .v{font-size:14px;color:#fff;margin-top:3px}
+
+/* ---- journey ---------------------------------------------------------- */
+.journey{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line-2);padding:18px 24px 16px}
+.journey-in{max-width:880px;margin:0 auto}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.jhead .jt{font-weight:700;font-size:20px;letter-spacing:.01em;
+  text-transform:uppercase;color:var(--p-ink)}
+/* Prism Blue would fail here on white, so the stage counter takes the deep
+   shade at 8.82:1. */
+.jhead .jc{font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--p-deep)}
+/* The pictures are self-contained and do not overflow their own step, so the
+   track needs only a little breathing room above. */
+.jtrack{display:flex;align-items:flex-start;padding-top:8px;position:relative}
+.jstep{flex:1;position:relative;min-width:0;text-align:center}
+/* The current step paints above its neighbours so the brush is never clipped
+   by the step next to it. */
+.jstep.now{z-index:3}
+.jcanvas{position:relative;height:76px}
+/* The picture keeps its own aspect ratio and is centred in its step - height
+   is fixed and width follows, which is the opposite of the mural version's
+   full-width stretch. Do NOT put preserveAspectRatio="none" back on the svg:
+   these are framed objects and a stretched frame reads as a mistake. */
+.jart{display:block;height:76px;width:auto;margin:0 auto;position:relative;z-index:1}
+/* THE RAIL, behind the pictures, joining them into one progression. Each step
+   draws its own full-width segment; the steps are equal width and adjacent, so
+   the segments meet and read as a single continuous track. Centred on the
+   frame, so it looks like the pictures are hung on it.
+   The current step's segment is half filled, matching the half-restored
+   painting above it. */
+.jcanvas::before{content:"";position:absolute;left:0;right:0;top:36.5px;height:3px;
+  background:var(--p-steel);z-index:0}
+.jstep.done .jcanvas::before{background:var(--p-deep)}
+.jstep.now .jcanvas::before{background:linear-gradient(to right,
+  var(--p-deep) 0,var(--p-deep) 50%,var(--p-steel) 50%,var(--p-steel) 100%)}
+
+/* ---- THE PAINTING ----------------------------------------------------
+   SIX FRAMED PORTRAITS, one per stage - a picture hanging on the wall at each
+   step, damaged where the work has not been done and restored where it has.
+   An earlier version ran a single landscape across the whole bar like a mural.
+   It read as one continuous scene rather than as artwork, and it lost the
+   thing that makes the metaphor land: a FRAME. A framed portrait is instantly
+   legible as "a painting", which a stretched band is not.
+   The subject is a seated portrait, simplified hard - at 47px of canvas height
+   nothing more detailed survives. Hair, a pale face, folded hands and a dark
+   gown against a bright window is enough for the eye to complete it.
+   THE PORTRAIT IS DELIBERATELY OFF-PALETTE, AND IT IS THE BIGGEST DEVIATION
+   IN THIS FILE. Franchise development asked for it bright - yellows, reds,
+   greens - so that it pops. Prism has no warm colour at all and budgets Blue
+   at only 10-15%, so none of these hues appear in the guide.
+   It does earn its keep, though. An earlier version was a duotone in the brand
+   blues and greys, and the trouble with it was that the damage overlay is also
+   a desaturating brown wash: dull-blue-restored against dull-brown-damaged is
+   a weak contrast. A vivid painting going muddy is a far stronger one, and the
+   whole point of the graphic is that difference being readable at a glance.
+   Prism Blue still carries the gown, so the brand primary is the single
+   largest colour on the figure.
+   The frame went gold for the same reason - grey looked drab around a bright
+   picture. NEEDS BRAND SIGN-OFF on the portrait palette and the frame.
+   Every svg is self-contained - flat fills, no defs, nothing referencing
+   outside itself - and the six copies are byte-identical. */
+/* Gilt frame. Three tones so it reads as moulding rather than a flat border:
+   a mid gold body, a bright bevel catching the light, a dark inner lip. */
+.v-frame{fill:#C9A227}
+.v-frame-hi{fill:#E8CE6A}
+.v-frame-lo{fill:#8A6A12}
+/* The inside edge of the frame, straddling the canvas boundary. */
+.v-lip{fill:none;stroke:#8A6A12;stroke-width:1.4}
+/* Crimson wall behind the sitter. It has to be strong: the face and the gown
+   both read against it, so a timid backdrop flattens the whole figure. */
+.v-bg{fill:#C2262E}
+/* THE SITTER, painted rather than diagrammed. Realism at this size is not
+   more detail - it is LAYERED LIGHT: every major form carries a base tone
+   plus one shading or highlight pass, and the features stay minimal because
+   at 47 units of canvas anything finer turns to noise.
+     v-glow      warm haze where the golden sky meets the hills
+     v-hill-far  a paler second range - what gives the landscape its depth
+     v-skin-sh   one-sided shading that turns the face from a disc into a
+                 form, and the cast shadow under the chin
+     v-blush     cheeks
+     v-brow / v-nose / v-mouth  the minimum feature set that still reads as
+                 a face at this size
+     v-hair-hi   lit strands, so the hair reads as locks rather than a helmet
+     v-fold      gown folds, stroked in the deep shade of the same blue */
+.v-sky{fill:#FFC61E}
+.v-glow{fill:#FFE08A}
+.v-hill-far{fill:#7CC47F}
+.v-hill{fill:#34A853}
+/* The gown is PRISM BLUE at full strength - the one place the brand primary
+   gets to be fully saturated, because nothing has to be legible on top of it,
+   and it keeps the brand colour as the largest area on the figure. */
+.v-gown{fill:var(--p-blue)}
+.v-fold{fill:none;stroke:rgba(0,80,112,.5);stroke-width:.9;stroke-linecap:round}
+.v-hair{fill:#5C2E14}
+.v-hair-hi{fill:#8A4A22}
+.v-skin{fill:#FFDCB0}
+.v-skin-sh{fill:rgba(198,134,80,.38)}
+.v-blush{fill:rgba(233,112,86,.28)}
+.v-brow{fill:none;stroke:#4A2410;stroke-width:.7;stroke-linecap:round}
+.v-eye{fill:#33200F}
+.v-nose{fill:none;stroke:rgba(178,116,66,.65);stroke-width:.6;stroke-linecap:round}
+.v-mouth{fill:#B4552E}
+
+/* THE DAMAGE - FIRE, drawn over the restored picture rather than as a second
+   painting, so one set of artwork and one overlay can never drift apart.
+   This started as water damage - a tide line, cockling, foxing - and it was
+   too polite. Against a vivid painting, a brown wash just reads as a dimmed
+   picture. Fire gives the eye something unmistakable: things are BLACK, and
+   parts of the object are gone.
+   Everything below is off-palette. Prism has no warm colour at all, and
+   nothing in a blue-and-grey palette reads as charring. NEEDS SIGN-OFF.
+
+   THE CANVAS
+     d-fade    overall dulling, so a restored picture looks brighter beside it
+     d-smoke   smoke staining, and a second heavier pass across the top where
+               smoke actually collects
+     d-scorch  the burnt-sienna halo around every burn. Painted as the char
+               shape PLUS a fat stroke of the same colour, so a rim of scorch
+               shows outside the black no matter how the char is drawn - which
+               is far easier to keep right than hand-drawing a second, larger
+               outline for each one
+     d-char    the blackened areas themselves, eating in from the edges
+     d-blister paint bubbled up by heat
+     d-flake   lifted paint, showing the pale primed canvas underneath
+     d-torn    canvas missing, bitten out of the edges
+     d-rip     a split straight through the picture
+     d-edge    on the current step only, the crisp DIAGONAL band along the
+               cleaning line - the way a real conservation sweep looks
+
+   THE FRAME
+     f-char    scorched gilding, worst at the top corner
+     f-chip    chips knocked out of the gilt, showing the dark gesso beneath
+     f-gone    a corner broken clean off. This one is filled with the PAGE
+               colour rather than a dark tone, because the frame is genuinely
+               absent there and what shows through is the wall behind it.
+
+   TWO THINGS LEARNED THE HARD WAY, both worth keeping:
+   1. DAMAGE MUST BE DARK. Drawn in pale steel, on the reasoning that a hole
+      shows the backing board, the tears were invisible - pale on pale - and
+      all that survived was a grey wash, which read as a panel laid over a
+      clean picture rather than as damage.
+   2. DAMAGE MUST BE INTERMITTENT. One filled shape running a full edge with a
+      ragged inner line has a straight outer edge against the frame, so it
+      reads as a stripe of mud. It has to come in discrete bites with clean
+      material between them. */
+.d-fade{fill:rgba(104,94,72,.34)}
+.d-smoke{fill:rgba(32,24,16,.34)}
+.d-scorch{fill:#8A4418;stroke:#8A4418;stroke-width:3.2;stroke-linejoin:round}
+.d-char{fill:#17110C}
+.d-blister{fill:rgba(23,17,12,.52)}
+.d-flake{fill:rgba(226,220,203,.72)}
+.d-torn{fill:#3A2A18}
+.d-rip{fill:#1E1610}
+.d-edge{fill:rgba(255,255,255,.55)}
+.f-char{fill:#1B1410}
+.f-chip{fill:#4A3418}
+.f-gone{fill:var(--paper)}
+
+
+/* State toggles. Damaged is the DEFAULT, so a step that is still ahead needs
+   no class of its own - which is what makes advancing a stage a one-word
+   edit. */
+.s-dmg{display:block} .s-half{display:none}
+.jstep.done .s-dmg{display:none}
+.jstep.now .s-dmg{display:none} .jstep.now .s-half{display:block}
+
+/* ---- THE BRUSH ------------------------------------------------------
+   Sits in every step and is revealed only on the current one, so advancing a
+   stage stays a class change.
+   GEOMETRY: the svg is 104x48 and the bristle tip is at (52,40) - exactly the
+   horizontal centre of its own box - so left:50% with margin-left of minus
+   half the width puts the tip precisely on the DIAGONAL cleaning line where it
+   crosses the picture centre at y40, at any viewport width - the diagonal's
+   endpoints were solved so it passes through that exact point. Do not change the viewBox width
+   without moving the tip to match, or the brush will stop touching the line
+   it is supposed to be painting.
+   VERTICAL: the tip sits 40 of 48 units down, so 16.67% of the box height
+   hangs below it. bottom must be 16 minus 0.1667 times the box height to put
+   the tip low on the picture, clear of the face. Unlike the ground vehicles in
+   the other modules, this DOES change with width, because the tip is
+   mid-box rather than near the bottom edge.
+   MIRRORED: the brush is drawn pointing right and then flipped, so the handle
+   rises to the upper LEFT, over the half that is already clean. Pointing it
+   the other way put the handle straight across the damage, hiding the thing
+   the graphic exists to show. The outer group does the flip; note the tip is
+   at the viewBox mid-point, so mirroring leaves it exactly where it was. */
+.jbrush{position:absolute;left:50%;bottom:17px;width:58px;margin-left:-29px;display:none;z-index:2}
+.jstep.now .jbrush{display:block}
+.jbrush svg{display:block;width:100%;height:auto;overflow:visible}
+.b-bristle{fill:#8E979D}
+.b-ferrule{fill:#C6CBCE}
+.b-band{fill:var(--p-gray)}
+.b-handle{fill:var(--p-ink)}
+/* A bead of clean colour on the tip - the restored blue, mid-stroke. */
+.b-paint{fill:var(--p-blue)}
+
+
+/* ---- stage name and number, BELOW the painting ----------------------
+   Numbers are HTML text, never svg text, so nothing depends on svg content
+   surviving the portal's sanitiser.
+     ahead    Steel chip, ink numeral ......... 10.04:1
+     done     deep blue chip, white numeral ... 8.82:1
+     current  PRISM BLUE chip, near-black numeral 6.39:1 - the brand primary
+              finally gets to be the attention colour, which only works
+              because the numeral on it is dark rather than white */
+.jnum{margin:10px auto 0;width:22px;height:22px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:12px;line-height:1;background:var(--p-steel);color:var(--p-ink)}
+.jstep.done .jnum{background:var(--p-deep);color:#fff}
+.jstep.now .jnum{background:var(--p-blue);color:var(--p-onblue)}
+.jlbl{margin-top:7px;font-weight:600;font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);line-height:1.25;padding:0 2px}
+.jstep.now .jlbl{color:var(--p-deep)}
+.jstep.done .jlbl{color:var(--p-deep)}
+
+/* ---- content ---------------------------------------------------------- */
+.stack{max-width:880px;margin:0 auto;padding:26px 24px 40px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px}
+.video-slot{border:1px dashed var(--tint-line);background:var(--tint);border-radius:var(--r);
+  padding:16px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.video-slot .play{flex:none;width:34px;height:34px;border-radius:50%;background:var(--p-deep);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.video-slot .t{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--p-ink)}
+.video{margin-bottom:22px;border-radius:var(--r);overflow:hidden;
+  position:relative;padding-top:56.25%;background:var(--p-ink)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.slide p{margin-bottom:15px}
+.slide p:last-child{margin-bottom:0}
+.slide strong{font-weight:700;color:var(--p-ink)}
+
+/* ---- footer ----------------------------------------------------------- */
+footer{border-top:1px solid var(--line);padding:18px 24px 30px;max-width:880px;margin:0 auto;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--p-gray)}
+
+@media(max-width:640px){
+  /* Stacked, the logo drops below the copy and right-aligns. No padding:
+     there is no plate behind it, so padding would only push it off its
+     own right edge. */
+  .hero{padding-bottom:30px}
+  .hero-in{gap:18px}
+  .logo-plate{margin-left:auto}
+  .brandmark{width:196px}
+  .slide{padding:24px 20px}
+  /* The pictures shrink to 44px tall and their width follows, so a frame is
+     about 34.6px wide inside a 57px step - enough for the rail to show either
+     side of it. The rail recentres on the shorter frame.
+     The brush tip must still land low on the picture: 16 units of 56 above the
+     frame bottom scales to 12.6px here, less the 16.67% of a 21px-tall box
+     that hangs below the tip, so bottom is about 9px. */
+  .jtrack{padding-top:6px}
+  .jcanvas{height:52px}
+  .jart{height:52px}
+  .jcanvas::before{top:25px;height:2px}
+  .jbrush{width:44px;margin-left:-22px;bottom:11.5px}
+  .jnum{width:19px;height:19px;font-size:10px;margin-top:8px}
+  .jlbl{font-size:8.5px;letter-spacing:.03em;margin-top:5px}
+  .ticket div{min-width:46%}
+  .jhead{flex-direction:column;gap:2px}
+}
+</style></head><body>
+
+<div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
+<span class="sub">Prism Specialties · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div></div>
+
+<div class="hero">
+<svg class="hero-wave" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="pw" x1="0" y1="0" x2=".92" y2="1">
+<stop offset="0" stop-color="#005070"/><stop offset=".42" stop-color="#005E82"/>
+<stop offset=".76" stop-color="#006C95"/><stop offset="1" stop-color="#0079A8"/>
+</linearGradient>
+</defs>
+<path class="wave-fill" d="M0,203 C150,203 250,199 380,181 C510,163 600,131 740,120 C880,109 1010,112 1200,104 L1200,220 L0,220 Z"/>
+</svg>
+<div class="hero-in">
+<div class="hero-copy">
+<h1>Welcome</h1>
+<p class="subtitle">Your guide through the Mutual Evaluation Process.</p>
+</div>
+<div class="logo-plate"><img class="brandmark" src="data:image/png;base64,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" alt="Prism Specialties" width="720" height="391" fetchpriority="high" decoding="sync"></div>
+</div></div>
+
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<!-- A FRAMED PORTRAIT at every stage: burnt and broken where the work is
+     still ahead, restored where it is done, and split along a DIAGONAL
+     cleaning line on the stage in progress, brush tip resting on the line.
+     Every svg is self-contained: flat fills, no defs, nothing reaching outside
+     itself. The six copies are byte-identical - edit one, edit all six.
+     To mark a step complete, add class "done" to its .jstep. -->
+<div class="jstep now" aria-current="step">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">1</div>
+<div class="jlbl">Welcome</div>
+<span class="sr-only">Step 1 of 6 — you are here</span></div>
+
+<div class="jstep">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">2</div>
+<div class="jlbl">Brand Overview</div>
+<span class="sr-only">Step 2 of 6</span></div>
+
+<div class="jstep">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">3</div>
+<div class="jlbl">Validation</div>
+<span class="sr-only">Step 3 of 6</span></div>
+
+<div class="jstep">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">4</div>
+<div class="jlbl">Seeking Approval</div>
+<span class="sr-only">Step 4 of 6</span></div>
+
+<div class="jstep">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">5</div>
+<div class="jlbl">Meet the Team Day</div>
+<span class="sr-only">Step 5 of 6</span></div>
+
+<div class="jstep">
+<div class="jcanvas">
+<svg class="jart" viewBox="0 0 44 56" aria-hidden="true" focusable="false">
+<rect class="v-frame" x="0" y="0" width="44" height="56"/><rect class="v-frame-hi" x="1.4" y="1.4" width="41.2" height="53.2"/><rect class="v-frame-lo" x="3" y="3" width="38" height="50"/>
+<rect class="v-bg" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="v-sky" x="4.2" y="4.2" width="35.6" height="12.3"/><ellipse class="v-glow" cx="22" cy="16.5" rx="15" ry="3.4"/><path class="v-hill-far" d="M4.2 17.8L4.2 14.6L9 12.9L14 14.4L19 12.6L25 14.2L30 12.8L35 14.5L39.8 13.2L39.8 17.8Z"/><path class="v-hill" d="M4.2 20.6L4.2 17L10 15.4L16 17.2L22.5 15.2L29 17L34.5 15.6L39.8 17.4L39.8 20.6Z"/><path class="v-hair" d="M22 8.4C15 8.4 12.2 13.8 12.5 21.5C12.8 28.5 13.9 33.6 15.6 37.6L28.4 37.6C30.1 33.6 31.2 28.5 31.5 21.5C31.8 13.8 29 8.4 22 8.4Z"/><rect class="v-skin" x="19.6" y="27.5" width="4.8" height="8.5"/><path class="v-gown" d="M4.2 51.8C6.5 41.5 12.5 36 22 34.8C31.5 36 37.5 41.5 39.8 51.8Z"/><path class="v-fold" d="M15.6 39.6C14.6 43.6 14 47.6 13.8 51.8M22 35.4C22 40.8 22 46.4 22 51.8M28.4 39.6C29.4 43.6 30 47.6 30.2 51.8"/><path class="v-skin" d="M22 11.8C18.1 11.8 15.7 15.2 15.8 19.7C15.9 24.3 18.4 28.7 22 29.1C25.6 28.7 28.1 24.3 28.2 19.7C28.3 15.2 25.9 11.8 22 11.8Z"/><path class="v-skin-sh" d="M25.3 13.2C27.3 15.1 28.2 17.3 28.2 19.7C28.1 24.3 25.6 28.7 22 29.1C24.5 27.4 26.2 23.9 26.3 19.7C26.4 16.9 26 14.8 25.3 13.2Z"/><path class="v-skin-sh" d="M19.6 28.2C21 29.4 23 29.4 24.4 28.2C24.4 30 23.2 31 22 31C20.8 31 19.6 30 19.6 28.2Z"/><ellipse class="v-blush" cx="18.9" cy="22.3" rx="1.35" ry="0.85"/><ellipse class="v-blush" cx="25.1" cy="22.3" rx="1.35" ry="0.85"/><path class="v-brow" d="M17.9 17.3Q19.3 16.5 20.6 17.1M23.4 17.1Q24.7 16.5 26.1 17.3"/><ellipse class="v-eye" cx="19.3" cy="19" rx="1" ry="0.75"/><ellipse class="v-eye" cx="24.7" cy="19" rx="1" ry="0.75"/><path class="v-nose" d="M21.9 19.2L21.7 22.1Q21.9 22.7 22.6 22.4"/><path class="v-mouth" d="M20.3 25Q22 26.3 23.7 25Q22 27.1 20.3 25Z"/><path class="v-hair" d="M15.8 18.6C15.5 13.2 18.1 10.4 22 10.4C25.9 10.4 28.5 13.2 28.2 18.6C27.1 14.9 24.9 13.3 22 13.3C19.1 13.3 16.9 14.9 15.8 18.6Z"/><path class="v-hair" d="M12.6 21.5C12.1 28.6 13.1 34.2 14.9 39.3L18.3 38C16.5 33.8 15.5 28.8 15.8 23.2ZM31.4 21.5C31.9 28.6 30.9 34.2 29.1 39.3L25.7 38C27.5 33.8 28.5 28.8 28.2 23.2Z"/><path class="v-hair-hi" d="M13.5 18.4C13.2 23.4 13.7 28.2 14.9 32.6L15.9 32.2C14.8 28 14.3 23.4 14.6 18.9ZM30.5 18.4C30.8 23.4 30.3 28.2 29.1 32.6L28.1 32.2C29.2 28 29.7 23.4 29.4 18.9ZM18.3 10.9C19.4 10.1 20.6 9.7 22 9.7L22 10.7C20.9 10.7 19.6 11 18.6 11.6Z"/>
+<g class="s-dmg"><rect class="d-fade" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="47.6"/><rect class="d-smoke" x="4.2" y="4.2" width="35.6" height="29.5"/><ellipse class="d-blister" cx="20" cy="20" rx="1.5" ry="1.1"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="15" cy="44" rx="1.6" ry="1.15"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="14" cy="25" rx="2" ry="1.2"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="20" cy="48" rx="1.6" ry="1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM4.2 51.8L4.2 38L8.5 41L7.5 45.5L13 44L16 49L20 51.8ZM4.2 4.2L11 4.2L9 8L13 10.5L8 13L4.2 11ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5ZM12 33L15 31.5L16.5 34.5L14 37L11 35.5Z"/><path class="d-torn" d="M7 4.2L9.4 8.6L12 6.2L14.6 10.2L17 6.8L19.4 4.2ZM25 4.2L27.4 9L30 6.4L32.6 10.6L35 7L37.4 4.2ZM9 51.8L11.4 47.6L14 50L16.6 46.8L19 49.8L21.4 51.8ZM27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6ZM4.2 20L8 22.4L5.6 25.2L8.8 27.8L5.8 30.2L4.2 32Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8ZM12 51.8L13.8 44L14.8 38L16.4 30L17.2 24L18.6 24L17.6 30L16.2 38L15 44L13.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM0 56L0 46L3.6 49L2 52L6 54L8 56ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M13 0L15.5 3.2L18 0.8L20.5 3.6L23 0ZM44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56ZM0 30L3.4 32.6L1.6 36L3.6 39L0 41ZM0 8L3.2 10.4L1.4 13.6L3.4 16L0 18Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/></g>
+<g class="s-half"><path class="d-fade" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 51.8L20 51.8Z"/><path class="d-smoke" d="M29 4.2L39.8 4.2L39.8 33.7L23.42 33.7Z"/><ellipse class="d-blister" cx="31" cy="16" rx="1.3" ry="0.95"/><ellipse class="d-blister" cx="35" cy="47" rx="1.4" ry="1"/><ellipse class="d-blister" cx="26" cy="40" rx="1.2" ry="0.9"/><ellipse class="d-blister" cx="33" cy="22" rx="1.35" ry="1"/><ellipse class="d-flake" cx="31" cy="20" rx="1.8" ry="1.1"/><ellipse class="d-flake" cx="36" cy="45" rx="1.7" ry="1.05"/><path class="d-scorch" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-char" d="M39.8 4.2L39.8 18L35.5 15L36.5 10.5L32 12L30.5 7.5L29.5 4.2ZM39.8 30L35 32L37 36L34.5 39.5L39.8 42ZM29 26L32.5 24.5L34 28L31.5 31L28 29.5Z"/><path class="d-torn" d="M27 51.8L29.4 47.4L32 49.8L34.6 46.6L37 49.6L39.4 51.8ZM39.8 21.6L36 24L38.4 26.8L35.2 29.4L38.2 31.8L39.8 33.6Z"/><path class="d-rip" d="M28 51.8L29.8 44L30.8 38L32.4 30L33.2 24.4L34.6 24.4L33.6 30L32.2 38L31 44L29.6 51.8Z"/><path class="f-char" d="M44 0L44 14L39.5 11L41 6L36 2L30 0ZM44 56L44 45.5L39 49.5L40.8 53L35.5 56Z"/><path class="f-chip" d="M44 20L40.8 22.5L42.5 26L40.5 29L44 31ZM26 56L28.5 52.6L31 55L33.5 52.2L36 56Z"/><path class="f-gone" d="M44 56L44 47L40 50.5L41.5 53.5L37 56Z"/><path class="d-edge" d="M28.7 4.2L29.3 4.2L20.3 51.8L19.7 51.8Z"/></g>
+<rect class="v-lip" x="4.2" y="4.2" width="35.6" height="47.6"/>
+</svg>
+<div class="jbrush"><svg viewBox="0 0 104 48" aria-hidden="true" focusable="false">
+<g transform="translate(104,0) scale(-1,1)"><g transform="rotate(-34 52 40)">
+<path class="b-bristle" d="M52 38.6L52 41.4L64 44L64 36Z"/>
+<path class="b-paint" d="M52 38.6L52 41.4L55.4 41L55.4 39Z"/>
+<rect class="b-ferrule" x="63.4" y="36.2" width="6.6" height="7.6" rx="0.8"/>
+<rect class="b-band" x="65.6" y="36.2" width="1.2" height="7.6"/>
+<path class="b-handle" d="M70 37.3L114 39.25L114 40.75L70 42.7Z"/>
+</g></g>
+</svg></div>
+</div>
+<div class="jnum">6</div>
+<div class="jlbl">Agreement</div>
+<span class="sr-only">Step 6 of 6</span></div>
+</div></div></div>
+
+<main class="stack">
+
+<section class="slide">
+<!-- PLACEHOLDER. Swap this block for the .video-embed iframe once the
+     Prism Specialties welcome video is published. -->
+<div class="video-slot"><span class="play">&#9654;</span><span class="t">Video slot · Prism Specialties welcome — awaiting final cut</span></div>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<p>To learn about the EverSmith Mutual Evaluation Process, please see the next step entitled <strong>Mutual Evaluation Process End-to-End</strong>.</p>
+</section>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>Prism Specialties · An EverSmith Brands Company</span></footer>
+</body></html>

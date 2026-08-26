@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   PORTAL SAFETY - READ BEFORE EDITING THIS STYLESHEET
+   The Workshop portal scans raw text for tag openings and will drop this
+   ENTIRE style block if it finds an angle bracket followed by a letter -
+   including inside a comment like this one. That failure is silent: the
+   page arrives with no CSS at all. Write "defs", "text", "use", "svg" as
+   bare words. The working modules all contain zero angle brackets in CSS.
+   =================================================================== */
+:root{
+  /* ================= MILLICARE PALETTE ==============================
+     From the MilliCare Brand Guide v2.1 (Feb 2025), Color pages.
+     Every value is stated in the guide, nothing sampled.
+       Oxford Blue    #071E51   RGB   7, 30, 81   PMS 281
+       Persian Blue   #003BCB   RGB   0, 59,203   PMS 2935
+       Cyan Process   #4ABFEF   RGB  74,191,239   PMS 2915
+       Light Green    #6AE36F   RGB 106,227,111   PMS 7488
+       Isabelline     #EFEDEC   RGB 239,237,236   Cool Gray 1
+
+     This palette is unusually kind to the web. The guide names its own
+     web-safe typeface (Poppins - see the type note), and the colours pair
+     legibly without inventing anything:
+
+     CONTRAST, measured on the surface each colour actually sits on:
+       white        on Oxford Blue ..... 15.99:1  AA any size
+       white        on Persian Blue ..... 8.42:1  AA any size
+       Light Green  on Oxford Blue ...... 9.69:1  AA any size
+       Light Green  on Persian Blue ..... 5.10:1  AA any size
+       Oxford Blue  on white ........... 15.99:1  AA any size
+       Oxford Blue  on Isabelline ...... 13.80:1  AA any size
+       Oxford Blue  on Light Green ..... 10.44:1  AA any size
+       Persian Blue on white ............ 8.42:1  AA any size  (links)
+       Cyan Process on white ............ 2.10:1  FAILS - graphics only
+       Light Green  on white ............ 1.65:1  FAILS - graphics only
+     So Cyan and Light Green are for dark grounds and artwork, never type
+     on white - and the guide agrees: its type-system page says headlines
+     on a solid dark background go LIGHT GREEN with the important words in
+     WHITE, which is exactly what the hero below does. */
+  --m-oxford:#071E51;
+  --m-persian:#003BCB;
+  --m-cyan:#4ABFEF;
+  --m-green:#6AE36F;
+  --m-isabel:#EFEDEC;
+
+  --paper:#FFFFFF; --card:#FFFFFF;
+  /* Hairlines and tints are transparencies of the palette, never new hues. */
+  --line:rgba(7,30,81,.14); --line-2:rgba(7,30,81,.24);
+  --line-dark:rgba(255,255,255,.24);
+  --tint:rgba(0,59,203,.06);
+  --tint-line:rgba(0,59,203,.30);
+  --ink-2:rgba(7,30,81,.72);
+
+  /* ---- TYPE ----------------------------------------------------
+     The guide's primary face is Centra No.2, a commercial licence - but it
+     names its own substitute: "WEB SAFE ALTERNATE" Poppins, free on Google
+     Fonts. So unlike every other brand module, nothing here needed
+     matching by eye: the stack asks for Centra first in case it is
+     licensed on the machine, then loads Poppins, which the brand itself
+     designated. No sign-off needed on the typeface. */
+  --f:'Centra No.2','Centra No2','Poppins',Arial,sans-serif;
+  --r:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--m-oxford);font-family:var(--f);font-weight:400;
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Persian Blue clears 8.42:1 on white, so links carry the true brand blue. */
+a{color:var(--m-persian);font-weight:600;text-decoration:none}
+a:hover{color:var(--m-oxford);text-decoration:underline}
+
+/* ---- topbar ----------------------------------------------------------- */
+.topbar{background:#000000;color:#fff;padding:11px 24px}
+.topbar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .meg{font-weight:800;font-size:20px;letter-spacing:.06em;
+  text-transform:uppercase;color:#fff}
+/* Light Green clears 12.7:1 on black - the "Milli" green as the accent. */
+.topbar .meg b{color:var(--m-green)}
+.topbar .sub{font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.74)}
+.topbar .chip{margin-left:auto;border:1px solid var(--m-green);color:#fff;font-weight:600;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:3px}
+
+/* ---- hero -------------------------------------------------------------
+   Oxford Blue field. The h1 is LIGHT GREEN and the kicker white, which is
+   not a designer's flourish - it is the guide's own type-system rule quoted
+   verbatim: headlines on a solid dark background in "Light Green" with
+   important information in "White". Green holds 9.69:1 here and 5.10:1 on
+   the sweep's lightest stop. */
+.hero{background-color:var(--m-oxford);color:#fff;padding:28px 24px 34px;position:relative;overflow:hidden}
+/* Tonal sweep. Starts at exactly the band colour so its leading edge emerges
+   out of the field rather than reading as a drawn line, then lifts through
+   the blues to land on full PERSIAN BLUE - which this palette can actually
+   afford, since white still holds 8.42:1 on it. No invented stops: the ramp
+   runs Oxford to Persian, both stated brand colours. Gradient lives in this
+   svg's own defs, so the element is self-contained. */
+.hero-wave{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wave-fill{fill:url(#mw)}
+.hero-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;
+  flex-wrap:wrap;position:relative;z-index:1}
+.hero-copy{flex:1 1 320px;min-width:0}
+/* TWO-COLOUR DARK-BACKGROUND LOGO, straight on the blue with no panel.
+   The guide's Logo Color page: on dark grounds "Milli" is always Light
+   Green and "Care" is White or Persian Blue. Persian on Oxford is only
+   1.9:1, so White is the legible half of that rule - and that exact
+   colourway was built from millicare-brand_logo_primary.png by recolouring
+   the Persian ink to white with the alpha channel untouched, so every edge
+   stays anti-aliased. This is the guide's own dark variant, not a recolour
+   of my invention. 720px wide against a 224px display width - about 3.2x,
+   sharp on any screen. */
+.logo-plate{flex:none;display:block}
+.brandmark{display:block;width:224px;max-width:100%;height:auto}
+.hero h1{font-weight:800;font-size:clamp(36px,5.6vw,56px);line-height:1.06;
+  letter-spacing:.01em;text-transform:uppercase;color:var(--m-green);overflow-wrap:break-word;text-wrap:balance}
+.hero .subtitle{margin-top:13px;color:#fff;font-weight:600;
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;max-width:56ch;line-height:1.45}
+.ticket{margin-top:18px;display:flex;flex-wrap:wrap;border:1px solid var(--line-dark);border-radius:var(--r);overflow:hidden}
+.ticket div{padding:9px 16px;border-right:1px solid var(--line-dark);min-width:150px;flex:1}
+.ticket div:last-child{border-right:none}
+.ticket .k{font-weight:600;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.ticket .v{font-size:14px;color:#fff;margin-top:3px}
+
+/* ---- journey ---------------------------------------------------------- */
+.journey{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line-2);padding:18px 24px 16px}
+.journey-in{max-width:880px;margin:0 auto}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.jhead .jt{font-weight:700;font-size:20px;letter-spacing:.01em;
+  text-transform:uppercase;color:var(--m-oxford)}
+.jhead .jc{font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--m-persian)}
+/* padding-top is headroom for the polisher, whose handle stands well above
+   the floor strip. The machine box is 38px tall on bottom:13px inside a
+   34px strip, overflowing the top by 17px; 22px leaves room to spare. */
+.jtrack{display:flex;align-items:flex-start;padding-top:22px}
+.jstep{flex:1;position:relative;min-width:0;text-align:center}
+/* The current step paints above its neighbours so the polisher handle is
+   never clipped by the step next to it. */
+.jstep.now{z-index:2}
+.jfloor{position:relative;height:34px}
+.jlawn{display:block;width:100%;height:34px}
+
+/* ---- THE FLOOR --------------------------------------------------------
+   One continuous floor across all six steps, stretched per step so the tile
+   seams read as a single run of flooring. Stages still ahead are DIRTY -
+   grime film, tracked stains, scuff marks; completed stages are the same
+   floor buffed to a gloss; the polisher stands at the boundary on the
+   current stage. Dirty is the DEFAULT, so a step that is still ahead needs
+   no class of its own - advancing a stage is a one-word edit.
+   The base tile is deliberately a neutral mid tone, NOT Isabelline: both
+   overlays have to read against it, the grime darkening it and the gloss
+   lifting it to Isabelline-plus-white. Every svg is self-contained - flat
+   fills, no defs - and the six copies are byte-identical.
+   THE DIRT IS OFF-PALETTE, deliberately: MilliCare's palette has no brown,
+   and greys alone read as shadow, not soil. The three grime tones exist
+   solely to describe dirt and vanish from every completed step - same
+   argument as the burn tones in the Prism module. NEEDS SIGN-OFF. */
+.g-tile{fill:#CFC9C1}
+.g-seam{fill:none;stroke:rgba(7,30,81,.18);stroke-width:.7}
+.g-grime{fill:rgba(94,76,48,.34)}
+.g-stain{fill:rgba(74,58,34,.45)}
+.g-scuff{fill:none;stroke:rgba(52,42,28,.55);stroke-width:.9;stroke-linecap:round}
+.g-dust{fill:rgba(74,60,40,.5)}
+/* The clean state lifts the floor to Isabelline and adds the gloss language:
+   a bright edge along the top, diagonal shine streaks, and sparkles in Cyan
+   Process - the one place the palette's cyan gets to work, since it is
+   graphics-only anyway. */
+.g-shine{fill:var(--m-isabel)}
+.g-glow{fill:rgba(255,255,255,.9)}
+.g-streak{fill:rgba(255,255,255,.75)}
+/* Buff swirls - the faint circular marks a rotary pad actually leaves on a
+   freshly burnished floor. They appear ONLY on the current step's cleaned
+   half, trailing the machine: a finished stage shows the flawless final
+   result, a stage in progress shows the work happening. */
+.g-swirl{fill:none;stroke:rgba(7,30,81,.16);stroke-width:.8}
+.g-spark{fill:var(--m-cyan)}
+.g-sparkw{fill:#FFFFFF}
+/* State toggles. */
+.s-dirty{display:block} .s-clean{display:none} .s-half{display:none}
+.jstep.done .s-dirty{display:none} .jstep.done .s-clean{display:block}
+.jstep.now .s-dirty{display:none}  .jstep.now .s-half{display:block}
+
+/* ---- THE POLISHER ----------------------------------------------------
+   A walk-behind rotary floor machine: pad on the floor, domed deck over it,
+   handle rising back to the operator grip. Drawn facing right, so the dirty
+   floor is ahead of the pad and the gloss behind it.
+   It is dressed in brand colour the way the real fleet would be - Persian
+   Blue deck, Oxford handle, Light Green trim stripe.
+   CONTACT MATH: the strip is 34px tall for a 34-unit viewBox, so 1 unit =
+   1px. The floor surface sits at y21 of 34 - 13px above the strip base -
+   and the machine svg puts the pad's underside exactly on its own viewBox
+   base, so bottom:13px lands the pad ON the floor. The band was deepened
+   from 10 to 13 units because at ten the stains were ~4px at real size and
+   the dirty-clean story rode almost entirely on the grime tint. The svg is 80x40, so
+   height is always width/2; at 76px wide it stands 38px tall and overflows
+   the strip top by 14px, which .jtrack's padding absorbs. */
+.jmower{position:absolute;left:50%;bottom:13px;width:76px;margin-left:-38px;display:none;z-index:2}
+.jstep.now .jmower{display:block}
+.jmower svg{display:block;width:100%;height:auto;overflow:visible}
+.m-pad{fill:#E4E0DB}
+.m-padline{fill:#9A938A}
+.m-deck{fill:var(--m-persian)}
+.m-cap{fill:var(--m-oxford)}
+.m-stripe{fill:var(--m-green)}
+.m-handle{fill:var(--m-oxford)}
+.m-grip{fill:var(--m-persian)}
+.m-wheel{fill:#1A2233}
+.m-hub{fill:#C6CBD1}
+/* The cartoon shorthand for "just cleaned" - a cyan spark and a white one
+   floating off the pad, matching the sparkles on the finished floor. */
+/* Soft grounding shadow under the deck, painted first. */
+.m-shadow{fill:rgba(7,30,81,.16)}
+.m-spark{fill:var(--m-cyan)}
+.m-sparkw{fill:#FFFFFF}
+
+
+/* ---- MOTION -----------------------------------------------------------
+   Two small animations, both doing narrative work rather than decoration:
+   the sparkles TWINKLE (opacity only - nothing moves, so the stretched svg
+   never shimmers), and the polisher rocks 1.3px side to side, which is what
+   reads as buffing rather than parked. The two sparkle classes run the same
+   loop half a cycle apart so the floor never blinks in unison.
+   Both stop dead under prefers-reduced-motion - the graphic works static,
+   the motion is a bonus. */
+@keyframes twinkle{0%,100%{opacity:1}55%{opacity:.2}}
+.g-spark,.m-spark{animation:twinkle 2.6s ease-in-out infinite}
+.g-sparkw,.m-sparkw{animation:twinkle 2.6s ease-in-out infinite;animation-delay:-1.3s}
+@keyframes buff{0%,100%{transform:translateX(-1.3px)}50%{transform:translateX(1.3px)}}
+.jstep.now .jmower{animation:buff 1.15s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){
+  .g-spark,.g-sparkw,.m-spark,.m-sparkw,.jstep.now .jmower{animation:none}}
+
+/* ---- stage name and number, BELOW the floor --------------------------
+   Numbers are HTML text, never svg text, so nothing depends on svg content
+   surviving the portal's sanitiser.
+     ahead    Isabelline chip, Oxford numeral ... 13.80:1
+     done     Oxford chip, white numeral ........ 15.99:1
+     current  LIGHT GREEN chip, Oxford numeral .. 10.44:1 - the "Milli"
+              green as the attention colour, which only works because the
+              numeral on it is dark rather than white */
+.jnum{margin:10px auto 0;width:22px;height:22px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:12px;line-height:1;background:var(--m-isabel);color:var(--m-oxford)}
+.jstep.done .jnum{background:var(--m-oxford);color:#fff}
+.jstep.now .jnum{background:var(--m-green);color:var(--m-oxford)}
+.jlbl{margin-top:7px;font-weight:600;font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);line-height:1.25;padding:0 2px}
+.jstep.now .jlbl{color:var(--m-persian)}
+.jstep.done .jlbl{color:var(--m-oxford)}
+
+/* ---- content ---------------------------------------------------------- */
+.stack{max-width:880px;margin:0 auto;padding:26px 24px 40px}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px}
+.video-slot{border:1px dashed var(--tint-line);background:var(--tint);border-radius:var(--r);
+  padding:16px 18px;display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.video-slot .play{flex:none;width:34px;height:34px;border-radius:50%;background:var(--m-persian);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
+.video-slot .t{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--m-oxford)}
+.video{margin-bottom:22px;border-radius:var(--r);overflow:hidden;
+  position:relative;padding-top:56.25%;background:var(--m-oxford)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.slide p{margin-bottom:15px}
+.slide p:last-child{margin-bottom:0}
+.slide strong{font-weight:700;color:var(--m-oxford)}
+
+/* ---- footer ----------------------------------------------------------- */
+footer{border-top:1px solid var(--line);padding:18px 24px 30px;max-width:880px;margin:0 auto;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+
+@media(max-width:640px){
+  /* Stacked, the logo drops below the copy and right-aligns. No padding:
+     there is no plate behind it. */
+  .hero{padding-bottom:30px}
+  .hero-in{gap:18px}
+  .logo-plate{margin-left:auto}
+  .brandmark{width:200px}
+  .slide{padding:24px 20px}
+  /* The strip squashes to 24px for the same 34-unit viewBox, so everything
+     measured off it rescales by 24/34. Floor surface at y21 sits
+     13 x 24/34 = 9.2px above the base, so bottom is 9px. 48px machine
+     width inside a ~57px step. */
+  .jtrack{padding-top:16px}
+  .jfloor{height:24px}
+  .jlawn{height:24px}
+  .jmower{width:48px;margin-left:-24px;bottom:9px}
+  .jnum{width:19px;height:19px;font-size:10px;margin-top:8px}
+  .jlbl{font-size:8.5px;letter-spacing:.03em;margin-top:5px}
+  .ticket div{min-width:46%}
+  .jhead{flex-direction:column;gap:2px}
+}
+</style></head><body>
+
+<div class="topbar"><div class="topbar-in"><span class="meg">MEG<b>.</b></span>
+<span class="sub">MilliCare · Mutual Evaluation Guide</span>
+<span class="chip">Stage 1 of 6</span></div></div>
+
+<div class="hero">
+<svg class="hero-wave" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="mw" x1="0" y1="0" x2=".92" y2="1">
+<stop offset="0" stop-color="#071E51"/><stop offset=".42" stop-color="#06276F"/>
+<stop offset=".76" stop-color="#04309B"/><stop offset="1" stop-color="#003BCB"/>
+</linearGradient>
+</defs>
+<path class="wave-fill" d="M0,203 C150,203 250,199 380,181 C510,163 600,131 740,120 C880,109 1010,112 1200,104 L1200,220 L0,220 Z"/>
+</svg>
+<div class="hero-in">
+<div class="hero-copy">
+<h1>Welcome</h1>
+<p class="subtitle">Your guide through the Mutual Evaluation Process.</p>
+</div>
+<div class="logo-plate"><img class="brandmark" src="data:image/png;base64,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" alt="MilliCare" width="720" height="127" fetchpriority="high" decoding="sync"></div>
+</div></div>
+
+<div class="journey"><div class="journey-in">
+<div class="jhead"><span class="jt">Your path to ownership</span><span class="jc">Stage 1 of 6</span></div>
+<div class="jtrack">
+<!-- ONE floor across all six steps, inlined six times and stretched to each
+     step's width so the tile seams read as a continuous run of flooring.
+     Stages ahead are dirty, completed stages are buffed to a gloss, and the
+     polisher stands at the boundary on the current stage, buff swirls
+     trailing behind it.
+     Every svg is self-contained: flat fills, no defs, nothing reaching
+     outside itself. The six copies are byte-identical - edit one, edit all
+     six. To mark a step complete, add class "done" to its .jstep. -->
+<div class="jstep now" aria-current="step">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">1</div>
+<div class="jlbl">Welcome</div>
+<span class="sr-only">Step 1 of 6 — you are here</span></div>
+
+<div class="jstep">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">2</div>
+<div class="jlbl">Brand Overview</div>
+<span class="sr-only">Step 2 of 6</span></div>
+
+<div class="jstep">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">3</div>
+<div class="jlbl">Validation</div>
+<span class="sr-only">Step 3 of 6</span></div>
+
+<div class="jstep">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">4</div>
+<div class="jlbl">Seeking Approval</div>
+<span class="sr-only">Step 4 of 6</span></div>
+
+<div class="jstep">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">5</div>
+<div class="jlbl">Meet the Team Day</div>
+<span class="sr-only">Step 5 of 6</span></div>
+
+<div class="jstep">
+<div class="jfloor">
+<svg class="jlawn" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<rect class="g-tile" x="0" y="21" width="120" height="13"/><path class="g-seam" d="M20 21v13M40 21v13M60 21v13M80 21v13M100 21v13"/>
+<g class="s-dirty"><rect class="g-grime" x="0" y="21" width="120" height="13"/><path class="g-stain" d="M7 25.5q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M32 29.5q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M47 23.4q1.8-1.3 3.6-.3q2.3.3 1.6 2.3q-.5 1.8-2.9 1.6q-2.6.2-2.3-3.6Z"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M15 31.8l5.9-1.5M25 23.8l4.7 1.2M41 30.8l5.2-1.9M53 24.6l4.4 1.3"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M12 22.6h1.6v1.3H12ZM28 31.4h1.3v1.2H28ZM44 26.8h1.4v1.3H44ZM51 30.8h1.2v1H51Z"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+<g class="s-clean"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><rect class="g-shine" x="60" y="21" width="60" height="13"/><rect class="g-glow" x="60" y="21" width="60" height="1.2"/><path class="g-streak" d="M68 34l5.2-13l3.1 0l-5.2 13ZM89 34l5.2-13l2.1 0l-5.2 13ZM106 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M80 22.6Q80.928 24.572 82.9 25.5Q80.928 26.428 80 28.4Q79.072 26.428 77.1 25.5Q79.072 24.572 80 22.6Z"/><path class="g-sparkw" d="M99 27.9Q99.672 29.328 101.1 30Q99.672 30.672 99 32.1Q98.328 30.672 96.9 30Q98.328 29.328 99 27.9Z"/><path class="g-spark" d="M114 22.1Q114.544 23.256 115.7 23.8Q114.544 24.344 114 25.5Q113.456 24.344 112.3 23.8Q113.456 23.256 114 22.1Z"/></g>
+<g class="s-half"><rect class="g-shine" x="0" y="21" width="60" height="13"/><rect class="g-glow" x="0" y="21" width="60" height="1.2"/><path class="g-streak" d="M10 34l5.2-13l3.1 0l-5.2 13ZM30 34l5.2-13l2.1 0l-5.2 13ZM47 34l5.2-13l1.3 0l-5.2 13Z"/><path class="g-spark" d="M20 22.6Q20.928 24.572 22.9 25.5Q20.928 26.428 20 28.4Q19.072 26.428 17.1 25.5Q19.072 24.572 20 22.6Z"/><path class="g-sparkw" d="M41 27.9Q41.672 29.328 43.1 30Q41.672 30.672 41 32.1Q40.328 30.672 38.9 30Q40.328 29.328 41 27.9Z"/><path class="g-spark" d="M54 22.1Q54.544 23.256 55.7 23.8Q54.544 24.344 54 25.5Q53.456 24.344 52.3 23.8Q53.456 23.256 54 22.1Z"/><path class="g-swirl" d="M32 27.5a6 3 0 1 0 12 0a6 3 0 1 0 -12 0M44 28a5 2.6 0 1 0 10 0a5 2.6 0 1 0 -10 0M52 27a4 2.2 0 1 0 8 0a4 2.2 0 1 0 -8 0"/><rect class="g-grime" x="60" y="21" width="60" height="13"/><path class="g-stain" d="M67 26.4q2.6-2.6 5.7-.8q3.4-1.8 4.7 1.6q2.1 2.3-1.3 3.7q-2.9 2.1-5.7.5q-3.9-.8-3.4-5Z"/><path class="g-stain" d="M91 23.6q2.1-2.1 4.4-.7q2.6.2 2.1 2.6q.3 2.2-2.6 2.2q-3.1.8-3.9-4.1Z"/><path class="g-stain" d="M106 28.8q1.8-1.5 3.9-.5q2.3.5 1.6 2.6q-.8 2.1-3.1 1.6q-2.6.2-2.4-3.7Z"/><path class="g-scuff" d="M62 31.2l5.7-1.6M79 23.4l5 1.3M98 30.6l5.5-1.7M111 24.2l4.4 1.4"/><path class="g-dust" d="M72 22.4h1.6v1.3H72ZM85 31.2h1.3v1.2H85ZM102 25.6h1.4v1.3H102ZM115 30.4h1.2v1H115Z"/></g>
+</svg>
+<div class="jmower"><svg viewBox="0 0 80 40" aria-hidden="true" focusable="false">
+<ellipse class="m-shadow" cx="52" cy="39.2" rx="17.5" ry="1.5"/>
+<path class="m-handle" d="M46 26.5L10 6.2L11.4 3.8L47.8 24.1Z"/>
+<rect class="m-grip" x="4.5" y="2.2" width="10" height="3.2" rx="1.4" transform="rotate(-6 9.5 3.8)"/>
+<circle class="m-wheel" cx="40" cy="34.6" r="3.1"/>
+<circle class="m-hub" cx="40" cy="34.6" r="1.2"/>
+<path class="m-deck" d="M38 33Q38 21 51 21Q64 21 64 33Z"/>
+<rect class="m-stripe" x="40.5" y="28.4" width="21" height="2.2" rx="1.1"/>
+<rect class="m-cap" x="46" y="16.6" width="10" height="5.4" rx="1.6"/>
+<rect class="m-pad" x="37" y="35.6" width="30" height="4.4" rx="2"/>
+<rect class="m-padline" x="37" y="38.9" width="30" height="1.1" rx="0.55"/>
+<path class="m-spark" d="M70 27Q70.9 24.4 71.8 27Q74.4 27.9 71.8 28.8Q70.9 31.4 70 28.8Q67.4 27.9 70 27Z"/>
+<path class="m-sparkw" d="M74.6 19.6Q75.2 17.9 75.8 19.6Q77.5 20.2 75.8 20.8Q75.2 22.5 74.6 20.8Q72.9 20.2 74.6 19.6Z"/>
+</svg></div>
+</div>
+<div class="jnum">6</div>
+<div class="jlbl">Agreement</div>
+<span class="sr-only">Step 6 of 6</span></div>
+</div></div></div>
+
+<main class="stack">
+
+<section class="slide">
+<!-- PLACEHOLDER. Swap this block for the .video-embed iframe once the
+     MilliCare welcome video is published. -->
+<div class="video-slot"><span class="play">&#9654;</span><span class="t">Video slot · MilliCare welcome — awaiting final cut</span></div>
+<p>Thank you for taking the time to speak with one of our world class Franchise Developers.</p>
+<p>This portal is your guide through the Mutual Evaluation Process. Each stage builds on the one before it, and each unlocks as you and your Franchise Developer complete the work together.</p>
+<p>The process is deliberately thorough. When we slow down on the front end, we can really speed up on the back end.</p>
+<p>To learn about the EverSmith Mutual Evaluation Process, please see the next step entitled <strong>Mutual Evaluation Process End-to-End</strong>.</p>
+</section>
+
+</main>
+<footer><span>MEG · Mutual Evaluation Guide</span>
+<span>MilliCare · An EverSmith Brands Company</span></footer>
+</body></html>

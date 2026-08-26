@@ -36,6 +36,8 @@ BRANDS = [
     ("kg", "kg-sales-room", "Kitchen Guard", "#599C1E", "#8CDB86"),
     ("seals", "seals-sales-room", "The Seals", "#005BA7", "#5FA8E8"),
     ("usl", "usl-sales-room", "U.S. Lawns", "#20376C", "#78b7df"),
+    ("mc", "millicare-sales-room", "MilliCare", "#003BCB", "#4ABFEF"),
+    ("prism", "prism-sales-room", "Prism Specialties", "#005070", "#00A0DF"),
 ]
 
 # 1-Tom only: rows worth a hint in the CMS-cleanup pass.
@@ -286,7 +288,7 @@ function show(brand) {
   updateProgress();
 }
 tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.brand)));
-show(/^#(meg|kg|seals|usl)$/.test(location.hash) ? location.hash.slice(1) : 'meg');
+show(/^#(meg|kg|seals|usl|mc|prism)$/.test(location.hash) ? location.hash.slice(1) : 'meg');
 applyState();
 
 document.querySelectorAll('.copy[data-n]').forEach(btn => {
