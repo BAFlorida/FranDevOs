@@ -112,7 +112,7 @@ for bid, folder, name, acc, acc_dark in BRANDS:
             chips += '<span class="chip">matches John\'s live copy · paste embeds fonts</span>'
         if bid == "meg" and rel in CMS_DASH_FIX:
             chips += '<span class="chip chip-fix">re-paste clears the CMS "---"</span>'
-        rows.append(f"""<article class="row">
+        rows.append(f"""<article class="row" data-brand="{bid}" data-key="{bid}/{html.escape(rel, quote=True)}">
   <div class="head">
     <span class="n">{i:02d}</span>
     <div class="id">
@@ -207,6 +207,13 @@ main{max-width:940px;margin:0 auto;padding:24px}
   text-transform:uppercase;padding:9px 16px;cursor:pointer}
 .copy:hover{background:var(--acc);color:#fff}
 .copy[data-done="1"]{background:var(--ok);color:#fff}
+.reset{flex:none;background:none;color:var(--slate);border:1px solid var(--line);
+  border-radius:3px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;cursor:pointer}
+.reset:hover{border-color:var(--acc);color:var(--acc)}
+.row.last{border-color:var(--acc);box-shadow:inset 3px 0 0 var(--acc)}
+.row.last .path::after{content:" · last copied";color:var(--acc);
+  font-size:11px;letter-spacing:.05em;text-transform:uppercase}
 details{border-top:1px solid var(--line)}
 summary{cursor:pointer;padding:10px 16px;font-family:ui-monospace,Menlo,monospace;
   font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
@@ -228,6 +235,8 @@ textarea{display:block;width:100%;height:300px;border:0;border-top:1px solid var
 <main>
   <div class="bar">
     <button class="copy" type="button" id="expand">Expand all</button>
+    <button class="reset" type="button" id="reset">Reset copied</button>
+    <span class="count" id="progress"></span>
     <span class="count" id="status">__COUNT__</span>
   </div>
 __PANELS__
@@ -242,6 +251,31 @@ function srcOf(brand, n, title) {
   return head.replace('%%TITLE%%', title) + body;
 }
 
+/* Copied-state ledger, per viewer, survives reloads. {copied:{key:1}, last:{brand:key}} */
+const KEY = 'meg-copysheet-progress-v1';
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+}
+function applyState() {
+  const s = loadState(), copied = s.copied || {}, last = s.last || {};
+  document.querySelectorAll('article.row').forEach(row => {
+    const btn = row.querySelector('.copy');
+    if (copied[row.dataset.key]) { btn.dataset.done = '1'; btn.textContent = 'Copied \\u2713'; }
+    else { delete btn.dataset.done; btn.textContent = 'Copy HTML'; }
+    row.classList.toggle('last', last[row.dataset.brand] === row.dataset.key);
+  });
+  updateProgress();
+}
+function updateProgress() {
+  const brand = document.body.dataset.brand;
+  const rows = [...document.querySelectorAll('article.row[data-brand="' + brand + '"]')];
+  const done = rows.filter(r => r.querySelector('.copy').dataset.done === '1').length;
+  document.getElementById('progress').textContent = done + ' / ' + rows.length + ' copied';
+}
+
 const tabs = [...document.querySelectorAll('.tab')];
 const panels = [...document.querySelectorAll('.panel')];
 function show(brand) {
@@ -249,9 +283,11 @@ function show(brand) {
   tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.brand === brand)));
   panels.forEach(p => { p.hidden = p.dataset.brand !== brand; });
   try { history.replaceState(null, '', '#' + brand); } catch (e) {}
+  updateProgress();
 }
 tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.brand)));
 show(/^#(meg|kg|seals|usl)$/.test(location.hash) ? location.hash.slice(1) : 'meg');
+applyState();
 
 document.querySelectorAll('.copy[data-n]').forEach(btn => {
   btn.addEventListener('click', async () => {
@@ -264,13 +300,27 @@ document.querySelectorAll('.copy[data-n]').forEach(btn => {
       const ta = d.querySelector('textarea');
       ta.select(); document.execCommand('copy');
     }
-    const was = btn.textContent;
-    btn.textContent = 'Copied';
-    btn.dataset.done = '1';
-    document.getElementById('status').textContent = btn.closest('.row')
-      .querySelector('.path').textContent + ' copied to clipboard';
-    setTimeout(() => { btn.textContent = was; delete btn.dataset.done; }, 1600);
+    const row = btn.closest('.row');
+    const s = loadState();
+    (s.copied = s.copied || {})[row.dataset.key] = 1;
+    (s.last = s.last || {})[row.dataset.brand] = row.dataset.key;
+    saveState(s);
+    applyState();
+    document.getElementById('status').textContent =
+      row.querySelector('.path').textContent + ' copied to clipboard';
   });
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  const brand = document.body.dataset.brand;
+  const s = loadState();
+  Object.keys(s.copied || {}).forEach(k => {
+    if (k.indexOf(brand + '/') === 0) delete s.copied[k];
+  });
+  if (s.last) delete s.last[brand];
+  saveState(s);
+  applyState();
+  document.getElementById('status').textContent = 'Copied marks cleared for this brand';
 });
 
 function fill(d) {
