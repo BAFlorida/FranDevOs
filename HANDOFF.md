@@ -89,6 +89,21 @@ Thank You sections (merged/removed), and do NOT create an FDD Review
 section. Re-pasting also clears the old stray `---` paragraphs and John's
 Google-Fonts dependency.
 
+## MilliCare and Prism Specialties (built 2026-08-26)
+
+Built from supplied Stage 1 Welcome drafts (`spec/page-template.html` in
+`millicare-sales-room/` and `prism-sales-room/`), full 17-page 1-Tom MVP
+structure. The drafts style only the welcome chrome, so the shared MEG
+component set is appended from `build/components.css` with palette vars
+aliased per brand (Prism's text accent is the deep blue - the bright brand
+blue misses AA on white). Journey artwork is per-step and unique (MilliCare
+carpet-cleaning run, Prism restoration frames): shell.py captures all six
+jstep blocks from the draft verbatim and re-classes done/now per page.
+Fonts embedded: Poppins (MilliCare, static 400-800) and Open Sans (Prism,
+variable) - seeds in `build/fonts/`, latin subset from Google Fonts.
+Territory / Additional Resources are the placeholder rewrites (4 flags
+each, intentional); welcome / brand overview / exec-approval videos pending.
+
 ## The other three brands (caught up to the 1-Tom MVP 2026-08-25)
 
 KG / Seals / U.S. Lawns were re-run through their pipelines after MVP
@@ -126,6 +141,8 @@ live URLs in `build/shell.py` ASSET_URLS.
 | Kitchen Guard preview / copy sheet | https://claude.ai/code/artifact/58e1f9d2-7c59-4098-9b22-75c965b993c6 · https://claude.ai/code/artifact/abd77079-9ec5-40cb-8af4-d7fe144e7d1d |
 | The Seals preview / copy sheet | https://claude.ai/code/artifact/bf7fba98-6678-4fe2-b49f-a30dc062bbe4 · https://claude.ai/code/artifact/eb2b9c93-f48a-479f-a77e-93effa419eb6 |
 | U.S. Lawns preview / copy sheet | https://claude.ai/code/artifact/da3ae4e1-6b74-41a7-a767-c1fe6f7f6e7f · https://claude.ai/code/artifact/0b40bc31-1ff2-419b-8511-1ef524d7a53e |
+| MilliCare preview / copy sheet | https://claude.ai/code/artifact/7dcd77a9-ee4d-4fe3-aa62-e36c0f41724f · https://claude.ai/code/artifact/ae7171d8-82a3-4930-8ab0-ca3f510a81d2 |
+| Prism Specialties preview / copy sheet | https://claude.ai/code/artifact/f8b2caa0-6f4d-4074-aeba-fe6a9386e137 · https://claude.ai/code/artifact/1851e59d-aa0d-4886-9d56-d321b9a7ec78 |
 
 Note: another session (Ryan's Cowork side) sometimes republishes these; on a
 publish conflict, supersede with the current repo build - the repo is the
