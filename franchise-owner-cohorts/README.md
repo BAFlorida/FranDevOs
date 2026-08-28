@@ -32,6 +32,33 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/pytest
 ```
 
+## Analysis layer (roles / persons / cohorts)
+
+Cohort questions are answered as queries, not as bespoke scripts. The spec called
+the builder `05_…`; it lives at `07_…` because 05/06 were already taken.
+
+- `src/07_build_warehouse.py` → `data/warehouse/roles.parquet` (51,319 rows, one
+  per person per job), `persons.parquet` (usable population with `career_path`),
+  `frandev.duckdb` (tables + every view in `sql/cohorts/` + materialized
+  `cohorts` membership). Deterministic; ~7s.
+- **All vocabulary lives in `config/vocab.yaml`** — ownership, corporate, and
+  every cohort's title/employer lists. Inline regex in analysis code is a bug.
+- `sql/cohorts/*.sql` — one view per cohort; adding a cohort = adding a file.
+- `src/08_query.py --name x --file sql/figures/x.sql` — runs a query and writes
+  the CSV **plus a sidecar** (`x.sidecar.json`) with the SQL, row count, and
+  warehouse hash. No figure ships without its sidecar.
+- `tests/test_build_warehouse.py` freezes the published totals and 25
+  hand-verified golden career paths (`tests/golden_career_paths.csv`). Changing
+  vocabulary moves those tests: update the constants and goldens in the same
+  commit, deliberately, with a note.
+- Known sensitivity: "prior ownership" counts 1,566 people under the canonical
+  strict vocabulary; admitting bare `partner`/`ceo`/`principal` titles raises it
+  to ~1,714. The strict definition is canonical; the band is the honest answer
+  to the old 545-vs-480 discrepancy.
+
+The warehouse files live under `data/` and are **never committed** (public
+repo); rebuild them from the processed CSV any time.
+
 ## Data policy
 
 The containing git repository is **public**. `data/` and `outputs/` are gitignored and

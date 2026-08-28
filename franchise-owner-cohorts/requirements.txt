@@ -1,4 +1,6 @@
 pandas
+pyarrow
+pyyaml
 openpyxl
 pydantic
 python-dateutil

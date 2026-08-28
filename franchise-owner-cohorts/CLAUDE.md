@@ -52,7 +52,24 @@ separate cohort seed files for Meta/LinkedIn targeting.
   franchisees writing the franchisor name: `franchisor/corporate` exclusions with an
   ownership title go to `needs_manual_ownership_review`, not hard exclusion.
 
+## Analysis warehouse rules
+
+- `src/07_build_warehouse.py` builds `data/warehouse/{roles,persons}.parquet` +
+  `frandev.duckdb`. Answer cohort/career questions by querying these — never by
+  re-parsing `prior_history_json` with ad-hoc regex (that is how the same
+  question once returned both 545 and 480).
+- Ownership/corporate/cohort vocabulary lives ONLY in `config/vocab.yaml`.
+  Canonical calls: bare president/ceo/partner/principal are NOT ownership.
+- Every published figure runs through `src/08_query.py` so it lands next to a
+  sidecar carrying its SQL and row count.
+- `tests/test_build_warehouse.py` freezes totals + 25 golden career paths; a
+  vocab change that moves them must update both, in the same commit, on purpose.
+- Cohort 9 (three-year tenure) usable subset = explicit-end qualifiers only;
+  Present-flagged qualifiers are stale-risk (see outputs/analysis/cohort9_*).
+
 ## Commands
 
 - Run pipeline: `.venv/bin/python src/01_clean_people.py` (then 02, 03, 04, 05)
+- Build warehouse: `.venv/bin/python src/07_build_warehouse.py`
+- Query with sidecar: `.venv/bin/python src/08_query.py --name x --file sql/figures/x.sql`
 - Tests: `.venv/bin/pytest`

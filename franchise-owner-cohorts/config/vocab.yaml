@@ -1,0 +1,264 @@
+# Vocabulary for the analysis warehouse (roles/persons/cohorts).
+#
+# THE RULE: every regex that defines "ownership", "corporate", or a cohort lives
+# HERE, never inline in a script. The 545-vs-480 discrepancy happened because two
+# scripts each invented their own corporate-title regex; this file is the fix.
+#
+# Matching surface: patterns run against the TOKEN-JOINED lowercase form of the
+# title or company — pipeline_lib.tokens() joined with single spaces, so
+# "Co-Owner / G.M." becomes "co owner g m". Punctuation never matters here.
+# Patterns are Python regexes; \b word boundaries work as expected.
+
+ownership:
+  # A role whose title asserts equity in / founding of the business itself.
+  # Deliberately EXCLUDES bare president/ceo/partner: an employer's president is
+  # employment, not ownership. That looseness is where the 545 figure came from.
+  patterns:
+    - '\bowner\b'              # owner, co owner, owner operator, business owner
+    - '\bfounder\b'            # founder, co founder
+    - '\bproprietor\b'
+    - '\bfranchisee\b'
+    - '\bmanaging member\b'
+    - '\bmanaging partner\b'
+    - '\bself employed\b'
+  exclude:                     # contain the words above but are not equity
+    - '\bproduct owner\b'
+    - '\bprocess owner\b'
+    - '\bowner s representative\b'
+
+corporate:
+  # A role whose title reads as employment inside someone else's organization.
+  # Precedence: a role matching ownership is NEVER corporate, whatever else its
+  # title contains ("Owner & General Manager" is ownership).
+  patterns:
+    - '\bmanager\b'
+    - '\bdirector\b'
+    - '\bvice president\b'
+    - '\bvp\b'
+    - '\bpresident\b'
+    - '\bchief\b'
+    - '\bofficer\b'
+    - '\bsupervisor\b'
+    - '\bsuperintendent\b'
+    - '\bexecutive\b'
+    - '\banalyst\b'
+    - '\bengineer\b'
+    - '\bconsultant\b'
+    - '\bspecialist\b'
+    - '\bcoordinator\b'
+    - '\brepresentative\b'
+    - '\bassociate\b'
+    - '\badministrator\b'
+    - '\bcontroller\b'
+    - '\bcomptroller\b'
+    - '\badvisor\b'
+    - '\bagent\b'
+    - '\bsales\b'
+    - '\baccountant\b'
+    - '\battorney\b'
+    - '\bcounsel\b'
+    - '\bbanker\b'
+    - '\brecruiter\b'
+    - '\bteacher\b'
+    - '\bprofessor\b'
+    - '\binstructor\b'
+    - '\bnurse\b'
+    - '\btechnician\b'
+    - '\bforeman\b'
+
+# ---------------------------------------------------------------- cohort vocab
+
+clinical_titles:
+  - '\bnurse\b'
+  - '\brn\b'
+  - '\blpn\b'
+  - '\bcna\b'
+  - '\bnurse practitioner\b'
+  - '\bclinical\b'
+  - '\bhygienist\b'
+  - '\btherapist\b'
+  - '\bphysician\b'
+  - '\bparamedic\b'
+  - '\bemt\b'
+  - '\bmedical assistant\b'
+  - '\bcaregiver\b'
+  - '\bhospice\b'
+  - '\bpatient care\b'
+
+education_titles:
+  - '\bteacher\b'
+  - '\bprincipal\b'                # school principal; business "principal" is
+                                   # already ownership-adjacent — see note below
+  - '\bprofessor\b'
+  - '\beducator\b'
+  - '\bschool counselor\b'
+  - '\bassistant principal\b'
+  - '\bsuperintendent of schools\b'
+  - '\bcurriculum\b'
+  - '\btutor\b'
+# note: '\bprincipal\b' also matches the business title "Principal". The
+# educator cohort therefore additionally requires an education-ish employer
+# (school|academy|district|university|college|education) — enforced in the view
+# via the education_employers list.
+education_employers:
+  - '\bschool\b'
+  - '\bschools\b'
+  - '\bacademy\b'
+  - '\bdistrict\b'
+  - '\buniversity\b'
+  - '\bcollege\b'
+  - '\beducation\b'
+  - '\belementary\b'
+  - '\bhigh school\b'
+
+military_companies:
+  - '\bus army\b'
+  - '\bu s army\b'
+  - '\bunited states army\b'
+  - '\barmy national guard\b'
+  - '\barmy reserve\b'
+  - '\bus navy\b'
+  - '\bu s navy\b'
+  - '\bunited states navy\b'
+  - '\bunited state navy\b'        # real typo in the data
+  - '\bnaval reserve\b'
+  - '\bus air force\b'
+  - '\bu s air force\b'
+  - '\bunited states air force\b'
+  - '\bair national guard\b'
+  - '\bair force reserve\b'
+  - '\bus marine corps\b'
+  - '\bunited states marine corps\b'
+  - '\bmarine corps\b'
+  - '\busmc\b'
+  - '\bus coast guard\b'
+  - '\bunited states coast guard\b'
+  - '\bnational guard\b'
+  - '\bus space force\b'
+  - '\bdepartment of defense\b'
+  - '\bus armed forces\b'
+
+sales_bd_leader_titles:
+  # for cohort 7: sales/BD at director level or above
+  - '\bsales director\b'
+  - '\bdirector of sales\b'
+  - '\bdirector sales\b'
+  - '\bvp sales\b'
+  - '\bvp of sales\b'
+  - '\bvice president of sales\b'
+  - '\bvice president sales\b'
+  - '\bsales vice president\b'
+  - '\bbusiness development director\b'
+  - '\bdirector of business development\b'
+  - '\bdirector business development\b'
+  - '\bvp business development\b'
+  - '\bvice president of business development\b'
+  - '\bchief revenue officer\b'
+  - '\bnational sales\b'
+  - '\bregional sales director\b'
+
+ops_leader_titles:
+  - '\boperations manager\b'
+  - '\bdirector of operations\b'
+  - '\bdirector operations\b'
+  - '\boperations director\b'
+  - '\bvp operations\b'
+  - '\bvp of operations\b'
+  - '\bvice president of operations\b'
+  - '\bvice president operations\b'
+  - '\bchief operating officer\b'
+  - '\bcoo\b'
+  - '\bgeneral manager\b'
+  - '\bplant manager\b'
+  - '\bbranch manager\b'
+
+multisite_titles:
+  - '\bdistrict manager\b'
+  - '\bregional manager\b'
+  - '\barea manager\b'
+  - '\bmulti unit\b'
+  - '\bmulti site\b'
+  - '\bregional director\b'
+  - '\bdistrict director\b'
+  - '\barea director\b'
+  - '\bzone manager\b'
+  - '\bregional operations\b'
+  - '\bregional vice president\b'
+
+middle_mgmt_titles:
+  # manager/director band; excludes the C-suite and VP band by construction —
+  # match one of these AND none of the senior_titles below
+  - '\bmanager\b'
+  - '\bdirector\b'
+senior_titles:
+  - '\bvice president\b'
+  - '\bvp\b'
+  - '\bchief\b'
+  - '\bpresident\b'
+  - '\bceo\b'
+  - '\bcoo\b'
+  - '\bcfo\b'
+  - '\bcmo\b'
+  - '\bsvp\b'
+  - '\bevp\b'
+
+restructuring_employers:
+  # STARTER LIST — deliberately editable, sized-to-taste. Companies with heavy,
+  # repeated publicized restructuring/layoff cycles whose alumni appear in this
+  # dataset. Matched against company tokens; extend freely, then rebuild.
+  - '\bat t\b'
+  - '\bverizon\b'
+  - '\bsprint\b'
+  - '\bnortel\b'
+  - '\blucent\b'
+  - '\bmotorola\b'
+  - '\bkodak\b'
+  - '\bxerox\b'
+  - '\bibm\b'
+  - '\bgeneral electric\b'
+  - '\bhewlett packard\b'
+  - '\bhp\b'
+  - '\bintel\b'
+  - '\bdell\b'
+  - '\bcisco\b'
+  - '\bmicrosoft\b'
+  - '\bmeta\b'
+  - '\bamazon\b'
+  - '\bgoogle\b'
+  - '\bsalesforce\b'
+  - '\btwitter\b'
+  - '\bwells fargo\b'
+  - '\bbank of america\b'
+  - '\bcitibank\b'
+  - '\bcitigroup\b'
+  - '\bfirst data\b'
+  - '\bhertz\b'
+  - '\boffice depot\b'
+  - '\bofficemax\b'
+  - '\bsears\b'
+  - '\bkmart\b'
+  - '\bjcpenney\b'
+  - '\bj c penney\b'
+  - '\btoys r us\b'
+  - '\bcircuit city\b'
+  - '\bradioshack\b'
+  - '\bradio shack\b'
+  - '\bblockbuster\b'
+  - '\bbed bath beyond\b'
+  - '\brite aid\b'
+  - '\bwalgreens\b'
+  - '\bcvs\b'
+  - '\bboeing\b'
+  - '\bdisney\b'
+  - '\bwarner\b'
+  - '\bparamount\b'
+  - '\bfedex\b'
+  - '\bups\b'                      # United Parcel Service the carrier; The UPS
+                                   # Store franchise roles are excluded from
+                                   # pre-franchise matching by is_franchise_role
+
+# ------------------------------------------------------------------ constants
+
+recent_start_ym_min: 24240         # 2020-01 in months-since-year-0 (2020*12)
+tenure_min_months: 36              # cohort 9 "three-year tenure"
+still_employed_grace_months: 3     # cohort 9: role end within this of franchise start
