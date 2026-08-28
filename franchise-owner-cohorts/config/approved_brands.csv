@@ -1,0 +1,202 @@
+canonical_brand,parent_platform,segment,strict_150k_status,include_in_matching,bare_name_ambiguous,aliases
+The UPS Store,UPS,shipping_print_signage,meets_150k,TRUE,FALSE,The UPS Store|UPS Store
+Minuteman Press,,shipping_print_signage,meets_150k,TRUE,FALSE,Minuteman Press|Minute Man Press
+PostNet,,shipping_print_signage,meets_150k,TRUE,FALSE,PostNet
+Sir Speedy,,shipping_print_signage,meets_150k,TRUE,FALSE,Sir Speedy
+AlphaGraphics,,shipping_print_signage,meets_150k,TRUE,FALSE,AlphaGraphics|Alpha Graphics
+Allegra,,shipping_print_signage,meets_150k,TRUE,FALSE,Allegra Marketing|Allegra Print
+FASTSIGNS,Propelled Brands,shipping_print_signage,meets_150k,TRUE,FALSE,FASTSIGNS|Fast Signs
+Signarama,United Franchise Group,shipping_print_signage,meets_150k,TRUE,FALSE,Signarama|Sign A Rama|Sign-A-Rama|Sign*A*Rama
+Image360,,shipping_print_signage,meets_150k,TRUE,FALSE,Image360|Image 360
+Fully Promoted,United Franchise Group,shipping_print_signage,meets_150k,TRUE,FALSE,Fully Promoted|EmbroidMe
+Speedpro,,shipping_print_signage,meets_150k,TRUE,FALSE,Speedpro|SpeedPro Imaging
+The Goddard School,,education_childcare,meets_150k,TRUE,FALSE,Goddard School|The Goddard School|Goddard Systems
+Primrose Schools,,education_childcare,meets_150k,TRUE,FALSE,Primrose School|Primrose Schools
+The Learning Experience,,education_childcare,meets_150k,TRUE,FALSE,The Learning Experience|Learning Experience
+Lightbridge Academy,,education_childcare,meets_150k,TRUE,FALSE,Lightbridge Academy
+Kiddie Academy,,education_childcare,meets_150k,TRUE,FALSE,Kiddie Academy
+Huntington Learning Center,,education_childcare,meets_150k,TRUE,FALSE,Huntington Learning Center|Huntington Learning
+Sylvan Learning,,education_childcare,meets_150k,TRUE,FALSE,Sylvan Learning
+Mathnasium,,education_childcare,meets_150k,TRUE,FALSE,Mathnasium
+Code Ninjas,,education_childcare,meets_150k,TRUE,FALSE,Code Ninjas
+School of Rock,,education_childcare,meets_150k,TRUE,FALSE,School of Rock
+Snapology,,education_childcare,meets_150k,TRUE,FALSE,Snapology
+Kumon,,education_childcare,unknown,TRUE,FALSE,Kumon
+Home Instead,Honor,senior_care_healthcare,meets_150k,TRUE,FALSE,Home Instead
+Comfort Keepers,,senior_care_healthcare,meets_150k,TRUE,FALSE,Comfort Keepers
+Senior Helpers,,senior_care_healthcare,meets_150k,TRUE,FALSE,Senior Helpers
+Right at Home,,senior_care_healthcare,meets_150k,TRUE,FALSE,Right at Home|Right At Home
+BrightStar Care,,senior_care_healthcare,meets_150k,TRUE,FALSE,BrightStar Care|Brightstar Care|BrightStar Healthcare
+ComForCare,Best Life Brands,senior_care_healthcare,meets_150k,TRUE,FALSE,ComForCare|ComForcare|Comfor Care
+Interim HealthCare,,senior_care_healthcare,meets_150k,TRUE,FALSE,Interim HealthCare|Interim Health Care
+Always Best Care,,senior_care_healthcare,meets_150k,TRUE,FALSE,Always Best Care
+SYNERGY HomeCare,,senior_care_healthcare,meets_150k,TRUE,FALSE,Synergy HomeCare|Synergy Home Care
+Visiting Angels,,senior_care_healthcare,meets_150k,TRUE,FALSE,Visiting Angels
+Griswold Home Care,,senior_care_healthcare,meets_150k,TRUE,FALSE,Griswold Home Care|Griswold Care
+Homewatch CareGivers,Authority Brands,senior_care_healthcare,meets_150k,TRUE,FALSE,Homewatch CareGivers|Homewatch Caregivers
+FirstLight Home Care,,senior_care_healthcare,meets_150k,TRUE,FALSE,FirstLight Home Care|First Light Home Care
+Amada Senior Care,,senior_care_healthcare,meets_150k,TRUE,FALSE,Amada Senior Care
+CarePatrol,Best Life Brands,senior_care_healthcare,unknown,TRUE,FALSE,CarePatrol|Care Patrol
+Christian Brothers Automotive,,automotive,meets_150k,TRUE,FALSE,Christian Brothers Automotive
+Meineke,Driven Brands,automotive,meets_150k,TRUE,FALSE,Meineke
+Big O Tires,TBC Corporation,automotive,meets_150k,TRUE,FALSE,Big O Tires|Big O Tire
+AAMCO,,automotive,meets_150k,TRUE,FALSE,AAMCO|Aamco
+Maaco,Driven Brands,automotive,meets_150k,TRUE,FALSE,Maaco|MAACO
+Midas,,automotive,meets_150k,TRUE,TRUE,Midas|Midas Auto|Midas of|Midas Muffler|Midas Service|Midas Car Care|Midas Store|Midas Shop
+Grease Monkey,,automotive,meets_150k,TRUE,FALSE,Grease Monkey
+Jiffy Lube,Shell,automotive,meets_150k,TRUE,FALSE,Jiffy Lube
+Take 5,Driven Brands,automotive,meets_150k,TRUE,FALSE,Take 5
+Valvoline Instant Oil Change,,automotive,meets_150k,TRUE,FALSE,Valvoline Instant Oil Change|Valvoline Express Care
+Express Oil Change,,automotive,meets_150k,TRUE,FALSE,Express Oil Change
+CARSTAR,Driven Brands,automotive,meets_150k,TRUE,FALSE,CARSTAR|Carstar|Car Star
+Tint World,,automotive,meets_150k,TRUE,FALSE,Tint World
+DetailXPerts,,automotive,unknown,TRUE,FALSE,DetailXPerts|Detail XPerts
+Tuffy,,automotive,meets_150k,TRUE,FALSE,Tuffy Tire|Tuffy Auto
+Budget Blinds,Home Franchise Concepts,home_improvement_interiors,meets_150k,TRUE,FALSE,Budget Blinds
+Gotcha Covered,Five Star Franchising,home_improvement_interiors,meets_150k,TRUE,FALSE,Gotcha Covered
+Closet Factory,,home_improvement_interiors,meets_150k,TRUE,FALSE,Closet Factory
+Closets By Design,,home_improvement_interiors,meets_150k,TRUE,FALSE,Closets By Design|Closets by Design
+ShelfGenie,Neighborly,home_improvement_interiors,meets_150k,TRUE,FALSE,ShelfGenie|Shelf Genie
+Tailored Living,Home Franchise Concepts,home_improvement_interiors,meets_150k,TRUE,FALSE,Tailored Living
+Kitchen Tune-Up,Home Franchise Concepts,home_improvement_interiors,meets_150k,TRUE,FALSE,Kitchen Tune-Up|Kitchen Tune Up|Kitchen Tuneup
+Bath Tune-Up,Home Franchise Concepts,home_improvement_interiors,meets_150k,TRUE,FALSE,Bath Tune-Up|Bath Tune Up
+Kitchen Solvers,,home_improvement_interiors,meets_150k,TRUE,FALSE,Kitchen Solvers
+Concrete Craft,Home Franchise Concepts,home_improvement_interiors,meets_150k,TRUE,FALSE,Concrete Craft
+Granite Garage Floors,,home_improvement_interiors,meets_150k,TRUE,FALSE,Granite Garage Floors|Granite Garage
+Garage Force,,home_improvement_interiors,meets_150k,TRUE,FALSE,Garage Force
+GarageExperts,,home_improvement_interiors,meets_150k,TRUE,FALSE,GarageExperts|Garage Experts
+Hello Garage,,home_improvement_interiors,meets_150k,TRUE,FALSE,Hello Garage
+Kitchen Guard,EverSmith Brands,home_improvement_interiors,meets_150k,TRUE,FALSE,Kitchen Guard|KitchenGuard
+Screenmobile,,home_improvement_interiors,meets_150k,TRUE,FALSE,Screenmobile|Screen Mobile
+ProLift Garage Doors,,trades_mechanical,meets_150k,TRUE,FALSE,ProLift Garage Doors|ProLift Garage
+CertaPro Painters,,painting_coatings,meets_150k,TRUE,FALSE,CertaPro Painters|CertaPro|Certa Pro
+360 Painting,,painting_coatings,meets_150k,TRUE,FALSE,360 Painting|360° Painting
+Five Star Painting,Neighborly,painting_coatings,meets_150k,TRUE,FALSE,Five Star Painting
+That 1 Painter,,painting_coatings,meets_150k,TRUE,FALSE,That 1 Painter
+WOW 1 DAY PAINTING,O2E Brands,painting_coatings,meets_150k,TRUE,FALSE,WOW 1 DAY PAINTING|Wow 1 Day Painting
+Fresh Coat Painters,,painting_coatings,meets_150k,TRUE,FALSE,Fresh Coat Painters|Fresh Coat
+Pillar To Post,,inspection_services,meets_150k,TRUE,FALSE,Pillar To Post|Pillar to Post
+HomeTeam Inspection Service,,inspection_services,meets_150k,TRUE,FALSE,HomeTeam Inspection|Hometeam Inspection|Home Team Inspection
+WIN Home Inspection,,inspection_services,meets_150k,TRUE,FALSE,WIN Home Inspection
+National Property Inspections,,inspection_services,meets_150k,TRUE,FALSE,National Property Inspections
+AmeriSpec,,inspection_services,meets_150k,TRUE,FALSE,AmeriSpec|Amerispec
+SERVPRO,,restoration_cleaning,meets_150k,TRUE,FALSE,SERVPRO|Servpro
+PuroClean,,restoration_cleaning,meets_150k,TRUE,FALSE,PuroClean|Puroclean|Puro Clean
+Paul Davis Restoration,,restoration_cleaning,meets_150k,TRUE,FALSE,Paul Davis
+911 Restoration,,restoration_cleaning,meets_150k,TRUE,FALSE,911 Restoration
+Restoration 1,,restoration_cleaning,meets_150k,TRUE,FALSE,Restoration 1
+ServiceMaster Restore,ServiceMaster Brands,restoration_cleaning,meets_150k,TRUE,FALSE,ServiceMaster Restore|ServiceMaster Restoration|Service Master Restore
+AdvantaClean,Home Franchise Concepts,restoration_cleaning,meets_150k,TRUE,FALSE,AdvantaClean|Advanta Clean
+Rainbow Restoration,Neighborly,restoration_cleaning,meets_150k,TRUE,FALSE,Rainbow Restoration|Rainbow International
+DRYmedic,Authority Brands,restoration_cleaning,meets_150k,TRUE,FALSE,DRYmedic|Drymedic
+Bio-One,Five Star Franchising,restoration_cleaning,meets_150k,TRUE,FALSE,Bio-One|Bio One
+Blue Kangaroo Packoutz,BELFOR Franchise Group,restoration_cleaning,meets_150k,TRUE,FALSE,Blue Kangaroo Packoutz|Blue Kangaroo
+24 Hour Flood Pros,,restoration_cleaning,meets_150k,TRUE,FALSE,24 Hour Flood Pros
+DUCTZ,BELFOR Franchise Group,restoration_cleaning,meets_150k,TRUE,FALSE,DUCTZ|Ductz
+1-800 WATER DAMAGE,BELFOR Franchise Group,restoration_cleaning,meets_150k,TRUE,FALSE,1-800 Water Damage|1 800 Water Damage
+Steamatic,,restoration_cleaning,meets_150k,TRUE,FALSE,Steamatic
+Chem-Dry,BELFOR Franchise Group,restoration_cleaning,unknown,TRUE,FALSE,Chem-Dry|Chem Dry|ChemDry
+Stanley Steemer,,restoration_cleaning,meets_150k,TRUE,FALSE,Stanley Steemer
+Rolling Suds,,facilities_b2b_services,meets_150k,TRUE,FALSE,Rolling Suds
+Fish Window Cleaning,,facilities_b2b_services,unknown,TRUE,FALSE,Fish Window Cleaning
+City Wide Facility Solutions,,facilities_b2b_services,meets_150k,TRUE,FALSE,City Wide Facility Solutions|City Wide Maintenance
+MilliCare,EverSmith Brands,facilities_b2b_services,meets_150k,TRUE,FALSE,MilliCare|Milli Care|MilliCare Textile
+Fleet Clean,,facilities_b2b_services,meets_150k,TRUE,FALSE,Fleet Clean
+Surface Experts,,facilities_b2b_services,meets_150k,TRUE,FALSE,Surface Experts
+Jan-Pro,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Jan-Pro|JanPro|Jan Pro
+Coverall,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Coverall
+Jani-King,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Jani-King|Jani King|JaniKing
+Anago Cleaning Systems,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Anago
+Vanguard Cleaning Systems,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Vanguard Cleaning
+Stratus Building Solutions,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Stratus Building Solutions|Stratus Building
+Office Pride,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Office Pride
+Buildingstars,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Buildingstars|Building Stars
+System4,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,System4|System 4
+Image One USA,,facilities_b2b_services,subfranchise_excluded,TRUE,FALSE,Image One USA|Image One Facility
+U.S. Lawns,EverSmith Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,U.S. Lawns|US Lawns|U S Lawns|U.S Lawns
+Lawn Doctor,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Lawn Doctor
+Weed Man,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Weed Man|Weedman
+NaturaLawn,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,NaturaLawn|Natural Lawn|NaturaLawn of America
+Spring-Green,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Spring-Green|Spring Green Lawn
+Lawn Pride,Neighborly,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Lawn Pride
+Lawn Squad,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Lawn Squad
+The Grounds Guys,Neighborly,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Grounds Guys
+Mosquito Authority,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Mosquito Authority|The Mosquito Authority
+Mosquito Joe,Neighborly,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Mosquito Joe
+Mosquito Shield,Five Star Franchising,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Mosquito Shield
+Mosquito Squad,Authority Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Mosquito Squad
+Mosquito Hunters,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Mosquito Hunters
+Pestmaster,Threshold Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Pestmaster|Pest Master
+Monster Tree Service,Authority Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Monster Tree
+Poolwerx,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Poolwerx
+America's Swimming Pool Company,Authority Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,America's Swimming Pool|Americas Swimming Pool|ASP America
+Pool Scouts,,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Pool Scouts
+1-800-GOT-JUNK?,O2E Brands,junk_moving_hauling,meets_150k,TRUE,FALSE,1-800-GOT-JUNK|1-800-Got-Junk|1800GOTJUNK|1 800 GOT JUNK|1-800 Got Junk
+The Junkluggers,,junk_moving_hauling,meets_150k,TRUE,FALSE,Junkluggers
+College Hunks Hauling Junk,,junk_moving_hauling,meets_150k,TRUE,FALSE,College Hunks|College HUNKS
+Junk King,Neighborly,junk_moving_hauling,meets_150k,TRUE,FALSE,Junk King
+Bin There Dump That,,junk_moving_hauling,meets_150k,TRUE,FALSE,Bin There Dump That
+Two Men and a Truck,ServiceMaster Brands,junk_moving_hauling,meets_150k,TRUE,FALSE,Two Men and a Truck|Two Men and A Truck|TWO MEN AND A TRUCK|Two Men & A Truck
+Camp Bow Wow,Propelled Brands,pet_services,meets_150k,TRUE,FALSE,Camp Bow Wow
+Dogtopia,,pet_services,meets_150k,TRUE,FALSE,Dogtopia
+Hounds Town,,pet_services,meets_150k,TRUE,FALSE,Hounds Town
+Scenthound,,pet_services,meets_150k,TRUE,FALSE,Scenthound
+K9 Resorts,,pet_services,meets_150k,TRUE,FALSE,K9 Resorts
+Pet Supplies Plus,,pet_services,meets_150k,TRUE,FALSE,Pet Supplies Plus
+Woofie's,Authority Brands,pet_services,meets_150k,TRUE,FALSE,Woofie's|Woofies
+Fetch! Pet Care,,pet_services,unknown,TRUE,FALSE,Fetch! Pet Care|FETCH! PET CARE|Fetch Pet Care
+The Dog Stop,,pet_services,meets_150k,TRUE,FALSE,The Dog Stop|Dog Stop
+Zoomin Groomin,,pet_services,unknown,TRUE,FALSE,Zoomin Groomin
+Ace Handyman Services,,trades_mechanical,meets_150k,TRUE,FALSE,Ace Handyman
+Mr. Handyman,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Mr. Handyman|Mr Handyman
+House Doctors,,trades_mechanical,meets_150k,TRUE,FALSE,House Doctors
+Benjamin Franklin Plumbing,Authority Brands,trades_mechanical,meets_150k,TRUE,FALSE,Benjamin Franklin Plumbing
+Mr. Rooter Plumbing,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Mr. Rooter|Mr Rooter
+Zoom Drain,,trades_mechanical,meets_150k,TRUE,FALSE,Zoom Drain
+bluefrog Plumbing + Drain,,trades_mechanical,meets_150k,TRUE,FALSE,bluefrog Plumbing|Bluefrog Plumbing
+Mister Sparky,Authority Brands,trades_mechanical,meets_150k,TRUE,FALSE,Mister Sparky
+Mr. Electric,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Mr. Electric|Mr Electric
+Aire Serv,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Aire Serv|Aireserv
+One Hour Heating & Air Conditioning,Authority Brands,trades_mechanical,meets_150k,TRUE,FALSE,One Hour Heating|One Hour Air
+TemperaturePro,,trades_mechanical,meets_150k,TRUE,FALSE,TemperaturePro|Temperature Pro
+Glass Doctor,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Glass Doctor
+Mr. Appliance,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Mr. Appliance|Mr Appliance
+The Patch Boys,BELFOR Franchise Group,trades_mechanical,meets_150k,TRUE,FALSE,Patch Boys
+Handyman Connection,,trades_mechanical,meets_150k,TRUE,FALSE,Handyman Connection
+Dryer Vent Wizard,Neighborly,trades_mechanical,unknown,TRUE,FALSE,Dryer Vent Wizard
+Men In Kilts,Threshold Brands,trades_mechanical,meets_150k,TRUE,FALSE,Men In Kilts|Men in Kilts
+Gutter Helmet,,trades_mechanical,meets_150k,TRUE,FALSE,Gutter Helmet
+LeafFilter,,trades_mechanical,unknown,TRUE,FALSE,LeafFilter|Leaf Filter
+Precision Door Service,Neighborly,trades_mechanical,meets_150k,TRUE,FALSE,Precision Door|Precision Garage Door
+Generator Supercenter,,trades_mechanical,meets_150k,TRUE,FALSE,Generator Supercenter
+Mr. Sandless,,trades_mechanical,unknown,TRUE,FALSE,Mr. Sandless|Mr Sandless
+N-Hance,,trades_mechanical,unknown,TRUE,FALSE,N-Hance|NHance
+Property Management Inc.,,property_management,meets_150k,TRUE,TRUE,Property Management Inc|PMI Property Management
+Real Property Management,Neighborly,property_management,meets_150k,TRUE,FALSE,Real Property Management
+Molly Maid,Neighborly,residential_cleaning,meets_150k,TRUE,FALSE,Molly Maid
+Merry Maids,ServiceMaster Brands,residential_cleaning,meets_150k,TRUE,FALSE,Merry Maids
+The Cleaning Authority,Authority Brands,residential_cleaning,meets_150k,TRUE,FALSE,The Cleaning Authority|Cleaning Authority
+MaidPro,Threshold Brands,residential_cleaning,meets_150k,TRUE,FALSE,MaidPro|Maid Pro
+Two Maids,Home Franchise Concepts,residential_cleaning,meets_150k,TRUE,FALSE,Two Maids
+The Maids,,residential_cleaning,meets_150k,TRUE,FALSE,The Maids
+Shack Shine,O2E Brands,trades_mechanical,unknown,TRUE,FALSE,Shack Shine
+PIRTEK,,industrial_services,meets_150k,TRUE,FALSE,PIRTEK|Pirtek
+THE SEALS,,industrial_services,meets_150k,TRUE,FALSE,The Seals|THE SEALS
+Prism Specialties,BELFOR Franchise Group,restoration_cleaning,meets_150k,TRUE,FALSE,Prism Specialties
+The Flood Team,,restoration_cleaning,meets_150k,TRUE,FALSE,The Flood Team|Flood Team
+STOP Restoration,,restoration_cleaning,meets_150k,TRUE,FALSE,STOP Restoration|S.T.O.P. Restoration
+Voda Cleaning and Restoration,,restoration_cleaning,meets_150k,TRUE,FALSE,Voda Cleaning|Voda Restoration
+Ziebart,,automotive,meets_150k,TRUE,FALSE,Ziebart
+Wise Coatings,,home_improvement_interiors,meets_150k,TRUE,FALSE,Wise Coatings
+Bloomin' Blinds,,home_improvement_interiors,meets_150k,TRUE,FALSE,Bloomin Blinds|Bloomin' Blinds
+Kitchen Wise,,home_improvement_interiors,meets_150k,TRUE,FALSE,Kitchen Wise|Closet Wise
+Color World Painting,,painting_coatings,meets_150k,TRUE,FALSE,Color World Painting|Color World House Painting|Color World
+1-800-Plumber +Air,,trades_mechanical,meets_150k,TRUE,FALSE,1-800-Plumber|1 800 Plumber|1-800 Plumber
+1-Tom-Plumber,,trades_mechanical,meets_150k,TRUE,FALSE,1-Tom-Plumber|1 Tom Plumber
+Rooter-Man,,trades_mechanical,meets_150k,TRUE,FALSE,Rooter-Man|Rooterman|Rooter Man
+Heroes Lawn Care,Horsepower Brands,lawn_pest_outdoor,meets_150k,TRUE,FALSE,Heroes Lawn Care|Heroes Lawn
+Five Star Bath Solutions,Five Star Franchising,home_improvement_interiors,meets_150k,TRUE,FALSE,Five Star Bath Solutions|Five Star Bath
+Kids 'R' Kids,,education_childcare,meets_150k,TRUE,FALSE,Kids 'R' Kids|Kids R Kids
+PIP Marketing Signs Print,,shipping_print_signage,meets_150k,TRUE,FALSE,PIP Marketing|PIP Printing
+You Move Me,O2E Brands,junk_moving_hauling,meets_150k,TRUE,FALSE,You Move Me
+Pure Barre,Xponential Fitness,fitness_wellness,meets_150k,TRUE,FALSE,Pure Barre

@@ -1,0 +1,11 @@
+# People data NEVER goes to git — this repository is public.
+# Data home is Google Drive; raw/processed/staging/outputs live there.
+data/
+outputs/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/

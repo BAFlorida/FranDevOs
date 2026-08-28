@@ -1,0 +1,66 @@
+rule_type,pattern,category,priority
+include,owner,ownership,100
+include,co-owner,ownership,100
+include,franchisee,ownership,100
+include,franchise owner,ownership,100
+include,owner operator,ownership,100
+include,owner/operator,ownership,100
+include,president,ownership,90
+include,ceo,ownership,90
+include,chief executive officer,ownership,90
+include,managing partner,ownership,90
+include,managing member,ownership,90
+include,managing director,ownership,80
+include,principal,ownership,80
+include,partner,ownership,70
+include,operating partner,ownership,80
+include,founder,ownership,80
+include,co-founder,ownership,80
+include,proprietor,ownership,90
+include,multi-unit,multi_unit,95
+include,multi unit,multi_unit,95
+include,area developer,multi_unit,95
+include,regional developer,multi_unit,95
+include,area representative,multi_unit,85
+include,master franchisee,multi_unit,90
+hard_exclude,franchise development,corporate_support,100
+hard_exclude,franchise sales,corporate_support,100
+hard_exclude,franchise consultant,corporate_support,100
+hard_exclude,franchise broker,corporate_support,100
+hard_exclude,franchise coach,corporate_support,100
+hard_exclude,business broker,corporate_support,100
+hard_exclude,business brokerage,corporate_support,100
+hard_exclude,mergers and acquisitions,corporate_support,100
+hard_exclude,m&a,corporate_support,90
+hard_exclude,recruiter,corporate_support,100
+hard_exclude,recruiting,corporate_support,100
+hard_exclude,staffing,corporate_support,100
+hard_exclude,talent acquisition,corporate_support,100
+hard_exclude,human resources,corporate_support,100
+hard_exclude,hr business partner,corporate_support,100
+hard_exclude,corporate development,corporate_support,100
+hard_exclude,field consultant,corporate_support,100
+hard_exclude,franchise business consultant,corporate_support,100
+hard_exclude,realtor,unrelated_profession,90
+hard_exclude,real estate agent,unrelated_profession,90
+hard_exclude,real estate sales,unrelated_profession,90
+caution,general manager,management_not_ownership,80
+caution,operations manager,management_not_ownership,80
+caution,director of operations,management_not_ownership,80
+caution,district manager,management_not_ownership,80
+caution,regional manager,management_not_ownership,80
+caution,regional vice president,management_not_ownership,80
+caution,regional director,management_not_ownership,80
+caution,area manager,management_not_ownership,80
+caution,territory manager,management_not_ownership,80
+caution,vice president,management_not_ownership,70
+caution,coo,management_not_ownership,70
+caution,chief operating officer,management_not_ownership,70
+caution,cfo,management_not_ownership,60
+caution,cmo,management_not_ownership,60
+caution,executive director,management_not_ownership,70
+caution,store manager,management_not_ownership,80
+caution,branch manager,management_not_ownership,80
+caution,center director,management_not_ownership,70
+caution,manager,management_not_ownership,50
+caution,director,management_not_ownership,40

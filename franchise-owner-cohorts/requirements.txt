@@ -1,0 +1,8 @@
+pandas
+openpyxl
+pydantic
+python-dateutil
+rapidfuzz
+duckdb
+pytest
+rich

@@ -1,0 +1,19 @@
+archetype,definition,positive_title_keywords,positive_industry_keywords,priority
+Field-Service Operations,Ran field crews or service delivery operations (service manager; field ops; dispatch; route service delivery),service manager|field operations|field service|dispatch|service director|operations supervisor,home services|hvac|plumbing|pest|landscaping|restoration|utilities,10
+Branch / P&L Leadership,Owned a branch or unit P&L inside a larger company (branch manager; general manager; market president),branch manager|general manager|market president|unit manager|profit and loss|p&l,retail|banking|distribution|rental|logistics|hospitality,20
+Multi-Unit Operations,Managed multiple locations or territories simultaneously,multi-unit|district manager|area manager|regional manager|area director|regional operations,retail|restaurant|fitness|convenience|grocery,30
+Territory / Outside Sales,Carried an individual field/territory quota,territory|outside sales|account executive|sales representative|account manager,any,40
+Regional / Enterprise Sales Leadership,Led sales teams or regions (sales manager and above),sales manager|sales director|vp sales|regional sales|head of sales|chief revenue,any,50
+Commercial Business Development,B2B partnership/business development focus,business development|partnerships|alliances|commercial director,any,60
+Industrial / Technical Sales,Sold technical/industrial products or services,technical sales|industrial sales|engineer.*sales|sales engineer|manufacturer rep,manufacturing|industrial|chemical|equipment|construction products,70
+Construction / Trades Operations,Built or ran construction/trades work (PM; superintendent; estimator; licensed trade),project manager|superintendent|estimator|foreman|contractor|journeyman|master plumber|electrician,construction|remodeling|roofing|hvac|plumbing|electrical,80
+Automotive Operations,Ran automotive service/retail/dealership operations,service advisor|service manager|parts manager|dealership|shop manager|automotive,automotive|dealership|collision|tire|quick lube,90
+Logistics / Fleet / Route Operations,Ran logistics fleet warehouse or route operations,logistics|fleet|warehouse|distribution|route|terminal manager|transportation,logistics|trucking|delivery|3pl|freight,100
+Facilities / Property Services,Facilities management or property services operations,facilities|property manager|building services|janitorial|maintenance manager,commercial real estate|facilities|janitorial|security services,110
+Corporate Marketing / Brand Management,Corporate marketing brand or growth roles,marketing|brand manager|cmo|growth|demand generation|communications,cpg|agency|media|retail,120
+Product / Technology / Digital Leadership,Product engineering or technology leadership,product manager|engineer|cto|software|it director|technology|data,software|saas|technology|telecom,130
+Healthcare / Clinical Operations,Clinical practice or healthcare operations,nurse|physician|therapist|clinical|practice manager|healthcare administrator,healthcare|hospital|home health|senior care|pharmacy,140
+Finance / Corporate Leadership,Finance accounting or general corporate leadership,cfo|controller|finance|accounting|analyst|banker|consultant|attorney,banking|insurance|accounting|consulting|legal,150
+Entrepreneur / Prior Business Owner,Owned or founded a prior non-franchise business,owner|founder|co-founder|president.*own|self-employed|proprietor,small business|startup,160
+Military / Government Operations,Military service or government operations background,officer|sergeant|commander|military|veteran|federal|government,military|defense|government,170
+Other / Unclear,Insufficient or contradictory evidence for any archetype,,,999
