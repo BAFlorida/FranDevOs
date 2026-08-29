@@ -119,7 +119,7 @@
     </div>
     <div class="actions">
       <button class="primary" type="submit">Run query</button>
-      <a class="btn" href="/export.csv?{{ export_qs }}">Export CSV (with SQL)</a>
+      <button class="btn" type="submit" formaction="/export.csv">Export CSV (with SQL)</button>
       <label style="font-size:13px"><input type="checkbox" name="exclude_franchise"
         {% if f.exclude_franchise %}checked{% endif %}> exclude franchise roles from matching</label>
     </div>
@@ -168,7 +168,7 @@
       <tr><th>Person</th><th>Now</th><th>Path</th><th>Bought</th><th>Matched roles</th></tr>
       {% for row in r.sample %}
       <tr>
-        <td><a href="{{ row.linkedin }}" target="_blank" rel="noopener">{{ row.full_name }}</a>
+        <td>{% if row.linkedin and row.linkedin.startswith('https://') %}<a href="{{ row.linkedin }}" target="_blank" rel="noopener">{{ row.full_name }}</a>{% else %}{{ row.full_name }}{% endif %}
             <div class="sub mono">{{ row.record_id }}</div></td>
         <td>{{ row.job_title }} · {{ row.canonical_brand }}
             <div class="sub">{{ row.brand_segment }}</div></td>

@@ -82,8 +82,8 @@ def _basic_auth():
     ok = (
         auth is not None
         and auth.type == "basic"
-        and hmac.compare_digest(auth.username or "", AUTH_USER)
-        and hmac.compare_digest(auth.password or "", AUTH_PASS)
+        and hmac.compare_digest((auth.username or "").encode("utf-8", "replace"), AUTH_USER.encode())
+        and hmac.compare_digest((auth.password or "").encode("utf-8", "replace"), AUTH_PASS.encode())
     )
     if not ok:
         return Response("authentication required", 401,
@@ -267,7 +267,6 @@ def index():
     return render_template(
         "index.html", f=f, r=results, segments=SEGMENTS, career_paths=CAREER_PATHS,
         base_count=BASE_COUNT, year_range=YEAR_RANGE,
-        export_qs=request.query_string.decode(),
     )
 
 
@@ -295,9 +294,15 @@ def export_csv():
     buf.write("# sql:\n")
     for line in inline_sql(sql, params).splitlines():
         buf.write(f"#   {line}\n")
+    def cell(v):
+        # neutralize spreadsheet formula auto-execution in third-party-authored text
+        if isinstance(v, str) and v[:1] in ("=", "+", "-", "@"):
+            return "'" + v
+        return v
+
     writer = csv.writer(buf)
     writer.writerow(cols)
-    writer.writerows(rows)
+    writer.writerows([[cell(v) for v in row] for row in rows])
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d-%H%M")
     return Response(buf.getvalue(), mimetype="text/csv",
                     headers={"Content-Disposition": f"attachment; filename=cohort_lab_{stamp}.csv"})
