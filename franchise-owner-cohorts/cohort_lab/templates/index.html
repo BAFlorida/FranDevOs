@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cohort Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper:#F6F8F4; --card:#FFFFFF; --ink:#1B241F; --muted:#5C6862; --hairline:#DEE4DD;
+    --accent:#2E7D4F; --accent-soft:#EAF2EC; --bar:#2E7D4F; --bar-neutral:#A9C4B3;
+    --flag:#B4592E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#141A16; --card:#1C231E; --ink:#E9EDE8; --muted:#98A49C; --hairline:#2B342D;
+      --accent:#5FB786; --accent-soft:#223529; --bar:#63BE8D; --bar-neutral:#3A5A48;
+      --flag:#DB9265;
+    }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif; padding:28px 18px 70px; }
+  .wrap { max-width:1080px; margin:0 auto; }
+  h1 { font-family:"Bricolage Grotesque",sans-serif; font-size:28px; margin:0; letter-spacing:-.3px; }
+  .sub { color:var(--muted); font-size:13px; margin-top:3px; }
+  .mono { font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; }
+  .card { background:var(--card); border:1px solid var(--hairline); border-radius:12px;
+          padding:18px 20px; margin-top:16px; }
+  form .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px 18px; }
+  label.field { display:block; font-size:12px; color:var(--muted); font-family:"IBM Plex Mono",monospace;
+                text-transform:uppercase; letter-spacing:.08em; }
+  label.field input[type=text], label.field input[type=number], label.field select {
+    display:block; width:100%; margin-top:5px; font:14px "IBM Plex Sans",sans-serif;
+    color:var(--ink); background:var(--paper); border:1px solid var(--hairline);
+    border-radius:8px; padding:8px 10px; }
+  .hint { font-size:11px; color:var(--muted); text-transform:none; letter-spacing:0; margin-top:3px; }
+  .checks { margin-top:6px; display:flex; flex-direction:column; gap:4px; font-size:13px;
+            color:var(--ink); text-transform:none; letter-spacing:0; font-family:"IBM Plex Sans",sans-serif; }
+  .actions { display:flex; gap:10px; margin-top:16px; align-items:center; flex-wrap:wrap; }
+  button, .btn { font:600 14px "IBM Plex Sans",sans-serif; padding:9px 18px; border-radius:9px;
+                 border:1px solid var(--hairline); background:var(--card); color:var(--ink);
+                 cursor:pointer; text-decoration:none; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .stats { display:flex; gap:12px; flex-wrap:wrap; }
+  .stat { background:var(--card); border:1px solid var(--hairline); border-radius:10px;
+          padding:12px 18px; }
+  .stat .big { font-family:"Bricolage Grotesque",sans-serif; font-size:26px; font-weight:700; }
+  .stat .cap { font-size:12px; color:var(--muted); }
+  .barlist { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .barrow { display:grid; grid-template-columns:minmax(220px,340px) 1fr 70px; gap:12px; align-items:center; }
+  .barrow .lbl { font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .barrow .track { height:16px; }
+  .barrow .fill { height:100%; background:var(--bar); border-radius:0 4px 4px 0; min-width:2px; }
+  .barrow.neutral .fill { background:var(--bar-neutral); }
+  .barrow .val { font-family:"IBM Plex Mono",monospace; font-size:12.5px; text-align:right; }
+  h2 { font-family:"Bricolage Grotesque",sans-serif; font-size:17px; margin:0 0 4px; }
+  .tablewrap { overflow-x:auto; margin-top:8px; }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font:500 10.5px "IBM Plex Mono",monospace; text-transform:uppercase;
+       letter-spacing:.08em; color:var(--muted); padding:0 12px 7px 0; border-bottom:1px solid var(--hairline); }
+  td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hairline); vertical-align:top; max-width:260px; }
+  tr:last-child td { border-bottom:none; }
+  td a { color:var(--accent); }
+  details { margin-top:14px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+  pre { background:var(--paper); border:1px solid var(--hairline); border-radius:8px;
+        padding:12px 14px; overflow-x:auto; font:12px/1.5 "IBM Plex Mono",monospace; color:var(--ink); }
+  .pill { display:inline-block; font:11px "IBM Plex Mono",monospace; padding:2px 8px;
+          border-radius:999px; background:var(--accent-soft); color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px">
+    <div>
+      <h1>Cohort Lab</h1>
+      <div class="sub">{{ '{:,}'.format(base_count) }} usable franchise owners · role-level filters ·
+        every number ships with its SQL</div>
+    </div>
+    <a class="btn" href="/">Reset</a>
+  </header>
+
+  <form class="card" method="get" action="/">
+    <div class="grid">
+      <label class="field">Role title contains (ALL)
+        <input type="text" name="title" value="{{ f.title_raw }}" placeholder="territory manager">
+        <div class="hint">space/comma-separated terms; one past role must contain all of them</div>
+      </label>
+      <label class="field">Employer contains (ANY)
+        <input type="text" name="employer" value="{{ f.employer_raw }}" placeholder="pepsi, coca cola">
+        <div class="hint">comma-separated; matches the same role as the title terms</div>
+      </label>
+      <label class="field">Min tenure in that role (years)
+        <input type="number" name="min_tenure" step="0.5" min="0" value="{{ f.min_tenure_yrs if f.min_tenure_yrs is not none else '' }}">
+        <div class="hint">Present-ended roles are measured to the franchise start</div>
+      </label>
+      <label class="field">Bought since (year)
+        <input type="number" name="bought_since" min="1950" max="2035" value="{{ f.bought_since or '' }}">
+        <div class="hint">first franchise start · data spans {{ year_range[0] }}–{{ year_range[1] }}</div>
+      </label>
+      <label class="field">Career path
+        <span class="checks">
+          {% for p in career_paths %}
+          <label><input type="checkbox" name="career_path" value="{{ p }}"
+            {% if p in f.career_path %}checked{% endif %}> {{ p }}</label>
+          {% endfor %}
+        </span>
+      </label>
+      <label class="field">Brand segment
+        <select name="brand_segment" multiple size="6">
+          {% for s in segments %}
+          <option value="{{ s }}" {% if s in f.brand_segment %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+        <div class="hint">cmd/ctrl-click for multiple</div>
+      </label>
+    </div>
+    <div class="actions">
+      <button class="primary" type="submit">Run query</button>
+      <a class="btn" href="/export.csv?{{ export_qs }}">Export CSV (with SQL)</a>
+      <label style="font-size:13px"><input type="checkbox" name="exclude_franchise"
+        {% if f.exclude_franchise %}checked{% endif %}> exclude franchise roles from matching</label>
+    </div>
+  </form>
+
+  <div class="card">
+    <div class="stats">
+      <div class="stat"><div class="big mono">{{ '{:,}'.format(r.total) }}</div>
+        <div class="cap">people match</div></div>
+      <div class="stat"><div class="big mono">{{ r.pct }}%</div>
+        <div class="cap">of usable owners</div></div>
+    </div>
+    <h2 style="margin-top:16px">Filter funnel</h2>
+    <div class="barlist">
+      {% for step in r.funnel %}
+      <div class="barrow" title="{{ step.label }} — {{ '{:,}'.format(step.count) }} people">
+        <div class="lbl">{{ step.label }}</div>
+        <div class="track"><div class="fill" style="width:{{ (100 * step.count / base_count) | round(2) }}%"></div></div>
+        <div class="val">{{ '{:,}'.format(step.count) }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Top matched role titles</h2>
+    <div class="sub">{% if r.steps_active %}among people passing every filter, on the roles your
+      role-level filters matched{% else %}most common non-franchise role titles across the base
+      population{% endif %}</div>
+    <div class="barlist">
+      {% for title, n in r.top_titles %}
+      <div class="barrow neutral" title="{{ title }} — {{ '{:,}'.format(n) }} people">
+        <div class="lbl">{{ title }}</div>
+        <div class="track"><div class="fill" style="width:{{ (100 * n / r.top_titles_max) | round(2) if r.top_titles_max else 0 }}%"></div></div>
+        <div class="val">{{ '{:,}'.format(n) }}</div>
+      </div>
+      {% else %}
+      <div class="sub">no matching roles</div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Sample <span class="pill">{{ r.sample | length }} of {{ '{:,}'.format(r.total) }}</span></h2>
+    <div class="tablewrap"><table>
+      <tr><th>Person</th><th>Now</th><th>Path</th><th>Bought</th><th>Matched roles</th></tr>
+      {% for row in r.sample %}
+      <tr>
+        <td><a href="{{ row.linkedin }}" target="_blank" rel="noopener">{{ row.full_name }}</a>
+            <div class="sub mono">{{ row.record_id }}</div></td>
+        <td>{{ row.job_title }} · {{ row.canonical_brand }}
+            <div class="sub">{{ row.brand_segment }}</div></td>
+        <td>{{ row.career_path }}</td>
+        <td class="mono">{{ row.fr_start_ym | ym }}</td>
+        <td>{{ (row.matched_roles or '')[:180] }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="sub">no matches — loosen a filter</td></tr>
+      {% endfor %}
+    </table></div>
+    <details>
+      <summary>Generating SQL (parameters inlined for display; execution is parameterized)</summary>
+      <pre>{{ r.sql }}</pre>
+    </details>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Cohort Lab — apply from the Render dashboard: New -> Blueprint -> this repo.
+# Access control is HTTP Basic auth inside the app; a literal Render "private
+# service" would have no public URL to log into. All three env vars are
+# prompted on first apply and never stored in git.
+services:
+  - type: web
+    name: cohort-lab
+    runtime: python
+    plan: free
+    branch: claude/franchise-owner-cohorts-jjvqgy
+    rootDir: franchise-owner-cohorts/cohort_lab
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --threads 4 --timeout 60 --bind 0.0.0.0:$PORT app:app
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: COHORT_USER
+        sync: false
+      - key: COHORT_PASSWORD
+        sync: false
+      - key: COHORT_DATA_KEY
+        sync: false

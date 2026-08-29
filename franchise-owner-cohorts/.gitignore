@@ -3,6 +3,10 @@
 data/
 outputs/
 
+# Cohort Lab deploy data: only the encrypted .enc files are committed.
+cohort_lab/.data_key
+cohort_lab/deploy/*.parquet
+
 # Python
 .venv/
 __pycache__/
