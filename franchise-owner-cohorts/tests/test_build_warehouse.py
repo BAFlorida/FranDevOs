@@ -108,6 +108,36 @@ def test_parse_ym():
     assert lib_mod.parse_ym("13/2010") is None
 
 
+def test_function_taxonomy_multilabel():
+    vocab = lib_mod.load_vocab(lib.CONFIG_DIR)
+    join = lambda t: " ".join(lib.tokens(t))
+    tag = lambda t: {n for n, rx in vocab.functions.items() if rx.search(join(t))}
+    assert {"sales", "marketing", "general_management"} <= tag("Sales & Marketing General Manager")
+    assert "sales" in tag("Territory Sales Manager")
+    assert "finance_accounting" not in tag("Owner")
+    assert "trades_construction" in tag("Master Plumber")
+    assert "software_it" in tag("Senior Software Developer")
+
+
+def test_background_tiers():
+    fr = 2020 * 12
+    mk = lambda start_y, end_y, fns, present=False: {
+        "start_ym": start_y * 12, "end_ym": None if present else end_y * 12,
+        "end_is_present": present, "fn_list": fns,
+    }
+    # 10 years of sales -> career; 2 years marketing -> touched-not-experienced
+    rows, total = lib_mod.build_backgrounds(
+        "x", [mk(2008, 2018, ["sales"]), mk(2018, 2020, ["marketing"])], fr, ["sales", "marketing"])
+    by = {r["function"]: r for r in rows}
+    assert by["sales"]["tier"] == 3 and by["sales"]["months_pre"] == 120
+    assert by["marketing"]["tier"] == 1 and by["marketing"]["months_pre"] == 24
+    assert total == 144
+    # stale-Present role measured to franchise start; majority share -> career
+    rows, total = lib_mod.build_backgrounds(
+        "y", [mk(2016, None, ["operations"], present=True)], fr, ["operations"])
+    assert rows[0]["months_pre"] == 48 and rows[0]["tier"] == 3
+
+
 def test_vocab_precedence_and_exclusions():
     vocab = lib_mod.load_vocab(lib.CONFIG_DIR)
     join = lambda t: " ".join(lib.tokens(t))

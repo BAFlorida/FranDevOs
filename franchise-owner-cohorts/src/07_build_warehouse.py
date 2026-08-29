@@ -56,6 +56,7 @@ class Vocab:
         }
         self.middle_mgmt = self._compile(raw["middle_mgmt_titles"])
         self.senior = self._compile(raw["senior_titles"])
+        self.functions = {name: self._compile(pats) for name, pats in raw["functions"].items()}
         self.constants = {
             "recent_start_ym_min": int(raw["recent_start_ym_min"]),
             "tenure_min_months": int(raw["tenure_min_months"]),
@@ -138,6 +139,8 @@ def build_roles_for_person(record: dict, vocab: Vocab) -> list[dict]:
         }
         for flag, (field, rx) in vocab.flag_sets.items():
             row[flag] = bool(rx.search(title_norm if field == "title" else company_norm))
+        row["fn_list"] = [name for name, rx in vocab.functions.items() if rx.search(title_norm)]
+        row["functions"] = ",".join(row["fn_list"])
         rows.append(row)
     # chronological seq: dated roles by start (ties by original order), undated last
     rows.sort(key=lambda r: (r["start_ym"] is None, r["start_ym"] if r["start_ym"] is not None else 0, r["orig_idx"]))
@@ -148,14 +151,15 @@ def build_roles_for_person(record: dict, vocab: Vocab) -> list[dict]:
 
 # ------------------------------------------------------------------- persons
 
-def derive_person(record: dict, roles: list[dict]) -> dict | None:
+def derive_person(record: dict, roles: list[dict]) -> tuple[list[dict] | None, dict | None]:
+    """-> (pre_franchise_roles, person_row); (None, None) when not usable."""
     dated_fr = [r for r in roles if r["is_franchise_role"] and r["start_ym"] is not None]
     fr_start = min((r["start_ym"] for r in dated_fr), default=None)
     if record["current_ownership_status"] not in USABLE_STATUSES or fr_start is None:
-        return None
+        return None, None
     pre = [r for r in roles if not r["is_franchise_role"] and r["start_ym"] is not None and r["start_ym"] < fr_start]
     if not pre:
-        return None  # usable requires at least one dated pre-franchise role
+        return None, None  # usable requires at least one dated pre-franchise role
 
     own_pre = [r for r in pre if r["is_ownership"]]
     if not own_pre:
@@ -170,7 +174,7 @@ def derive_person(record: dict, roles: list[dict]) -> dict | None:
 
     own_end = last_own["end_ym"] if last_own else None
     first_return = corp_after[0] if corp_after else None
-    return {
+    return pre, {
         "record_id": record["record_id"],
         "full_name": record["Full Name"],
         "linkedin": record["LinkedIn Profile"],
@@ -192,6 +196,37 @@ def derive_person(record: dict, roles: list[dict]) -> dict | None:
     }
 
 
+def build_backgrounds(record_id: str, pre_roles: list[dict], fr_start: int, fn_names) -> tuple[list[dict], int]:
+    """Person x function pre-franchise exposure. Months attribution per role:
+    explicit end -> min(end, franchise start) - start; stale/true Present ->
+    franchise start - start (time in role before buying); no usable end -> the
+    role still counts (n_roles_pre) but contributes 0 months. Overlapping roles
+    double-count months by design — share_pre is exposure share, not a clock."""
+    per = {f: {"n": 0, "mo": 0} for f in fn_names}
+    total = 0
+    for r in pre_roles:
+        end_eff = r["end_ym"] if r["end_ym"] is not None else (fr_start if r["end_is_present"] else None)
+        months = max(0, min(end_eff, fr_start) - r["start_ym"]) if end_eff is not None else 0
+        total += months
+        for f in r["fn_list"]:
+            per[f]["n"] += 1
+            per[f]["mo"] += months
+    rows = []
+    for f, d in per.items():
+        if d["n"] == 0:
+            continue
+        share = round(d["mo"] / total, 3) if total else None
+        if d["mo"] >= 84 or (share is not None and share >= 0.5 and d["mo"] >= 36):
+            tier = 3  # career
+        elif d["mo"] >= 36:
+            tier = 2  # experienced
+        else:
+            tier = 1  # touched
+        rows.append({"record_id": record_id, "function": f, "n_roles_pre": d["n"],
+                     "months_pre": d["mo"], "share_pre": share, "tier": tier})
+    return rows, total
+
+
 # --------------------------------------------------------------------- build
 
 def run(input_path: Path | None = None, config_dir: Path | None = None,
@@ -211,28 +246,43 @@ def run(input_path: Path | None = None, config_dir: Path | None = None,
 
     all_roles: list[dict] = []
     persons: list[dict] = []
+    background_rows: list[dict] = []
+    role_fn_rows: list[dict] = []
     for record in df.to_dict("records"):
         roles = build_roles_for_person(record, vocab)
         if not roles:
             continue
         all_roles.extend(roles)
-        person = derive_person(record, roles)
+        for r in roles:
+            for fn in r["fn_list"]:
+                role_fn_rows.append({"record_id": r["record_id"], "seq": r["seq"], "function": fn})
+        pre, person = derive_person(record, roles)
         if person:
+            bg, total = build_backgrounds(person["record_id"], pre, person["fr_start_ym"], vocab.functions)
+            person["pre_months_total"] = total
+            background_rows.extend(bg)
             persons.append(person)
 
-    roles_df = pd.DataFrame(all_roles)
+    roles_df = pd.DataFrame(all_roles).drop(columns=["fn_list"])
     persons_df = pd.DataFrame(persons)
     int_cols = ["start_ym", "end_ym", "duration_mo"]
     for c in int_cols:
         roles_df[c] = roles_df[c].astype("Int64")
     persons_df["yrs_between"] = persons_df["yrs_between"].astype("Float64")
-    for c in ["fr_start_ym", "n_roles", "n_pre_roles", "n_corp_after"]:
+    for c in ["fr_start_ym", "n_roles", "n_pre_roles", "n_corp_after", "pre_months_total"]:
         persons_df[c] = persons_df[c].astype("Int64")
+    backgrounds_df = pd.DataFrame(background_rows)
+    backgrounds_df["share_pre"] = backgrounds_df["share_pre"].astype("Float64")
+    role_fn_df = pd.DataFrame(role_fn_rows)
 
     roles_df = roles_df.sort_values(["record_id", "seq"]).reset_index(drop=True)
     persons_df = persons_df.sort_values("record_id").reset_index(drop=True)
+    backgrounds_df = backgrounds_df.sort_values(["record_id", "function"]).reset_index(drop=True)
+    role_fn_df = role_fn_df.sort_values(["record_id", "seq", "function"]).reset_index(drop=True)
     roles_df.to_parquet(warehouse_dir / "roles.parquet", index=False)
     persons_df.to_parquet(warehouse_dir / "persons.parquet", index=False)
+    backgrounds_df.to_parquet(warehouse_dir / "backgrounds.parquet", index=False)
+    role_fn_df.to_parquet(warehouse_dir / "role_functions.parquet", index=False)
 
     db_path = warehouse_dir / "frandev.duckdb"
     if db_path.exists():
@@ -240,6 +290,8 @@ def run(input_path: Path | None = None, config_dir: Path | None = None,
     con = duckdb.connect(str(db_path))
     con.execute(f"CREATE TABLE roles AS SELECT * FROM read_parquet('{warehouse_dir / 'roles.parquet'}')")
     con.execute(f"CREATE TABLE persons AS SELECT * FROM read_parquet('{warehouse_dir / 'persons.parquet'}')")
+    con.execute(f"CREATE TABLE backgrounds AS SELECT * FROM read_parquet('{warehouse_dir / 'backgrounds.parquet'}')")
+    con.execute(f"CREATE TABLE role_functions AS SELECT * FROM read_parquet('{warehouse_dir / 'role_functions.parquet'}')")
     con.execute("CREATE TABLE vocab_constants(key VARCHAR, value BIGINT)")
     for k, v in vocab.constants.items():
         con.execute("INSERT INTO vocab_constants VALUES (?, ?)", [k, v])
@@ -274,6 +326,14 @@ def run(input_path: Path | None = None, config_dir: Path | None = None,
         "career_path_counts": {k: int(v) for k, v in path_counts.items()},
         "end_before_start_rows": int(roles_df["end_before_start"].sum()),
         "cohort_sizes": cohort_sizes,
+        "background_headlines": {
+            fn: {
+                "any": int((backgrounds_df["function"] == fn).sum()),
+                "experienced_3y": int(((backgrounds_df["function"] == fn) & (backgrounds_df["tier"] >= 2)).sum()),
+                "career": int(((backgrounds_df["function"] == fn) & (backgrounds_df["tier"] == 3)).sum()),
+            }
+            for fn in sorted(vocab.functions)
+        },
     }
     lib.write_json(outputs_dir / "07_warehouse_manifest.json", manifest)
     return manifest
