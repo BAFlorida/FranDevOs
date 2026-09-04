@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}People finder · Cohort Lab{% endblock %}
+{% block body %}
+<div class="row" style="justify-content:space-between;align-items:flex-end">
+  <div>
+    <h1>People finder</h1>
+    <div class="sub">{{ base_count | num }} usable owners · role-level filters that must hold on the SAME past role · seed-list export</div>
+  </div>
+  <a class="btn" href="{{ url_for('people') }}">Reset</a>
+</div>
+
+<form class="card" method="get" action="{{ url_for('people') }}">
+  <div class="row" style="align-items:flex-start">
+    <label class="field" style="min-width:220px">Role title contains (ALL)
+      <input type="text" name="title" value="{{ f.title_raw }}" placeholder="territory manager">
+      <div class="hint">space/comma-separated terms; one past role must contain all of them</div>
+    </label>
+    <label class="field" style="min-width:220px">Employer contains (ANY)
+      <input type="text" name="employer" value="{{ f.employer_raw }}" placeholder="pepsi, coca cola">
+      <div class="hint">comma-separated; matches the same role as the title terms</div>
+    </label>
+    <label class="field">Min tenure in that role (years)
+      <input type="number" name="min_tenure" step="0.5" min="0" value="{{ f.min_tenure_yrs if f.min_tenure_yrs is not none else '' }}">
+      <div class="hint">Present-ended roles are measured to the franchise start</div>
+    </label>
+    <label class="field">Bought since (year)
+      <input type="number" name="bought_since" min="1950" max="2035" value="{{ f.bought_since or '' }}">
+      <div class="hint">first franchise start · data spans {{ year_range[0] }}–{{ year_range[1] }}</div>
+    </label>
+    <label class="field">Career path
+      <span style="display:flex;flex-direction:column;gap:4px;margin-top:4px;font:13px 'IBM Plex Sans',sans-serif;text-transform:none;letter-spacing:0;color:var(--ink)">
+        {% for p in career_paths %}
+        <label><input type="checkbox" name="career_path" value="{{ p }}" {% if p in f.career_path %}checked{% endif %}> {{ p }}</label>
+        {% endfor %}
+      </span>
+    </label>
+    <label class="field">Brand segment
+      <select name="brand_segment" multiple size="6">
+        {% for s in segments %}<option value="{{ s }}" {% if s in f.brand_segment %}selected{% endif %}>{{ s }}</option>{% endfor %}
+      </select>
+      <div class="hint">cmd/ctrl-click for multiple</div>
+    </label>
+  </div>
+  <div class="row" style="margin-top:12px">
+    <button class="primary" type="submit">Run query</button>
+    <button type="submit" formaction="{{ url_for('people_csv') }}">Export CSV (with SQL)</button>
+    <label style="font-size:13px"><input type="checkbox" name="exclude_franchise" {% if f.exclude_franchise %}checked{% endif %}> exclude franchise roles from matching</label>
+  </div>
+</form>
+
+<div class="card">
+  <div class="stats">
+    <div class="stat"><div class="big mono">{{ r.total | num }}</div><div class="cap">people match</div></div>
+    <div class="stat"><div class="big mono">{{ r.pct }}%</div><div class="cap">of usable owners</div></div>
+  </div>
+  <h2 style="margin-top:14px">Filter funnel</h2>
+  <div class="barlist">
+    {% for step in r.funnel %}
+    <div class="barrow" title="{{ step.label }} — {{ step.count | num }} people">
+      <div class="lbl">{{ step.label }}</div>
+      <div class="track"><div class="fill" style="width:{{ (100 * step.count / base_count) | round(2) }}%"></div></div>
+      <div class="val">{{ step.count | num }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <h2>Top matched role titles</h2>
+  <div class="sub">{% if r.steps_active %}among people passing every filter, on the roles your role-level filters matched{% else %}most common non-franchise role titles across the base population{% endif %}</div>
+  <div class="barlist">
+    {% for title, n in r.top_titles %}
+    <div class="barrow" title="{{ title }} — {{ n | num }} people">
+      <div class="lbl">{{ title }}</div>
+      <div class="track"><div class="fill" style="width:{{ (100 * n / r.top_titles_max) | round(2) if r.top_titles_max else 0 }}%"></div></div>
+      <div class="val">{{ n | num }}</div>
+    </div>
+    {% else %}<div class="sub">no matching roles</div>{% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <h2>Sample <span class="pill">{{ r.sample | length }} of {{ r.total | num }}</span></h2>
+  <div class="tablewrap"><table>
+    <tr><th>Person</th><th>Now</th><th>Path</th><th>Bought</th><th>Metro</th><th>Matched roles</th></tr>
+    {% for row in r.sample %}
+    <tr>
+      <td>{% if row.linkedin and row.linkedin.startswith('https://') %}<a href="{{ row.linkedin }}" target="_blank" rel="noopener">{{ row.full_name }}</a>{% else %}{{ row.full_name }}{% endif %}
+          <div class="sub mono">{{ row.record_id }}</div></td>
+      <td>{{ row.job_title }} · {{ row.canonical_brand }}<div class="sub">{{ row.brand_segment }}</div></td>
+      <td>{{ row.career_path }}</td>
+      <td class="mono">{{ row.fr_start_ym | ym }}</td>
+      <td>{{ row.metro }}</td>
+      <td>{{ (row.matched_roles or '')[:180] }}</td>
+    </tr>
+    {% else %}<tr><td colspan="6" class="sub">no matches — loosen a filter</td></tr>{% endfor %}
+  </table></div>
+  <details><summary>Generating SQL (parameters inlined for display; execution is parameterized)</summary><pre>{{ r.sql }}</pre></details>
+</div>
+{% endblock %}

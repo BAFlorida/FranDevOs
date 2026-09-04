@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}SQL · Cohort Lab{% endblock %}
+{% block body %}
+<h1>SQL</h1>
+<div class="sub">One SELECT (WITH … SELECT is fine) against the in-memory warehouse. Read-only: file access, ATTACH and
+  settings are switched off on this connection. Results cap at {{ max_rows | num }} rows on screen; export for more.</div>
+
+<form class="card" method="post" action="{{ url_for('sql_box') }}" id="sqlf">
+  <textarea name="sql" rows="9" style="width:100%;font-family:'IBM Plex Mono',monospace;font-size:13px" placeholder="SELECT brand_segment, count(*) AS people&#10;FROM persons WHERE population = 'owner' AND is_usable&#10;GROUP BY 1 ORDER BY 2 DESC">{{ sql }}</textarea>
+  <div class="row" style="margin-top:8px">
+    <button class="primary" type="submit">Run</button>
+    <button type="submit" formaction="{{ url_for('sql_csv') }}">Export CSV (with SQL)</button>
+  </div>
+</form>
+
+{% if result %}
+<div class="card">
+  {% if result.error %}<div class="error">{{ result.error }}</div>
+  {% else %}
+  <h2>Result <span class="pill">{{ result.rows | length }} rows{% if result.truncated %} · truncated at {{ max_rows | num }}{% endif %}</span></h2>
+  <div class="tablewrap"><table>
+    <tr>{% for c in result.columns %}<th>{{ c }}</th>{% endfor %}</tr>
+    {% for row in result.rows %}<tr>{% for v in row %}<td class="{% if v is number and v is not sameas true and v is not sameas false %}num{% endif %}">{{ v | num if v is not none else '—' }}</td>{% endfor %}</tr>{% endfor %}
+  </table></div>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>Schema</h2>
+  <div class="sub">tables in this warehouse; <span class="mono">cohorts(cohort_id, record_id, matched_on, confidence)</span> joins persons on record_id</div>
+  {% for t in tables.values() %}
+  <h3>{{ t.name }} <span class="sub" style="text-transform:none;letter-spacing:0">— {{ t.blurb }}</span></h3>
+  <div class="mono" style="font-size:12px;line-height:1.7">
+    {% for c, k in t.columns.items() %}<span title="{{ k }}">{{ c }}</span>{% if not loop.last %} · {% endif %}{% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

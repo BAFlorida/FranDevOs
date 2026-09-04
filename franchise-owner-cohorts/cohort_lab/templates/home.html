@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Cohort Lab · Home{% endblock %}
+{% block body %}
+<h1>Franchise owner career warehouse</h1>
+<div class="sub">One row per person per job. Click anything to filter by it; the SQL behind every number is on screen.</div>
+
+<div class="card">
+  <h2>Populations</h2>
+  <div class="stats">
+    <div class="stat"><div class="big mono">{{ counts.records | num }}</div><div class="cap">owner records (deduped export)</div></div>
+    <div class="stat"><div class="big mono">{{ counts.approved | num }}</div><div class="cap">approved as local owners</div></div>
+    <div class="stat"><div class="big mono">{{ counts.with_history | num }}</div><div class="cap">with a parsed work history</div></div>
+    <div class="stat"><div class="big mono">{{ counts.usable | num }}</div><div class="cap">usable: dated purchase + a dated pre-purchase role</div></div>
+    <div class="stat"><div class="big mono">{{ counts.roles | num }}</div><div class="cap">roles (the grain)</div></div>
+    <div class="stat"><div class="big mono">{{ counts.employers | num }}</div><div class="cap">distinct employers</div></div>
+    <div class="stat" style="border-color:{{ 'var(--accent)' if counts.comparison else 'var(--flag)' }}">
+      <div class="big mono">{{ counts.comparison | num }}</div>
+      <div class="cap">comparison sample {% if counts.comparison %}({{ counts.comparison_usable | num }} usable){% else %}— <b>not loaded</b>{% endif %}</div>
+    </div>
+  </div>
+  {% if not counts.comparison %}
+  <div class="notice">No comparison population yet. Every share in this app is a <b>share of owners</b>, not a finding.
+    Question 1 shows the comparison side empty on purpose; it fills in when the matched Clay sample is loaded with
+    <span class="mono">07_build_warehouse.py --comparison</span>.</div>
+  {% endif %}
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>Phase-one cohorts (purchase-act)</h2>
+    <div class="sub">membership is a boolean on every person; overlap is a count, not a guess</div>
+    <div class="tablewrap"><table>
+      <tr><th>cohort</th><th>people</th><th>bought 2020+</th></tr>
+      {% for cid, n, recent in cohorts %}
+      <tr><td><a class="cell" href="{{ url_for('explore') }}?t=persons&fc=cohort_{{ cid }}&fo=true&fv=">{{ cid }}</a></td>
+          <td class="num">{{ n | num }}</td><td class="num">{{ recent | num }}</td></tr>
+      {% endfor %}
+    </table></div>
+    <h3>people in exactly…</h3>
+    <ul class="plain">
+      {% for k, n in overlap %}<li><span class="mono">{{ n | num }}</span> &nbsp; in {{ k }} cohort{{ 's' if k != 1 else '' }}</li>{% endfor %}
+    </ul>
+    <div style="margin-top:10px"><a class="btn" href="{{ url_for('question', qid='q3') }}">Overlap matrix →</a></div>
+  </div>
+
+  <div class="card">
+    <h2>Saved questions</h2>
+    <ul class="plain">
+      {% for q in questions.values() %}
+      <li><a href="{{ url_for('question', qid=q.id) }}"><b>{{ q.id | upper }}</b> · {{ q.title }}</a>
+          <div class="sub">{{ q.description[:140] }}{% if q.description | length > 140 %}…{% endif %}</div></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Explore</h2>
+  <div class="sub">pick a table, add filters, group by up to two columns, click a bar or a cell to drill</div>
+  <div class="row" style="margin-top:8px">
+    {% for t in tables.values() %}
+    <a class="btn" href="{{ url_for('explore') }}?t={{ t.name }}">{{ t.label }} <span class="sub">· {{ t.columns | length }} columns</span></a>
+    {% endfor %}
+    <a class="btn" href="{{ url_for('people') }}">People finder (seed lists)</a>
+    <a class="btn" href="{{ url_for('sql_box') }}">SQL</a>
+  </div>
+  <h3>starting points</h3>
+  <ul class="plain">
+    {% for label, href in starters %}<li><a href="{{ href }}">{{ label }}</a></li>{% endfor %}
+  </ul>
+</div>
+
+<div class="sub" style="margin-top:14px">data: <span class="mono">{{ data_dir }}</span></div>
+{% endblock %}

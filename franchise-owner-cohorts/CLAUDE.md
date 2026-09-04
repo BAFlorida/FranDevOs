@@ -54,22 +54,40 @@ separate cohort seed files for Meta/LinkedIn targeting.
 
 ## Analysis warehouse rules
 
-- `src/07_build_warehouse.py` builds `data/warehouse/{roles,persons}.parquet` +
-  `frandev.duckdb`. Answer cohort/career questions by querying these — never by
-  re-parsing `prior_history_json` with ad-hoc regex (that is how the same
-  question once returned both 545 and 480).
-- Ownership/corporate/cohort vocabulary lives ONLY in `config/vocab.yaml`.
+- `src/07_build_warehouse.py` builds `data/warehouse/{roles,persons,employers,cohorts}.parquet`
+  + `frandev.duckdb` (schema: `docs/warehouse_schema.md`). Grain = one row per
+  person per job; every derived column is baked at build time. Answer
+  cohort/career questions by querying these — never by re-parsing
+  `prior_history_json` with ad-hoc regex (that is how the same question once
+  returned both 545 and 480).
+- Names that work are kept: `roles` / `persons` / `record_id` / `seq` /
+  `fr_start_ym`. Do not rename a working spine to match a brief.
+- Every record stays in `persons` with `is_usable` / `usable_reason`; rows with
+  missing dates stay in `roles` with NULLs. Nothing is dropped or imputed
+  silently (`date_imputed`, `start_precision`, `months_to_asof` carry the facts).
+- `population` ∈ {owner, comparison}. Until a matched comparison sample is
+  loaded (`src/09_prepare_comparison.py` then `--comparison`), **every share is
+  a share of owners, never a finding**. Write it that way in every output.
+- Ownership/corporate/function/sector vocabulary lives ONLY in `config/vocab.yaml`.
   Canonical calls: bare president/ceo/partner/principal are NOT ownership.
-- Every published figure runs through `src/08_query.py` so it lands next to a
-  sidecar carrying its SQL and row count.
+  Fix a bad sector or brand tag by editing the vocab / `approved_brands.csv`
+  and rebuilding — never by editing output. `employers` (rarest first) is the
+  review surface.
+- Phase one is THREE cohorts (`sql/cohorts/green_owners|facilities_owners|restoration_owners.sql`,
+  purchase-act definitions). Do not add a fourth without a decision; the 17
+  earlier views live in `sql/cohorts/archive/` and are not built.
+- Every published figure runs through `src/08_query.py` (or the app) so it
+  lands next to its SQL. The saved questions are `cohort_lab/questions/*.sql`.
 - `tests/test_build_warehouse.py` freezes totals + 25 golden career paths; a
   vocab change that moves them must update both, in the same commit, on purpose.
-- Cohort 9 (three-year tenure) usable subset = explicit-end qualifiers only;
-  Present-flagged qualifiers are stale-risk (see outputs/analysis/cohort9_*).
+- Rebuilds are deterministic: durations "to now" use `as_of_ym` (export month),
+  never the clock.
 
 ## Commands
 
 - Run pipeline: `.venv/bin/python src/01_clean_people.py` (then 02, 03, 04, 05)
-- Build warehouse: `.venv/bin/python src/07_build_warehouse.py`
-- Query with sidecar: `.venv/bin/python src/08_query.py --name x --file sql/figures/x.sql`
+- Build warehouse: `.venv/bin/python src/07_build_warehouse.py` (~3 min; add `--comparison <stage04 csv>` once the sample exists)
+- Comparison sample: `.venv/bin/python src/09_prepare_comparison.py --input data/raw/comparison/<export>.csv`
+- Query with sidecar: `.venv/bin/python src/08_query.py --name q1 --file cohort_lab/questions/q1_function_tier_by_population.sql`
+- Cohort Lab locally: `cd cohort_lab && ../.venv/bin/python app.py` (http://127.0.0.1:5099); deploy data: `.venv/bin/python cohort_lab/prepare_deploy.py`
 - Tests: `.venv/bin/pytest`

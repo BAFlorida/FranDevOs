@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ q.id | upper }} · {{ q.title }}{% endblock %}
+{% block body %}
+<div class="row" style="justify-content:space-between;align-items:flex-end">
+  <div>
+    <h1>{{ q.id | upper }} · {{ q.title }}</h1>
+    <div class="sub" style="max-width:900px">{{ q.description }}</div>
+  </div>
+  <div class="row">
+    {% for other in questions.values() %}<a class="btn {% if other.id == q.id %}primary{% endif %}" href="{{ url_for('question', qid=other.id) }}">{{ other.id | upper }}</a>{% endfor %}
+  </div>
+</div>
+
+{% if q.id == 'q1' %}
+  {% if view.comparison_loaded %}
+  <div class="notice">Comparison sample loaded ({{ counts.comparison_usable | num }} usable people). Lift and CI are live.</div>
+  {% else %}
+  <div class="error"><b>Comparison population: 0 people loaded.</b> The comparison, lift and CI columns are blank on
+    purpose. Owner shares below are shares of owners — descriptions, not findings — until the matched sample lands.</div>
+  {% endif %}
+{% endif %}
+
+<div class="card">
+  {% if view.kind == 'matrix' or (view.kind == 'table' and view.matrix is defined) %}
+  <div class="sub">click a cell to open the people behind it in Explore</div>
+  <div class="tablewrap"><table class="matrix">
+    <tr><th class="rowhead"></th>{% for c in view.matrix.cols %}<th class="colhead">{{ c }}</th>{% endfor %}</tr>
+    {% for row in view.matrix.rows %}
+    <tr><th class="rowhead">{{ row.label }}</th>
+      {% for cell in row.cells %}
+      <td class="cell {% if cell.alpha > 0.55 %}dark{% endif %}"
+          style="background:rgba(var(--{{ 'neg' if cell.tone == 'neg' else 'series' }}-rgb),{{ '%.2f' % cell.alpha }})">
+        {% if cell.value is none %}<span class="sub">·</span>
+        {% elif cell.href %}<a href="{{ cell.href }}">{{ cell.value | num }}{% if cell.sub is not none %}<span class="sub">n={{ cell.sub | num }}</span>{% endif %}</a>
+        {% else %}<span>{{ cell.value | num }}</span>{% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table></div>
+  {% if q.id == 'q2' %}
+  <div class="legend"><span><span class="sw" style="background:rgba(var(--neg-rgb),.6)"></span>lift &lt; 1 (background under-buys the segment)</span>
+    <span><span class="sw" style="background:var(--mid)"></span>1.0</span>
+    <span><span class="sw" style="background:rgba(var(--series-rgb),.6)"></span>lift &gt; 1 (over-buys) · intensity = |log lift|, capped at 4×</span></div>
+  {% elif q.id == 'q4' %}
+  <div class="legend"><span><span class="sw" style="background:rgba(var(--series-rgb),.8)"></span>% of that year's buyers with an experienced (3y+) tier in the function · n = people</span></div>
+  {% elif q.id == 'q1' %}
+  <div class="legend"><span><span class="sw" style="background:rgba(var(--series-rgb),.8)"></span>% of usable owners at or above the tier · lift/CI in the table below</span></div>
+  {% endif %}
+  {% if view.multiplicity %}
+  <h3>people in exactly…</h3>
+  <ul class="plain">{% for m in view.multiplicity %}<li><span class="mono">{{ m.people | num }}</span> &nbsp; {{ m.cohort_b }}</li>{% endfor %}</ul>
+  {% endif %}
+
+  {% elif view.kind == 'bars' %}
+  <div class="sub">denominator: {{ view.denominator | num }} approved owners · click a bar to see those people in Explore</div>
+  {% for dim, bars in view.bars.items() %}
+  <h3>{{ dim | replace('_', ' ') }}</h3>
+  <div class="barlist">
+    {% for b in bars %}
+    {% if b.href %}<a class="barrow" href="{{ b.href }}" title="{{ b.label }} — {{ b.value | num }} ({{ b.pct }}%)">{% else %}<div class="barrow" title="{{ b.label }} — {{ b.value | num }} ({{ b.pct }}%)">{% endif %}
+      <div class="lbl">{{ b.label }}</div>
+      <div class="track"><div class="fill" style="width:{{ '%.2f' % b.width }}%"></div></div>
+      <div class="val">{{ b.value | num }}<span class="pct">· {{ b.pct }}%</span></div>
+    {% if b.href %}</a>{% else %}</div>{% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  {% if view.explore_href %}<div style="margin:8px 0"><a class="btn primary" href="{{ view.explore_href }}">Open in Explore (filter, sort, click through) →</a></div>{% endif %}
+
+  <h3 style="margin-top:18px">result table <span class="pill">{{ rows | length }} rows{% if q.id == 'q6' %} (first 500 of the tail; export for all){% endif %}</span></h3>
+  <div class="tablewrap"><table>
+    <tr>{% for c in columns %}<th>{{ c }}</th>{% endfor %}</tr>
+    {% for row in rows %}<tr>{% for v in row %}<td class="{% if v is number and v is not sameas true and v is not sameas false %}num{% endif %}">{{ v | num if v is not none else '—' }}</td>{% endfor %}</tr>{% endfor %}
+  </table></div>
+  <div class="row" style="margin-top:10px">
+    <a class="btn" href="{{ url_for('question_csv', qid=q.id) }}">Export CSV (with SQL)</a>
+  </div>
+  <details><summary>SQL — questions/{{ q.file }}</summary><pre>{{ q.sql }}</pre></details>
+</div>
+{% endblock %}

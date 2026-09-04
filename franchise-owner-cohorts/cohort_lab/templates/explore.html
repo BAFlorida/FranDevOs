@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}Explore · {{ s.t.label }}{% endblock %}
+{% block body %}
+<h1>Explore <span class="sub" style="font-size:15px;font-family:'IBM Plex Sans',sans-serif">{{ s.t.label }} — {{ s.t.blurb }}</span></h1>
+
+<form class="card" method="get" action="{{ url_for('explore') }}" id="xf">
+  <div class="row">
+    <label class="field">Table
+      <select name="t" onchange="resetTo(this.value)">
+        {% for t in tables.values() %}<option value="{{ t.name }}" {% if t.name == s.table %}selected{% endif %}>{{ t.label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">Measure
+      <select name="m" id="m" onchange="syncMeasure()">
+        {% for m in measures %}<option value="{{ m }}" {% if m == s.measure %}selected{% endif %}>{{ m }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field" id="mc-wrap">of column
+      <select name="mc">
+        <option value="">—</option>
+        {% for c, k in s.t.columns.items() if k == 'num' %}<option value="{{ c }}" {% if c == s.measure_col %}selected{% endif %}>{{ c }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">Group by
+      <select name="g">
+        <option value="">— none (list rows) —</option>
+        {% for c, k in s.t.columns.items() %}<option value="{{ c }}" {% if s.groups and s.groups[0].col == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">bucket
+      <select name="gb"><option value="">raw</option>
+        {% for b in buckets if b %}<option value="{{ b }}" {% if s.groups and s.groups[0].bucket == b %}selected{% endif %}>{{ b }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">then by
+      <select name="g">
+        <option value="">—</option>
+        {% for c, k in s.t.columns.items() %}<option value="{{ c }}" {% if s.groups | length > 1 and s.groups[1].col == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">bucket
+      <select name="gb"><option value="">raw</option>
+        {% for b in buckets if b %}<option value="{{ b }}" {% if s.groups | length > 1 and s.groups[1].bucket == b %}selected{% endif %}>{{ b }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">Sort
+      <select name="s">{% for k, v in sorts.items() %}<option value="{{ k }}" {% if k == s.sort %}selected{% endif %}>{{ v }}</option>{% endfor %}</select>
+    </label>
+    <label class="field">Limit
+      <input type="number" name="n" min="1" max="2000" value="{{ s.limit }}" style="width:90px">
+    </label>
+  </div>
+
+  {# existing filters travel as hidden triplets; chips below remove them #}
+  {% for f in s.filters %}
+  <input type="hidden" name="fc" value="{{ f.col }}"><input type="hidden" name="fo" value="{{ f.op }}"><input type="hidden" name="fv" value="{{ f.val }}">
+  {% endfor %}
+  {% if s.order_by %}<input type="hidden" name="ob" value="{{ s.order_by }}"><input type="hidden" name="od" value="{{ s.order_dir }}">{% endif %}
+  {% if s.all_cols %}<input type="hidden" name="all" value="1">{% endif %}
+
+  <div class="chips">
+    {% for f in s.filters %}
+    <span class="chip">{{ filter_labels[loop.index0] }} <a href="{{ s.without_filter(loop.index0) }}" title="remove filter">×</a></span>
+    {% endfor %}
+    {% for g in s.groups %}
+    <span class="chip group">group: {{ g.label(s.t.columns[g.col]) }} <a href="{{ s.without_group(g.col) }}" title="remove group">×</a></span>
+    {% endfor %}
+    {% if not s.filters and not s.groups %}<span class="sub">no filters — showing every row of {{ s.table }}</span>{% endif %}
+  </div>
+
+  <div class="row" style="margin-top:6px">
+    <label class="field">Add filter: column
+      <select name="fc" id="fc" onchange="syncOps()">
+        <option value="">—</option>
+        {% for c, k in s.t.columns.items() %}<option value="{{ c }}" data-kind="{{ k }}">{{ c }} <span class="sub">({{ k }})</span></option>{% endfor %}
+      </select>
+    </label>
+    <label class="field">operator
+      <select name="fo" id="fo" onchange="syncVal()">
+        {% for kind, table in ops.items() if kind != 'date' %}
+          {% for op, (tpl, arity, words) in table.items() %}
+          <option value="{{ op }}" data-kind="{{ kind }}" data-arity="{{ arity }}">{{ words }}</option>
+          {% endfor %}
+        {% endfor %}
+      </select>
+    </label>
+    <label class="field" id="fv-wrap">value
+      <input type="text" name="fv" id="fv" placeholder="value" style="min-width:220px">
+      <div class="hint">dates as YYYY-MM-DD · between as a,b · lists comma-separated</div>
+    </label>
+    <button class="primary" type="submit">Run</button>
+    <a class="btn" href="{{ s.url('explore_csv') }}">Export CSV (with SQL)</a>
+    <a class="btn" href="{{ url_for('explore') }}?t={{ s.table }}">Reset</a>
+  </div>
+</form>
+
+{% for e in r.errors %}<div class="error">{{ e }}</div>{% endfor %}
+
+<div class="card">
+  <div class="stats">
+    <div class="stat"><div class="big mono">{{ r.rows_matching | num }}</div><div class="cap">{{ s.table }} rows match</div></div>
+    <div class="stat"><div class="big mono">{{ r.people_matching | num }}</div><div class="cap">{{ s.t.people_label }}</div></div>
+    {% if r.base_total is defined %}<div class="stat"><div class="big mono">{{ r.base_total | num }}</div><div class="cap">{{ r.measure_label }} (all groups)</div></div>{% endif %}
+  </div>
+
+  {% if r.bars is defined %}
+  <h2 style="margin-top:14px">{{ r.measure_label }} by {{ s.groups[0].label(s.t.columns[s.groups[0].col]) }}</h2>
+  <div class="sub">click a bar to filter to it</div>
+  <div class="barlist">
+    {% for b in r.bars %}
+    <a class="barrow" href="{{ b.href }}" title="{{ b.label }} — {{ b.value | num }}{% if b.pct is not none %} ({{ '%.1f' % b.pct }}%){% endif %}">
+      <div class="lbl">{{ b.label }}</div>
+      <div class="track"><div class="fill" style="width:{{ '%.2f' % b.width }}%"></div></div>
+      <div class="val">{{ b.value | num }}{% if b.pct is not none %}<span class="pct">· {{ '%.1f' % b.pct }}%</span>{% endif %}</div>
+    </a>
+    {% else %}<div class="sub">no groups — loosen a filter</div>{% endfor %}
+  </div>
+
+  {% elif r.pivot is defined %}
+  <h2 style="margin-top:14px">{{ r.measure_label }}: {{ s.groups[0].label(s.t.columns[s.groups[0].col]) }} × {{ s.groups[1].label(s.t.columns[s.groups[1].col]) }}</h2>
+  <div class="sub">click a cell to filter to that pair; a row label filters to the row{% if r.pivot.truncated %} · showing the largest 40 rows × 12 columns{% endif %}</div>
+  <div class="tablewrap"><table class="matrix">
+    <tr><th class="rowhead">{{ s.groups[0].col }} ↓ · {{ s.groups[1].col }} →</th>
+      {% for c in r.pivot.cols %}<th class="colhead">{{ c }}</th>{% endfor %}<th class="colhead">total</th></tr>
+    {% for row in r.pivot.rows %}
+    <tr><th class="rowhead"><a href="{{ row.href }}">{{ row.label }}</a></th>
+      {% for cell in row.cells %}
+      <td class="cell {% if cell.alpha > 0.55 %}dark{% endif %}" style="background:rgba(var(--series-rgb),{{ '%.2f' % cell.alpha }})">
+        {% if cell.value is not none %}<a href="{{ cell.href }}">{{ cell.value | num }}</a>{% else %}<span class="sub">·</span>{% endif %}
+      </td>
+      {% endfor %}
+      <td class="num">{{ row.total | num }}</td></tr>
+    {% endfor %}
+  </table></div>
+  <div class="legend"><span><span class="sw" style="background:rgba(var(--series-rgb),.15)"></span>low</span><span><span class="sw" style="background:rgba(var(--series-rgb),.8)"></span>high · one hue, darker = larger {{ r.measure_label }}</span></div>
+
+  {% elif r.columns %}
+  <h2 style="margin-top:14px">Rows <span class="pill">{{ r.rows | length }} shown of {{ r.rows_matching | num }}</span></h2>
+  <div class="sub">click a column header to sort · click a text value to filter to it ·
+    {% if s.all_cols %}<a href="{{ s.url(all=None) }}">default columns</a>{% else %}<a href="{{ s.url(all='1') }}">all {{ s.t.columns | length }} columns</a>{% endif %}</div>
+  <div class="tablewrap"><table>
+    <tr>{% for c in r.columns %}
+      <th><a class="{% if c == r.order_by %}on{% endif %}" href="{{ s.url(ob=c, od=('desc' if (c == r.order_by and s.order_dir == 'asc') else 'asc')) }}">{{ c }}{% if c == r.order_by %} {{ '▲' if s.order_dir == 'asc' else '▼' }}{% endif %}</a></th>
+    {% endfor %}</tr>
+    {% for row in r.rows %}
+    <tr>{% for v in row %}{% set k = r.kinds[loop.index0] %}{% set c = r.columns[loop.index0] %}
+      {% if k == 'num' %}<td class="num">{{ v | num }}</td>
+      {% elif k == 'bool' %}<td>{% if v is none %}—{% else %}<a class="cell" href="{{ s.with_filter(c, 'true' if v else 'false', '') }}">{{ v }}</a>{% endif %}</td>
+      {% elif v is none or v == '' %}<td class="sub">—</td>
+      {% elif k == 'text' and v | length < 80 %}<td><a class="cell" href="{{ s.with_filter(c, 'is', v) }}">{{ v }}</a></td>
+      {% else %}<td>{{ v }}</td>{% endif %}
+    {% endfor %}</tr>
+    {% else %}<tr><td colspan="{{ r.columns | length }}" class="sub">no rows — loosen a filter</td></tr>{% endfor %}
+  </table></div>
+  {% endif %}
+
+  {% if r.columns and (r.bars is defined or r.pivot is defined) %}
+  <details><summary>Result table ({{ r.rows | length }} rows)</summary>
+    <div class="tablewrap"><table>
+      <tr>{% for c in r.columns %}<th>{{ c }}</th>{% endfor %}</tr>
+      {% for row in r.rows %}<tr>{% for v in row %}<td class="{% if v is number %}num{% endif %}">{{ v | num if v is not none else '—' }}</td>{% endfor %}</tr>{% endfor %}
+    </table></div>
+  </details>
+  {% endif %}
+  <details><summary>Generating SQL (parameters inlined for display; execution is parameterized)</summary><pre>{{ r.sql }}</pre></details>
+</div>
+
+<script>
+  function resetTo(t) { window.location = "{{ url_for('explore') }}?t=" + encodeURIComponent(t); }
+  function kindOf() { var fc = document.getElementById('fc'); var o = fc.options[fc.selectedIndex]; return o ? o.getAttribute('data-kind') : ''; }
+  function syncOps() {
+    var k = kindOf(); if (k === 'date') k = 'num';
+    var fo = document.getElementById('fo'); var first = null;
+    for (var i = 0; i < fo.options.length; i++) {
+      var o = fo.options[i]; var show = !k || o.getAttribute('data-kind') === k;
+      o.hidden = !show; o.disabled = !show; if (show && first === null) first = i;
+    }
+    if (first !== null && fo.options[fo.selectedIndex].disabled) fo.selectedIndex = first;
+    syncVal();
+  }
+  function syncVal() {
+    var fo = document.getElementById('fo'); var o = fo.options[fo.selectedIndex];
+    document.getElementById('fv-wrap').style.visibility = (o && o.getAttribute('data-arity') === '0') ? 'hidden' : 'visible';
+  }
+  function syncMeasure() {
+    var m = document.getElementById('m').value;
+    document.getElementById('mc-wrap').style.visibility = (m === 'count' || m === 'people') ? 'hidden' : 'visible';
+  }
+  syncOps(); syncMeasure();
+</script>
+{% endblock %}

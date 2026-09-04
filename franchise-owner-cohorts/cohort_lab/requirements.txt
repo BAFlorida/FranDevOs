@@ -1,4 +1,4 @@
 flask>=3.0
-duckdb>=1.0
+duckdb>=1.2,<2
 gunicorn>=22.0
 cryptography>=42.0
